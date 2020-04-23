@@ -1,15 +1,483 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://kvrmnks.github.io</id>
-    <title>Gridea</title>
-    <updated>2020-04-23T11:58:11.836Z</updated>
+    <title>Kvrmnks` blog</title>
+    <updated>2020-04-23T12:19:00.538Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://kvrmnks.github.io"/>
     <link rel="self" href="https://kvrmnks.github.io/atom.xml"/>
-    <subtitle>温故而知新</subtitle>
+    <subtitle>power overwhelming</subtitle>
     <logo>https://kvrmnks.github.io/images/avatar.png</logo>
     <icon>https://kvrmnks.github.io/favicon.ico</icon>
-    <rights>All rights reserved 2020, Gridea</rights>
+    <rights>All rights reserved 2020, Kvrmnks` blog</rights>
+    <entry>
+        <title type="html"><![CDATA[你是否还能假装自己是别人呢]]></title>
+        <id>https://kvrmnks.github.io/post/ni-shi-fou-huan-neng-jia-zhuang-zi-ji-shi-bie-ren-ni/</id>
+        <link href="https://kvrmnks.github.io/post/ni-shi-fou-huan-neng-jia-zhuang-zi-ji-shi-bie-ren-ni/">
+        </link>
+        <updated>2020-04-04T12:07:44.000Z</updated>
+        <summary type="html"><![CDATA[<p>久违的<s>吹水</s>又来了!</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>久违的<s>吹水</s>又来了!</p>
+<!--more-->
+<p>最近一段时间还真是又辛苦又痛苦呢.</p>
+<p>不知不觉又到4月了, 和数字9一样, 给人的总是一个突变的感觉. 到了四月才发觉现在已经不是上一年, 到了9月才意识到原来一年已经悄悄过去了一半.</p>
+<p>总是有这样或者那样的意识上的突变, 19岁的人看起来还不是那么大, 但是21岁的年龄却又看起来那么成熟.</p>
+<p>还记得小时候玩的&quot;美食大战老鼠&quot;, 6级的美食到7级的美食总是一道那么大的门槛...</p>
+<p>3~4年前的我还能在看番时热泪盈眶, 现在反而做不到了呢. 现在反而开始喜欢一些有深度的作品, 一些清新的作品. 换个文艺一点的说法, 是想诗一样的作品呢.</p>
+<p>闲暇时, 我思考了一下为什么会有这样的变化, 我发现, 现在的我似乎没法将自己很好的带入到角色里. 只能在一旁静静地角色们展现自己, 不再能把自己带入对比自己.</p>
+<p>或许是看的时候不太专注了? 那个时候的我, 在看完之后还会有那种怅然若失的感觉, 脑子里会不时地重复剧情. 而现在就变成了在使用快餐, 仅仅是为了吃饱. 几个月前我又体验了这样的感觉是《薇尔莉特·伊芙加登外传 - 永远与自动手记人偶 》</p>
+<p>像是故乡的春风一样, 我在想, 这样的感觉是否也是无法再现的呢.</p>
+<p>这让我想起了我在训练的模型(唐突的例子)</p>
+<p>随着训练次数的上升, 原来的数据都无法再现了.</p>
+<p>我们现在还能否假装自己是别人呢?</p>
+<p>现在我们还能做白日梦吗...</p>
+<p>在一面让自己适应于现实的时候, 我是否还能跳出这些, 跳出现实的框架, 去想那些虚无飘渺的事, 去假装那些是真的, 假装自己是另一个人呢.</p>
+<p>这是否是我们对现实的过拟合呢(又一个唐突的例子).</p>
+<p>(deep learning总是能在奇怪的地方派上用场呢</p>
+<p>我又想起来人们总说人变老了会越来越想小孩, <s>嘛, 看起来不是过拟合呢</s></p>
+<p>如果能把这个4维的空间永远的保留下来该有多好, 即使是离散的也好呢...</p>
+<p>ねぇ</p>
+<p>思い出のカケラに<br>
+名前をつけて保存するなら<br>
+“宝物”がぴったりだね</p>
+<p>说说看最近的事吧</p>
+<p>在忙着做大作业...</p>
+<p>在忙着做数据分析的比赛...</p>
+<p>发现自己好像上课越来越不认真了...</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[codeforces 620]]></title>
+        <id>https://kvrmnks.github.io/post/codeforces-620/</id>
+        <link href="https://kvrmnks.github.io/post/codeforces-620/">
+        </link>
+        <updated>2020-02-16T01:46:47.000Z</updated>
+        <summary type="html"><![CDATA[<p>老年人来打场div2</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>老年人来打场div2</p>
+<!--more-->
+<h4 id="a">A</h4>
+<h5 id="题目简介">题目简介</h5>
+<p>两只兔子往中间跳,问能不能跳到一起,能输出时间</p>
+<p>傻逼题</p>
+<pre><code class="language-cpp">#include&lt;bits/stdc++.h&gt;
+using namespace std;
+int main(){
+	int t;
+	scanf(&quot;%d&quot;,&amp;t);
+	for(int i=1;i&lt;=t;i++){
+		int x,y,a,b;
+		scanf(&quot;%d%d%d%d&quot;,&amp;x,&amp;y,&amp;a,&amp;b);
+		y-=x;
+		a+=b;
+		if(y%a){
+			puts(&quot;-1&quot;);
+		}else{
+			printf(&quot;%d\n&quot;,y/a);
+		}
+	} 
+	
+	return 0;
+} 
+</code></pre>
+<h4 id="b">B</h4>
+<h5 id="题目大意">题目大意</h5>
+<p>给一些长度一样长的字符串,问最多能构造出多长的回文串</p>
+<p>傻逼题*2</p>
+<pre><code class="language-cpp">#include&lt;bits/stdc++.h&gt;
+using namespace std;
+const int MAXN = 105;
+bool isRev[MAXN];
+bool used[MAXN];
+bool lk[MAXN][MAXN];
+char str[MAXN][55];
+int n,m;
+int Q[MAXN],top;
+bool isR(int x){
+	bool flag = true;
+	for(int i=1;i&lt;=m;i++){
+		if(str[x][i] != str[x][m-i+1]){
+			flag = false;
+		}
+	}
+	return flag;
+}
+bool canlk(int x,int y){
+	bool falg = true;
+	for(int i=1;i&lt;=m;i++){
+		if(str[x][i] != str[y][m-i+1]){
+			falg = false;
+			break;
+		}
+	}
+	return falg;
+}
+int main(){
+	scanf(&quot;%d%d&quot;,&amp;n,&amp;m);
+	for(int i=1;i&lt;=n;i++){
+		scanf(&quot;%s&quot;,str[i]+1);
+	}
+	for(int i=1;i&lt;=n;i++)
+		isRev[i] = isR(i);
+	for(int i=1;i&lt;=n;i++){
+		for(int j=i+1;j&lt;=n;j++){
+			lk[i][j] = lk[j][i] = canlk(i,j);
+		}
+	}
+	int mxlen = 0;
+	for(int i=1;i&lt;=n;i++){
+		for(int j=i+1;j&lt;=n;j++){
+			if(lk[i][j] &amp;&amp; used[i]==false &amp;&amp; used[j] == false){
+				mxlen += 2*m;
+				used[i] = used[j] = true;
+			}
+		}
+	}
+	int tmp = 0;
+	memset(used,0,sizeof used);
+	for(int i=1;i&lt;=n;i++){
+		memset(used,0,sizeof used);
+		tmp = 0;
+		if(isRev[i]){
+			used[i] = true;
+			tmp += m;
+			for(int j=1;j&lt;=n;j++){
+				for(int k=j+1;k&lt;=n;k++){
+					if(lk[j][k] &amp;&amp; used[j]==false &amp;&amp; used[k]==false){
+						tmp += m*2;
+						used[j] = used[k] = true;
+					}
+				}
+			}
+			mxlen = max(mxlen,tmp);
+		}
+	}
+	printf(&quot;%d\n&quot;,mxlen);
+	tmp = 0;
+	memset(used,0,sizeof used);
+	for(int i=1;i&lt;=n;i++){
+		for(int j=i+1;j&lt;=n;j++){
+			if(lk[i][j] &amp;&amp; used[i]==false &amp;&amp; used[j] == false){
+				tmp += 2*m;
+				used[i] = used[j] = true;
+			}
+		}
+	}
+	if(tmp == mxlen){
+		memset(used,0,sizeof used);
+		for(int i=1;i&lt;=n;i++){
+			for(int j=i+1;j&lt;=n;j++){
+				if(lk[i][j] &amp;&amp; used[i]==false &amp;&amp; used[j] == false){
+					//tmp += 2*m;
+					Q[++top] = i;
+					Q[++top] = j;
+					used[i] = used[j] = true;
+				}
+			}
+		}	
+		for(int i=1;i&lt;=top;i+=2){
+			printf(&quot;%s&quot;,str[Q[i]]+1);
+		}
+		for(int i=top;i&gt;=1;i-=2){
+			printf(&quot;%s&quot;,str[Q[i]]+1);
+		}
+		return 0;
+	}
+	for(int i=1;i&lt;=n;i++){
+		memset(used,0,sizeof used);
+		tmp = 0;
+		if(isRev[i]){
+			used[i] = true;
+			tmp += m;
+			for(int j=1;j&lt;=n;j++){
+				for(int k=j+1;k&lt;=n;k++){
+					if(lk[j][k] &amp;&amp; used[j]==false &amp;&amp; used[k]==false){
+						tmp += m*2;
+						used[j] = used[k] = true;
+					}
+				}
+			}
+			//mxlen = max(mxlen,tmp);
+		}
+		if(tmp == mxlen){
+			memset(used,0,sizeof used);
+			Q[0] = i;
+			used[i] = true;
+			for(int j=1;j&lt;=n;j++){
+				for(int k=j+1;k&lt;=n;k++){
+					if(lk[j][k] &amp;&amp; used[j]==false &amp;&amp; used[k]==false){
+						//tmp += m*2;
+						Q[++top] = j;
+						Q[++top] = k;
+						used[j] = used[k] = true;
+					}
+				}
+			}
+			for(int i=1;i&lt;=top;i+=2){
+				printf(&quot;%s&quot;,str[Q[i]]+1);
+			}
+			printf(&quot;%s&quot;,str[Q[0]]+1);
+			for(int i=top;i&gt;=1;i-=2){
+				printf(&quot;%s&quot;,str[Q[i]]+1);
+			}	
+			return 0;		
+		}
+	}
+	return 0;
+}
+</code></pre>
+<h4 id="c">C</h4>
+<h5 id="题目大意-2">题目大意</h5>
+<p>在一个数轴上,给定起点,1s只能走一个单位长度,给n个区间,问能不能,在相应的时间属于相应的区间</p>
+<p>数据范围差评,好久没打cf了,总是想找个1e7+的复杂度...</p>
+<p>直接每步维护一个区间</p>
+<p>xjb求交就行了</p>
+<pre><code class="language-cpp">#include&lt;bits/stdc++.h&gt;
+using namespace std;
+typedef long long ll;
+const int MAXN = 120;
+ll t[MAXN],l[MAXN],r[MAXN];
+int n;
+ll L,R;
+void solve(){
+	scanf(&quot;%d%lld&quot;,&amp;n,&amp;L);
+	R = L;
+	for(int i=1;i&lt;=n;i++){
+		scanf(&quot;%lld%lld%lld&quot;,&amp;t[i],&amp;l[i],&amp;r[i]);
+	}
+	for(int i=1;i&lt;=n;i++){
+		L -= t[i] - t[i-1];
+		R += t[i] - t[i-1];
+		if(L&gt;r[i] || R &lt; l[i]){
+			puts(&quot;NO&quot;);
+			return;
+		}else{
+			L = max(L,l[i]);
+			R = min(R,r[i]);
+		}
+	}
+	puts(&quot;YES&quot;);
+}
+int main(){
+	int Q;
+	scanf(&quot;%d&quot;,&amp;Q);
+	while(Q--){
+		solve();
+	}
+	return 0;
+} 
+</code></pre>
+<h4 id="d">D</h4>
+<h5 id="题目大意-3">题目大意</h5>
+<p>给一个大于小于号的序列,构造两个数列,每个数&gt;=1,&lt;=n,要求一个LIS最大,一个LIS最小</p>
+<p>heheda,比赛的时候看错题了</p>
+<p>考虑求LIS的nlogn做法,实际上我们只需要在二分的那一步改成贪心,用贪心维护那个上升数列就好了</p>
+<p>构造的时候我是先把数分层,然后每层构造,有些小细节见代码</p>
+<pre><code class="language-cpp">#include&lt;bits/stdc++.h&gt;
+using namespace std;
+const int MAXN = 200050;
+int Q,n;
+char str[MAXN];
+int type[MAXN],raw[MAXN];
+vector&lt;int&gt; V[MAXN];
+int Min;
+void cons(int x,int pre){
+	if(raw[x]!=0)return;
+	
+	if(x+1 &lt;= n &amp;&amp; type[x+1] == type[x] &amp;&amp; pre != x+1 &amp;&amp; str[x] == '&gt;'){
+		cons(x+1,x);
+		raw[x] = raw[x+1] + 1;
+	}
+	if(x-1 &gt;= 1 &amp;&amp; type[x-1] == type[x] &amp;&amp; pre != x-1 &amp;&amp; str[x-1] == '&lt;'){
+		cons(x-1,x);
+		raw[x] = raw[x-1] + 1;
+	}
+	raw[x] = Min + 1;
+	Min ++;
+}
+void Cons(int x,int pre){
+	if(raw[x]!=0)return;
+	if(x-1 &gt;= 1 &amp;&amp; type[x-1] == type[x] &amp;&amp; pre != x-1 &amp;&amp; str[x-1] == '&lt;'){
+		cons(x-1,x);
+		raw[x] = raw[x-1] + 1;
+	}	
+	if(x+1 &lt;= n &amp;&amp; type[x+1] == type[x] &amp;&amp; pre != x+1 &amp;&amp; str[x] == '&gt;'){
+		cons(x+1,x);
+		raw[x] = raw[x+1] + 1;
+	}
+
+	raw[x] = Min + 1;
+	Min ++;
+}
+void solve(){
+	scanf(&quot;%d&quot;,&amp;n);
+	scanf(&quot;%s&quot;,str+1);
+	int lastpos = 1;
+	int mx = 1;
+	type[1] = 1;
+
+	for(int i=1;i&lt;n;i++){
+		if(str[i] == '&gt;'){
+			lastpos = 1;
+			type[i+1] = 1;
+		}else{
+			lastpos++;
+			mx = max(mx,lastpos);
+			type[i+1] = lastpos;
+		}
+	}
+	for(int i=1;i&lt;=n;i++){
+		V[type[i]].push_back(i);
+	}
+	Min = 0;
+	for(int i=1;i&lt;=n;i++){
+		for(int j=(int)V[i].size()-1;j&gt;=0;j--){
+			cons(V[i][j],V[i][j]);
+		}
+	}
+	for(int i=1;i&lt;=n;i++){
+		printf(&quot;%d &quot;,raw[i]);
+	}
+	puts(&quot;&quot;);		
+	
+		
+	
+	for(int i=1;i&lt;=n;i++)
+		V[i] = vector&lt;int&gt;();
+	for(int i=1;i&lt;=n;i++)
+		raw[i] = 0;
+		
+	lastpos = 1;
+	mx = 1;
+	type[1] = 1;
+	
+	for(int i=1;i&lt;n;i++){
+		if(str[i] == '&gt;'){
+			lastpos = 1;
+			type[i+1] = 1;
+		}else{
+			++mx;
+			lastpos = mx;
+			type[i+1] = lastpos;
+		}
+	}
+	for(int i=1;i&lt;=n;i++){
+		V[type[i]].push_back(i);
+	}
+	Min = 0;
+	for(int i=1;i&lt;=n;i++){
+		for(int j=0;j&lt;(int)V[i].size();j++){
+			Cons(V[i][j],V[i][j]);
+		}
+	}
+	for(int i=1;i&lt;=n;i++){
+		printf(&quot;%d &quot;,raw[i]);
+	}
+	puts(&quot;&quot;);
+	
+	
+	for(int i=1;i&lt;=n;i++)
+		V[i] = vector&lt;int&gt;();
+	for(int i=1;i&lt;=n;i++)
+		raw[i] = 0;
+}
+int main(){
+	scanf(&quot;%d&quot;,&amp;Q);
+	while(Q--){
+		solve();
+	}
+	return 0;
+}
+</code></pre>
+<p>其实原题不需要构造的答案是个排列</p>
+<p><s>我只是不会写不是排列的做法</s></p>
+<h4 id="e">E</h4>
+<h5 id="题目大意-4">题目大意</h5>
+<p>给一棵树,每次询问加一条边(x,y),询问是否有从a到b有长度等于k的可重边路径,该次询问完删掉(x,y)边</p>
+<p>一共就3种可能</p>
+<p>1.a -&gt; b</p>
+<p>2.a -&gt; x -&gt; y -&gt; b</p>
+<p>3.a -&gt; y -&gt; x -&gt; b</p>
+<p>然后只要满足小于k且奇偶性一样就行</p>
+<p>好久没写树链剖分了,写得头疼...</p>
+<pre><code class="language-cpp">#include&lt;bits/stdc++.h&gt;
+using namespace std;
+const int MAXN = 200050;
+int sz[MAXN],top[MAXN],dep[MAXN],to[MAXN],nx[MAXN],h[MAXN],tot;
+int ch[MAXN],fa[MAXN];
+int n;
+void add_edge(int x,int y){
+	to[++tot] = y;
+	nx[tot] = h[x];
+	h[x] = tot;
+}
+void link(int x,int y){
+	add_edge(x,y);
+	add_edge(y,x);
+}
+void dfs1(int x,int y){
+	sz[x] = 1;
+	fa[x] = y;
+	dep[x] = dep[y] + 1;
+	for(int i=h[x];i;i=nx[i]){
+		if(to[i] == y)
+			continue;
+		dfs1(to[i],x);
+		sz[x] += sz[to[i]];
+		if(sz[to[i]] &gt; sz[ch[x]])
+			ch[x] = to[i];
+	}
+}
+int lca(int x,int y){
+	while(top[x]!=top[y]){
+		dep[top[x]] &gt; dep[top[y]] ? x = fa[top[x]] : y = fa[top[y]];
+	}
+	return dep[x]&lt;dep[y]?x:y;
+}
+int dis(int x,int y){
+	return dep[x] + dep[y] - 2 * dep[lca(x,y)];
+}
+void dfs2(int x,int tp){
+	top[x] = tp;
+	if(ch[x])dfs2(ch[x],tp);
+	for(int i=h[x];i;i=nx[i]){
+		if(to[i] == fa[x] || to[i] == ch[x])
+			continue;
+		dfs2(to[i],to[i]);
+	}
+}
+int main(){
+	scanf(&quot;%d&quot;,&amp;n);
+	for(int i=1;i&lt;n;i++){
+		int x,y;
+		scanf(&quot;%d%d&quot;,&amp;x,&amp;y);
+		link(x,y);
+	}
+	dfs1(1,0);
+	dfs2(1,1);
+	int Q,x,y,a,b,k;
+	scanf(&quot;%d&quot;,&amp;Q);
+	while(Q--){
+		scanf(&quot;%d%d%d%d%d&quot;,&amp;a,&amp;b,&amp;x,&amp;y,&amp;k);
+	//	cout&lt;&lt;lca(x,y)&lt;&lt;endl;
+		int tmp = dis(x,y);
+		if(tmp &lt;= k &amp;&amp; ((k-tmp)%2==0)){puts(&quot;YES&quot;);continue;}
+		tmp = dis(x,a)+dis(y,b)+1;
+		if(tmp &lt;= k &amp;&amp; ((k-tmp)%2==0)){puts(&quot;YES&quot;);continue;}
+		tmp = dis(x,b) + dis(y,a) + 1;
+		if(tmp &lt;= k &amp;&amp; ((k-tmp)%2==0)){puts(&quot;YES&quot;);continue;}
+		puts(&quot;NO&quot;);
+	}
+	return 0;
+} 
+</code></pre>
+<h4 id="f">F</h4>
+<h5 id="简单口胡">简单口胡</h5>
+<p>老年人不想写线段树了...</p>
+<p>咕咕咕</p>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[一起来搭Discuz和wordpress吧]]></title>
         <id>https://kvrmnks.github.io/post/yi-qi-lai-da-discuz-he-wordpress-ba/</id>
@@ -80,27 +548,27 @@
 <p><s>这有啥好说的</s></p>
 <p>一定要记好自己的密码,用户名默认是root</p>
 <p>每次登录的时候都需要输入账号和密码</p>
-<figure data-type="image" tabindex="2"><img src="%E4%B8%80%E8%B5%B7%E6%9D%A5%E6%90%ADDiscuz%E5%92%8Cwordpress%E5%90%A7/wmlogin.png" alt="" loading="lazy"></figure>
-<p>这里主要讲一下配置网络的细节吧</p>
+<p><img src="https://kvrmnks.github.io/post-images/1587643152551.png" alt="" loading="lazy"><br>
+这里主要讲一下配置网络的细节吧</p>
 <p>因为可以联网之后,就可以用ssh控制电脑了呢,就不用盯着虚拟机那个小框了呢~</p>
 <p>先输入以下</p>
 <pre><code>ip addr
 </code></pre>
 <p>如果长成这样</p>
-<figure data-type="image" tabindex="3"><img src="%E4%B8%80%E8%B5%B7%E6%9D%A5%E6%90%ADDiscuz%E5%92%8Cwordpress%E5%90%A7/ippre.png" alt="" loading="lazy"></figure>
-<p>注意看红线下面没有出现ip地址,这个时候就要手动配置一下网络</p>
+<p><img src="https://kvrmnks.github.io/post-images/1587643165015.png" alt="" loading="lazy"><br>
+注意看红线下面没有出现ip地址,这个时候就要手动配置一下网络</p>
 <p>打开虚拟机设置</p>
-<figure data-type="image" tabindex="4"><img src="%E4%B8%80%E8%B5%B7%E6%9D%A5%E6%90%ADDiscuz%E5%92%8Cwordpress%E5%90%A7/vmconfig1.png" alt="" loading="lazy"></figure>
-<p>调整成桥接模式</p>
-<figure data-type="image" tabindex="5"><img src="%E4%B8%80%E8%B5%B7%E6%9D%A5%E6%90%ADDiscuz%E5%92%8Cwordpress%E5%90%A7/vmconfig2.png" alt="" loading="lazy"></figure>
-<p>然后回到虚拟机,输入</p>
+<p><img src="https://kvrmnks.github.io/post-images/1587643177915.png" alt="" loading="lazy"><br>
+调整成桥接模式</p>
+<p><img src="https://kvrmnks.github.io/post-images/1587643185764.png" alt="" loading="lazy"><br>
+然后回到虚拟机,输入</p>
 <pre><code>cd /etc/sysconfig/network-scripts
 </code></pre>
 <p>再输入</p>
 <pre><code>ll
 </code></pre>
-<figure data-type="image" tabindex="6"><img src="%E4%B8%80%E8%B5%B7%E6%9D%A5%E6%90%ADDiscuz%E5%92%8Cwordpress%E5%90%A7/vmconfig3.png" alt="" loading="lazy"></figure>
-<p>输入</p>
+<p><img src="https://kvrmnks.github.io/post-images/1587643195291.png" alt="" loading="lazy"><br>
+输入</p>
 <pre><code>vi ifcfg-ens33
 </code></pre>
 <p>编辑ifcfg-ens33文件</p>
@@ -117,8 +585,8 @@
 <p>保存退出</p>
 <p>重启一下虚拟机</p>
 <p>再输入一下ip addr</p>
-<figure data-type="image" tabindex="7"><img src="%E4%B8%80%E8%B5%B7%E6%9D%A5%E6%90%ADDiscuz%E5%92%8Cwordpress%E5%90%A7/ipconfig4.png" alt="" loading="lazy"></figure>
-<p>现在那个红线上面的ip地址就是你的虚拟机ip地址</p>
+<p><img src="https://kvrmnks.github.io/post-images/1587643206328.png" alt="" loading="lazy"><br>
+现在那个红线上面的ip地址就是你的虚拟机ip地址</p>
 <p>现在可以用ssh链接你的虚拟机了~~</p>
 <h3 id="配置基本的环境">配置基本的环境</h3>
 <h4 id="在自己的电脑上安装git">在自己的电脑上安装git</h4>
@@ -131,8 +599,8 @@
 </code></pre>
 <pre><code>systemctl disable firewalld
 </code></pre>
-<figure data-type="image" tabindex="8"><img src="%E4%B8%80%E8%B5%B7%E6%9D%A5%E6%90%ADDiscuz%E5%92%8Cwordpress%E5%90%A7/firewall.png" alt="" loading="lazy"></figure>
-<p>这样就把防火墙关掉了~</p>
+<p><img src="https://kvrmnks.github.io/post-images/1587643219610.png" alt="" loading="lazy"><br>
+这样就把防火墙关掉了~</p>
 <p>但是linux还有个叫SELinux的讨厌的东西</p>
 <p>编辑/etc/selinux/config文件</p>
 <p>再顺便一提,右键powershell就可以粘贴哦~</p>
@@ -164,8 +632,8 @@
 可以输入</p>
 <pre><code>systemctl status httpd
 </code></pre>
-<figure data-type="image" tabindex="9"><img src="%E4%B8%80%E8%B5%B7%E6%9D%A5%E6%90%ADDiscuz%E5%92%8Cwordpress%E5%90%A7/httpdstatus.png" alt="" loading="lazy"></figure>
-<p>如果那个running变成了dead,极大的可能是有东西占用了80端口,比如阿里云就会自带nginx占用掉80端口</p>
+<p><img src="https://kvrmnks.github.io/post-images/1587643230779.png" alt="" loading="lazy"><br>
+如果那个running变成了dead,极大的可能是有东西占用了80端口,比如阿里云就会自带nginx占用掉80端口</p>
 <p>这个时候,输入</p>
 <pre><code>yum install net-tools
 </code></pre>
@@ -173,7 +641,7 @@
 <p>完成之后输入</p>
 <pre><code>netstat -tlnp|grep 80
 </code></pre>
-<p><img src="%E4%B8%80%E8%B5%B7%E6%9D%A5%E6%90%ADDiscuz%E5%92%8Cwordpress%E5%90%A7/80.png" alt="" loading="lazy"><br>
+<p><img src="https://kvrmnks.github.io/post-images/1587643242302.png" alt="" loading="lazy"><br>
 看到有程序在占用80端口,从右边可以看到进程号为1372,应用是httpd</p>
 <p>这个地方由于我已经成功启动了httpd所以显示的是httpd,如果是什么其他的东西,就需要强行把这个应用停止,把80端口让给httpd</p>
 <pre><code>kill -9 进程号
@@ -212,8 +680,8 @@
 <p>Discuz的项目地址在</p>
 <p>https://gitee.com/ComsenzDiscuz/DiscuzX</p>
 <p>还好不在github...</p>
-<figure data-type="image" tabindex="10"><img src="%E4%B8%80%E8%B5%B7%E6%9D%A5%E6%90%ADDiscuz%E5%92%8Cwordpress%E5%90%A7/DiscuzGet.png" alt="" loading="lazy"></figure>
-<p>一次点击克隆,复制</p>
+<p><img src="https://kvrmnks.github.io/post-images/1587643255695.png" alt="" loading="lazy"><br>
+一次点击克隆,复制</p>
 <p>输入</p>
 <pre><code>git clone 你复制到的东西
 </code></pre>
@@ -235,12 +703,12 @@
 <p>打开浏览器,输入</p>
 <pre><code>虚拟机的ip地址/upload
 </code></pre>
-<figure data-type="image" tabindex="11"><img src="%E4%B8%80%E8%B5%B7%E6%9D%A5%E6%90%ADDiscuz%E5%92%8Cwordpress%E5%90%A7/DiscuzInstall.png" alt="" loading="lazy"></figure>
-<p>点我同意</p>
-<figure data-type="image" tabindex="12"><img src="%E4%B8%80%E8%B5%B7%E6%9D%A5%E6%90%ADDiscuz%E5%92%8Cwordpress%E5%90%A7/DiscuzInstall2.png" alt="" loading="lazy"></figure>
-<p>点下一步*2</p>
-<figure data-type="image" tabindex="13"><img src="%E4%B8%80%E8%B5%B7%E6%9D%A5%E6%90%ADDiscuz%E5%92%8Cwordpress%E5%90%A7/DiscuzInstall3.png" alt="" loading="lazy"></figure>
-<p>数据库密码调成空(如果你没有手动调整数据库密码的话)</p>
+<p><img src="https://kvrmnks.github.io/post-images/1587643265636.png" alt="" loading="lazy"><br>
+点我同意</p>
+<p><img src="https://kvrmnks.github.io/post-images/1587643271673.png" alt="" loading="lazy"><br>
+点下一步*2</p>
+<p><img src="https://kvrmnks.github.io/post-images/1587643278921.png" alt="" loading="lazy"><br>
+数据库密码调成空(如果你没有手动调整数据库密码的话)</p>
 <p>记得填写管理员密码哦~</p>
 <p>然后就安完了~</p>
 <h3 id="安装wordpress">安装wordpress</h3>
@@ -271,8 +739,8 @@
 <pre><code>http://ip地址/wordpress
 </code></pre>
 <p>就能看到wordpress的安装界面了~</p>
-<figure data-type="image" tabindex="14"><img src="%E4%B8%80%E8%B5%B7%E6%9D%A5%E6%90%ADDiscuz%E5%92%8Cwordpress%E5%90%A7/wordpressInstall1.png" alt="" loading="lazy"></figure>
-<p>先别急着往下,现在我们要配置一下数据库</p>
+<p><img src="https://kvrmnks.github.io/post-images/1587643288461.png" alt="" loading="lazy"><br>
+先别急着往下,现在我们要配置一下数据库</p>
 <p>回到powershell</p>
 <p>依次输入</p>
 <pre><code>mysql -uroot
@@ -292,13 +760,13 @@
 </code></pre>
 <p>重启一下数据库</p>
 <p>回到浏览器</p>
-<figure data-type="image" tabindex="15"><img src="%E4%B8%80%E8%B5%B7%E6%9D%A5%E6%90%ADDiscuz%E5%92%8Cwordpress%E5%90%A7/wordpressInstall2.png" alt="" loading="lazy"></figure>
-<p>依次填表</p>
+<p><img src="https://kvrmnks.github.io/post-images/1587643296315.png" alt="" loading="lazy"><br>
+依次填表</p>
 <p>数据库主机填虚拟机的IP地址</p>
 <p>如果你用的是阿里云之类的东西记得开放3306端口(数据库使用)</p>
 <p>如果出现这个界面</p>
-<figure data-type="image" tabindex="16"><img src="%E4%B8%80%E8%B5%B7%E6%9D%A5%E6%90%ADDiscuz%E5%92%8Cwordpress%E5%90%A7/wordpressInstall3.png" alt="" loading="lazy"></figure>
-<p>回到powershell</p>
+<p><img src="https://kvrmnks.github.io/post-images/1587643301572.png" alt="" loading="lazy"><br>
+回到powershell</p>
 <p>输入</p>
 <pre><code>vi /var/www/html/wordpress/wp-config.php
 </code></pre>
@@ -317,6 +785,160 @@
 <p>https://blog.csdn.net/weixin_42506905/article/details/90339253</p>
 <p>https://www.cnblogs.com/lywJ/p/10880332.html</p>
 <p>https://www.jianshu.com/p/ad58fd97119e</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[用fft画画]]></title>
+        <id>https://kvrmnks.github.io/post/yong-fft-hua-hua/</id>
+        <link href="https://kvrmnks.github.io/post/yong-fft-hua-hua/">
+        </link>
+        <updated>2020-02-06T11:03:17.000Z</updated>
+        <summary type="html"><![CDATA[<p>外面疫情严重,只能赋闲在家,闲着也是闲着,来学用fft画画吧</p>
+<figure data-type="image" tabindex="1"><img src="https://kvrmnks.github.io/post-images/1587643407396.jpg" alt="" loading="lazy"></figure>
+]]></summary>
+        <content type="html"><![CDATA[<p>外面疫情严重,只能赋闲在家,闲着也是闲着,来学用fft画画吧</p>
+<figure data-type="image" tabindex="1"><img src="https://kvrmnks.github.io/post-images/1587643407396.jpg" alt="" loading="lazy"></figure>
+<!--more-->
+<p><s>顺便预习一下马上要学的QT</s></p>
+<h3 id="fft">fft</h3>
+<p>既然要用fft画画当然要会fft的呀,什么你还不会fft?</p>
+<p><img src="https://kvrmnks.github.io/post-images/1587643414466.png" alt="" loading="lazy"><br>
+如果你不会请去自己学  <s>其实有板子在会不会有什么区别呢</s><br>
+这里丢个一直在用的fft板子<br>
+复数类板子</p>
+<pre><code class="language-cpp">class Complex{
+private:
+    qreal a,b;
+public:
+    Complex(qreal a=0,qreal b=0):a(a),b(b){}
+    Complex operator * (qreal x)const;
+    Complex operator * (const Complex &amp;y)const;
+    Complex operator + (const Complex &amp;y)const;
+    Complex operator - (const Complex &amp;y)const;
+    qreal length()const{
+        return sqrt(a*a+b*b);
+    }
+    qreal real()const{return a;}
+    qreal img()const{return b;}
+};
+Complex operator * (qreal x,Complex y);
+Complex Complex::operator*(qreal x) const{
+    return Complex(this-&gt;a*x,this-&gt;b*x);
+}
+Complex Complex::operator*(const Complex &amp;y) const{
+    Complex ret(this-&gt;a*y.a-this-&gt;b*y.b,this-&gt;a*y.b+this-&gt;b*y.a);
+    return ret;
+}
+Complex Complex::operator+(const Complex &amp;y) const{
+    return Complex(this-&gt;a+y.a,this-&gt;b+y.b);
+}
+Complex Complex::operator-(const Complex &amp;y) const{
+    return Complex(this-&gt;a-y.a,this-&gt;b-y.b);
+}
+Complex operator * (qreal x,Complex y){
+    return y*x;
+}
+</code></pre>
+<p>fft板子</p>
+<pre><code class="language-cpp">void fft(QVector&lt;Complex&gt;&amp;data,int n){
+    QVector&lt;int&gt; rev(n);
+    int R = 0;
+    while((1&lt;&lt;(R+1))&lt;=n)R++;
+    for(int i=0;i&lt;n;i++)rev[i]=(rev[i&gt;&gt;1]&gt;&gt;1)|((i&amp;1)&lt;&lt;(R-1));
+    for(int i=0;i&lt;n;i++){
+        if(i&lt;rev[i])
+            std::swap(data[i],data[rev[i]]);
+    }
+    qreal pi = acos(-1);
+    for(int i=1;i&lt;n;i&lt;&lt;=1){
+        Complex w(cos(pi/i),sin(pi/i));
+        for(int j=0;j&lt;n;j+=(i&lt;&lt;1)){
+            Complex wn(1,0);
+            for(int k=0;k&lt;i;k++){
+                Complex x=data[j+k],y=wn*data[j+i+k];
+                data[j+k]=x+y;
+                data[i+j+k]=x-y;
+                wn=wn*w;
+            }
+        }
+    }
+}
+</code></pre>
+<p>这里顺便说下绘图的原理,像是在做函数曲线一样,要描点连线<br>
+也就是要求一开始要给我一个点列<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>A</mi><mo>[</mo><mi>i</mi><mo>]</mo><mo>=</mo><mo>(</mo><msub><mi>x</mi><mi>i</mi></msub><mo separator="true">,</mo><msub><mi>y</mi><mi>i</mi></msub><mo>)</mo></mrow><annotation encoding="application/x-tex">A[i]=(x_i,y_i)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">A</span><span class="mopen">[</span><span class="mord mathdefault">i</span><span class="mclose">]</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord"><span class="mord mathdefault">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.03588em;">y</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span><br>
+为了让它fft,需要把这个点列转化到复平面上<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>A</mi><mo>[</mo><mi>i</mi><mo>]</mo><mo>=</mo><msub><mi>x</mi><mi>i</mi></msub><mo>+</mo><msub><mi>y</mi><mi>i</mi></msub><mo>∗</mo><mi>i</mi></mrow><annotation encoding="application/x-tex">A[i]=x_i+y_i*i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">A</span><span class="mopen">[</span><span class="mord mathdefault">i</span><span class="mclose">]</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.73333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.6597200000000001em;vertical-align:-0.19444em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.03588em;">y</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">∗</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.65952em;vertical-align:0em;"></span><span class="mord mathdefault">i</span></span></span></span><br>
+顺便记点数为<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">n</span></span></span></span><br>
+然后就可以fft了呢<br>
+假设生成的数列为<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>B</mi><mo>[</mo><mi>i</mi><mo>]</mo></mrow><annotation encoding="application/x-tex">B[i]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.05017em;">B</span><span class="mopen">[</span><span class="mord mathdefault">i</span><span class="mclose">]</span></span></span></span><br>
+那我们明显有</p>
+<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>A</mi><mo>[</mo><mi>j</mi><mo>]</mo><mo>=</mo><mfrac><mn>1</mn><mi>n</mi></mfrac><mo>∗</mo><munderover><mo>∑</mo><mrow><mi>k</mi><mo>=</mo><mn>0</mn></mrow><mrow><mi>k</mi><mo>&lt;</mo><mi>n</mi></mrow></munderover><mi>B</mi><mo>[</mo><mi>k</mi><mo>]</mo><mo>∗</mo><msup><mi>e</mi><mrow><mfrac><mrow><mn>2</mn><mi>π</mi><mi>j</mi><mi>i</mi></mrow><mi>n</mi></mfrac><mo>∗</mo><mi>k</mi></mrow></msup></mrow><annotation encoding="application/x-tex">A[j]=\frac{1}{n}*\sum_{k=0}^{k&lt;n}B[k]*e^{\frac{2\pi ji}{n}*k}
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">A</span><span class="mopen">[</span><span class="mord mathdefault" style="margin-right:0.05724em;">j</span><span class="mclose">]</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:2.00744em;vertical-align:-0.686em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.32144em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathdefault">n</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">∗</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:3.1382260000000004em;vertical-align:-1.302113em;"></span><span class="mop op-limits"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.836113em;"><span style="top:-1.8478869999999998em;margin-left:0em;"><span class="pstrut" style="height:3.05em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.03148em;">k</span><span class="mrel mtight">=</span><span class="mord mtight">0</span></span></span></span><span style="top:-3.0500049999999996em;"><span class="pstrut" style="height:3.05em;"></span><span><span class="mop op-symbol large-op">∑</span></span></span><span style="top:-4.3000050000000005em;margin-left:0em;"><span class="pstrut" style="height:3.05em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.03148em;">k</span><span class="mrel mtight">&lt;</span><span class="mord mathdefault mtight">n</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.302113em;"><span></span></span></span></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault" style="margin-right:0.05017em;">B</span><span class="mopen">[</span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span><span class="mclose">]</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">∗</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1.06643em;vertical-align:0em;"></span><span class="mord"><span class="mord mathdefault">e</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:1.06643em;"><span style="top:-3.4130000000000003em;margin-right:0.05em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mopen nulldelimiter sizing reset-size3 size6"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.9334714285714286em;"><span style="top:-2.656em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">n</span></span></span></span><span style="top:-3.2255000000000003em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line mtight" style="border-bottom-width:0.049em;"></span></span><span style="top:-3.4623857142857144em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord mtight">2</span><span class="mord mathdefault mtight" style="margin-right:0.03588em;">π</span><span class="mord mathdefault mtight" style="margin-right:0.05724em;">j</span><span class="mord mathdefault mtight">i</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.344em;"><span></span></span></span></span></span><span class="mclose nulldelimiter sizing reset-size3 size6"></span></span><span class="mbin mtight">∗</span><span class="mord mathdefault mtight" style="margin-right:0.03148em;">k</span></span></span></span></span></span></span></span></span></span></span></span></span></p>
+<p>因为每一项都是复数,所以我们可以把它对应到复平面上,这样<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>A</mi><mo>[</mo><mi>j</mi><mo>]</mo></mrow><annotation encoding="application/x-tex">A[j]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">A</span><span class="mopen">[</span><span class="mord mathdefault" style="margin-right:0.05724em;">j</span><span class="mclose">]</span></span></span></span>就变成了一系列向量的和,有了明显的几何意义</p>
+<h3 id="qt">QT</h3>
+<h5 id="安装">安装</h5>
+<p>请去清华镜像站下载安装包</p>
+<h5 id="用qt绘画">用QT绘画</h5>
+<p>好像有两种办法来着<br>
+1.QPainter<br>
+2.QGraphics<br>
+第一种跟java swing那套理论差不多要自己重写绘图事件,鉴于之前就被swing恶心到了,而且这种方式一点都不OOP于是选了第二种<br>
+第二种就是<br>
+一些基本的图形由QGraphicsItem继承得到<br>
+要把这些图形丢到QGraphicsScene里,让它来做排版<br>
+然后把QGraphicsScene丢给QGraphicsView让它显示出来就好了呢!<br>
+具体的代码在下一节</p>
+<h5 id="signal-and-slot">signal and slot</h5>
+<p>这个是Qt里新的逻辑呢<br>
+简单的用法是</p>
+<pre><code class="language-cpp">QObject::connect(发出信号的对象地址,SIGNAL(信号函数),接受信号的对象地址,SLOT(槽函数));
+</code></pre>
+<p>一旦这样做了之后呢<br>
+发出信号的函数一旦发出了信号,接受信号的对象就会立即执行槽函数<br>
+跟javafx里的property机制很像呢<br>
+举个具体的例子吧</p>
+<pre><code class="language-cpp">    QApplication a(argc, argv);
+    QGraphicsScene *scene = new QGraphicsScene(0,0,1024,768);
+    QGraphicsView *view = new GraphicsView(scene);
+    QPushButton *button = new QPushButton(&quot;exit&quot;);
+    QObject::connect(button,SIGNAL(clicked()),&amp;a,SLOT(exit()));
+    view-&gt;addWidget(button);
+    view-&gt;show();
+</code></pre>
+<p>这样如果按钮被点击了,窗口就会被关闭了</p>
+<h5 id="qtimeline">QTimeLine</h5>
+<p>毕竟要做出来的是个动画<br>
+当然要学学时间轴啦 <s>其实不会也没事呢</s><br>
+下面是代码节选</p>
+<pre><code class="language-cpp">QTimeLine *time = new QTimeLine(40000);
+time-&gt;setFrameRange(0,1024);
+QObject::connect(time,SIGNAL(frameChanged(int)),scene,SLOT(next()));
+time-&gt;start();
+</code></pre>
+<p>第一个构造函数里面的参数是时间轴持续的时间,单位毫秒<br>
+setFrameRange(int,int)<br>
+第一个参数表示每帧耗时多少毫秒 如果填0的话默认每帧40毫秒<br>
+第二个参数表示一共有多少帧<br>
+注意如果进行着时间超出了一开始构造函数的时间,就停了,当然如果时间到了还没进行完,也会停<br>
+那个next()是我定义的函数,作用是描下一个点</p>
+<p>到现在为止就已经可以完成整个动画了呢</p>
+<figure data-type="image" tabindex="2"><img src="https://kvrmnks.github.io/post-images/1587643425697.jpg" alt="" loading="lazy"></figure>
+<h3 id="qt打包">Qt打包</h3>
+<p>当你做好了程序想要给小伙伴展示的时候怎么可能简简单单地丢给他们代码呢?<br>
+qt打包的方法网上到处都是,我们来说说我犯过的坑吧</p>
+<h5 id="提示无法定位到q5guidll类">提示无法定位到Q5Gui.dll类</h5>
+<p>可能你的打包程序出了锅,你可以尝试ProcessExplorer然后把程序调用的dll自己挑过去</p>
+<h5 id="0x000000007b-大约长这样子~">0x000000007b 大约长这样子~</h5>
+<p>当你好不容易找全了dll,却发现了这么个错这是为啥呢</p>
+<p><img src="https://kvrmnks.github.io/post-images/1587643431546.jpg" alt="" loading="lazy"><br>
+经过我漫长的调试,发现原因是我在qtcreator里编译是用的qt自带的gcc<br>
+但是打包时我用的是dev里的cpp<br>
+因为我原来在用gcc的时候把dev的gcc在环境变量里优先度提得太高了<br>
+于是打包的时候gcc自动用了dev的,导致版本不一致<br>
+于是在环境变量设置里把qt的gcc优先度调到最高就好了呢</p>
+<figure data-type="image" tabindex="3"><img src="https://kvrmnks.github.io/post-images/1587643436909.gif" alt="" loading="lazy"></figure>
+<h3 id="项目代码">项目代码</h3>
+<p>我放到github上了<br>
+<a href="https://github.com/kvrmnks/FFt-drawing">链接</a></p>
 ]]></content>
     </entry>
     <entry>

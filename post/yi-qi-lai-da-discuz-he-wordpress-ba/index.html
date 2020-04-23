@@ -1,112 +1,102 @@
-<!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8" >
-
-<title>一起来搭Discuz和wordpress吧 | Gridea</title>
-
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-<link rel="shortcut icon" href="https://kvrmnks.github.io/favicon.ico?v=1587643087517">
+<head>
+    <meta charset="utf-8"/>
+<meta name="description" content=""/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>一起来搭Discuz和wordpress吧 | Kvrmnks` blog</title>
+<link rel="shortcut icon" href="https://kvrmnks.github.io/favicon.ico?v=1587644329057">
+<link href="https://cdn.bootcss.com/font-awesome/5.11.2/css/all.css" rel="stylesheet">
 <link rel="stylesheet" href="https://kvrmnks.github.io/styles/main.css">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dockerfile.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dart.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/go.min.js"></script>
+<script src="https://cdn.bootcss.com/moment.js/2.23.0/moment.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
+
+<!-- DEMO JS -->
+<!--<script src="media/scripts/index.js"></script>-->
 
 
 
-<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
-<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-
-
-
-    <meta name="description" content="颓废了一个寒假,临末尾来搭一个Discuz+wordpress吧
-
-环境
-系统 centos 7
-虚拟机 Vmware
-Discuz X3.4
-数据库
-一些linux指令简单介绍
-reboot
-重启
-ll
-显示当前目录文件和文件夹
-相当于w..." />
-    <meta name="keywords" content="" />
-  </head>
-  <body>
-    <div id="app" class="main">
-
-      <div class="sidebar" :class="{ 'full-height': menuVisible }">
-  <div class="top-container" data-aos="fade-right">
-    <div class="top-header-container">
-      <a class="site-title-container" href="https://kvrmnks.github.io">
-        <img src="https://kvrmnks.github.io/images/avatar.png?v=1587643087517" class="site-logo">
-        <h1 class="site-title">Gridea</h1>
-      </a>
-      <div class="menu-btn" @click="menuVisible = !menuVisible">
-        <div class="line"></div>
-      </div>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+</head>
+<body>
+<div class="main gt-bg-theme-color-first">
+    <nav class="navbar navbar-expand-lg">
+    <div class="navbar-brand">
+        <img class="user-avatar" src="/images/avatar.png" alt="头像">
+        <div class="site-name gt-c-content-color-first">
+            Kvrmnks` blog
+        </div>
     </div>
-    <div>
-      
-        
-          <a href="/" class="site-nav">
-            首页
-          </a>
-        
-      
-        
-          <a href="/archives" class="site-nav">
-            归档
-          </a>
-        
-      
-        
-          <a href="/tags" class="site-nav">
-            标签
-          </a>
-        
-      
-        
-          <a href="/post/about" class="site-nav">
-            关于
-          </a>
-        
-      
-    </div>
-  </div>
-  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
-    <div class="social-container">
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-    </div>
-    <div class="site-description">
-      温故而知新
-    </div>
-    <div class="site-footer">
-      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://kvrmnks.github.io/atom.xml" target="_blank">RSS</a>
-    </div>
-  </div>
-</div>
-
-
-      <div class="main-container">
-        <div class="content-container" data-aos="fade-up">
-          <div class="post-detail">
-            <h2 class="post-title">一起来搭Discuz和wordpress吧</h2>
-            <div class="post-date">2020-02-14</div>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fas fa-bars gt-c-content-color-first" style="font-size: 18px"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="navbar-nav mr-auto" style="text-align: center">
             
-            <div class="post-content" v-pre>
-              <p>颓废了一个寒假,临末尾来搭一个Discuz+wordpress吧</p>
+                <div class="nav-item">
+                    
+                        <a href="/" class="menu gt-a-link">
+                            首页
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="/archives" class="menu gt-a-link">
+                            归档
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="/tags" class="menu gt-a-link">
+                            标签
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="/post/about" class="menu gt-a-link">
+                            关于
+                        </a>
+                    
+                </div>
+            
+        </div>
+    </div>
+</nav>
+    <div class="post-container">
+        <div class="post-detail gt-bg-theme-color-second">
+            <article class="gt-post-content">
+                <h2 class="post-title">
+                    一起来搭Discuz和wordpress吧
+                </h2>
+                <div class="post-info">
+                    <time class="post-time gt-c-content-color-first">
+                        · 2020-02-14 ·
+                    </time>
+                    
+                </div>
+                <div class="post-content">
+                    <p>颓废了一个寒假,临末尾来搭一个Discuz+wordpress吧</p>
 <!--more-->
 <h3 id="环境">环境</h3>
 <p>系统 centos 7</p>
@@ -168,27 +158,27 @@ ll
 <p><s>这有啥好说的</s></p>
 <p>一定要记好自己的密码,用户名默认是root</p>
 <p>每次登录的时候都需要输入账号和密码</p>
-<figure data-type="image" tabindex="2"><img src="%E4%B8%80%E8%B5%B7%E6%9D%A5%E6%90%ADDiscuz%E5%92%8Cwordpress%E5%90%A7/wmlogin.png" alt="" loading="lazy"></figure>
-<p>这里主要讲一下配置网络的细节吧</p>
+<p><img src="https://kvrmnks.github.io/post-images/1587643152551.png" alt="" loading="lazy"><br>
+这里主要讲一下配置网络的细节吧</p>
 <p>因为可以联网之后,就可以用ssh控制电脑了呢,就不用盯着虚拟机那个小框了呢~</p>
 <p>先输入以下</p>
 <pre><code>ip addr
 </code></pre>
 <p>如果长成这样</p>
-<figure data-type="image" tabindex="3"><img src="%E4%B8%80%E8%B5%B7%E6%9D%A5%E6%90%ADDiscuz%E5%92%8Cwordpress%E5%90%A7/ippre.png" alt="" loading="lazy"></figure>
-<p>注意看红线下面没有出现ip地址,这个时候就要手动配置一下网络</p>
+<p><img src="https://kvrmnks.github.io/post-images/1587643165015.png" alt="" loading="lazy"><br>
+注意看红线下面没有出现ip地址,这个时候就要手动配置一下网络</p>
 <p>打开虚拟机设置</p>
-<figure data-type="image" tabindex="4"><img src="%E4%B8%80%E8%B5%B7%E6%9D%A5%E6%90%ADDiscuz%E5%92%8Cwordpress%E5%90%A7/vmconfig1.png" alt="" loading="lazy"></figure>
-<p>调整成桥接模式</p>
-<figure data-type="image" tabindex="5"><img src="%E4%B8%80%E8%B5%B7%E6%9D%A5%E6%90%ADDiscuz%E5%92%8Cwordpress%E5%90%A7/vmconfig2.png" alt="" loading="lazy"></figure>
-<p>然后回到虚拟机,输入</p>
+<p><img src="https://kvrmnks.github.io/post-images/1587643177915.png" alt="" loading="lazy"><br>
+调整成桥接模式</p>
+<p><img src="https://kvrmnks.github.io/post-images/1587643185764.png" alt="" loading="lazy"><br>
+然后回到虚拟机,输入</p>
 <pre><code>cd /etc/sysconfig/network-scripts
 </code></pre>
 <p>再输入</p>
 <pre><code>ll
 </code></pre>
-<figure data-type="image" tabindex="6"><img src="%E4%B8%80%E8%B5%B7%E6%9D%A5%E6%90%ADDiscuz%E5%92%8Cwordpress%E5%90%A7/vmconfig3.png" alt="" loading="lazy"></figure>
-<p>输入</p>
+<p><img src="https://kvrmnks.github.io/post-images/1587643195291.png" alt="" loading="lazy"><br>
+输入</p>
 <pre><code>vi ifcfg-ens33
 </code></pre>
 <p>编辑ifcfg-ens33文件</p>
@@ -205,8 +195,8 @@ ll
 <p>保存退出</p>
 <p>重启一下虚拟机</p>
 <p>再输入一下ip addr</p>
-<figure data-type="image" tabindex="7"><img src="%E4%B8%80%E8%B5%B7%E6%9D%A5%E6%90%ADDiscuz%E5%92%8Cwordpress%E5%90%A7/ipconfig4.png" alt="" loading="lazy"></figure>
-<p>现在那个红线上面的ip地址就是你的虚拟机ip地址</p>
+<p><img src="https://kvrmnks.github.io/post-images/1587643206328.png" alt="" loading="lazy"><br>
+现在那个红线上面的ip地址就是你的虚拟机ip地址</p>
 <p>现在可以用ssh链接你的虚拟机了~~</p>
 <h3 id="配置基本的环境">配置基本的环境</h3>
 <h4 id="在自己的电脑上安装git">在自己的电脑上安装git</h4>
@@ -219,8 +209,8 @@ ll
 </code></pre>
 <pre><code>systemctl disable firewalld
 </code></pre>
-<figure data-type="image" tabindex="8"><img src="%E4%B8%80%E8%B5%B7%E6%9D%A5%E6%90%ADDiscuz%E5%92%8Cwordpress%E5%90%A7/firewall.png" alt="" loading="lazy"></figure>
-<p>这样就把防火墙关掉了~</p>
+<p><img src="https://kvrmnks.github.io/post-images/1587643219610.png" alt="" loading="lazy"><br>
+这样就把防火墙关掉了~</p>
 <p>但是linux还有个叫SELinux的讨厌的东西</p>
 <p>编辑/etc/selinux/config文件</p>
 <p>再顺便一提,右键powershell就可以粘贴哦~</p>
@@ -252,8 +242,8 @@ ll
 可以输入</p>
 <pre><code>systemctl status httpd
 </code></pre>
-<figure data-type="image" tabindex="9"><img src="%E4%B8%80%E8%B5%B7%E6%9D%A5%E6%90%ADDiscuz%E5%92%8Cwordpress%E5%90%A7/httpdstatus.png" alt="" loading="lazy"></figure>
-<p>如果那个running变成了dead,极大的可能是有东西占用了80端口,比如阿里云就会自带nginx占用掉80端口</p>
+<p><img src="https://kvrmnks.github.io/post-images/1587643230779.png" alt="" loading="lazy"><br>
+如果那个running变成了dead,极大的可能是有东西占用了80端口,比如阿里云就会自带nginx占用掉80端口</p>
 <p>这个时候,输入</p>
 <pre><code>yum install net-tools
 </code></pre>
@@ -261,7 +251,7 @@ ll
 <p>完成之后输入</p>
 <pre><code>netstat -tlnp|grep 80
 </code></pre>
-<p><img src="%E4%B8%80%E8%B5%B7%E6%9D%A5%E6%90%ADDiscuz%E5%92%8Cwordpress%E5%90%A7/80.png" alt="" loading="lazy"><br>
+<p><img src="https://kvrmnks.github.io/post-images/1587643242302.png" alt="" loading="lazy"><br>
 看到有程序在占用80端口,从右边可以看到进程号为1372,应用是httpd</p>
 <p>这个地方由于我已经成功启动了httpd所以显示的是httpd,如果是什么其他的东西,就需要强行把这个应用停止,把80端口让给httpd</p>
 <pre><code>kill -9 进程号
@@ -300,8 +290,8 @@ ll
 <p>Discuz的项目地址在</p>
 <p>https://gitee.com/ComsenzDiscuz/DiscuzX</p>
 <p>还好不在github...</p>
-<figure data-type="image" tabindex="10"><img src="%E4%B8%80%E8%B5%B7%E6%9D%A5%E6%90%ADDiscuz%E5%92%8Cwordpress%E5%90%A7/DiscuzGet.png" alt="" loading="lazy"></figure>
-<p>一次点击克隆,复制</p>
+<p><img src="https://kvrmnks.github.io/post-images/1587643255695.png" alt="" loading="lazy"><br>
+一次点击克隆,复制</p>
 <p>输入</p>
 <pre><code>git clone 你复制到的东西
 </code></pre>
@@ -323,12 +313,12 @@ ll
 <p>打开浏览器,输入</p>
 <pre><code>虚拟机的ip地址/upload
 </code></pre>
-<figure data-type="image" tabindex="11"><img src="%E4%B8%80%E8%B5%B7%E6%9D%A5%E6%90%ADDiscuz%E5%92%8Cwordpress%E5%90%A7/DiscuzInstall.png" alt="" loading="lazy"></figure>
-<p>点我同意</p>
-<figure data-type="image" tabindex="12"><img src="%E4%B8%80%E8%B5%B7%E6%9D%A5%E6%90%ADDiscuz%E5%92%8Cwordpress%E5%90%A7/DiscuzInstall2.png" alt="" loading="lazy"></figure>
-<p>点下一步*2</p>
-<figure data-type="image" tabindex="13"><img src="%E4%B8%80%E8%B5%B7%E6%9D%A5%E6%90%ADDiscuz%E5%92%8Cwordpress%E5%90%A7/DiscuzInstall3.png" alt="" loading="lazy"></figure>
-<p>数据库密码调成空(如果你没有手动调整数据库密码的话)</p>
+<p><img src="https://kvrmnks.github.io/post-images/1587643265636.png" alt="" loading="lazy"><br>
+点我同意</p>
+<p><img src="https://kvrmnks.github.io/post-images/1587643271673.png" alt="" loading="lazy"><br>
+点下一步*2</p>
+<p><img src="https://kvrmnks.github.io/post-images/1587643278921.png" alt="" loading="lazy"><br>
+数据库密码调成空(如果你没有手动调整数据库密码的话)</p>
 <p>记得填写管理员密码哦~</p>
 <p>然后就安完了~</p>
 <h3 id="安装wordpress">安装wordpress</h3>
@@ -359,8 +349,8 @@ ll
 <pre><code>http://ip地址/wordpress
 </code></pre>
 <p>就能看到wordpress的安装界面了~</p>
-<figure data-type="image" tabindex="14"><img src="%E4%B8%80%E8%B5%B7%E6%9D%A5%E6%90%ADDiscuz%E5%92%8Cwordpress%E5%90%A7/wordpressInstall1.png" alt="" loading="lazy"></figure>
-<p>先别急着往下,现在我们要配置一下数据库</p>
+<p><img src="https://kvrmnks.github.io/post-images/1587643288461.png" alt="" loading="lazy"><br>
+先别急着往下,现在我们要配置一下数据库</p>
 <p>回到powershell</p>
 <p>依次输入</p>
 <pre><code>mysql -uroot
@@ -380,13 +370,13 @@ ll
 </code></pre>
 <p>重启一下数据库</p>
 <p>回到浏览器</p>
-<figure data-type="image" tabindex="15"><img src="%E4%B8%80%E8%B5%B7%E6%9D%A5%E6%90%ADDiscuz%E5%92%8Cwordpress%E5%90%A7/wordpressInstall2.png" alt="" loading="lazy"></figure>
-<p>依次填表</p>
+<p><img src="https://kvrmnks.github.io/post-images/1587643296315.png" alt="" loading="lazy"><br>
+依次填表</p>
 <p>数据库主机填虚拟机的IP地址</p>
 <p>如果你用的是阿里云之类的东西记得开放3306端口(数据库使用)</p>
 <p>如果出现这个界面</p>
-<figure data-type="image" tabindex="16"><img src="%E4%B8%80%E8%B5%B7%E6%9D%A5%E6%90%ADDiscuz%E5%92%8Cwordpress%E5%90%A7/wordpressInstall3.png" alt="" loading="lazy"></figure>
-<p>回到powershell</p>
+<p><img src="https://kvrmnks.github.io/post-images/1587643301572.png" alt="" loading="lazy"><br>
+回到powershell</p>
 <p>输入</p>
 <pre><code>vi /var/www/html/wordpress/wp-config.php
 </code></pre>
@@ -406,45 +396,54 @@ ll
 <p>https://www.cnblogs.com/lywJ/p/10880332.html</p>
 <p>https://www.jianshu.com/p/ad58fd97119e</p>
 
-            </div>
-            
-            
-              <div class="next-post">
-                <div class="next">下一篇</div>
-                <a href="https://kvrmnks.github.io/post/yi-xie-xue-xi-guo-cheng-zhong-yong-dao-de-dian-zi-shu/">
-                  <h3 class="post-title">
-                    一些学习过程中用到的电子书
-                  </h3>
-                </a>
-              </div>
-            
-
-            
-
-          </div>
-
+                </div>
+            </article>
         </div>
-      </div>
+
+        
+            <div class="next-post">
+                <div class="next gt-c-content-color-first">下一篇</div>
+                <a href="https://kvrmnks.github.io/post/yong-fft-hua-hua/" class="post-title gt-a-link">
+                    用fft画画
+                </a>
+            </div>
+        
+
+        
+		
+		
+
+        <div class="site-footer gt-c-content-color-first">
+    <div class="slogan gt-c-content-color-first">power overwhelming</div>
+    <div class="social-container">
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
     </div>
+    <div class="footer-info">
+        Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+    </div>
+    <div>
+        Theme by <a href="https://imhanjie.com/" target="_blank">imhanjie</a>, Powered by <a
+                href="https://github.com/getgridea/gridea" target="_blank">Gridea | <a href="https://kvrmnks.github.io/atom.xml" target="_blank">RSS</a></a>
+    </div>
+</div>
 
-    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
-<script type="application/javascript">
-
-AOS.init();
-
-var app = new Vue({
-  el: '#app',
-  data: {
-    menuVisible: false,
-  },
-})
-
+<script>
+    hljs.initHighlightingOnLoad()
 </script>
 
-
-
-
-
-
-  </body>
+    </div>
+</div>
+</body>
 </html>
