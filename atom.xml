@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://kvrmnks.github.io</id>
     <title>Kvrmnks` blog</title>
-    <updated>2020-04-28T14:17:49.966Z</updated>
+    <updated>2020-05-02T07:43:26.827Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://kvrmnks.github.io"/>
     <link rel="self" href="https://kvrmnks.github.io/atom.xml"/>
@@ -25,6 +25,46 @@
 试图安装双系统，失败<br>
 用虚拟机的Qt有点辣眼睛<br>
 简单学了一下Qt基本内容，试了试QSocket</p>
+<h4 id="2020-5-02">2020-5-02</h4>
+<p>今天又收获了好多好多的坑呢</p>
+<h5 id="markdown-html">markdown-&gt;html</h5>
+<p>https://github.com/hoedown/hoedown<br>
+纯c手写，clone之后直接nmake一下，调用方法的话写 hoedown.exe -h 就好啦</p>
+<h5 id="nmake-相关">nmake 相关</h5>
+<p>这个东西是Vs自带的，也就是说要装一个Vs<br>
+用everything 找 nmake.exe<br>
+然后注意这个的环境变量设置<br>
+要一个INCLUDE和LIB 都找一下<br>
+有的可能缺kernel32在LIB下找一下</p>
+<h5 id="webenginewidgets-中的-qwebengineview">webenginewidgets 中的 QWebEngineView</h5>
+<p>这个需要编译器是MSVC 2015+大约<br>
+然后只需要setHtml + show就好了<br>
+别忘记show</p>
+<h5 id="资源文件相关">资源文件相关</h5>
+<p>资源文件是直接编译进exe的所以只可读<br>
+资源文件的格式只有（目前发现）QFile能解析</p>
+<h5 id="资源文件的地址转绝对地址">资源文件的地址转绝对地址</h5>
+<p>建一个虚拟文件目录 QTemporaryDir<br>
+const QString tmp = mainDir-&gt;path()+&quot;/hoedown.exe&quot;;<br>
+QFile::copy(&quot;:/new/prefix1/project/hoedown.exe&quot;,tmp）；<br>
+然后把资源目录的文件复制进去<br>
+就可以用tmp访问了</p>
+<h5 id="文件读写">文件读写</h5>
+<pre><code class="language-cpp">    QFile out(&quot;dududusdshdksjhdksout.txt&quot;);
+    if(out.open(QIODevice::WriteOnly)){
+       QTextStream ts(&amp;out);
+        ts&lt;&lt;textTextEdit-&gt;toPlainText();
+        process-&gt;start(mainDir-&gt;path()+&quot;/hoedown.exe --all-block --all-span --all-flags &quot;+&quot;dududusdshdksjhdksout.txt&quot;);
+    }else{
+        qDebug(&quot;wrong&quot;);
+    }
+</code></pre>
+<h5 id=""></h5>
+<h5 id="如何调用外部的exe">如何调用外部的exe</h5>
+<p>QProcess<br>
+https://blog.csdn.net/wzj0808/article/details/79367314</p>
+<h5 id="qprocess-中stdout的文件编码">QProcess 中stdout的文件编码</h5>
+<p>https://blog.csdn.net/liukang325/article/details/80986472</p>
 ]]></content>
     </entry>
     <entry>
