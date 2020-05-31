@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://kvrmnks.github.io</id>
     <title>Kvrmnks` blog</title>
-    <updated>2020-05-18T13:09:02.852Z</updated>
+    <updated>2020-05-31T05:46:44.393Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://kvrmnks.github.io"/>
     <link rel="self" href="https://kvrmnks.github.io/atom.xml"/>
@@ -10,6 +10,58 @@
     <logo>https://kvrmnks.github.io/images/avatar.png</logo>
     <icon>https://kvrmnks.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, Kvrmnks` blog</rights>
+    <entry>
+        <title type="html"><![CDATA[方差]]></title>
+        <id>https://kvrmnks.github.io/post/fang-chai/</id>
+        <link href="https://kvrmnks.github.io/post/fang-chai/">
+        </link>
+        <updated>2020-05-31T05:43:52.000Z</updated>
+        <content type="html"><![CDATA[<!--more-->
+<p><img src="https://kvrmnks.github.io/post-images/1590903931832.png" alt="" loading="lazy"><br>
+先咕掉题解, 只贴代码吧</p>
+<pre><code class="language-cpp">#include&lt;bits/stdc++.h&gt;
+using namespace std;
+const int MOD = 1000000007;
+const int MAXN = 1000005;
+typedef long long ll;
+int n,data[MAXN],inv[MAXN],fac[MAXN],ifac[MAXN];
+int sum,qsum;
+int comb(int n,int m){
+    return (((ll)fac[n]*(ll)ifac[m])%MOD*(ll)ifac[n-m])%MOD;
+}
+int main(){
+    scanf(&quot;%d&quot;,&amp;n);
+    for(int i=1;i&lt;=n;i++)scanf(&quot;%d&quot;,data+i);
+    inv[0]=inv[1]=fac[0]=ifac[0]=fac[1]=ifac[1]=1;
+    for(int i=1;i&lt;=n;i++){
+        sum = (sum+data[i])%MOD;
+        qsum = (qsum + ((ll)data[i]*(ll)data[i])%MOD)%MOD;
+    }
+    for(int i=2;i&lt;=n+1;i++){
+        inv[i]=((ll)(MOD-MOD/i)*inv[MOD%i])%MOD;
+        fac[i] = ((ll)fac[i-1]*(ll)i)%MOD;
+        ifac[i] = ((ll)ifac[i-1] * (ll)inv[i])%MOD;
+    }
+    int ans=0;
+    for(int i=0;i&lt;n;i++){ans=(ans+((ll)comb(n-1,i)*(ll)inv[i+1])%MOD)%MOD;}
+    ans=((ll)ans*(ll)qsum)%MOD;
+    for(int i=1;i&lt;=n;i++){
+        ll tmp = 0;
+        tmp = (comb(n-1,i-1) * (ll)qsum)%MOD;
+        if(i&gt;=2)
+            tmp =(tmp + ((ll)comb(n-2,i-2)*(ll)((((ll)sum*(ll)sum)%MOD-qsum)%MOD+MOD)%MOD)%MOD)%MOD;
+        tmp = (tmp * (ll)(inv[i]))%MOD;
+        tmp = (tmp * (ll)(inv[i]))%MOD;
+        ans = (ans - tmp)%MOD;
+        ans = (ans + MOD)%MOD;
+    }
+    printf(&quot;%d&quot;,ans);
+    return 0;
+}
+
+</code></pre>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[彼可取而代之]]></title>
         <id>https://kvrmnks.github.io/post/bi-ke-qu-er-dai-zhi/</id>
@@ -1193,45 +1245,6 @@ qt打包的方法网上到处都是,我们来说说我犯过的坑吧</p>
         <content type="html"><![CDATA[<p>一些学习过程中用到的电子书</p>
 <!-- more -->
 <p><a href="https://share.weiyun.com/5RvfV5l">微云分享链接</a></p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[きっとみんな大事なこと少しずつ忘れていくから]]></title>
-        <id>https://kvrmnks.github.io/post/kitutominnada-shi-nakotoshao-sizutuwang-reteikukara/</id>
-        <link href="https://kvrmnks.github.io/post/kitutominnada-shi-nakotoshao-sizutuwang-reteikukara/">
-        </link>
-        <updated>2020-01-27T12:36:38.000Z</updated>
-        <content type="html"><![CDATA[<p>这已经是不知道第几次看&lt;&lt;伪恋&gt;&gt;这部动漫了,恰好之前在b漫上看到了伪恋的漫画,冲了50,把伪恋的漫画买了个差不多.</p>
-<p><img src="https://kvrmnks.github.io/post-images/1587642603637.jfif" alt="" loading="lazy"><br>
-你是否也在10年前跟别人许下过一两个约定呢,或是思考过想跟未来的自己想说的话.</p>
-<p>时间悄无声息地走到了2020年,不知道你有没有过,或是还记不记得当时一点一点做着年份的加减法,把年加到了2020,1月1月地向后翻着,由于太心急不小心多向后反了几个月,一不小心就到2021年了呢,重新调回心中想着的日期,看了看对应的星期,哈,是星期天,这天正好休息呢.</p>
-<p>不过2020年,我上大一了呢,他们还会在身边吗,心中生出了几丝不安.</p>
-<p>而今的现在,熟悉的令人可怕,不过倒是少了几分不安,在身上的诺言变得越来越多的时候,你到底会选择揽下一切还是放弃一些.</p>
-<p>在回忆之前的时光的时候,发现我竟丢掉了一些时间的记忆,对于那个时间的记忆,几乎都不见了,仔细想想,或许是因为那段时间太过于悲伤,于是我主动忘记了那些事情吧.已经过去了那么长时间了,如果现在的自己再回到那个时候,是否可以揽下一切呢.</p>
-<p>或许人在精神上也会主动逃避那些悲伤的事情呢.</p>
-<p>嘛,是那些十分十分悲伤的事呢.</p>
-<figure data-type="image" tabindex="1"><img src="https://kvrmnks.github.io/post-images/1587642617615.jpg" alt="" loading="lazy"></figure>
-<p>我的班主任曾经跟我说在学竞赛上要功利一些,这样才能有足够的动力,多想想那些成功后的荣誉和成功后学业上的轻松,我想他可能错了,起码对我来说错了.能推动我的最大的动力,大概是悲伤吧,做的几乎每一件事都是在让自己不再悲伤,而不是希望去获得快乐.我既见过那些只为追求内心愉悦的oier,也见过那些为了甩掉身上沉重负担的oier,我是属于后者呢.当然我倒没有说我厌恶哪一种,我不为我是第二种而羞愧,但是我也想成为第一种.</p>
-<p>到现在为止,我记忆中我唯一一次在计算机这条路上做出的感性的选择就是在sdoi2018r1之后直接退役,那是我傻乎乎地对自己许下诺言,要离开这条路,要甩掉身上的包裹,去找到快乐,好消息是我到现在还没有后悔呢,虽然还没离开这条路,也不打算离开这条路.</p>
-<figure data-type="image" tabindex="2"><img src="https://kvrmnks.github.io/post-images/1587642622438.jpg" alt="" loading="lazy"></figure>
-<p>不过到现在也没摆脱2017年拿到1=的影响,让我有点恼火呢.</p>
-<p>青春总是被和有点傻有点楞有点青涩的行为联系到一起.</p>
-<figure data-type="image" tabindex="3"><img src="https://kvrmnks.github.io/post-images/1587642626643.jpg" alt="" loading="lazy"></figure>
-<p>我想让自己的生活中的感性变得更多一些,想多遵从一下心中的悸动,想多做一些没有意义但快乐的事.上一次能够说出学习是很快乐的事情是什么时候的我呢,也许&quot;想学数学&quot;也只不过是单纯为了去学一个不是计算机但却有点关系的学科吧,不是计算机代表了逃避,有点关系代表了功利.</p>
-<p>我有没有喜欢过计算机</p>
-<p>可能没有吧,我喜欢的不过是计算机背后的那些东西.</p>
-<p>我见过几个真正喜欢计算机的人,她能因为自己的爱好报计算机系,能大声地说出自己喜欢计算机,他能每天趣味无穷地看软件工程的书,能加入别的工作室一起工作,一起编程,而他能够因为自己不喜欢自己当时的专业,想要学计算机从hit退学来到sdu的cs系.</p>
-<p>我也想去到那个地方.</p>
-<figure data-type="image" tabindex="4"><img src="https://kvrmnks.github.io/post-images/1587642631783.jpg" alt="" loading="lazy"></figure>
-<p>我也不想忘记.</p>
-<p>きっとみんな大事なこと少しずつ忘れていくから</p>
-<p>第一次看完这部漫画,是2016年的暑假,这一次是2020年的寒假.</p>
-<p>不確かな記憶の<br>
-輪郭だけが棘(いばら)のように<br>
-心締めつける<br>
-ずっと<br>
-小さく咲いた想いをいつもつぐんで<br>
-追憶に身を委ねてた</p>
 ]]></content>
     </entry>
 </feed>
