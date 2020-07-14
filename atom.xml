@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://kvrmnks.github.io</id>
     <title>Kvrmnks` blog</title>
-    <updated>2020-05-31T05:46:44.393Z</updated>
+    <updated>2020-07-14T08:37:29.254Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://kvrmnks.github.io"/>
     <link rel="self" href="https://kvrmnks.github.io/atom.xml"/>
@@ -10,6 +10,28 @@
     <logo>https://kvrmnks.github.io/images/avatar.png</logo>
     <icon>https://kvrmnks.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, Kvrmnks` blog</rights>
+    <entry>
+        <title type="html"><![CDATA[ubuntu 上的 mysql + pymysql]]></title>
+        <id>https://kvrmnks.github.io/post/ubuntu-shang-de-mysql-pymysql/</id>
+        <link href="https://kvrmnks.github.io/post/ubuntu-shang-de-mysql-pymysql/">
+        </link>
+        <updated>2020-07-14T08:32:59.000Z</updated>
+        <content type="html"><![CDATA[<p>安装mysql</p>
+<pre><code>apt install mysql-server
+apt install mysql-client
+</code></pre>
+<p>然后先看 mysql 的版本, 一定要注意版本<br>
+不同版本的 mysql 改密码的方式是不同的<br>
+比如 mysql8.0 的情况下</p>
+<pre><code>use mysql;
+ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY '你的新密码'
+</code></pre>
+<p>退出即可</p>
+<p>当然可能不知道一开始的密码</p>
+<pre><code>vim /etc/mysql/debian.cnf
+</code></pre>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[方差]]></title>
         <id>https://kvrmnks.github.io/post/fang-chai/</id>
@@ -1232,19 +1254,6 @@ qt打包的方法网上到处都是,我们来说说我犯过的坑吧</p>
 <h3 id="项目代码">项目代码</h3>
 <p>我放到github上了<br>
 <a href="https://github.com/kvrmnks/FFt-drawing">链接</a></p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[一些学习过程中用到的电子书]]></title>
-        <id>https://kvrmnks.github.io/post/yi-xie-xue-xi-guo-cheng-zhong-yong-dao-de-dian-zi-shu/</id>
-        <link href="https://kvrmnks.github.io/post/yi-xie-xue-xi-guo-cheng-zhong-yong-dao-de-dian-zi-shu/">
-        </link>
-        <updated>2020-01-28T04:00:32.000Z</updated>
-        <summary type="html"><![CDATA[<p>一些学习过程中用到的电子书</p>
-]]></summary>
-        <content type="html"><![CDATA[<p>一些学习过程中用到的电子书</p>
-<!-- more -->
-<p><a href="https://share.weiyun.com/5RvfV5l">微云分享链接</a></p>
 ]]></content>
     </entry>
 </feed>
