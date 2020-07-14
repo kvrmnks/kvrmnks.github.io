@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://kvrmnks.github.io</id>
     <title>Kvrmnks` blog</title>
-    <updated>2020-07-14T08:37:29.254Z</updated>
+    <updated>2020-07-14T08:39:57.943Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://kvrmnks.github.io"/>
     <link rel="self" href="https://kvrmnks.github.io/atom.xml"/>
@@ -11,7 +11,7 @@
     <icon>https://kvrmnks.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, Kvrmnks` blog</rights>
     <entry>
-        <title type="html"><![CDATA[ubuntu 上的 mysql + pymysql]]></title>
+        <title type="html"><![CDATA[ubuntu 上的 mysql + pymysql + screen]]></title>
         <id>https://kvrmnks.github.io/post/ubuntu-shang-de-mysql-pymysql/</id>
         <link href="https://kvrmnks.github.io/post/ubuntu-shang-de-mysql-pymysql/">
         </link>
@@ -29,6 +29,12 @@ ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY '你的�
 <p>退出即可</p>
 <p>当然可能不知道一开始的密码</p>
 <pre><code>vim /etc/mysql/debian.cnf
+</code></pre>
+<pre><code>screen -S 名字
+</code></pre>
+<pre><code>ctrl+a     d 离开当前
+</code></pre>
+<pre><code>screen -r 名字恢复
 </code></pre>
 ]]></content>
     </entry>

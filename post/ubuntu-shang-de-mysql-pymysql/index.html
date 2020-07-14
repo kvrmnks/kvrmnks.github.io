@@ -3,8 +3,8 @@
     <meta charset="utf-8"/>
 <meta name="description" content=""/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>ubuntu 上的 mysql + pymysql | Kvrmnks` blog</title>
-<link rel="shortcut icon" href="https://kvrmnks.github.io/favicon.ico?v=1594715842739">
+<title>ubuntu 上的 mysql + pymysql + screen | Kvrmnks` blog</title>
+<link rel="shortcut icon" href="https://kvrmnks.github.io/favicon.ico?v=1594715994313">
 <link href="https://cdn.bootcss.com/font-awesome/5.11.2/css/all.css" rel="stylesheet">
 <link rel="stylesheet" href="https://kvrmnks.github.io/styles/main.css">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
@@ -87,7 +87,7 @@
         <div class="post-detail gt-bg-theme-color-second">
             <article class="gt-post-content">
                 <h2 class="post-title">
-                    ubuntu 上的 mysql + pymysql
+                    ubuntu 上的 mysql + pymysql + screen
                 </h2>
                 <div class="post-info">
                     <time class="post-time gt-c-content-color-first">
@@ -109,6 +109,12 @@ ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY '你的�
 <p>退出即可</p>
 <p>当然可能不知道一开始的密码</p>
 <pre><code>vim /etc/mysql/debian.cnf
+</code></pre>
+<pre><code>screen -S 名字
+</code></pre>
+<pre><code>ctrl+a     d 离开当前
+</code></pre>
+<pre><code>screen -r 名字恢复
 </code></pre>
 
                 </div>
