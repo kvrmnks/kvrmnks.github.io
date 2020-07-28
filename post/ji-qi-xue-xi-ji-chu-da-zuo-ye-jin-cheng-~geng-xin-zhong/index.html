@@ -4,7 +4,7 @@
 <meta name="description" content=""/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
 <title>机器学习基础大作业进程~更新中 | Kvrmnks` blog</title>
-<link rel="shortcut icon" href="https://kvrmnks.github.io/favicon.ico?v=1595920708271">
+<link rel="shortcut icon" href="https://kvrmnks.github.io/favicon.ico?v=1595933360023">
 <link href="https://cdn.bootcss.com/font-awesome/5.11.2/css/all.css" rel="stylesheet">
 <link rel="stylesheet" href="https://kvrmnks.github.io/styles/main.css">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
@@ -108,8 +108,17 @@
 </ul>
 <h4 id="20200728">20200728</h4>
 <ul>
-<li>尝试把测试集的格式直接存成numpy。</li>
-<li>尝试进行图片大小的robust，计划直接按比例缩放，之前用的pyTorch自带的AdaptAvePool。</li>
+<li>尝试把测试集的格式直接存成numpy。<br>
+存个啥，发现了正确的读数据的方式，比原来一个一个像素读快到不知道哪里去了</li>
+</ul>
+<pre><code class="language-python">content = file.read(height*width)
+img = np.frombuffer(content, dtype=np.uint8).reshape(height,width)
+</code></pre>
+<p>注意从byte 转 numpy 要用 np.formbuffer()</p>
+<ul>
+<li>尝试进行图片大小的robust，计划直接按比例缩放，之前用的pyTorch自带的AdaptAvePool<br>
+用PIL的库写好了</li>
+<li>跑了跑LeNet 全集</li>
 </ul>
 
                 </div>
