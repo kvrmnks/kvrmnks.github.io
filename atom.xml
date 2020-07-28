@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://kvrmnks.github.io</id>
     <title>Kvrmnks` blog</title>
-    <updated>2020-07-14T08:39:57.943Z</updated>
+    <updated>2020-07-28T07:18:46.436Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://kvrmnks.github.io"/>
     <link rel="self" href="https://kvrmnks.github.io/atom.xml"/>
@@ -10,6 +10,29 @@
     <logo>https://kvrmnks.github.io/images/avatar.png</logo>
     <icon>https://kvrmnks.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, Kvrmnks` blog</rights>
+    <entry>
+        <title type="html"><![CDATA[机器学习基础大作业进程~更新中]]></title>
+        <id>https://kvrmnks.github.io/post/ji-qi-xue-xi-ji-chu-da-zuo-ye-jin-cheng-~geng-xin-zhong/</id>
+        <link href="https://kvrmnks.github.io/post/ji-qi-xue-xi-ji-chu-da-zuo-ye-jin-cheng-~geng-xin-zhong/">
+        </link>
+        <updated>2020-07-28T07:07:32.000Z</updated>
+        <content type="html"><![CDATA[<h3 id="简介">简介</h3>
+<p>机器学习基础课为什么要安排一个深度学习的作业？</p>
+<h3 id="大事记录"><s>大事</s>记录</h3>
+<h4 id="20200728之前">20200728之前</h4>
+<ul>
+<li>把Anaconda的环境搭建好了，一定记住安装一些类似于pyTorch的模块时一定要去官网找到正确的姿势。</li>
+<li>还用了Anaconda的虚拟环境，除了有点占用硬盘以外，都挺好的。<br>
+<img src="https://kvrmnks.github.io/post-images/1595920396482.jpg" alt="不也挺好吗？" loading="lazy"></li>
+<li>简单的试了试把环境搭好，读了读数据集和测试集，试了试LeNet，发现好像可以识别1000种汉字？不过还没进行泛化实验</li>
+</ul>
+<h4 id="20200728">20200728</h4>
+<ul>
+<li>尝试把测试集的格式直接存成numpy。</li>
+<li>尝试进行图片大小的robust，计划直接按比例缩放，之前用的pyTorch自带的AdaptAvePool。</li>
+</ul>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[ubuntu 上的 mysql + pymysql + screen]]></title>
         <id>https://kvrmnks.github.io/post/ubuntu-shang-de-mysql-pymysql/</id>
@@ -35,6 +58,12 @@ ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY '你的�
 <pre><code>ctrl+a     d 离开当前
 </code></pre>
 <pre><code>screen -r 名字恢复
+</code></pre>
+<pre><code>Debian平台的my.cnf
+在/etc/mysql/mysql.conf.d/mysqld.cnf
+</code></pre>
+<pre><code>wait_timeout=31536000
+interactive_timeout=31536000
 </code></pre>
 ]]></content>
     </entry>
@@ -1106,160 +1135,6 @@ int main(){
 <p>https://blog.csdn.net/weixin_42506905/article/details/90339253</p>
 <p>https://www.cnblogs.com/lywJ/p/10880332.html</p>
 <p>https://www.jianshu.com/p/ad58fd97119e</p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[用fft画画]]></title>
-        <id>https://kvrmnks.github.io/post/yong-fft-hua-hua/</id>
-        <link href="https://kvrmnks.github.io/post/yong-fft-hua-hua/">
-        </link>
-        <updated>2020-02-06T11:03:17.000Z</updated>
-        <summary type="html"><![CDATA[<p>外面疫情严重,只能赋闲在家,闲着也是闲着,来学用fft画画吧</p>
-<figure data-type="image" tabindex="1"><img src="https://kvrmnks.github.io/post-images/1587643407396.jpg" alt="" loading="lazy"></figure>
-]]></summary>
-        <content type="html"><![CDATA[<p>外面疫情严重,只能赋闲在家,闲着也是闲着,来学用fft画画吧</p>
-<figure data-type="image" tabindex="1"><img src="https://kvrmnks.github.io/post-images/1587643407396.jpg" alt="" loading="lazy"></figure>
-<!--more-->
-<p><s>顺便预习一下马上要学的QT</s></p>
-<h3 id="fft">fft</h3>
-<p>既然要用fft画画当然要会fft的呀,什么你还不会fft?</p>
-<p><img src="https://kvrmnks.github.io/post-images/1587643414466.png" alt="" loading="lazy"><br>
-如果你不会请去自己学  <s>其实有板子在会不会有什么区别呢</s><br>
-这里丢个一直在用的fft板子<br>
-复数类板子</p>
-<pre><code class="language-cpp">class Complex{
-private:
-    qreal a,b;
-public:
-    Complex(qreal a=0,qreal b=0):a(a),b(b){}
-    Complex operator * (qreal x)const;
-    Complex operator * (const Complex &amp;y)const;
-    Complex operator + (const Complex &amp;y)const;
-    Complex operator - (const Complex &amp;y)const;
-    qreal length()const{
-        return sqrt(a*a+b*b);
-    }
-    qreal real()const{return a;}
-    qreal img()const{return b;}
-};
-Complex operator * (qreal x,Complex y);
-Complex Complex::operator*(qreal x) const{
-    return Complex(this-&gt;a*x,this-&gt;b*x);
-}
-Complex Complex::operator*(const Complex &amp;y) const{
-    Complex ret(this-&gt;a*y.a-this-&gt;b*y.b,this-&gt;a*y.b+this-&gt;b*y.a);
-    return ret;
-}
-Complex Complex::operator+(const Complex &amp;y) const{
-    return Complex(this-&gt;a+y.a,this-&gt;b+y.b);
-}
-Complex Complex::operator-(const Complex &amp;y) const{
-    return Complex(this-&gt;a-y.a,this-&gt;b-y.b);
-}
-Complex operator * (qreal x,Complex y){
-    return y*x;
-}
-</code></pre>
-<p>fft板子</p>
-<pre><code class="language-cpp">void fft(QVector&lt;Complex&gt;&amp;data,int n){
-    QVector&lt;int&gt; rev(n);
-    int R = 0;
-    while((1&lt;&lt;(R+1))&lt;=n)R++;
-    for(int i=0;i&lt;n;i++)rev[i]=(rev[i&gt;&gt;1]&gt;&gt;1)|((i&amp;1)&lt;&lt;(R-1));
-    for(int i=0;i&lt;n;i++){
-        if(i&lt;rev[i])
-            std::swap(data[i],data[rev[i]]);
-    }
-    qreal pi = acos(-1);
-    for(int i=1;i&lt;n;i&lt;&lt;=1){
-        Complex w(cos(pi/i),sin(pi/i));
-        for(int j=0;j&lt;n;j+=(i&lt;&lt;1)){
-            Complex wn(1,0);
-            for(int k=0;k&lt;i;k++){
-                Complex x=data[j+k],y=wn*data[j+i+k];
-                data[j+k]=x+y;
-                data[i+j+k]=x-y;
-                wn=wn*w;
-            }
-        }
-    }
-}
-</code></pre>
-<p>这里顺便说下绘图的原理,像是在做函数曲线一样,要描点连线<br>
-也就是要求一开始要给我一个点列<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>A</mi><mo>[</mo><mi>i</mi><mo>]</mo><mo>=</mo><mo>(</mo><msub><mi>x</mi><mi>i</mi></msub><mo separator="true">,</mo><msub><mi>y</mi><mi>i</mi></msub><mo>)</mo></mrow><annotation encoding="application/x-tex">A[i]=(x_i,y_i)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">A</span><span class="mopen">[</span><span class="mord mathdefault">i</span><span class="mclose">]</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord"><span class="mord mathdefault">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.03588em;">y</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span><br>
-为了让它fft,需要把这个点列转化到复平面上<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>A</mi><mo>[</mo><mi>i</mi><mo>]</mo><mo>=</mo><msub><mi>x</mi><mi>i</mi></msub><mo>+</mo><msub><mi>y</mi><mi>i</mi></msub><mo>∗</mo><mi>i</mi></mrow><annotation encoding="application/x-tex">A[i]=x_i+y_i*i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">A</span><span class="mopen">[</span><span class="mord mathdefault">i</span><span class="mclose">]</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.73333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.6597200000000001em;vertical-align:-0.19444em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.03588em;">y</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">∗</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.65952em;vertical-align:0em;"></span><span class="mord mathdefault">i</span></span></span></span><br>
-顺便记点数为<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">n</span></span></span></span><br>
-然后就可以fft了呢<br>
-假设生成的数列为<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>B</mi><mo>[</mo><mi>i</mi><mo>]</mo></mrow><annotation encoding="application/x-tex">B[i]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.05017em;">B</span><span class="mopen">[</span><span class="mord mathdefault">i</span><span class="mclose">]</span></span></span></span><br>
-那我们明显有</p>
-<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>A</mi><mo>[</mo><mi>j</mi><mo>]</mo><mo>=</mo><mfrac><mn>1</mn><mi>n</mi></mfrac><mo>∗</mo><munderover><mo>∑</mo><mrow><mi>k</mi><mo>=</mo><mn>0</mn></mrow><mrow><mi>k</mi><mo>&lt;</mo><mi>n</mi></mrow></munderover><mi>B</mi><mo>[</mo><mi>k</mi><mo>]</mo><mo>∗</mo><msup><mi>e</mi><mrow><mfrac><mrow><mn>2</mn><mi>π</mi><mi>j</mi><mi>i</mi></mrow><mi>n</mi></mfrac><mo>∗</mo><mi>k</mi></mrow></msup></mrow><annotation encoding="application/x-tex">A[j]=\frac{1}{n}*\sum_{k=0}^{k&lt;n}B[k]*e^{\frac{2\pi ji}{n}*k}
-</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">A</span><span class="mopen">[</span><span class="mord mathdefault" style="margin-right:0.05724em;">j</span><span class="mclose">]</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:2.00744em;vertical-align:-0.686em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.32144em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathdefault">n</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">∗</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:3.1382260000000004em;vertical-align:-1.302113em;"></span><span class="mop op-limits"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.836113em;"><span style="top:-1.8478869999999998em;margin-left:0em;"><span class="pstrut" style="height:3.05em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.03148em;">k</span><span class="mrel mtight">=</span><span class="mord mtight">0</span></span></span></span><span style="top:-3.0500049999999996em;"><span class="pstrut" style="height:3.05em;"></span><span><span class="mop op-symbol large-op">∑</span></span></span><span style="top:-4.3000050000000005em;margin-left:0em;"><span class="pstrut" style="height:3.05em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.03148em;">k</span><span class="mrel mtight">&lt;</span><span class="mord mathdefault mtight">n</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.302113em;"><span></span></span></span></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault" style="margin-right:0.05017em;">B</span><span class="mopen">[</span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span><span class="mclose">]</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">∗</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1.06643em;vertical-align:0em;"></span><span class="mord"><span class="mord mathdefault">e</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:1.06643em;"><span style="top:-3.4130000000000003em;margin-right:0.05em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mopen nulldelimiter sizing reset-size3 size6"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.9334714285714286em;"><span style="top:-2.656em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">n</span></span></span></span><span style="top:-3.2255000000000003em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line mtight" style="border-bottom-width:0.049em;"></span></span><span style="top:-3.4623857142857144em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord mtight">2</span><span class="mord mathdefault mtight" style="margin-right:0.03588em;">π</span><span class="mord mathdefault mtight" style="margin-right:0.05724em;">j</span><span class="mord mathdefault mtight">i</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.344em;"><span></span></span></span></span></span><span class="mclose nulldelimiter sizing reset-size3 size6"></span></span><span class="mbin mtight">∗</span><span class="mord mathdefault mtight" style="margin-right:0.03148em;">k</span></span></span></span></span></span></span></span></span></span></span></span></span></p>
-<p>因为每一项都是复数,所以我们可以把它对应到复平面上,这样<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>A</mi><mo>[</mo><mi>j</mi><mo>]</mo></mrow><annotation encoding="application/x-tex">A[j]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">A</span><span class="mopen">[</span><span class="mord mathdefault" style="margin-right:0.05724em;">j</span><span class="mclose">]</span></span></span></span>就变成了一系列向量的和,有了明显的几何意义</p>
-<h3 id="qt">QT</h3>
-<h5 id="安装">安装</h5>
-<p>请去清华镜像站下载安装包</p>
-<h5 id="用qt绘画">用QT绘画</h5>
-<p>好像有两种办法来着<br>
-1.QPainter<br>
-2.QGraphics<br>
-第一种跟java swing那套理论差不多要自己重写绘图事件,鉴于之前就被swing恶心到了,而且这种方式一点都不OOP于是选了第二种<br>
-第二种就是<br>
-一些基本的图形由QGraphicsItem继承得到<br>
-要把这些图形丢到QGraphicsScene里,让它来做排版<br>
-然后把QGraphicsScene丢给QGraphicsView让它显示出来就好了呢!<br>
-具体的代码在下一节</p>
-<h5 id="signal-and-slot">signal and slot</h5>
-<p>这个是Qt里新的逻辑呢<br>
-简单的用法是</p>
-<pre><code class="language-cpp">QObject::connect(发出信号的对象地址,SIGNAL(信号函数),接受信号的对象地址,SLOT(槽函数));
-</code></pre>
-<p>一旦这样做了之后呢<br>
-发出信号的函数一旦发出了信号,接受信号的对象就会立即执行槽函数<br>
-跟javafx里的property机制很像呢<br>
-举个具体的例子吧</p>
-<pre><code class="language-cpp">    QApplication a(argc, argv);
-    QGraphicsScene *scene = new QGraphicsScene(0,0,1024,768);
-    QGraphicsView *view = new GraphicsView(scene);
-    QPushButton *button = new QPushButton(&quot;exit&quot;);
-    QObject::connect(button,SIGNAL(clicked()),&amp;a,SLOT(exit()));
-    view-&gt;addWidget(button);
-    view-&gt;show();
-</code></pre>
-<p>这样如果按钮被点击了,窗口就会被关闭了</p>
-<h5 id="qtimeline">QTimeLine</h5>
-<p>毕竟要做出来的是个动画<br>
-当然要学学时间轴啦 <s>其实不会也没事呢</s><br>
-下面是代码节选</p>
-<pre><code class="language-cpp">QTimeLine *time = new QTimeLine(40000);
-time-&gt;setFrameRange(0,1024);
-QObject::connect(time,SIGNAL(frameChanged(int)),scene,SLOT(next()));
-time-&gt;start();
-</code></pre>
-<p>第一个构造函数里面的参数是时间轴持续的时间,单位毫秒<br>
-setFrameRange(int,int)<br>
-第一个参数表示每帧耗时多少毫秒 如果填0的话默认每帧40毫秒<br>
-第二个参数表示一共有多少帧<br>
-注意如果进行着时间超出了一开始构造函数的时间,就停了,当然如果时间到了还没进行完,也会停<br>
-那个next()是我定义的函数,作用是描下一个点</p>
-<p>到现在为止就已经可以完成整个动画了呢</p>
-<figure data-type="image" tabindex="2"><img src="https://kvrmnks.github.io/post-images/1587643425697.jpg" alt="" loading="lazy"></figure>
-<h3 id="qt打包">Qt打包</h3>
-<p>当你做好了程序想要给小伙伴展示的时候怎么可能简简单单地丢给他们代码呢?<br>
-qt打包的方法网上到处都是,我们来说说我犯过的坑吧</p>
-<h5 id="提示无法定位到q5guidll类">提示无法定位到Q5Gui.dll类</h5>
-<p>可能你的打包程序出了锅,你可以尝试ProcessExplorer然后把程序调用的dll自己挑过去</p>
-<h5 id="0x000000007b-大约长这样子~">0x000000007b 大约长这样子~</h5>
-<p>当你好不容易找全了dll,却发现了这么个错这是为啥呢</p>
-<p><img src="https://kvrmnks.github.io/post-images/1587643431546.jpg" alt="" loading="lazy"><br>
-经过我漫长的调试,发现原因是我在qtcreator里编译是用的qt自带的gcc<br>
-但是打包时我用的是dev里的cpp<br>
-因为我原来在用gcc的时候把dev的gcc在环境变量里优先度提得太高了<br>
-于是打包的时候gcc自动用了dev的,导致版本不一致<br>
-于是在环境变量设置里把qt的gcc优先度调到最高就好了呢</p>
-<figure data-type="image" tabindex="3"><img src="https://kvrmnks.github.io/post-images/1587643436909.gif" alt="" loading="lazy"></figure>
-<h3 id="项目代码">项目代码</h3>
-<p>我放到github上了<br>
-<a href="https://github.com/kvrmnks/FFt-drawing">链接</a></p>
 ]]></content>
     </entry>
 </feed>
