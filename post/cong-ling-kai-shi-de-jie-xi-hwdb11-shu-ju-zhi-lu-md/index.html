@@ -1,0 +1,287 @@
+<html>
+<head>
+    <meta charset="utf-8"/>
+<meta name="description" content=""/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>从零开始的解析HWDB1.1数据之路.md | Kvrmnks` blog</title>
+<link rel="shortcut icon" href="https://kvrmnks.github.io/favicon.ico?v=1596036813098">
+<link href="https://cdn.bootcss.com/font-awesome/5.11.2/css/all.css" rel="stylesheet">
+<link rel="stylesheet" href="https://kvrmnks.github.io/styles/main.css">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dockerfile.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dart.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/go.min.js"></script>
+<script src="https://cdn.bootcss.com/moment.js/2.23.0/moment.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
+
+<!-- DEMO JS -->
+<!--<script src="media/scripts/index.js"></script>-->
+
+
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+</head>
+<body>
+<div class="main gt-bg-theme-color-first">
+    <nav class="navbar navbar-expand-lg">
+    <div class="navbar-brand">
+        <img class="user-avatar" src="/images/avatar.png" alt="头像">
+        <div class="site-name gt-c-content-color-first">
+            Kvrmnks` blog
+        </div>
+    </div>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fas fa-bars gt-c-content-color-first" style="font-size: 18px"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="navbar-nav mr-auto" style="text-align: center">
+            
+                <div class="nav-item">
+                    
+                        <a href="/" class="menu gt-a-link">
+                            首页
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="/archives" class="menu gt-a-link">
+                            归档
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="/tags" class="menu gt-a-link">
+                            标签
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="/post/about" class="menu gt-a-link">
+                            关于
+                        </a>
+                    
+                </div>
+            
+        </div>
+    </div>
+</nav>
+    <div class="post-container">
+        <div class="post-detail gt-bg-theme-color-second">
+            <article class="gt-post-content">
+                <h2 class="post-title">
+                    从零开始的解析HWDB1.1数据之路.md
+                </h2>
+                <div class="post-info">
+                    <time class="post-time gt-c-content-color-first">
+                        · 2020-07-29 ·
+                    </time>
+                    
+                </div>
+                <div class="post-content">
+                    <p>本文旨在为自身后日回忆<s>并非用于教学</s></p>
+<!--more-->
+<p>本文强烈建议使用jupyter lab</p>
+<hr>
+<h3 id="第一步-得到数据集">第一步 得到数据集</h3>
+<p><s>不说了</s></p>
+<hr>
+<h3 id="第二步-解析一个文件">第二步 解析一个文件</h3>
+<p>就来解析这个叫“1001-c.gnt”的文件吧</p>
+<p>官网上有具体的文件格式</p>
+<p>简单来说是，一个这样的文件中包含了多个图片</p>
+<p><s>直接上代码好了</s></p>
+<pre><code class="language-python">import numpy as np
+import struct
+def load_raw_data(id):
+    path = '../HWDB1.1trn_gnt/' + str(id) + '-c.gnt'
+    file = open(path, 'rb')
+    features = []
+    labels = []
+    while file.read(1) != '':
+        file.seek(-1, 1)
+        buf = file.read(4)
+        if len(buf) != 4:
+            break
+        length_bytes = struct.unpack('&lt;I', buf)[0]
+        tag_code = file.read(2)
+        width = struct.unpack('&lt;H', file.read(2))[0]
+        height = struct.unpack('&lt;H', file.read(2))[0]
+        content = file.read(height*width)
+        img = np.frombuffer(content, dtype=np.uint8).reshape(height,width)
+        features.append(img)
+        labels.append(char_dict[tag_code.decode('gb2312')])
+    return np.array(features), np.array(labels)
+</code></pre>
+<p>char_dict就不放在这里了，太长了</p>
+<p>这个函数的第一个返回值是一个ndarray，每个元素是一个灰度图片</p>
+<p>第二个返回值是labels数组代表了每个图片分别属的类别</p>
+<p>然后随便说一些细节吧</p>
+<ol>
+<li>每次读完一个图片之后通过</li>
+</ol>
+<pre><code class="language-python">if len(buf) != 4:
+	break
+</code></pre>
+<p>来判断文件是不是读完了</p>
+<ol start="2">
+<li>中文编码是gb2312格式的</li>
+<li>读入文件的时候用np.frombuffer会快一点，尽量不要一个一个像素的读，py的速度太拉胯了</li>
+<li>dtype=np.uint8 可以极限省内存</li>
+</ol>
+<hr>
+<h3 id="第三步-看看图片长啥样">第三步 看看图片长啥样</h3>
+<pre><code class="language-python">import matplotlib.pyplot as plt
+features, labels = load_raw_data(1001)
+plt.imshow(features[0])
+</code></pre>
+<figure data-type="image" tabindex="1"><img src="https://kvrmnks.github.io/post-images/1596034371418.jpg" alt="" loading="lazy"></figure>
+<p>同样也可以输出图片的大小</p>
+<pre><code class="language-python">print(features[0].shape)
+</code></pre>
+<p>如果你多看几张图片的话就会发现，基本上每张图片的大小都是不一样的，这显然(显然吗？)不能直接用，我们需要先把图片都转换成一样的大小</p>
+<hr>
+<h3 id="第四步-图片处理">第四步 图片处理</h3>
+<p>以将图片最终转换成32*32为例</p>
+<h4 id="偷工减料的方法">偷工减料的方法</h4>
+<p>pyTorch 有个叫做AdaptiveAvgPool2d的东西<br>
+导入pytorch的相关东西</p>
+<pre><code class="language-python">import torch.nn as nn
+import torch
+ft = nn.AdaptiveAvgPool2d((32, 32))
+</code></pre>
+<p>为了使用pytorch就必须把原来图片的numpy形式转换成pytorch使用的Tensor形式<br>
+还要注意把数据格式改成float格式才能作为参数传到网络里<br>
+最后还要注意添加一维作为通道维<br>
+反正挺烦的</p>
+<pre><code class="language-python">img = torch.from_numpy(features[0])
+img = torch.from_numpy(features[0]).float().view(1, features[0].shape[0], features[0].shape[1])
+new_img = ft(img)
+</code></pre>
+<p>可以再输出一下img的大小</p>
+<pre><code class="language-python">print(img.shape)
+</code></pre>
+<p>可以发现变成了(1, 32, 32)，第一个1是指一个通道，不了解也没关系(<br>
+把图片plot出来看看</p>
+<pre><code class="language-python">plt.imshow(new_img[0])
+</code></pre>
+<p><img src="https://kvrmnks.github.io/post-images/1596035144870.jpg" alt="" loading="lazy"><br>
+虽然大小对了，但是图像完全走样了...</p>
+<h4 id="手工缩放图像">手工缩放图像</h4>
+<p>没想到好的办法，只能手动缩放了，这里主要使用了PIL的Image模块</p>
+<pre><code class="language-python">from PIL import Image
+</code></pre>
+<p>幸运的是，Image可以通过numpy的ndarray直接生成灰度图</p>
+<pre><code class="language-python">img = Image.fromarray(features[0])
+</code></pre>
+<p>假设我们想把图片转换成高h宽w（假设图片的原来大小为高x宽y）<br>
+不妨假设h=w=0好了<s>好萌啊</s><br>
+我们就能得到图片的缩放比例</p>
+<pre><code class="language-python">h,w = 32,32
+x,y = features[0].shape
+ratio = min(h/x, w/y)
+</code></pre>
+<p>然后通过PIL来进行图片的缩放</p>
+<pre><code class="language-python">x,y = int(ratio*x), int(ratio*y)
+img = img.resize((y,x), Image.ANTIALIAS)
+</code></pre>
+<p>resize的第一个参数是指要变换后的大小, <strong>这里有个坑点，排在前面的是width</strong><br>
+第二个参数是指插值方法<br>
+如果你不知道到底做的对不对可以通过</p>
+<pre><code class="language-python">print(img.size) # 查看图片的大小
+img.show() # 康康图片长啥样
+</code></pre>
+<p>最后我们要把图片补成高h宽w（为什么还要补原因自己想去<br>
+没有太好的方法，我们就采用一种奇技淫巧<br>
+先创建一张空图</p>
+<pre><code class="language-python">new_img = Image.new('L',(w, h), 255)
+</code></pre>
+<p>'L'代表为灰度图，第二个参数依旧是<strong>width在前面</strong>，255表示每个像素点都是255即白色<br>
+然后我们把之前resize的图片粘到这张空图的中间</p>
+<pre><code class="language-python">x,y = int((h-x)/2), int((w-y)/2)
+new_img.paste(img, (y, x))
+</code></pre>
+<p>paste的第二个参数表示img的左上角处于哪个位置，<strong>width在前</strong><br>
+最后只需要从Image转会ndarray就好了</p>
+<pre><code class="language-python">arr = np.asarray(new_img)
+plt.imshow(arr)
+</code></pre>
+<p>发现效果好多了<br>
+<img src="https://kvrmnks.github.io/post-images/1596036378417.jpg" alt="" loading="lazy"></p>
+<hr>
+<h3 id="一些补充">一些补充</h3>
+<p>在缩放图片的时候可以引入一些随机因素，来提高模型的泛化能力<br>
+比如, 让图片不一定被放缩到最大</p>
+<pre><code class="language-python">h,w = 32,32
+x,y = features[0].shape
+ratio = min((h-np.random.randint(3,5))/x, (w-np.random.randint(3,5))/y)
+</code></pre>
+
+                </div>
+            </article>
+        </div>
+
+        
+            <div class="next-post">
+                <div class="next gt-c-content-color-first">下一篇</div>
+                <a href="https://kvrmnks.github.io/post/js-chuan-di-canvas-tu-pian-yu-python-hou-duan-flask-jiao-hu/" class="post-title gt-a-link">
+                    JS传递canvas图片与Python后端Flask交互
+                </a>
+            </div>
+        
+
+        
+		
+		
+
+        <div class="site-footer gt-c-content-color-first">
+    <div class="slogan gt-c-content-color-first">power overwhelming</div>
+    <div class="social-container">
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+    </div>
+    <div class="footer-info">
+        Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+    </div>
+    <div>
+        Theme by <a href="https://imhanjie.com/" target="_blank">imhanjie</a>, Powered by <a
+                href="https://github.com/getgridea/gridea" target="_blank">Gridea | <a href="https://kvrmnks.github.io/atom.xml" target="_blank">RSS</a></a>
+    </div>
+</div>
+
+<script>
+    hljs.initHighlightingOnLoad()
+</script>
+
+    </div>
+</div>
+</body>
+</html>

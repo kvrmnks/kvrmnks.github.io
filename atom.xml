@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://kvrmnks.github.io</id>
     <title>Kvrmnks` blog</title>
-    <updated>2020-07-29T13:56:01.736Z</updated>
+    <updated>2020-07-29T15:34:26.039Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://kvrmnks.github.io"/>
     <link rel="self" href="https://kvrmnks.github.io/atom.xml"/>
@@ -10,6 +10,153 @@
     <logo>https://kvrmnks.github.io/images/avatar.png</logo>
     <icon>https://kvrmnks.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, Kvrmnks` blog</rights>
+    <entry>
+        <title type="html"><![CDATA[从零开始的解析HWDB1.1数据之路.md]]></title>
+        <id>https://kvrmnks.github.io/post/cong-ling-kai-shi-de-jie-xi-hwdb11-shu-ju-zhi-lu-md/</id>
+        <link href="https://kvrmnks.github.io/post/cong-ling-kai-shi-de-jie-xi-hwdb11-shu-ju-zhi-lu-md/">
+        </link>
+        <updated>2020-07-29T14:51:51.000Z</updated>
+        <summary type="html"><![CDATA[<p>本文旨在为自身后日回忆<s>并非用于教学</s></p>
+]]></summary>
+        <content type="html"><![CDATA[<p>本文旨在为自身后日回忆<s>并非用于教学</s></p>
+<!--more-->
+<p>本文强烈建议使用jupyter lab</p>
+<hr>
+<h3 id="第一步-得到数据集">第一步 得到数据集</h3>
+<p><s>不说了</s></p>
+<hr>
+<h3 id="第二步-解析一个文件">第二步 解析一个文件</h3>
+<p>就来解析这个叫“1001-c.gnt”的文件吧</p>
+<p>官网上有具体的文件格式</p>
+<p>简单来说是，一个这样的文件中包含了多个图片</p>
+<p><s>直接上代码好了</s></p>
+<pre><code class="language-python">import numpy as np
+import struct
+def load_raw_data(id):
+    path = '../HWDB1.1trn_gnt/' + str(id) + '-c.gnt'
+    file = open(path, 'rb')
+    features = []
+    labels = []
+    while file.read(1) != '':
+        file.seek(-1, 1)
+        buf = file.read(4)
+        if len(buf) != 4:
+            break
+        length_bytes = struct.unpack('&lt;I', buf)[0]
+        tag_code = file.read(2)
+        width = struct.unpack('&lt;H', file.read(2))[0]
+        height = struct.unpack('&lt;H', file.read(2))[0]
+        content = file.read(height*width)
+        img = np.frombuffer(content, dtype=np.uint8).reshape(height,width)
+        features.append(img)
+        labels.append(char_dict[tag_code.decode('gb2312')])
+    return np.array(features), np.array(labels)
+</code></pre>
+<p>char_dict就不放在这里了，太长了</p>
+<p>这个函数的第一个返回值是一个ndarray，每个元素是一个灰度图片</p>
+<p>第二个返回值是labels数组代表了每个图片分别属的类别</p>
+<p>然后随便说一些细节吧</p>
+<ol>
+<li>每次读完一个图片之后通过</li>
+</ol>
+<pre><code class="language-python">if len(buf) != 4:
+	break
+</code></pre>
+<p>来判断文件是不是读完了</p>
+<ol start="2">
+<li>中文编码是gb2312格式的</li>
+<li>读入文件的时候用np.frombuffer会快一点，尽量不要一个一个像素的读，py的速度太拉胯了</li>
+<li>dtype=np.uint8 可以极限省内存</li>
+</ol>
+<hr>
+<h3 id="第三步-看看图片长啥样">第三步 看看图片长啥样</h3>
+<pre><code class="language-python">import matplotlib.pyplot as plt
+features, labels = load_raw_data(1001)
+plt.imshow(features[0])
+</code></pre>
+<figure data-type="image" tabindex="1"><img src="https://kvrmnks.github.io/post-images/1596034371418.jpg" alt="" loading="lazy"></figure>
+<p>同样也可以输出图片的大小</p>
+<pre><code class="language-python">print(features[0].shape)
+</code></pre>
+<p>如果你多看几张图片的话就会发现，基本上每张图片的大小都是不一样的，这显然(显然吗？)不能直接用，我们需要先把图片都转换成一样的大小</p>
+<hr>
+<h3 id="第四步-图片处理">第四步 图片处理</h3>
+<p>以将图片最终转换成32*32为例</p>
+<h4 id="偷工减料的方法">偷工减料的方法</h4>
+<p>pyTorch 有个叫做AdaptiveAvgPool2d的东西<br>
+导入pytorch的相关东西</p>
+<pre><code class="language-python">import torch.nn as nn
+import torch
+ft = nn.AdaptiveAvgPool2d((32, 32))
+</code></pre>
+<p>为了使用pytorch就必须把原来图片的numpy形式转换成pytorch使用的Tensor形式<br>
+还要注意把数据格式改成float格式才能作为参数传到网络里<br>
+最后还要注意添加一维作为通道维<br>
+反正挺烦的</p>
+<pre><code class="language-python">img = torch.from_numpy(features[0])
+img = torch.from_numpy(features[0]).float().view(1, features[0].shape[0], features[0].shape[1])
+new_img = ft(img)
+</code></pre>
+<p>可以再输出一下img的大小</p>
+<pre><code class="language-python">print(img.shape)
+</code></pre>
+<p>可以发现变成了(1, 32, 32)，第一个1是指一个通道，不了解也没关系(<br>
+把图片plot出来看看</p>
+<pre><code class="language-python">plt.imshow(new_img[0])
+</code></pre>
+<p><img src="https://kvrmnks.github.io/post-images/1596035144870.jpg" alt="" loading="lazy"><br>
+虽然大小对了，但是图像完全走样了...</p>
+<h4 id="手工缩放图像">手工缩放图像</h4>
+<p>没想到好的办法，只能手动缩放了，这里主要使用了PIL的Image模块</p>
+<pre><code class="language-python">from PIL import Image
+</code></pre>
+<p>幸运的是，Image可以通过numpy的ndarray直接生成灰度图</p>
+<pre><code class="language-python">img = Image.fromarray(features[0])
+</code></pre>
+<p>假设我们想把图片转换成高h宽w（假设图片的原来大小为高x宽y）<br>
+不妨假设h=w=0好了<s>好萌啊</s><br>
+我们就能得到图片的缩放比例</p>
+<pre><code class="language-python">h,w = 32,32
+x,y = features[0].shape
+ratio = min(h/x, w/y)
+</code></pre>
+<p>然后通过PIL来进行图片的缩放</p>
+<pre><code class="language-python">x,y = int(ratio*x), int(ratio*y)
+img = img.resize((y,x), Image.ANTIALIAS)
+</code></pre>
+<p>resize的第一个参数是指要变换后的大小, <strong>这里有个坑点，排在前面的是width</strong><br>
+第二个参数是指插值方法<br>
+如果你不知道到底做的对不对可以通过</p>
+<pre><code class="language-python">print(img.size) # 查看图片的大小
+img.show() # 康康图片长啥样
+</code></pre>
+<p>最后我们要把图片补成高h宽w（为什么还要补原因自己想去<br>
+没有太好的方法，我们就采用一种奇技淫巧<br>
+先创建一张空图</p>
+<pre><code class="language-python">new_img = Image.new('L',(w, h), 255)
+</code></pre>
+<p>'L'代表为灰度图，第二个参数依旧是<strong>width在前面</strong>，255表示每个像素点都是255即白色<br>
+然后我们把之前resize的图片粘到这张空图的中间</p>
+<pre><code class="language-python">x,y = int((h-x)/2), int((w-y)/2)
+new_img.paste(img, (y, x))
+</code></pre>
+<p>paste的第二个参数表示img的左上角处于哪个位置，<strong>width在前</strong><br>
+最后只需要从Image转会ndarray就好了</p>
+<pre><code class="language-python">arr = np.asarray(new_img)
+plt.imshow(arr)
+</code></pre>
+<p>发现效果好多了<br>
+<img src="https://kvrmnks.github.io/post-images/1596036378417.jpg" alt="" loading="lazy"></p>
+<hr>
+<h3 id="一些补充">一些补充</h3>
+<p>在缩放图片的时候可以引入一些随机因素，来提高模型的泛化能力<br>
+比如, 让图片不一定被放缩到最大</p>
+<pre><code class="language-python">h,w = 32,32
+x,y = features[0].shape
+ratio = min((h-np.random.randint(3,5))/x, (w-np.random.randint(3,5))/y)
+</code></pre>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[JS传递canvas图片与Python后端Flask交互]]></title>
         <id>https://kvrmnks.github.io/post/js-chuan-di-canvas-tu-pian-yu-python-hou-duan-flask-jiao-hu/</id>
@@ -479,437 +626,6 @@ https://blog.csdn.net/wzj0808/article/details/79367314</p>
 <p>在忙着做大作业...</p>
 <p>在忙着做数据分析的比赛...</p>
 <p>发现自己好像上课越来越不认真了...</p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[codeforces 620]]></title>
-        <id>https://kvrmnks.github.io/post/codeforces-620/</id>
-        <link href="https://kvrmnks.github.io/post/codeforces-620/">
-        </link>
-        <updated>2020-02-16T01:46:47.000Z</updated>
-        <summary type="html"><![CDATA[<p>老年人来打场div2</p>
-]]></summary>
-        <content type="html"><![CDATA[<p>老年人来打场div2</p>
-<!--more-->
-<h4 id="a">A</h4>
-<h5 id="题目简介">题目简介</h5>
-<p>两只兔子往中间跳,问能不能跳到一起,能输出时间</p>
-<p>傻逼题</p>
-<pre><code class="language-cpp">#include&lt;bits/stdc++.h&gt;
-using namespace std;
-int main(){
-	int t;
-	scanf(&quot;%d&quot;,&amp;t);
-	for(int i=1;i&lt;=t;i++){
-		int x,y,a,b;
-		scanf(&quot;%d%d%d%d&quot;,&amp;x,&amp;y,&amp;a,&amp;b);
-		y-=x;
-		a+=b;
-		if(y%a){
-			puts(&quot;-1&quot;);
-		}else{
-			printf(&quot;%d\n&quot;,y/a);
-		}
-	} 
-	
-	return 0;
-} 
-</code></pre>
-<h4 id="b">B</h4>
-<h5 id="题目大意">题目大意</h5>
-<p>给一些长度一样长的字符串,问最多能构造出多长的回文串</p>
-<p>傻逼题*2</p>
-<pre><code class="language-cpp">#include&lt;bits/stdc++.h&gt;
-using namespace std;
-const int MAXN = 105;
-bool isRev[MAXN];
-bool used[MAXN];
-bool lk[MAXN][MAXN];
-char str[MAXN][55];
-int n,m;
-int Q[MAXN],top;
-bool isR(int x){
-	bool flag = true;
-	for(int i=1;i&lt;=m;i++){
-		if(str[x][i] != str[x][m-i+1]){
-			flag = false;
-		}
-	}
-	return flag;
-}
-bool canlk(int x,int y){
-	bool falg = true;
-	for(int i=1;i&lt;=m;i++){
-		if(str[x][i] != str[y][m-i+1]){
-			falg = false;
-			break;
-		}
-	}
-	return falg;
-}
-int main(){
-	scanf(&quot;%d%d&quot;,&amp;n,&amp;m);
-	for(int i=1;i&lt;=n;i++){
-		scanf(&quot;%s&quot;,str[i]+1);
-	}
-	for(int i=1;i&lt;=n;i++)
-		isRev[i] = isR(i);
-	for(int i=1;i&lt;=n;i++){
-		for(int j=i+1;j&lt;=n;j++){
-			lk[i][j] = lk[j][i] = canlk(i,j);
-		}
-	}
-	int mxlen = 0;
-	for(int i=1;i&lt;=n;i++){
-		for(int j=i+1;j&lt;=n;j++){
-			if(lk[i][j] &amp;&amp; used[i]==false &amp;&amp; used[j] == false){
-				mxlen += 2*m;
-				used[i] = used[j] = true;
-			}
-		}
-	}
-	int tmp = 0;
-	memset(used,0,sizeof used);
-	for(int i=1;i&lt;=n;i++){
-		memset(used,0,sizeof used);
-		tmp = 0;
-		if(isRev[i]){
-			used[i] = true;
-			tmp += m;
-			for(int j=1;j&lt;=n;j++){
-				for(int k=j+1;k&lt;=n;k++){
-					if(lk[j][k] &amp;&amp; used[j]==false &amp;&amp; used[k]==false){
-						tmp += m*2;
-						used[j] = used[k] = true;
-					}
-				}
-			}
-			mxlen = max(mxlen,tmp);
-		}
-	}
-	printf(&quot;%d\n&quot;,mxlen);
-	tmp = 0;
-	memset(used,0,sizeof used);
-	for(int i=1;i&lt;=n;i++){
-		for(int j=i+1;j&lt;=n;j++){
-			if(lk[i][j] &amp;&amp; used[i]==false &amp;&amp; used[j] == false){
-				tmp += 2*m;
-				used[i] = used[j] = true;
-			}
-		}
-	}
-	if(tmp == mxlen){
-		memset(used,0,sizeof used);
-		for(int i=1;i&lt;=n;i++){
-			for(int j=i+1;j&lt;=n;j++){
-				if(lk[i][j] &amp;&amp; used[i]==false &amp;&amp; used[j] == false){
-					//tmp += 2*m;
-					Q[++top] = i;
-					Q[++top] = j;
-					used[i] = used[j] = true;
-				}
-			}
-		}	
-		for(int i=1;i&lt;=top;i+=2){
-			printf(&quot;%s&quot;,str[Q[i]]+1);
-		}
-		for(int i=top;i&gt;=1;i-=2){
-			printf(&quot;%s&quot;,str[Q[i]]+1);
-		}
-		return 0;
-	}
-	for(int i=1;i&lt;=n;i++){
-		memset(used,0,sizeof used);
-		tmp = 0;
-		if(isRev[i]){
-			used[i] = true;
-			tmp += m;
-			for(int j=1;j&lt;=n;j++){
-				for(int k=j+1;k&lt;=n;k++){
-					if(lk[j][k] &amp;&amp; used[j]==false &amp;&amp; used[k]==false){
-						tmp += m*2;
-						used[j] = used[k] = true;
-					}
-				}
-			}
-			//mxlen = max(mxlen,tmp);
-		}
-		if(tmp == mxlen){
-			memset(used,0,sizeof used);
-			Q[0] = i;
-			used[i] = true;
-			for(int j=1;j&lt;=n;j++){
-				for(int k=j+1;k&lt;=n;k++){
-					if(lk[j][k] &amp;&amp; used[j]==false &amp;&amp; used[k]==false){
-						//tmp += m*2;
-						Q[++top] = j;
-						Q[++top] = k;
-						used[j] = used[k] = true;
-					}
-				}
-			}
-			for(int i=1;i&lt;=top;i+=2){
-				printf(&quot;%s&quot;,str[Q[i]]+1);
-			}
-			printf(&quot;%s&quot;,str[Q[0]]+1);
-			for(int i=top;i&gt;=1;i-=2){
-				printf(&quot;%s&quot;,str[Q[i]]+1);
-			}	
-			return 0;		
-		}
-	}
-	return 0;
-}
-</code></pre>
-<h4 id="c">C</h4>
-<h5 id="题目大意-2">题目大意</h5>
-<p>在一个数轴上,给定起点,1s只能走一个单位长度,给n个区间,问能不能,在相应的时间属于相应的区间</p>
-<p>数据范围差评,好久没打cf了,总是想找个1e7+的复杂度...</p>
-<p>直接每步维护一个区间</p>
-<p>xjb求交就行了</p>
-<pre><code class="language-cpp">#include&lt;bits/stdc++.h&gt;
-using namespace std;
-typedef long long ll;
-const int MAXN = 120;
-ll t[MAXN],l[MAXN],r[MAXN];
-int n;
-ll L,R;
-void solve(){
-	scanf(&quot;%d%lld&quot;,&amp;n,&amp;L);
-	R = L;
-	for(int i=1;i&lt;=n;i++){
-		scanf(&quot;%lld%lld%lld&quot;,&amp;t[i],&amp;l[i],&amp;r[i]);
-	}
-	for(int i=1;i&lt;=n;i++){
-		L -= t[i] - t[i-1];
-		R += t[i] - t[i-1];
-		if(L&gt;r[i] || R &lt; l[i]){
-			puts(&quot;NO&quot;);
-			return;
-		}else{
-			L = max(L,l[i]);
-			R = min(R,r[i]);
-		}
-	}
-	puts(&quot;YES&quot;);
-}
-int main(){
-	int Q;
-	scanf(&quot;%d&quot;,&amp;Q);
-	while(Q--){
-		solve();
-	}
-	return 0;
-} 
-</code></pre>
-<h4 id="d">D</h4>
-<h5 id="题目大意-3">题目大意</h5>
-<p>给一个大于小于号的序列,构造两个数列,每个数&gt;=1,&lt;=n,要求一个LIS最大,一个LIS最小</p>
-<p>heheda,比赛的时候看错题了</p>
-<p>考虑求LIS的nlogn做法,实际上我们只需要在二分的那一步改成贪心,用贪心维护那个上升数列就好了</p>
-<p>构造的时候我是先把数分层,然后每层构造,有些小细节见代码</p>
-<pre><code class="language-cpp">#include&lt;bits/stdc++.h&gt;
-using namespace std;
-const int MAXN = 200050;
-int Q,n;
-char str[MAXN];
-int type[MAXN],raw[MAXN];
-vector&lt;int&gt; V[MAXN];
-int Min;
-void cons(int x,int pre){
-	if(raw[x]!=0)return;
-	
-	if(x+1 &lt;= n &amp;&amp; type[x+1] == type[x] &amp;&amp; pre != x+1 &amp;&amp; str[x] == '&gt;'){
-		cons(x+1,x);
-		raw[x] = raw[x+1] + 1;
-	}
-	if(x-1 &gt;= 1 &amp;&amp; type[x-1] == type[x] &amp;&amp; pre != x-1 &amp;&amp; str[x-1] == '&lt;'){
-		cons(x-1,x);
-		raw[x] = raw[x-1] + 1;
-	}
-	raw[x] = Min + 1;
-	Min ++;
-}
-void Cons(int x,int pre){
-	if(raw[x]!=0)return;
-	if(x-1 &gt;= 1 &amp;&amp; type[x-1] == type[x] &amp;&amp; pre != x-1 &amp;&amp; str[x-1] == '&lt;'){
-		cons(x-1,x);
-		raw[x] = raw[x-1] + 1;
-	}	
-	if(x+1 &lt;= n &amp;&amp; type[x+1] == type[x] &amp;&amp; pre != x+1 &amp;&amp; str[x] == '&gt;'){
-		cons(x+1,x);
-		raw[x] = raw[x+1] + 1;
-	}
-
-	raw[x] = Min + 1;
-	Min ++;
-}
-void solve(){
-	scanf(&quot;%d&quot;,&amp;n);
-	scanf(&quot;%s&quot;,str+1);
-	int lastpos = 1;
-	int mx = 1;
-	type[1] = 1;
-
-	for(int i=1;i&lt;n;i++){
-		if(str[i] == '&gt;'){
-			lastpos = 1;
-			type[i+1] = 1;
-		}else{
-			lastpos++;
-			mx = max(mx,lastpos);
-			type[i+1] = lastpos;
-		}
-	}
-	for(int i=1;i&lt;=n;i++){
-		V[type[i]].push_back(i);
-	}
-	Min = 0;
-	for(int i=1;i&lt;=n;i++){
-		for(int j=(int)V[i].size()-1;j&gt;=0;j--){
-			cons(V[i][j],V[i][j]);
-		}
-	}
-	for(int i=1;i&lt;=n;i++){
-		printf(&quot;%d &quot;,raw[i]);
-	}
-	puts(&quot;&quot;);		
-	
-		
-	
-	for(int i=1;i&lt;=n;i++)
-		V[i] = vector&lt;int&gt;();
-	for(int i=1;i&lt;=n;i++)
-		raw[i] = 0;
-		
-	lastpos = 1;
-	mx = 1;
-	type[1] = 1;
-	
-	for(int i=1;i&lt;n;i++){
-		if(str[i] == '&gt;'){
-			lastpos = 1;
-			type[i+1] = 1;
-		}else{
-			++mx;
-			lastpos = mx;
-			type[i+1] = lastpos;
-		}
-	}
-	for(int i=1;i&lt;=n;i++){
-		V[type[i]].push_back(i);
-	}
-	Min = 0;
-	for(int i=1;i&lt;=n;i++){
-		for(int j=0;j&lt;(int)V[i].size();j++){
-			Cons(V[i][j],V[i][j]);
-		}
-	}
-	for(int i=1;i&lt;=n;i++){
-		printf(&quot;%d &quot;,raw[i]);
-	}
-	puts(&quot;&quot;);
-	
-	
-	for(int i=1;i&lt;=n;i++)
-		V[i] = vector&lt;int&gt;();
-	for(int i=1;i&lt;=n;i++)
-		raw[i] = 0;
-}
-int main(){
-	scanf(&quot;%d&quot;,&amp;Q);
-	while(Q--){
-		solve();
-	}
-	return 0;
-}
-</code></pre>
-<p>其实原题不需要构造的答案是个排列</p>
-<p><s>我只是不会写不是排列的做法</s></p>
-<h4 id="e">E</h4>
-<h5 id="题目大意-4">题目大意</h5>
-<p>给一棵树,每次询问加一条边(x,y),询问是否有从a到b有长度等于k的可重边路径,该次询问完删掉(x,y)边</p>
-<p>一共就3种可能</p>
-<p>1.a -&gt; b</p>
-<p>2.a -&gt; x -&gt; y -&gt; b</p>
-<p>3.a -&gt; y -&gt; x -&gt; b</p>
-<p>然后只要满足小于k且奇偶性一样就行</p>
-<p>好久没写树链剖分了,写得头疼...</p>
-<pre><code class="language-cpp">#include&lt;bits/stdc++.h&gt;
-using namespace std;
-const int MAXN = 200050;
-int sz[MAXN],top[MAXN],dep[MAXN],to[MAXN],nx[MAXN],h[MAXN],tot;
-int ch[MAXN],fa[MAXN];
-int n;
-void add_edge(int x,int y){
-	to[++tot] = y;
-	nx[tot] = h[x];
-	h[x] = tot;
-}
-void link(int x,int y){
-	add_edge(x,y);
-	add_edge(y,x);
-}
-void dfs1(int x,int y){
-	sz[x] = 1;
-	fa[x] = y;
-	dep[x] = dep[y] + 1;
-	for(int i=h[x];i;i=nx[i]){
-		if(to[i] == y)
-			continue;
-		dfs1(to[i],x);
-		sz[x] += sz[to[i]];
-		if(sz[to[i]] &gt; sz[ch[x]])
-			ch[x] = to[i];
-	}
-}
-int lca(int x,int y){
-	while(top[x]!=top[y]){
-		dep[top[x]] &gt; dep[top[y]] ? x = fa[top[x]] : y = fa[top[y]];
-	}
-	return dep[x]&lt;dep[y]?x:y;
-}
-int dis(int x,int y){
-	return dep[x] + dep[y] - 2 * dep[lca(x,y)];
-}
-void dfs2(int x,int tp){
-	top[x] = tp;
-	if(ch[x])dfs2(ch[x],tp);
-	for(int i=h[x];i;i=nx[i]){
-		if(to[i] == fa[x] || to[i] == ch[x])
-			continue;
-		dfs2(to[i],to[i]);
-	}
-}
-int main(){
-	scanf(&quot;%d&quot;,&amp;n);
-	for(int i=1;i&lt;n;i++){
-		int x,y;
-		scanf(&quot;%d%d&quot;,&amp;x,&amp;y);
-		link(x,y);
-	}
-	dfs1(1,0);
-	dfs2(1,1);
-	int Q,x,y,a,b,k;
-	scanf(&quot;%d&quot;,&amp;Q);
-	while(Q--){
-		scanf(&quot;%d%d%d%d%d&quot;,&amp;a,&amp;b,&amp;x,&amp;y,&amp;k);
-	//	cout&lt;&lt;lca(x,y)&lt;&lt;endl;
-		int tmp = dis(x,y);
-		if(tmp &lt;= k &amp;&amp; ((k-tmp)%2==0)){puts(&quot;YES&quot;);continue;}
-		tmp = dis(x,a)+dis(y,b)+1;
-		if(tmp &lt;= k &amp;&amp; ((k-tmp)%2==0)){puts(&quot;YES&quot;);continue;}
-		tmp = dis(x,b) + dis(y,a) + 1;
-		if(tmp &lt;= k &amp;&amp; ((k-tmp)%2==0)){puts(&quot;YES&quot;);continue;}
-		puts(&quot;NO&quot;);
-	}
-	return 0;
-} 
-</code></pre>
-<h4 id="f">F</h4>
-<h5 id="简单口胡">简单口胡</h5>
-<p>老年人不想写线段树了...</p>
-<p>咕咕咕</p>
 ]]></content>
     </entry>
 </feed>
