@@ -1,298 +1,244 @@
+<!DOCTYPE html>
 <html>
-<head>
-    <meta charset="utf-8"/>
-<meta name="description" content=""/>
-<meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <head>
+    <meta charset="utf-8" >
+
 <title>Kvrmnks` blog</title>
-<link rel="shortcut icon" href="https://kvrmnks.github.io/favicon.ico?v=1596036813098">
-<link href="https://cdn.bootcss.com/font-awesome/5.11.2/css/all.css" rel="stylesheet">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://kvrmnks.github.io/favicon.ico?v=1596037601306">
 <link rel="stylesheet" href="https://kvrmnks.github.io/styles/main.css">
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-
-<script src="https://cdn.bootcss.com/highlight.js/9.15.10/highlight.min.js"></script>
-<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dockerfile.min.js"></script>
-<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dart.min.js"></script>
-<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/go.min.js"></script>
-<script src="https://cdn.bootcss.com/moment.js/2.23.0/moment.min.js"></script>
-<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
-        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
-        crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
-        crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
-        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
-        crossorigin="anonymous"></script>
-
-<!-- DEMO JS -->
-<!--<script src="media/scripts/index.js"></script>-->
 
 
 
-</head>
-<body>
-<div class="main gt-bg-theme-color-first">
-    <div class="main-content">
-        <nav class="navbar navbar-expand-lg">
-    <div class="navbar-brand">
-        <img class="user-avatar" src="/images/avatar.png" alt="头像">
-        <div class="site-name gt-c-content-color-first">
-            Kvrmnks` blog
-        </div>
-    </div>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <i class="fas fa-bars gt-c-content-color-first" style="font-size: 18px"></i>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <div class="navbar-nav mr-auto" style="text-align: center">
-            
-                <div class="nav-item">
-                    
-                        <a href="/" class="menu gt-a-link">
-                            首页
-                        </a>
-                    
-                </div>
-            
-                <div class="nav-item">
-                    
-                        <a href="/archives" class="menu gt-a-link">
-                            归档
-                        </a>
-                    
-                </div>
-            
-                <div class="nav-item">
-                    
-                        <a href="/tags" class="menu gt-a-link">
-                            标签
-                        </a>
-                    
-                </div>
-            
-                <div class="nav-item">
-                    
-                        <a href="/post/about" class="menu gt-a-link">
-                            关于
-                        </a>
-                    
-                </div>
-            
-        </div>
-    </div>
-</nav>
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 
-        <div class="post-list-container">
-    <div class="post-inner">
-        
-            <div class="post gt-bg-theme-color-second">
-                <div class="post-left">
-                    <div>
-                        
-                        <a href="https://kvrmnks.github.io/post/codeforces-620/">
-                            <span class="post-title gt-c-content-color-first">codeforces 620</span>
-                        </a>
-                    </div>
-                    <div class="gt-post-content post-abstract gt-c-content-color-second">
-                        <p>老年人来打场div2</p>
 
-                    </div>
-                    <div class="post-info">
-                        <time class="post-time gt-c-content-color-first">
-                            发布于 · 2020-02-16 ·
-                        </time>
-                        
-                    </div>
-                </div>
-                
-            </div>
-        
-            <div class="post gt-bg-theme-color-second">
-                <div class="post-left">
-                    <div>
-                        
-                        <a href="https://kvrmnks.github.io/post/yi-qi-lai-da-discuz-he-wordpress-ba/">
-                            <span class="post-title gt-c-content-color-first">一起来搭Discuz和wordpress吧</span>
-                        </a>
-                    </div>
-                    <div class="gt-post-content post-abstract gt-c-content-color-second">
-                        <p>颓废了一个寒假,临末尾来搭一个Discuz+wordpress吧</p>
 
-                    </div>
-                    <div class="post-info">
-                        <time class="post-time gt-c-content-color-first">
-                            发布于 · 2020-02-14 ·
-                        </time>
-                        
-                    </div>
-                </div>
-                
-            </div>
-        
-            <div class="post gt-bg-theme-color-second">
-                <div class="post-left">
-                    <div>
-                        
-                        <a href="https://kvrmnks.github.io/post/yong-fft-hua-hua/">
-                            <span class="post-title gt-c-content-color-first">用fft画画</span>
-                        </a>
-                    </div>
-                    <div class="gt-post-content post-abstract gt-c-content-color-second">
-                        <p>外面疫情严重,只能赋闲在家,闲着也是闲着,来学用fft画画吧</p>
-<figure data-type="image" tabindex="1"><img src="https://kvrmnks.github.io/post-images/1587643407396.jpg" alt="" loading="lazy"></figure>
-
-                    </div>
-                    <div class="post-info">
-                        <time class="post-time gt-c-content-color-first">
-                            发布于 · 2020-02-06 ·
-                        </time>
-                        
-                    </div>
-                </div>
-                
-            </div>
-        
-            <div class="post gt-bg-theme-color-second">
-                <div class="post-left">
-                    <div>
-                        
-                        <a href="https://kvrmnks.github.io/post/yi-xie-xue-xi-guo-cheng-zhong-yong-dao-de-dian-zi-shu/">
-                            <span class="post-title gt-c-content-color-first">一些学习过程中用到的电子书</span>
-                        </a>
-                    </div>
-                    <div class="gt-post-content post-abstract gt-c-content-color-second">
-                        <p>一些学习过程中用到的电子书</p>
-
-                    </div>
-                    <div class="post-info">
-                        <time class="post-time gt-c-content-color-first">
-                            发布于 · 2020-01-28 ·
-                        </time>
-                        
-                    </div>
-                </div>
-                
-            </div>
-        
-            <div class="post gt-bg-theme-color-second">
-                <div class="post-left">
-                    <div>
-                        
-                        <a href="https://kvrmnks.github.io/post/kitutominnada-shi-nakotoshao-sizutuwang-reteikukara/">
-                            <span class="post-title gt-c-content-color-first">きっとみんな大事なこと少しずつ忘れていくから</span>
-                        </a>
-                    </div>
-                    <div class="gt-post-content post-abstract gt-c-content-color-second">
-                        
-                    </div>
-                    <div class="post-info">
-                        <time class="post-time gt-c-content-color-first">
-                            发布于 · 2020-01-27 ·
-                        </time>
-                        
-                    </div>
-                </div>
-                
-            </div>
-        
-            <div class="post gt-bg-theme-color-second">
-                <div class="post-left">
-                    <div>
-                        
-                        <a href="https://kvrmnks.github.io/post/da-jian-hexo-de-guo-cheng/">
-                            <span class="post-title gt-c-content-color-first">搭建hexo的过程</span>
-                        </a>
-                    </div>
-                    <div class="gt-post-content post-abstract gt-c-content-color-second">
-                        <p>简单记录一下搭建这个blog的过程,免得后面忘了</p>
-<figure data-type="image" tabindex="1"><img src="https://kvrmnks.github.io/post-images/1587642980554.jfif" alt="" loading="lazy"></figure>
-
-                    </div>
-                    <div class="post-info">
-                        <time class="post-time gt-c-content-color-first">
-                            发布于 · 2020-01-22 ·
-                        </time>
-                        
-                    </div>
-                </div>
-                
-            </div>
-        
-            <div class="post gt-bg-theme-color-second">
-                <div class="post-left">
-                    <div>
-                        
-                        <a href="https://kvrmnks.github.io/post/hello-gridea/">
-                            <span class="post-title gt-c-content-color-first">Hello Gridea</span>
-                        </a>
-                    </div>
-                    <div class="gt-post-content post-abstract gt-c-content-color-second">
-                        <p>👏  欢迎使用 <strong>Gridea</strong> ！<br>
-✍️  <strong>Gridea</strong> 一个静态博客写作客户端。你可以用它来记录你的生活、心情、知识、笔记、创意... ...</p>
-
-                    </div>
-                    <div class="post-info">
-                        <time class="post-time gt-c-content-color-first">
-                            发布于 · 2018-12-12 ·
-                        </time>
-                        
-                            <a href="https://kvrmnks.github.io/tag/djyq7Ft3j/" class="post-tag">
-                                # Gridea
-                            </a>
-                        
-                    </div>
-                </div>
-                
-                    <a href="https://kvrmnks.github.io/post/hello-gridea/" class="post-feature-image"
-                       style="background-image: url('https://kvrmnks.github.io/post-images/hello-gridea.png')">
-                    </a>
-                
-            </div>
-        
-    </div>
-</div>
-
-        <div class="pagination-container">
+    <meta name="description" content="power overwhelming">
     
-        <a href="https://kvrmnks.github.io/" class="prev-page gt-a-link">上一页</a>
-    
-    
-</div>
+  </head>
+  <body>
+    <div id="app" class="main">
 
-
-        <div class="site-footer gt-c-content-color-first">
-    <div class="slogan gt-c-content-color-first">power overwhelming</div>
-    <div class="social-container">
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-    </div>
-    <div class="footer-info">
-        Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://kvrmnks.github.io">
+        <img src="https://kvrmnks.github.io/images/avatar.png?v=1596037601306" class="site-logo">
+        <h1 class="site-title">Kvrmnks` blog</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
     </div>
     <div>
-        Theme by <a href="https://imhanjie.com/" target="_blank">imhanjie</a>, Powered by <a
-                href="https://github.com/getgridea/gridea" target="_blank">Gridea | <a href="https://kvrmnks.github.io/atom.xml" target="_blank">RSS</a></a>
+      
+        
+          <a href="/" class="site-nav">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="site-nav">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="site-nav">
+            关于
+          </a>
+        
+      
     </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      power overwhelming
+    </div>
+    <div class="site-footer">
+      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://kvrmnks.github.io/atom.xml" target="_blank">RSS</a>
+    </div>
+  </div>
 </div>
 
-<script>
-    hljs.initHighlightingOnLoad()
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          
+            <article class="post-item">
+              <div class="left">
+                <a href="https://kvrmnks.github.io/post/codeforces-620/">
+                  <h2 class="post-title">codeforces 620</h2>
+                </a>
+                <div class="post-date">
+                  2020-02-16
+                </div>
+                <div class="post-abstract">
+                  <p>老年人来打场div2</p>
+
+                </div>
+              </div>
+              
+            </article>
+          
+            <article class="post-item">
+              <div class="left">
+                <a href="https://kvrmnks.github.io/post/yi-qi-lai-da-discuz-he-wordpress-ba/">
+                  <h2 class="post-title">一起来搭Discuz和wordpress吧</h2>
+                </a>
+                <div class="post-date">
+                  2020-02-14
+                </div>
+                <div class="post-abstract">
+                  <p>颓废了一个寒假,临末尾来搭一个Discuz+wordpress吧</p>
+
+                </div>
+              </div>
+              
+            </article>
+          
+            <article class="post-item">
+              <div class="left">
+                <a href="https://kvrmnks.github.io/post/yong-fft-hua-hua/">
+                  <h2 class="post-title">用fft画画</h2>
+                </a>
+                <div class="post-date">
+                  2020-02-06
+                </div>
+                <div class="post-abstract">
+                  <p>外面疫情严重,只能赋闲在家,闲着也是闲着,来学用fft画画吧</p>
+<figure data-type="image" tabindex="1"><img src="https://kvrmnks.github.io/post-images/1587643407396.jpg" alt="" loading="lazy"></figure>
+
+                </div>
+              </div>
+              
+            </article>
+          
+            <article class="post-item">
+              <div class="left">
+                <a href="https://kvrmnks.github.io/post/yi-xie-xue-xi-guo-cheng-zhong-yong-dao-de-dian-zi-shu/">
+                  <h2 class="post-title">一些学习过程中用到的电子书</h2>
+                </a>
+                <div class="post-date">
+                  2020-01-28
+                </div>
+                <div class="post-abstract">
+                  <p>一些学习过程中用到的电子书</p>
+
+                </div>
+              </div>
+              
+            </article>
+          
+            <article class="post-item">
+              <div class="left">
+                <a href="https://kvrmnks.github.io/post/kitutominnada-shi-nakotoshao-sizutuwang-reteikukara/">
+                  <h2 class="post-title">きっとみんな大事なこと少しずつ忘れていくから</h2>
+                </a>
+                <div class="post-date">
+                  2020-01-27
+                </div>
+                <div class="post-abstract">
+                  
+                </div>
+              </div>
+              
+            </article>
+          
+            <article class="post-item">
+              <div class="left">
+                <a href="https://kvrmnks.github.io/post/da-jian-hexo-de-guo-cheng/">
+                  <h2 class="post-title">搭建hexo的过程</h2>
+                </a>
+                <div class="post-date">
+                  2020-01-22
+                </div>
+                <div class="post-abstract">
+                  <p>简单记录一下搭建这个blog的过程,免得后面忘了</p>
+<figure data-type="image" tabindex="1"><img src="https://kvrmnks.github.io/post-images/1587642980554.jfif" alt="" loading="lazy"></figure>
+
+                </div>
+              </div>
+              
+            </article>
+          
+            <article class="post-item">
+              <div class="left">
+                <a href="https://kvrmnks.github.io/post/hello-gridea/">
+                  <h2 class="post-title">Hello Gridea</h2>
+                </a>
+                <div class="post-date">
+                  2018-12-12
+                </div>
+                <div class="post-abstract">
+                  <p>👏  欢迎使用 <strong>Gridea</strong> ！<br>
+✍️  <strong>Gridea</strong> 一个静态博客写作客户端。你可以用它来记录你的生活、心情、知识、笔记、创意... ...</p>
+
+                </div>
+              </div>
+              
+                <a class="right" href="https://kvrmnks.github.io/post/hello-gridea/">
+                  <div class="feature-container" style="background-image: url('https://kvrmnks.github.io/post-images/hello-gridea.png')">
+                  </div>
+                </a>
+              
+            </article>
+          
+
+          <div class="pagination-container">
+  
+    <a href="https://kvrmnks.github.io/" class="prev"><i class="icon-arrow-ios-back-outline"></i> 上一页</a>
+  
+  
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script type="application/javascript">
+
+AOS.init();
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
 </script>
 
-    </div>
-</div>
-</body>
+
+
+
+
+
+  </body>
 </html>
