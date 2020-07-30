@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../../img/favicon.ico">
+        <title>一起来搭Discuz和wordpress吧 - Kvrmnks's Blog</title>
+        <link href="../../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+
+        <script src="../../js/jquery-1.10.2.min.js" defer></script>
+        <script src="../../js/bootstrap.min.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="../..">Kvrmnks's Blog</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="navitem">
+                                <a href="../.." class="nav-link">Home</a>
+                            </li>
+                            <li class="navitem">
+                                <a href="../../about/" class="nav-link">About</a>
+                            </li>
+                            <li class="navitem">
+                                <a href="../" class="nav-link">Blog</a>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-toggle="modal" data-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-light navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
+        <ul class="nav flex-column">
+            
+            
+            
+            
+            
+            
+            
+            
+            
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<p>颓废了一个寒假,临末尾来搭一个Discuz+wordpress吧
+<!--more--></p>
+<h3 id="_1">环境</h3>
+<p>系统 centos 7 </p>
+<p>虚拟机 Vmware</p>
+<p>Discuz X3.4</p>
+<p>数据库 </p>
+<h3 id="linux">一些linux指令简单介绍</h3>
+<h4 id="reboot">reboot</h4>
+<p>重启</p>
+<h4 id="ll">ll</h4>
+<p>显示当前目录文件和文件夹</p>
+<p>相当于windows下的dir</p>
+<h4 id="cd">cd</h4>
+<p>后面加文件夹名可以跳转到相应的文件夹中</p>
+<p>和windows上的cd一样</p>
+<p>另外</p>
+<pre><code>cd ~
+</code></pre>
+
+<p>是跳转到一开始的目录</p>
+<pre><code>cd ..
+</code></pre>
+
+<p>是跳转到上一层</p>
+<h4 id="vi">vi</h4>
+<p>vi是linux中自带的记事本,不过相比较windows强了不知道多少倍...</p>
+<p>它的GUI版本是熟悉的vim哦~</p>
+<p>后面加文件名就可以打开或者创建文件</p>
+<p>打开之后,要点一下i键才可以正常的编辑,如果和我版本一样的额话,可以在屏幕左下角看到一个INSERT</p>
+<p>如果要保存或者退出,需要先点一下Esc键,这时候左下角的INSERT就会消失</p>
+<p>输入</p>
+<pre><code>:wq
+</code></pre>
+
+<p>就代表保存并退出</p>
+<p>这个时候你输入的指令都会显示在屏幕的最下面</p>
+<p>输入</p>
+<pre><code>:q
+</code></pre>
+
+<p>代表退出</p>
+<h4 id="cp">cp</h4>
+<p>cp指令就是复制啦
+它的用法是</p>
+<pre><code>cp -参数 你要复制的 你要复制到哪里
+</code></pre>
+
+<p>现在只用到了一个参数</p>
+<p>-r代表递归复制,简单来说就是复制文件夹</p>
+<h3 id="windowsssh">windows下使用ssh</h3>
+<p>右键点击屏幕左下角的windows标志</p>
+<p><img alt="" src="1587643078100.png" /></p>
+<p>选择Windows PowerShell</p>
+<p>输入</p>
+<pre><code>ssh 用户名@ip地址
+</code></pre>
+
+<p>如果出现让你输yes/no就输yes</p>
+<p>然后会让你输入密码</p>
+<p>连接完之后你在PowerShell里输入什么,连接的电脑就会做什么了~</p>
+<h3 id="vmware">安装Vmware</h3>
+<p>这有啥好说的???</p>
+<p>跳过</p>
+<h3 id="centos">安装centos系统</h3>
+<p>~~这有啥好说的~~</p>
+<p>一定要记好自己的密码,用户名默认是root</p>
+<p>每次登录的时候都需要输入账号和密码</p>
+<p><img alt="" src="1587643152551.png" />
+这里主要讲一下配置网络的细节吧</p>
+<p>因为可以联网之后,就可以用ssh控制电脑了呢,就不用盯着虚拟机那个小框了呢~</p>
+<p>先输入以下</p>
+<pre><code>ip addr
+</code></pre>
+
+<p>如果长成这样</p>
+<p><img alt="" src="1587643165015.png" />
+注意看红线下面没有出现ip地址,这个时候就要手动配置一下网络</p>
+<p>打开虚拟机设置</p>
+<p><img alt="" src="1587643177915.png" />
+调整成桥接模式</p>
+<p><img alt="" src="1587643185764.png" />
+然后回到虚拟机,输入</p>
+<pre><code>cd /etc/sysconfig/network-scripts
+</code></pre>
+
+<p>再输入</p>
+<pre><code>ll
+</code></pre>
+
+<p><img alt="" src="1587643195291.png" />
+输入</p>
+<pre><code>vi ifcfg-ens33
+</code></pre>
+
+<p>编辑ifcfg-ens33文件</p>
+<p>顺便一提</p>
+<p>linux在输入文件名的时候是可以按Tab键自动补全的</p>
+<p>如果你玩过minecraft的话会好理解的~</p>
+<p>~~比windows高到不知道哪里去了~~</p>
+<p>把</p>
+<pre><code>ONBOOT=no
+</code></pre>
+
+<p>改成</p>
+<pre><code>ONBOOT=yes
+</code></pre>
+
+<p>保存退出</p>
+<p>重启一下虚拟机</p>
+<p>再输入一下ip addr</p>
+<p><img alt="" src="1587643206328.png" />
+现在那个红线上面的ip地址就是你的虚拟机ip地址</p>
+<p>现在可以用ssh链接你的虚拟机了~~</p>
+<h3 id="_2">配置基本的环境</h3>
+<h4 id="git">在自己的电脑上安装git</h4>
+<p>由于这个可能不是太复杂就不展开说了</p>
+<h4 id="selinux">关防火墙和SELinux</h4>
+<p>先要把什么防火墙之类的东西全关掉,防火墙什么的最讨厌了呢~</p>
+<p>顺便一提,如果你登录的不是root的话,所有指令最好都带一个sudo前缀,保证你有足够的权限</p>
+<p>依次输入</p>
+<pre><code>systemctl stop firewalld
+</code></pre>
+
+<pre><code>systemctl disable firewalld
+</code></pre>
+
+<p><img alt="" src="1587643219610.png" />
+这样就把防火墙关掉了~</p>
+<p>但是linux还有个叫SELinux的讨厌的东西</p>
+<p>编辑/etc/selinux/config文件</p>
+<p>再顺便一提,右键powershell就可以粘贴哦~</p>
+<p>把对应的一行改成这个</p>
+<pre><code>SELINUX=disabled
+</code></pre>
+
+<p>保存退出</p>
+<p>输入</p>
+<pre><code>setenforce 0
+</code></pre>
+
+<p>在输入</p>
+<pre><code>getenforce
+</code></pre>
+
+<p>如果显示Disabled就已经关掉了</p>
+<p>如果不行就重启一下虚拟机吧~</p>
+<h4 id="apache">安装Apache</h4>
+<p>输入</p>
+<pre><code>yum -y install httpd
+</code></pre>
+
+<p>其中它让输yes就输</p>
+<p>安装完成后</p>
+<p>依次输入</p>
+<pre><code>systemctl start httpd
+</code></pre>
+
+<p>开启http</p>
+<pre><code>systemctl enable httpd
+</code></pre>
+
+<p>设置http开机启动
+可以输入</p>
+<pre><code>systemctl status httpd
+</code></pre>
+
+<p><img alt="" src="1587643230779.png" />
+如果那个running变成了dead,极大的可能是有东西占用了80端口,比如阿里云就会自带nginx占用掉80端口</p>
+<p>这个时候,输入</p>
+<pre><code>yum install net-tools
+</code></pre>
+
+<p>中间可能要输入一次y</p>
+<p>完成之后输入</p>
+<pre><code>netstat -tlnp|grep 80
+</code></pre>
+
+<p><img alt="" src="1587643242302.png" />
+看到有程序在占用80端口,从右边可以看到进程号为1372,应用是httpd</p>
+<p>这个地方由于我已经成功启动了httpd所以显示的是httpd,如果是什么其他的东西,就需要强行把这个应用停止,把80端口让给httpd</p>
+<pre><code>kill -9 进程号
+</code></pre>
+
+<p>直到80端口不再被占用</p>
+<p>这时候</p>
+<pre><code>systemctl restart httpd
+</code></pre>
+
+<p>重启一下httpd</p>
+<h4 id="mariadb">安装Mariadb</h4>
+<p>输入</p>
+<pre><code>yum -y install mariadb-server.x86_64
+</code></pre>
+
+<p>顺便一提 Mariadb 是类似mysql开源版本的存在</p>
+<p>默认的用户名是root</p>
+<p>密码是空的</p>
+<p>选它主要原因是开源(~~国内下载的快~~)</p>
+<p>输入</p>
+<pre><code>systemctl start mariadb
+</code></pre>
+
+<p>开启服务</p>
+<pre><code>systemctl enable mariadb
+</code></pre>
+
+<p>设置开机启动</p>
+<pre><code>systemctl status mariadb
+</code></pre>
+
+<p>查看状态</p>
+<h4 id="phpphp-mysql">安装php和php-mysql</h4>
+<pre><code>yum -y install php php-mysql
+</code></pre>
+
+<h4 id="git_1">安装git</h4>
+<pre><code>yum install git -y
+</code></pre>
+
+<h3 id="discuz">安装Discuz</h3>
+<p>我们用git把Discuz的文件下载下来</p>
+<p>Discuz的项目地址在</p>
+<p>https://gitee.com/ComsenzDiscuz/DiscuzX</p>
+<p>还好不在github...</p>
+<p><img alt="" src="1587643255695.png" />
+一次点击克隆,复制</p>
+<p>输入</p>
+<pre><code>git clone 你复制到的东西
+</code></pre>
+
+<p>回到主目录,输入</p>
+<pre><code>ll
+</code></pre>
+
+<p>就能看到一个叫DiscuzX的文件夹,~~当然你有可能看不出它是文件还是文件夹~~</p>
+<p>输入</p>
+<pre><code>cp -r DiscuzX/upload /var/www/html/upload
+</code></pre>
+
+<p>把DiscuzX下的upload文件夹复制到那个奇怪的目录下</p>
+<p>那个目录下的东西会被Apache(httpd)给解析成我们熟悉的网页</p>
+<p>现在需要给DiscuzX一点权限
+依次输入</p>
+<pre><code>chmod -Rf 777 /var/www/html/
+</code></pre>
+
+<pre><code>chmod -Rf 777 /var/www/html/upload
+</code></pre>
+
+<p>打开浏览器,输入</p>
+<pre><code>虚拟机的ip地址/upload
+</code></pre>
+
+<p><img alt="" src="1587643265636.png" />
+点我同意</p>
+<p><img alt="" src="1587643271673.png" />
+点下一步*2</p>
+<p><img alt="" src="1587643278921.png" />
+数据库密码调成空(如果你没有手动调整数据库密码的话)</p>
+<p>记得填写管理员密码哦~</p>
+<p>然后就安完了~</p>
+<h3 id="wordpress">安装wordpress</h3>
+<p>先要整到wordpress的安装包</p>
+<p>最近的官网不大友好...</p>
+<p>而且由于centos7默认的php的版本太低了也不能装版本过高的wordpress</p>
+<p>所以我选了wordpress-v5.0.2-zh_CN.zip</p>
+<p>现在要用ssh把这个zip传到虚拟机上</p>
+<p>我把这个zip放在了e盘</p>
+<p>我用了git带的scp</p>
+<p>在e盘右键点击git bush here</p>
+<p>输入</p>
+<pre><code>scp wordpress-v5.0.2-zh_CN.zip root@192.168.0.107:wordpress-v5.0.2-zh_CN.zip
+</code></pre>
+
+<p>在powershell输入ll就能看到传上去的文件了</p>
+<p>输入</p>
+<pre><code>yum install -y unzip zip
+</code></pre>
+
+<p>安装unzip</p>
+<p>输入</p>
+<pre><code>unzip wordpress-v5.0.2-zh_CN.zip
+</code></pre>
+
+<p>解压这个zip包</p>
+<p>输入</p>
+<pre><code>cp -r wordpress /var/www/html/wordpress
+</code></pre>
+
+<p>在浏览器输入</p>
+<pre><code>http://ip地址/wordpress
+</code></pre>
+
+<p>就能看到wordpress的安装界面了~</p>
+<p><img alt="" src="1587643288461.png" />
+先别急着往下,现在我们要配置一下数据库</p>
+<p>回到powershell</p>
+<p>依次输入</p>
+<pre><code>mysql -uroot
+</code></pre>
+
+<p>打开数据库</p>
+<pre><code>create database wordpress;
+</code></pre>
+
+<p>建立要用的数据库</p>
+<pre><code>GRANT ALL ON wordpress.* TO 'wordpressuser'@'%' IDENTIFIED BY &quot;123456&quot;;
+</code></pre>
+
+<p>建立该数据库的账户,最后一个双引号换成你要的密码</p>
+<p>我这里用的123456</p>
+<pre><code>quit
+</code></pre>
+
+<p>退出数据库</p>
+<pre><code>systemctl restart mariadb
+</code></pre>
+
+<p>重启一下数据库</p>
+<p>回到浏览器</p>
+<p><img alt="" src="1587643296315.png" />
+依次填表</p>
+<p>数据库主机填虚拟机的IP地址</p>
+<p>如果你用的是阿里云之类的东西记得开放3306端口(数据库使用)</p>
+<p>如果出现这个界面</p>
+<p><img alt="" src="1587643301572.png" />
+回到powershell</p>
+<p>输入</p>
+<pre><code>vi /var/www/html/wordpress/wp-config.php
+</code></pre>
+
+<p>复制网页里的东西</p>
+<p>粘贴(记得右键)</p>
+<p>退出保存</p>
+<p>然后回浏览器,一直往下走就好了~</p>
+<p>之后有空再更新如何把wordpress调成多人模式吧~~</p>
+<h3 id="_3">参考网址</h3>
+<p>https://blog.csdn.net/xiehd313/article/details/80814584</p>
+<p>https://blog.51cto.com/2382492/2083079</p>
+<p>https://www.cnblogs.com/caicaizi/p/9564754.html</p>
+<p>https://blog.csdn.net/sky101010ws/article/details/50782475</p>
+<p>https://blog.csdn.net/weixin_42591732/article/details/102534262</p>
+<p>https://www.cnblogs.com/biaopei/p/11683407.html</p>
+<p>https://blog.csdn.net/weixin_42506905/article/details/90339253</p>
+<p>https://www.cnblogs.com/lywJ/p/10880332.html</p>
+<p>https://www.jianshu.com/p/ad58fd97119e</p></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script>
+            var base_url = "../..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../../js/base.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML" defer></script>
+        <script src="../../search/main.js" defer></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

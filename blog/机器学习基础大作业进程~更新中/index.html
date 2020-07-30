@@ -7,15 +7,15 @@
         
         
         
-        <link rel="shortcut icon" href="../img/favicon.ico">
-        <title>About - Kvrmnks's Blog</title>
-        <link href="../css/bootstrap.min.css" rel="stylesheet">
-        <link href="../css/font-awesome.min.css" rel="stylesheet">
-        <link href="../css/base.css" rel="stylesheet">
+        <link rel="shortcut icon" href="../../img/favicon.ico">
+        <title>机器学习基础大作业进程~更新中 - Kvrmnks's Blog</title>
+        <link href="../../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../../css/base.css" rel="stylesheet">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
 
-        <script src="../js/jquery-1.10.2.min.js" defer></script>
-        <script src="../js/bootstrap.min.js" defer></script>
+        <script src="../../js/jquery-1.10.2.min.js" defer></script>
+        <script src="../../js/bootstrap.min.js" defer></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
         <script>hljs.initHighlightingOnLoad();</script> 
     </head>
@@ -23,7 +23,7 @@
     <body>
         <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
             <div class="container">
-                <a class="navbar-brand" href="..">Kvrmnks's Blog</a>
+                <a class="navbar-brand" href="../..">Kvrmnks's Blog</a>
                 <!-- Expander button -->
                 <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
                     <span class="navbar-toggler-icon"></span>
@@ -34,13 +34,13 @@
                         <!-- Main navigation -->
                         <ul class="nav navbar-nav">
                             <li class="navitem">
-                                <a href=".." class="nav-link">Home</a>
-                            </li>
-                            <li class="navitem active">
-                                <a href="./" class="nav-link">About</a>
+                                <a href="../.." class="nav-link">Home</a>
                             </li>
                             <li class="navitem">
-                                <a href="../blog/" class="nav-link">Blog</a>
+                                <a href="../../about/" class="nav-link">About</a>
+                            </li>
+                            <li class="navitem">
+                                <a href="../" class="nav-link">Blog</a>
                             </li>
                         </ul>
 
@@ -50,16 +50,6 @@
                                 <i class="fa fa-search"></i> Search
                             </a>
                         </li>
-                            <li class="nav-item">
-                                <a rel="prev" href=".." class="nav-link">
-                                    <i class="fa fa-arrow-left"></i> Previous
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a rel="next" href="../blog/" class="nav-link">
-                                    Next <i class="fa fa-arrow-right"></i>
-                                </a>
-                            </li>
                     </ul>
                 </div>
             </div>
@@ -77,14 +67,35 @@
     
     <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
         <ul class="nav flex-column">
+            
+            
         </ul>
     </div>
 </div></div>
                     <div class="col-md-9" role="main">
 
-<p>
-<script type="math/tex">\sum_{i=1}^{\inf}\frac{1}{i^2}=\frac{\pi^2}{6}</script>
-</p></div>
+<h3 id="_1">简介</h3>
+<p>机器学习基础课为什么要安排一个深度学习的作业？</p>
+<h3 id="_2">~~大事~~记录</h3>
+<h4 id="20200728">20200728之前</h4>
+<ul>
+<li>把Anaconda的环境搭建好了，一定记住安装一些类似于pyTorch的模块时一定要去官网找到正确的姿势。</li>
+<li>还用了Anaconda的虚拟环境，除了有点占用硬盘以外，都挺好的。
+<img alt="不也挺好吗？" src="file://C:/Users/Kvrmnks/Documents/Gridea/post-images/1595920396482.jpg" /></li>
+<li>简单的试了试把环境搭好，读了读数据集和测试集，试了试LeNet，发现好像可以识别1000种汉字？不过还没进行泛化实验</li>
+</ul>
+<h4 id="20200728_1">20200728</h4>
+<ul>
+<li>尝试把测试集的格式直接存成numpy。
+  存个啥，发现了正确的读数据的方式，比原来一个一个像素读快到不知道哪里去了
+<code>python
+content = file.read(height*width)
+img = np.frombuffer(content, dtype=np.uint8).reshape(height,width)</code>
+ 注意从byte 转 numpy 要用 np.formbuffer()</li>
+<li>尝试进行图片大小的robust，计划直接按比例缩放，之前用的pyTorch自带的AdaptAvePool
+用PIL的库写好了</li>
+<li>跑了跑LeNet 全集</li>
+</ul></div>
             </div>
         </div>
 
@@ -93,12 +104,12 @@
             <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
         </footer>
         <script>
-            var base_url = "..",
+            var base_url = "../..",
                 shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
         </script>
-        <script src="../js/base.js" defer></script>
+        <script src="../../js/base.js" defer></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML" defer></script>
-        <script src="../search/main.js" defer></script>
+        <script src="../../search/main.js" defer></script>
 
         <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">

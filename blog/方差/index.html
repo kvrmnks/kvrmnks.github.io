@@ -7,15 +7,15 @@
         
         
         
-        <link rel="shortcut icon" href="../img/favicon.ico">
-        <title>About - Kvrmnks's Blog</title>
-        <link href="../css/bootstrap.min.css" rel="stylesheet">
-        <link href="../css/font-awesome.min.css" rel="stylesheet">
-        <link href="../css/base.css" rel="stylesheet">
+        <link rel="shortcut icon" href="../../img/favicon.ico">
+        <title>方差 - Kvrmnks's Blog</title>
+        <link href="../../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../../css/base.css" rel="stylesheet">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
 
-        <script src="../js/jquery-1.10.2.min.js" defer></script>
-        <script src="../js/bootstrap.min.js" defer></script>
+        <script src="../../js/jquery-1.10.2.min.js" defer></script>
+        <script src="../../js/bootstrap.min.js" defer></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
         <script>hljs.initHighlightingOnLoad();</script> 
     </head>
@@ -23,7 +23,7 @@
     <body>
         <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
             <div class="container">
-                <a class="navbar-brand" href="..">Kvrmnks's Blog</a>
+                <a class="navbar-brand" href="../..">Kvrmnks's Blog</a>
                 <!-- Expander button -->
                 <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
                     <span class="navbar-toggler-icon"></span>
@@ -34,13 +34,13 @@
                         <!-- Main navigation -->
                         <ul class="nav navbar-nav">
                             <li class="navitem">
-                                <a href=".." class="nav-link">Home</a>
-                            </li>
-                            <li class="navitem active">
-                                <a href="./" class="nav-link">About</a>
+                                <a href="../.." class="nav-link">Home</a>
                             </li>
                             <li class="navitem">
-                                <a href="../blog/" class="nav-link">Blog</a>
+                                <a href="../../about/" class="nav-link">About</a>
+                            </li>
+                            <li class="navitem">
+                                <a href="../" class="nav-link">Blog</a>
                             </li>
                         </ul>
 
@@ -50,16 +50,6 @@
                                 <i class="fa fa-search"></i> Search
                             </a>
                         </li>
-                            <li class="nav-item">
-                                <a rel="prev" href=".." class="nav-link">
-                                    <i class="fa fa-arrow-left"></i> Previous
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a rel="next" href="../blog/" class="nav-link">
-                                    Next <i class="fa fa-arrow-right"></i>
-                                </a>
-                            </li>
                     </ul>
                 </div>
             </div>
@@ -82,9 +72,51 @@
 </div></div>
                     <div class="col-md-9" role="main">
 
-<p>
-<script type="math/tex">\sum_{i=1}^{\inf}\frac{1}{i^2}=\frac{\pi^2}{6}</script>
-</p></div>
+<!--more-->
+
+<p><img alt="" src="file://C:/Users/Kvrmnks/Documents/Gridea/post-images/1590903931832.png" />
+先咕掉题解, 只贴代码吧</p>
+<pre><code class="cpp">#include&lt;bits/stdc++.h&gt;
+using namespace std;
+const int MOD = 1000000007;
+const int MAXN = 1000005;
+typedef long long ll;
+int n,data[MAXN],inv[MAXN],fac[MAXN],ifac[MAXN];
+int sum,qsum;
+int comb(int n,int m){
+    return (((ll)fac[n]*(ll)ifac[m])%MOD*(ll)ifac[n-m])%MOD;
+}
+int main(){
+    scanf(&quot;%d&quot;,&amp;n);
+    for(int i=1;i&lt;=n;i++)scanf(&quot;%d&quot;,data+i);
+    inv[0]=inv[1]=fac[0]=ifac[0]=fac[1]=ifac[1]=1;
+    for(int i=1;i&lt;=n;i++){
+        sum = (sum+data[i])%MOD;
+        qsum = (qsum + ((ll)data[i]*(ll)data[i])%MOD)%MOD;
+    }
+    for(int i=2;i&lt;=n+1;i++){
+        inv[i]=((ll)(MOD-MOD/i)*inv[MOD%i])%MOD;
+        fac[i] = ((ll)fac[i-1]*(ll)i)%MOD;
+        ifac[i] = ((ll)ifac[i-1] * (ll)inv[i])%MOD;
+    }
+    int ans=0;
+    for(int i=0;i&lt;n;i++){ans=(ans+((ll)comb(n-1,i)*(ll)inv[i+1])%MOD)%MOD;}
+    ans=((ll)ans*(ll)qsum)%MOD;
+    for(int i=1;i&lt;=n;i++){
+        ll tmp = 0;
+        tmp = (comb(n-1,i-1) * (ll)qsum)%MOD;
+        if(i&gt;=2)
+            tmp =(tmp + ((ll)comb(n-2,i-2)*(ll)((((ll)sum*(ll)sum)%MOD-qsum)%MOD+MOD)%MOD)%MOD)%MOD;
+        tmp = (tmp * (ll)(inv[i]))%MOD;
+        tmp = (tmp * (ll)(inv[i]))%MOD;
+        ans = (ans - tmp)%MOD;
+        ans = (ans + MOD)%MOD;
+    }
+    printf(&quot;%d&quot;,ans);
+    return 0;
+}
+
+</code></pre></div>
             </div>
         </div>
 
@@ -93,12 +125,12 @@
             <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
         </footer>
         <script>
-            var base_url = "..",
+            var base_url = "../..",
                 shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
         </script>
-        <script src="../js/base.js" defer></script>
+        <script src="../../js/base.js" defer></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML" defer></script>
-        <script src="../search/main.js" defer></script>
+        <script src="../../search/main.js" defer></script>
 
         <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
