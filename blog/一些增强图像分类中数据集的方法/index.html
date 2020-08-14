@@ -7,15 +7,15 @@
         
         
         
-        <link rel="shortcut icon" href="../img/favicon.ico">
-        <title>Blog - Kvrmnks's Blog</title>
-        <link href="../css/bootstrap.min.css" rel="stylesheet">
-        <link href="../css/font-awesome.min.css" rel="stylesheet">
-        <link href="../css/base.css" rel="stylesheet">
+        <link rel="shortcut icon" href="../../img/favicon.ico">
+        <title>一些增强图像分类中数据集的方法 - Kvrmnks's Blog</title>
+        <link href="../../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../../css/base.css" rel="stylesheet">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
 
-        <script src="../js/jquery-1.10.2.min.js" defer></script>
-        <script src="../js/bootstrap.min.js" defer></script>
+        <script src="../../js/jquery-1.10.2.min.js" defer></script>
+        <script src="../../js/bootstrap.min.js" defer></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
         <script>hljs.initHighlightingOnLoad();</script> 
     </head>
@@ -23,7 +23,7 @@
     <body>
         <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
             <div class="container">
-                <a class="navbar-brand" href="..">Kvrmnks's Blog</a>
+                <a class="navbar-brand" href="../..">Kvrmnks's Blog</a>
                 <!-- Expander button -->
                 <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
                     <span class="navbar-toggler-icon"></span>
@@ -34,13 +34,13 @@
                         <!-- Main navigation -->
                         <ul class="nav navbar-nav">
                             <li class="navitem">
-                                <a href=".." class="nav-link">Home</a>
+                                <a href="../.." class="nav-link">Home</a>
                             </li>
                             <li class="navitem">
-                                <a href="../about/" class="nav-link">About</a>
+                                <a href="../../about/" class="nav-link">About</a>
                             </li>
-                            <li class="navitem active">
-                                <a href="./" class="nav-link">Blog</a>
+                            <li class="navitem">
+                                <a href="../" class="nav-link">Blog</a>
                             </li>
                         </ul>
 
@@ -50,16 +50,6 @@
                                 <i class="fa fa-search"></i> Search
                             </a>
                         </li>
-                            <li class="nav-item">
-                                <a rel="prev" href="../about/" class="nav-link">
-                                    <i class="fa fa-arrow-left"></i> Previous
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a rel="next" class="nav-link disabled">
-                                    Next <i class="fa fa-arrow-right"></i>
-                                </a>
-                            </li>
                     </ul>
                 </div>
             </div>
@@ -78,7 +68,17 @@
     <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
         <ul class="nav flex-column">
             
-            <li class="nav-item" data-level="2"><a href="#blog" class="nav-link">这里保存blog系列~</a>
+            <li class="nav-item" data-level="2"><a href="#_1" class="nav-link">图像缩放</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="2"><a href="#_2" class="nav-link">图片随机旋转</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="2"><a href="#_3" class="nav-link">图片翻转</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -87,26 +87,50 @@
 </div></div>
                     <div class="col-md-9" role="main">
 
-<h2 id="blog">这里保存blog系列~</h2>
-<ul>
-<li>2020.08.14 <a href="%E4%B8%80%E4%BA%9B%E5%A2%9E%E5%BC%BA%E5%9B%BE%E5%83%8F%E5%88%86%E7%B1%BB%E4%B8%AD%E6%95%B0%E6%8D%AE%E9%9B%86%E7%9A%84%E6%96%B9%E6%B3%95/">一些增强图像分类中数据集的方法</a></li>
-<li>2020.08.02 <a href="%E6%B5%85%E8%B0%88pytorch%E5%8A%A0%E8%BD%BD%E5%9B%BE%E7%89%87%E4%BD%9C%E4%B8%BA%E8%AE%AD%E7%BB%83%E6%95%B0%E6%8D%AE%E7%9A%84%E4%B8%80%E7%A7%8D%E5%A7%BF%E5%8A%BF/">浅谈pytorch加载图片作为训练数据的一种姿势</a></li>
-<li>2020.07.30 <a href="%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E7%9A%84%E8%A7%A3%E6%9E%90HWDB1.1%E6%95%B0%E6%8D%AE%E4%B9%8B%E8%B7%AF/">从零开始的解析HWDB1.1数据之路</a></li>
-<li>2020.07.29 <a href="JS%E4%BC%A0%E9%80%92canvas%E5%9B%BE%E7%89%87%E4%B8%8EPython%E5%90%8E%E7%AB%AFFlask%E4%BA%A4%E4%BA%92/">JS传递canvas图片与Python后端Flask交互</a></li>
-<li>2020.07.28 <a href="%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%A1%80%E5%A4%A7%E4%BD%9C%E4%B8%9A%E8%BF%9B%E7%A8%8B~%E6%9B%B4%E6%96%B0%E4%B8%AD/">机器学习基础大作业进程~更新中</a></li>
-<li>2020.07.14 <a href="ubuntu%20%E4%B8%8A%E7%9A%84%20mysql%20%2B%20pymysql%20%2B%20screen/">ubuntu 上的 mysql + pymysql + screen</a></li>
-<li>2020.05.31 <a href="%E6%96%B9%E5%B7%AE/">方差</a></li>
-<li>2020.05.18 <a href="%E5%BD%BC%E5%8F%AF%E5%8F%96%E8%80%8C%E4%BB%A3%E4%B9%8B/">彼可取而代之</a></li>
-<li>2020.05.10 <a href="%E5%B0%8FE%E7%9A%84%E6%95%85%E4%BA%8B/">小E的故事</a></li>
-<li>2020.04.28 <a href="%E7%A8%8B%E8%AE%BE%E5%A4%A7%E4%BD%9C%E4%B8%9A2-markdown%E7%BC%96%E8%BE%91%E5%99%A8/">程设大作业2-markdown编辑器</a></li>
-<li>2020.04.28 <a href="%E4%BA%BA%E5%8F%A3%E6%B5%81%E9%87%8F%E9%A2%84%E6%B5%8B%E6%AF%94%E8%B5%9B%E7%9A%84%E5%8F%8D%E6%80%9D/">人口流量预测比赛的反思</a></li>
-<li>2020.04.04 <a href="%E4%BD%A0%E6%98%AF%E5%90%A6%E8%BF%98%E8%83%BD%E5%81%87%E8%A3%85%E8%87%AA%E5%B7%B1%E6%98%AF%E5%88%AB%E4%BA%BA%E5%91%A2/">你是否还能假装自己是别人呢</a></li>
-<li>2020.02.16 <a href="codeforces%20620/">codeforces 620</a></li>
-<li>2020.02.14 <a href="%E4%B8%80%E8%B5%B7%E6%9D%A5%E6%90%ADDiscuz%E5%92%8Cwordpress%E5%90%A7/">一起来搭Discuz和wordpress吧</a></li>
-<li>2020.02.06 <a href="%E7%94%A8fft%E7%94%BB%E7%94%BB/">用fft画画</a></li>
-<li>2020.01.28 <a href="%E4%B8%80%E4%BA%9B%E5%AD%A6%E4%B9%A0%E8%BF%87%E7%A8%8B%E4%B8%AD%E7%94%A8%E5%88%B0%E7%9A%84%E7%94%B5%E5%AD%90%E4%B9%A6/">一些学习过程中用到的电子书</a></li>
-<li>2020.01.22 <a href="%E3%81%8D%E3%81%A3%E3%81%A8%E3%81%BF%E3%82%93%E3%81%AA%E5%A4%A7%E4%BA%8B%E3%81%AA%E3%81%93%E3%81%A8%E5%B0%91%E3%81%97%E3%81%9A%E3%81%A4%E5%BF%98%E3%82%8C%E3%81%A6%E3%81%84%E3%81%8F%E3%81%8B%E3%82%89/">きっとみんな大事なこと少しずつ忘れていくから</a></li>
-</ul></div>
+<p>为了使模型具有更强的鲁棒性，一种常用的方法就是增强训练模型时的数据集，让模型学习更加鲁棒，虽然这听起来十分暴力，但是不失为一种很有效的办法。</p>
+<p>你的测试集就是我的训练集（</p>
+<p>就以目前在做的project为例介绍一下一些增强数据集的小办法</p>
+<hr />
+<h2 id="_1">图像缩放</h2>
+<p>以汉字识别为例，原始的图片可能是这样子的</p>
+<p><img alt="image-20200814230958897" src="image-20200814230958897.png" /></p>
+<p>我们需要让这个汉字看起来小一点，像是这样</p>
+<p><img alt="image-20200814231045851" src="image-20200814231045851.png" /></p>
+<p>也可能需要这个汉字看起来大一点，像是这样</p>
+<p><img alt="image-20200814231122270" src="image-20200814231122270.png" /></p>
+<p>我们仍然采用<a href="../%E6%B5%85%E8%B0%88pytorch%E5%8A%A0%E8%BD%BD%E5%9B%BE%E7%89%87%E4%BD%9C%E4%B8%BA%E8%AE%AD%E7%BB%83%E6%95%B0%E6%8D%AE%E7%9A%84%E4%B8%80%E7%A7%8D%E5%A7%BF%E5%8A%BF/">浅谈pytorch加载图片作为训练数据的一种姿势</a>中对读入图片做预处理的方式，来自己写一个class来随机缩放图片。</p>
+<p>基本的思路就是，确定一个缩放比例的上下界，在这个上下界之间随机一个大小，如果要缩小就把图片缩小周围补上空白，如果放大就先把图片放大，然后从中间截取出需要的大小。</p>
+<p>废话少说直接上代码</p>
+<pre><code class="python">from torchvision import transforms
+class picPull():
+    def __init__(self, output_size):
+        self.os = output_size
+
+    def __call__(self, img, lower_bound, upper_bound):
+        choice = random.uniform(lower_bound, upper_bound)
+        img = MyResize(int(self.os[0]*choice), int(self.os[1]*choice)).__call__(img)
+        if choice &lt; 1:
+            ret = Image.new('L', (self.os[0], self.os[1]), 255)
+            ret.paste(img, (int((self.os[0]-self.os[0]*choice)/2),int((self.os[1]-self.os[1]*choice)/2)))
+            return ret
+        else:
+            ret = transforms.CenterCrop(self.os).__call__(img)
+            return ret
+</code></pre>
+
+<p>其中可能有两个奇怪的东西，第一个是MyResize，见<a href="../%E6%B5%85%E8%B0%88pytorch%E5%8A%A0%E8%BD%BD%E5%9B%BE%E7%89%87%E4%BD%9C%E4%B8%BA%E8%AE%AD%E7%BB%83%E6%95%B0%E6%8D%AE%E7%9A%84%E4%B8%80%E7%A7%8D%E5%A7%BF%E5%8A%BF/">浅谈pytorch加载图片作为训练数据的一种姿势</a>，第二个是transforms.CenterCrop，这是torchvision中自带的中心截取，更多的方法见<a href="https://blog.csdn.net/weixin_38533896/article/details/86028509">Pytorch：transforms的二十二个方法</a></p>
+<hr />
+<h2 id="_2">图片随机旋转</h2>
+<p>幸运的是，torchvision自带了给图片随机旋转的方法，transforms.RandomRotation(degrees, fill=)，这里要注意，如果不写fill的话，在灰度图的模式下默认填补为黑色，像这样</p>
+<p><img alt="image-20200814232151315" src="image-20200814232151315.png" /></p>
+<p>如果想补位白色就把fill参数调整为255，效果像这样</p>
+<p><img alt="image-20200814232229341" src="image-20200814232229341.png" /></p>
+<hr />
+<h2 id="_3">图片翻转</h2>
+<p>包括了图像左右翻转，上下翻转</p>
+<p>和随机旋转一样，torchvision也自带了一些方法</p>
+<p>transform.RandomHorizontalFlip 和 transforms.RandomVerticalFlip</p>
+<p>太困了，不写了（</p></div>
             </div>
         </div>
 
@@ -115,12 +139,12 @@
             <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
         </footer>
         <script>
-            var base_url = "..",
+            var base_url = "../..",
                 shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
         </script>
-        <script src="../js/base.js" defer></script>
+        <script src="../../js/base.js" defer></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML" defer></script>
-        <script src="../search/main.js" defer></script>
+        <script src="../../search/main.js" defer></script>
 
         <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
