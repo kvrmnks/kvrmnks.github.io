@@ -8,7 +8,7 @@
         
         
         <link rel="shortcut icon" href="../../img/favicon.ico">
-        <title>一些增强图像分类中数据集的方法 - Kvrmnks's Blog</title>
+        <title>Pytorch中都该保存些什么东西 - Kvrmnks's Blog</title>
         <link href="../../css/bootstrap.min.css" rel="stylesheet">
         <link href="../../css/font-awesome.min.css" rel="stylesheet">
         <link href="../../css/base.css" rel="stylesheet">
@@ -68,70 +68,70 @@
     <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
         <ul class="nav flex-column">
             
-            <li class="nav-item" data-level="2"><a href="#_1" class="nav-link">图像缩放</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            
-            <li class="nav-item" data-level="2"><a href="#_2" class="nav-link">图片随机旋转</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            
-            <li class="nav-item" data-level="2"><a href="#_3" class="nav-link">图片翻转</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
         </ul>
     </div>
 </div></div>
                     <div class="col-md-9" role="main">
 
-<p>为了使模型具有更强的鲁棒性，一种常用的方法就是增强训练模型时的数据集，让模型学习更加鲁棒，虽然这听起来十分暴力，但是不失为一种很有效的办法。</p>
-<p>你的测试集就是我的训练集（</p>
-<p>就以目前在做的project为例介绍一下一些增强数据集的小办法</p>
-<hr />
-<h2 id="_1">图像缩放</h2>
-<p>以汉字识别为例，原始的图片可能是这样子的</p>
-<p><img alt="image-20200814230958897" src="image-20200814230958897.png" /></p>
-<p>我们需要让这个汉字看起来小一点，像是这样</p>
-<p><img alt="image-20200814231045851" src="image-20200814231045851.png" /></p>
-<p>也可能需要这个汉字看起来大一点，像是这样</p>
-<p><img alt="image-20200814231122270" src="image-20200814231122270.png" /></p>
-<p>我们仍然采用<a href="../%E6%B5%85%E8%B0%88pytorch%E5%8A%A0%E8%BD%BD%E5%9B%BE%E7%89%87%E4%BD%9C%E4%B8%BA%E8%AE%AD%E7%BB%83%E6%95%B0%E6%8D%AE%E7%9A%84%E4%B8%80%E7%A7%8D%E5%A7%BF%E5%8A%BF/">浅谈pytorch加载图片作为训练数据的一种姿势</a>中对读入图片做预处理的方式，来自己写一个class来随机缩放图片。</p>
-<p>基本的思路就是，确定一个缩放比例的上下界，在这个上下界之间随机一个大小，如果要缩小就把图片缩小周围补上空白，如果放大就先把图片放大，然后从中间截取出需要的大小。</p>
-<p>废话少说直接上代码</p>
-<pre><code class="python">from torchvision import transforms
-class picPull():
-    def __init__(self, output_size):
-        self.os = output_size
-        self.lower_bound = lower_bound
-        self.upper_bound = upper_bound
-    def __call__(self, img):
-        choice = random.uniform(self.upper_bound, self.upper_bound)
-        img = MyResize(int(self.os[0]*choice), int(self.os[1]*choice)).__call__(img)
-        if choice &lt; 1:
-            ret = Image.new('L', (self.os[0], self.os[1]), 255)
-            ret.paste(img, (int((self.os[0]-self.os[0]*choice)/2),int((self.os[1]-self.os[1]*choice)/2)))
-            return ret
-        else:
-            ret = transforms.CenterCrop(self.os).__call__(img)
-            return ret
+<h3 id="pytorch">Pytorch在训练时都该保存些什么东西</h3>
+<p>由于什么网络故障，时间限制，经常会从训练过程中中断，保存一些必要的信息可以使得继续训练得以实现。</p>
+<p>废话少说，需要保存的东西为</p>
+<ol>
+<li>
+<p>模型参数</p>
+</li>
+<li>
+<p>随机事件种子</p>
+</li>
+<li>
+<p>优化器</p>
+</li>
+<li>
+<p>lr_scheduler</p>
+</li>
+</ol>
+<p>最后一种是可选择的，第二种其实也算是可选择的，如果不考虑可重现性的话（</p>
+<p>类似的有些优化器只需要保存一下learning rate 就好，但是对于Adam这种类型其中优化参数可能随着训练过程发生变化的复杂优化器就有必要把里面的参数全都保存一下。</p>
+<p>对于第二条可以挑一个自己喜欢的模数，最好是质数</p>
+<pre><code class="python">seed = 998244353
+torch.manual_seed(seed)
+torch.cuda.manual_seed(seed)
+torch.cuda.manual_seed_all(seed)  
+np.random.seed(seed)  # Numpy module.
+random.seed(seed)  # Python random module.
+torch.manual_seed(seed)
+torch.backends.cudnn.benchmark = False
+torch.backends.cudnn.deterministic = True
 </code></pre>
 
-<p>其中可能有两个奇怪的东西，第一个是MyResize，见<a href="../%E6%B5%85%E8%B0%88pytorch%E5%8A%A0%E8%BD%BD%E5%9B%BE%E7%89%87%E4%BD%9C%E4%B8%BA%E8%AE%AD%E7%BB%83%E6%95%B0%E6%8D%AE%E7%9A%84%E4%B8%80%E7%A7%8D%E5%A7%BF%E5%8A%BF/">浅谈pytorch加载图片作为训练数据的一种姿势</a>，第二个是transforms.CenterCrop，这是torchvision中自带的中心截取，更多的方法见<a href="https://blog.csdn.net/weixin_38533896/article/details/86028509">Pytorch：transforms的二十二个方法</a></p>
-<hr />
-<h2 id="_2">图片随机旋转</h2>
-<p>幸运的是，torchvision自带了给图片随机旋转的方法，transforms.RandomRotation(degrees, fill=)，这里要注意，如果不写fill的话，在灰度图的模式下默认填补为黑色，像这样</p>
-<p><img alt="image-20200814232151315" src="image-20200814232151315.png" /></p>
-<p>如果想补位白色就把fill参数调整为255，效果像这样</p>
-<p><img alt="image-20200814232229341" src="image-20200814232229341.png" /></p>
-<hr />
-<h2 id="_3">图片翻转</h2>
-<p>包括了图像左右翻转，上下翻转</p>
-<p>和随机旋转一样，torchvision也自带了一些方法</p>
-<p>transform.RandomHorizontalFlip 和 transforms.RandomVerticalFlip</p>
-<p>太困了，不写了（</p></div>
+<p>对于第一条第三条来说，可以利用Pytorch自带的序列化方法进行保存</p>
+<pre><code class="python">def set_checkpoint(checkpoint_name, model, optimizer):
+    torch.save({
+        'model': model.state_dict(),
+        'optimizer': optimizer.state_dict()
+    }, checkpoint_name);
+</code></pre>
+
+<p>加载的时候也很方便</p>
+<pre><code class="python">def load_checkpoint(checkpoint_name, model, optimzer):
+    _dict = torch.load(checkpoint_name)
+    model.load_state_dict(_dict['model'])
+    optimizer.load_state_dict(_dict['optimizer'])
+
+</code></pre>
+
+<p>具体调用过程</p>
+<pre><code class="python"># 保存阶段
+net = Net()
+optimizer = torch.optic.................
+set_checkpoint('你想要的的位置', net, optimzer)
+</code></pre>
+
+<pre><code class="python"># 加载阶段
+net = Net()
+optimizer = torch.optic.................
+load_checkpoint('你要的位置', net, optimizer);
+</code></pre></div>
             </div>
         </div>
 
