@@ -130,8 +130,55 @@ class picPull():
 <h2 id="_3">图片翻转</h2>
 <p>包括了图像左右翻转，上下翻转</p>
 <p>和随机旋转一样，torchvision也自带了一些方法</p>
-<p>transform.RandomHorizontalFlip 和 transforms.RandomVerticalFlip</p>
-<p>太困了，不写了（</p></div>
+<p>transforms.RandomHorizontalFlip 和 transforms.RandomVerticalFlip</p>
+<p>太困了，不写了（</p>
+<hr />
+<p>更新了更新了 现在是2020.9.20 还把之前的一个小错误给改了</p>
+<p>然后加了个完成的方便以后用？</p>
+<pre><code class="python">from PIL import Image
+import data
+import numpy as np
+import matplotlib.pyplot as plt
+import random
+from torchvision import transforms
+class MyResize(object):
+    def __init__(self, width, height):
+        self.width = width
+        self.height = height
+    def __call__(self, img):
+        raw_width, raw_height = img.size
+        ratio = min(self.height/raw_height, self.width/raw_width)
+        twidth, theight = (min(int(ratio * raw_width), self.width - 15), min(int(ratio * raw_height), self.height - 15))
+        img = img.resize((twidth, theight), Image.ANTIALIAS)
+        # 拼接图片，补足边框 居中
+        ret = Image.new('L',(self.width, self.height), 255)
+        ret.paste(img, (int((self.width-twidth)/2),int((self.height-theight)/2)))
+        return ret
+from torchvision import transforms
+class picPull():
+    def __init__(self, output_size, lower_bound, upper_bound):
+        self.os = output_size
+        self.lower_bound = lower_bound
+        self.upper_bound = upper_bound
+    def __call__(self, img):
+        choice = random.uniform(self.lower_bound, self.upper_bound)
+        img = MyResize(int(self.os[0]*choice), int(self.os[1]*choice)).__call__(img)
+        if choice &lt; 1:
+            ret = Image.new('L', (self.os[0], self.os[1]), 255)
+            ret.paste(img, (int((self.os[0]-self.os[0]*choice)/2),int((self.os[1]-self.os[1]*choice)/2)))
+            return ret
+        else:
+            ret = transforms.CenterCrop(self.os).__call__(img)
+            return ret
+tf = transforms.Compose([
+    MyResize(64, 64),
+    picPull((64, 64), 0.5, 1.5),transforms.RandomRotation(180, fill=255),
+    transforms.RandomHorizontalFlip(0.5),
+    transforms.RandomVerticalFlip(0.5),
+    transforms.RandomResizedCrop((64,64), scale=(0.6, 1.4), ratio=(0.75,1.25)),
+    transforms.ToTensor()
+])
+</code></pre></div>
             </div>
         </div>
 
