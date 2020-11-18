@@ -1,5 +1,6 @@
 ## 这里保存blog系列~
 
+* 2020.11.18 [23树的一种删除方法](./blog/23树的一种删除方法.md)
 * 2020.11.15 [Burnside引理与Polya计数原理](./blog/Burnside引理与Polya计数原理.md)
 * 2020.11.13 [k-median问题在Metric空间上的近似解法](./blog/k-median问题在Metric空间上的近似解法.md)
 * 2020.11.03 [独立集问题的各种总结](./blog/独立集问题的各种总结.md)
