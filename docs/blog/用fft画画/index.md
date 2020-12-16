@@ -2,7 +2,7 @@
 
 
 
-![](用fft画画/1587643407396.jpg)
+![](1587643407396.jpg)
 
 <!--more-->
 
@@ -14,43 +14,42 @@
 
 
 
-![](用fft画画/1587643414466.png)
+![](1587643414466.png)
 
 如果你不会请去自己学  ~~其实有板子在会不会有什么区别呢~~  
 
 这里丢个一直在用的fft板子  
 
 复数类板子  
-
-\```cpp
+```cpp
 
 class Complex{
 
 private:
 
-​    qreal a,b;
+    qreal a,b;
 
 public:
 
-​    Complex(qreal a=0,qreal b=0):a(a),b(b){}
+    Complex(qreal a=0,qreal b=0):a(a),b(b){}
 
-​    Complex operator * (qreal x)const;
+    Complex operator * (qreal x)const;
 
-​    Complex operator * (const Complex &y)const;
+    Complex operator * (const Complex &y)const;
 
-​    Complex operator + (const Complex &y)const;
+    Complex operator + (const Complex &y)const;
 
-​    Complex operator - (const Complex &y)const;
+    Complex operator - (const Complex &y)const;
 
-​    qreal length()const{
+    qreal length()const{
 
-​        return sqrt(a*a+b*b);
+        return sqrt(a*a+b*b);
 
-​    }
+    }
 
-​    qreal real()const{return a;}
+    qreal real()const{return a;}
 
-​    qreal img()const{return b;}
+    qreal img()const{return b;}
 
 };
 
@@ -58,89 +57,89 @@ Complex operator * (qreal x,Complex y);
 
 Complex Complex::operator*(qreal x) const{
 
-​    return Complex(this->a*x,this->b*x);
+    return Complex(this->a*x,this->b*x);
 
 }
 
 Complex Complex::operator*(const Complex &y) const{
 
-​    Complex ret(this->a*y.a-this->b*y.b,this->a*y.b+this->b*y.a);
+    Complex ret(this->a*y.a-this->b*y.b,this->a*y.b+this->b*y.a);
 
-​    return ret;
+    return ret;
 
 }
 
 Complex Complex::operator+(const Complex &y) const{
 
-​    return Complex(this->a+y.a,this->b+y.b);
+    return Complex(this->a+y.a,this->b+y.b);
 
 }
 
 Complex Complex::operator-(const Complex &y) const{
 
-​    return Complex(this->a-y.a,this->b-y.b);
+    return Complex(this->a-y.a,this->b-y.b);
 
 }
 
 Complex operator * (qreal x,Complex y){
 
-​    return y*x;
+    return y*x;
 
 }
 
-\```
+```
 
 fft板子  
 
-\```cpp
+```cpp
 
 void fft(QVector<Complex>&data,int n){
 
-​    QVector<int> rev(n);
+    QVector<int> rev(n);
 
-​    int R = 0;
+    int R = 0;
 
-​    while((1<<(R+1))<=n)R++;
+    while((1<<(R+1))<=n)R++;
 
-​    for(int i=0;i<n;i++)rev[i]=(rev[i>>1]>>1)|((i&1)<<(R-1));
+    for(int i=0;i<n;i++)rev[i]=(rev[i>>1]>>1)|((i&1)<<(R-1));
 
-​    for(int i=0;i<n;i++){
+    for(int i=0;i<n;i++){
 
-​        if(i<rev[i])
+        if(i<rev[i])
 
-​            std::swap(data[i],data[rev[i]]);
+            std::swap(data[i],data[rev[i]]);
 
-​    }
+    }
 
-​    qreal pi = acos(-1);
+    qreal pi = acos(-1);
 
-​    for(int i=1;i<n;i<<=1){
+    for(int i=1;i<n;i<<=1){
 
-​        Complex w(cos(pi/i),sin(pi/i));
+        Complex w(cos(pi/i),sin(pi/i));
 
-​        for(int j=0;j<n;j+=(i<<1)){
+        for(int j=0;j<n;j+=(i<<1)){
 
-​            Complex wn(1,0);
+            Complex wn(1,0);
 
-​            for(int k=0;k<i;k++){
+            for(int k=0;k<i;k++){
 
-​                Complex x=data[j+k],y=wn*data[j+i+k];
+                Complex x=data[j+k],y=wn*data[j+i+k];
 
-​                data[j+k]=x+y;
+                data[j+k]=x+y;
 
-​                data[i+j+k]=x-y;
+                data[i+j+k]=x-y;
 
-​                wn=wn*w;
+                wn=wn*w;
 
-​            }
+            }
 
-​        }
+        }
 
-​    }
+    }
 
 }
 
-\```
+```
 
 这里顺便说下绘图的原理,像是在做函数曲线一样,要描点连线  
 
@@ -162,13 +161,13 @@ $$A[j]=\frac{1}{n}*\sum_{k=0}^{k<n}B[k]*e^{\frac{2\pi ji}{n}*k}$$
 
 
 
-\### **QT**
+### **QT**
 
-\##### **安装**
+##### **安装**
 
 请去清华镜像站下载安装包
 
-\##### **用QT绘画**
+##### **用QT绘画**
 
 好像有两种办法来着  
 
@@ -188,17 +187,17 @@ $$A[j]=\frac{1}{n}*\sum_{k=0}^{k<n}B[k]*e^{\frac{2\pi ji}{n}*k}$$
 
 具体的代码在下一节  
 
-\##### **signal and slot**
+##### **signal and slot**
 
 这个是Qt里新的逻辑呢
 
 简单的用法是
 
-\```cpp
+```cpp
 
 QObject::connect(发出信号的对象地址,SIGNAL(信号函数),接受信号的对象地址,SLOT(槽函数));
 
-\```
+```
 
 一旦这样做了之后呢
 
@@ -208,27 +207,27 @@ QObject::connect(发出信号的对象地址,SIGNAL(信号函数),接受信号�
 
 举个具体的例子吧  
 
-\```cpp
+```cpp
 
-​    QApplication a(argc, argv);
+    QApplication a(argc, argv);
 
-​    QGraphicsScene *scene = new QGraphicsScene(0,0,1024,768);
+    QGraphicsScene *scene = new QGraphicsScene(0,0,1024,768);
 
-​    QGraphicsView *view = new GraphicsView(scene);
+    QGraphicsView *view = new GraphicsView(scene);
 
-​    QPushButton *button = new QPushButton("exit");
+    QPushButton *button = new QPushButton("exit");
 
-​    QObject::connect(button,SIGNAL(clicked()),&a,SLOT(exit()));
+    QObject::connect(button,SIGNAL(clicked()),&a,SLOT(exit()));
 
-​    view->addWidget(button);
+    view->addWidget(button);
 
-​    view->show();
+    view->show();
 
-\```
+```
 
 这样如果按钮被点击了,窗口就会被关闭了  
 
-\##### **QTimeLine**
+##### **QTimeLine**
 
 毕竟要做出来的是个动画  
 
@@ -236,7 +235,7 @@ QObject::connect(发出信号的对象地址,SIGNAL(信号函数),接受信号�
 
 下面是代码节选  
 
-\```cpp
+```cpp
 
 QTimeLine *time = new QTimeLine(40000);
 
@@ -246,7 +245,7 @@ QObject::connect(time,SIGNAL(frameChanged(int)),scene,SLOT(next()));
 
 time->start();
 
-\```
+```
 
 第一个构造函数里面的参数是时间轴持续的时间,单位毫秒  
 
@@ -268,9 +267,9 @@ setFrameRange(int,int)
 
 
 
-![](用fft画画/1587643425697.jpg)
+![](1587643425697.jpg)
 
-\### **Qt打包**
+### **Qt打包**
 
 当你做好了程序想要给小伙伴展示的时候怎么可能简简单单地丢给他们代码呢?  
 
@@ -282,7 +281,7 @@ qt打包的方法网上到处都是,我们来说说我犯过的坑吧
 
 
 
-\##### **0x000000007b 大约长这样子~**
+##### **0x000000007b 大约长这样子~**
 
 当你好不容易找全了dll,却发现了这么个错这是为啥呢  
 
@@ -290,7 +289,7 @@ qt打包的方法网上到处都是,我们来说说我犯过的坑吧
 
  
 
-![](用fft画画/1587643431546.jpg)
+![](1587643431546.jpg)
 
 经过我漫长的调试,发现原因是我在qtcreator里编译是用的qt自带的gcc  
 
@@ -306,9 +305,9 @@ qt打包的方法网上到处都是,我们来说说我犯过的坑吧
 
 
 
-![](用fft画画/1587643436909.gif)
+![](1587643436909.gif)
 
-\### **项目代码**
+### **项目代码**
 
 我放到github上了  
 

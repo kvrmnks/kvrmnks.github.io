@@ -78,7 +78,7 @@ cp -参数 你要复制的 你要复制到哪里
 
 右键点击屏幕左下角的windows标志
 
-![](一起来搭Discuz和wordpress吧/1587643078100.png)
+![](1587643078100.png)
 
 选择Windows PowerShell
 
@@ -105,7 +105,7 @@ ssh 用户名@ip地址
 
 每次登录的时候都需要输入账号和密码
 
-![](一起来搭Discuz和wordpress吧/1587643152551.png)
+![](1587643152551.png)
 这里主要讲一下配置网络的细节吧
 
 因为可以联网之后,就可以用ssh控制电脑了呢,就不用盯着虚拟机那个小框了呢~
@@ -118,15 +118,15 @@ ip addr
 
 如果长成这样
 
-![](一起来搭Discuz和wordpress吧/1587643165015.png)
+![](1587643165015.png)
 注意看红线下面没有出现ip地址,这个时候就要手动配置一下网络
 
 打开虚拟机设置
 
-![](一起来搭Discuz和wordpress吧/1587643177915.png)
+![](1587643177915.png)
 调整成桥接模式
 
-![](一起来搭Discuz和wordpress吧/1587643185764.png)
+![](1587643185764.png)
 然后回到虚拟机,输入
 
 ```
@@ -137,8 +137,9 @@ cd /etc/sysconfig/network-scripts
 ll
 ```
 
-![](一起来搭Discuz和wordpress吧/1587643195291.png)
+![](1587643195291.png)
 输入
+
 ```
 vi ifcfg-ens33
 ```
@@ -167,7 +168,7 @@ ONBOOT=yes
 
 再输入一下ip addr
 
-![](一起来搭Discuz和wordpress吧/1587643206328.png)
+![](1587643206328.png)
 现在那个红线上面的ip地址就是你的虚拟机ip地址
 
 现在可以用ssh链接你的虚拟机了~~
@@ -189,7 +190,7 @@ systemctl stop firewalld
 systemctl disable firewalld
 ```
 
-![](一起来搭Discuz和wordpress吧/1587643219610.png)
+![](1587643219610.png)
 这样就把防火墙关掉了~
 
 但是linux还有个叫SELinux的讨厌的东西
@@ -240,7 +241,7 @@ systemctl enable httpd
 ```
 systemctl status httpd
 ```
-![](一起来搭Discuz和wordpress吧/1587643230779.png)
+![](1587643230779.png)
 如果那个running变成了dead,极大的可能是有东西占用了80端口,比如阿里云就会自带nginx占用掉80端口
 
 这个时候,输入
@@ -253,7 +254,7 @@ yum install net-tools
 ```
 netstat -tlnp|grep 80
 ```
-![](一起来搭Discuz和wordpress吧/1587643242302.png)
+![](1587643242302.png)
 看到有程序在占用80端口,从右边可以看到进程号为1372,应用是httpd
 
 这个地方由于我已经成功启动了httpd所以显示的是httpd,如果是什么其他的东西,就需要强行把这个应用停止,把80端口让给httpd
@@ -319,7 +320,7 @@ https://gitee.com/ComsenzDiscuz/DiscuzX
 
 还好不在github...
 
-![](一起来搭Discuz和wordpress吧/1587643255695.png)
+![](1587643255695.png)
 一次点击克隆,复制
 
 输入
@@ -357,15 +358,13 @@ chmod -Rf 777 /var/www/html/upload
 虚拟机的ip地址/upload
 ```
 
-![](一起来搭Discuz和wordpress吧/1587643265636.png)
+![](1587643265636.png)
 点我同意
 
-
-![](一起来搭Discuz和wordpress吧/1587643271673.png)
+![](1587643271673.png)
 点下一步*2
 
-
-![](一起来搭Discuz和wordpress吧/1587643278921.png)
+![](1587643278921.png)
 数据库密码调成空(如果你没有手动调整数据库密码的话)
 
 记得填写管理员密码哦~
@@ -421,8 +420,7 @@ http://ip地址/wordpress
 ```
 就能看到wordpress的安装界面了~
 
-
-![](一起来搭Discuz和wordpress吧/1587643288461.png)
+![](1587643288461.png)
 先别急着往下,现在我们要配置一下数据库
 
 回到powershell
@@ -455,7 +453,7 @@ systemctl restart mariadb
 
 回到浏览器
 
-![](一起来搭Discuz和wordpress吧/1587643296315.png)
+![](1587643296315.png)
 依次填表
 
 数据库主机填虚拟机的IP地址
@@ -464,8 +462,7 @@ systemctl restart mariadb
 
 如果出现这个界面
 
-
-![](一起来搭Discuz和wordpress吧/1587643301572.png)
+![](1587643301572.png)
 回到powershell
 
 输入

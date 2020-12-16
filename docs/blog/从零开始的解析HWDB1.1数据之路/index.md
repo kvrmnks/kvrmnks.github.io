@@ -75,7 +75,7 @@ import matplotlib.pyplot as plt
 features, labels = load_raw_data(1001)
 plt.imshow(features[0])
 ```
-![](从零开始的解析HWDB1.1数据之路/1596034371418.jpg)
+<img src="1596034371418.jpg" style="zoom:33%;" />![](1596036378417.jpg)
 
 同样也可以输出图片的大小
 ```python
@@ -114,7 +114,7 @@ print(img.shape)
 ```python
 plt.imshow(new_img[0])
 ```
-![](从零开始的解析HWDB1.1数据之路/1596035144870.jpg)
+<img src="1596035144870.jpg" style="zoom:50%;" />
 虽然大小对了，但是图像完全走样了...
 
 ### 手工缩放图像
@@ -165,7 +165,7 @@ arr = np.asarray(new_img)
 plt.imshow(arr)
 ```
 发现效果好多了
-![](从零开始的解析HWDB1.1数据之路/1596036378417.jpg)
+![](1596036378417.jpg)
 
 ---
 

@@ -12,7 +12,7 @@
 
 ## 在硬盘上建立正确的文件结构
 
-对于HWDB1.1 这个数据集来说，一个文件中包含了许多的图片， 我们首先需要获取到这些图片和图片对应的 label，这一部分可以在 [从零开始的解析HWDB1.1数据之路](../blog/从零开始的解析HWDB1.1数据之路.md)找到。
+对于HWDB1.1 这个数据集来说，一个文件中包含了许多的图片， 我们首先需要获取到这些图片和图片对应的 label，这一部分可以在 [从零开始的解析HWDB1.1数据之路](../../blog/从零开始的解析HWDB1.1数据之路/index.md)找到。
 
 
 这个方法会返回features，labels数组。
@@ -39,7 +39,7 @@
 **注意这里有一个很严重的坑**
 
 
-ImageFolder​ 会对每个label进行重新赋值为一个数字，具体来说就是，按照label名的字典序依次转化为0, 1, ...
+ImageFolder  会对每个label进行重新赋值为一个数字，具体来说就是，按照label名的字典序依次转化为0, 1, ...
 
 
 所以如果train_data文件夹下有1, 2, 10这3个文件夹，ImageFolder转化10的label会被标成1而不是10，因为10作为一个字符串，排在字典序的第2位。
@@ -76,13 +76,13 @@ train_data = datasets.ImageFolder('train_data', transform=transforms.Compose([
 现在就讲，不会咕不会咕。
 
 
-首先trainsforms.Compose([...])​，是将参数tuple里的参数依次执行。
+首先trainsforms.Compose([...])，是将参数tuple里的参数依次执行。
 
 
-先忽略原文中的那个MyResize(64,64)​
+先忽略原文中的那个MyResize(64,64)
 
 
-先来看看那个transforms.ToTensor()​
+先来看看那个transforms.ToTensor()
 
 
 这是tranforms 自带的一个transform类，可以将图片转化为tensor数组，并且把图片的值域压缩到$[0,1]$上，方便训练。
@@ -101,7 +101,7 @@ class MyTransform():
 		return img
 ```
 
-由于tranforms​ 自带的resize​太拉胯了，我就自己写了resize，具体方法见 [从零开始的解析HWDB1.1数据之路](../blog/从零开始的解析HWDB1.1数据之路.md)
+由于tranforms 自带的resize太拉胯了，我就自己写了resize，具体方法见 [从零开始的解析HWDB1.1数据之路](../..//blog/从零开始的解析HWDB1.1数据之路/index.md)
 
 
 这里仅仅给出代码
