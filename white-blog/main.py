@@ -2,7 +2,7 @@ import render
 
 if __name__ == '__main__':
     r = render.Render(r'./docs_test',
-                      r'./site',
+                      r'../docs',
                       'web_template.html',
                       'blog_template.html',
                       'card_template.html',
