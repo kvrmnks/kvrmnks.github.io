@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="utf-8"> <meta name="viewport" content="width=device-width">
-    <title>ubuntu 上的 mysql + pymysql + screen</title>
+    <title>NP-Complete问题乱证</title>
     <meta name="viewport" content="width=device-width,initial-scale=1, shrink-to-fit=no">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet"
@@ -49,33 +49,105 @@
 
 
     <div class='container'>
-      <p>安装mysql
-<code>apt install mysql-server
-apt install mysql-client</code>
-然后先看 mysql 的版本, 一定要注意版本
-不同版本的 mysql 改密码的方式是不同的
-比如 mysql8.0 的情况下
-<code>use mysql;
-ALTER USER &#39;root&#39;@&#39;localhost&#39; IDENTIFIED WITH mysql_native_password BY &#39;你的新密码&#39;</code>
-退出即可</p>
+      <h3>NP-Complete问题乱证</h3>
 
-<p>当然可能不知道一开始的密码
-<code>vim /etc/mysql/debian.cnf</code>
-<code>screen -S 名字</code></p>
+<h5>最长通路问题(longest path)</h5>
 
-<pre><code>ctrl+a     d 离开当前
-</code></pre>
+<h6>实例</h6>
 
-<pre><code>screen -r 名字恢复
-</code></pre>
+<p>图\(G=&lt;V,E&gt;\)，是否存在一条长度至少为\(K\)的路</p>
 
-<pre><code>Debian平台的my.cnf
-在/etc/mysql/mysql.conf.d/mysqld.cnf
-</code></pre>
+<h6>证明</h6>
 
-<pre><code>wait_timeout=31536000
-interactive_timeout=31536000
-</code></pre>
+<p>令\(K = |V|\)于是问题变成了Hamilton 通路问题，证毕。</p>
+
+<h5>集合包装问题</h5>
+
+<h6>实例</h6>
+
+<p>令某个集合\(|S| &lt; \infin\), \(C \sub 2^{S}\)，\(n = |C|\)，询问是否存在\(C\)中的\(k\)个元素，使得任意两个互不交叉</p>
+
+<h6>证明</h6>
+
+<p>这个问题显然是团问题...</p>
+
+<h5>哈密尔顿子图划分(partition into Hamilton subgraph)</h5>
+
+<h6>实例</h6>
+
+<p>图\(G\)，能否被划分成\(k\)个互补相交的集合使得每个导出子图包含一个哈密尔顿回路</p>
+
+<h6>证明</h6>
+
+<p>令\(k=1\)问题变成Hamilton 回路问题</p>
+
+<h5>最大公共子图问题(largest common subgraph)</h5>
+
+<h6>实例</h6>
+
+<p>给两张图\(G_{1}\)，\(G_{2}\)，求两个最大的子图同构</p>
+
+<h6>证明</h6>
+
+<p>令第二张图为大小为\(k\)的完全图，整个问题变成了团问题。</p>
+
+<h5>最小平方和问题(minimum sum of squares)</h5>
+
+<h6>实例</h6>
+
+<p>有限集合\(A\) ，每个元素\(a \in A\)，每个元素均有一个值\(f: A \rightarrow R\)</p>
+
+<p>将集合\(A\)分成\(K\)个互补相交的集合，使得每个子集的平方和的和小于等于\(J\)</p>
+
+<h6>证明</h6>
+
+<p>对于这个划分问题，考虑用二划分问题向这个方向来检测</p>
+
+<p>考虑平方增长的速度比线性快得多，直接复制n份，然后规约二划分</p>
+
+<p>这里不是很严谨，下次一定</p>
+
+<h5>返回顶点集(feedback vertex set)</h5>
+
+<h6>实例</h6>
+
+<p>暂时不会</p>
+
+<h6>证明</h6>
+
+<p>暂时不会</p>
+
+<h5>四元素集合的严格覆盖(exact cover by 4-sets)</h5>
+
+<h6>实例</h6>
+
+<p>即X3C问题直接扩展成4的形式</p>
+
+<h6>证明</h6>
+
+<p>考虑将X3C问题归约到X4C问题</p>
+
+<p>对于每个X3C中的第\(i\)个集合\((a,b,c)\) ，直接扩展成\((a,b,c,d_{i})\)</p>
+
+<p>这样会多出\(n\)个分量，为了保证多出的\(n\)个分量，直接添加\(C_{n}^{4}\)个元素，来保证全部被覆盖</p>
+
+<p>当然这样还是有问题的，即不一定能整除，直接补全就好了</p>
+
+<h5>支配集问题(dominating set)</h5>
+
+<h6>实例</h6>
+
+<h6>证明</h6>
+
+<h5>图3染色问题(graph 3-colorability)</h5>
+
+<h6>实例</h6>
+
+<p>世人皆知</p>
+
+<h6>证明</h6>
+
+<p>暂时不会+1</p>
 
 
     </div>
