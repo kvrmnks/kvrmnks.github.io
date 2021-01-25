@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8"> <meta name="viewport" content="width=device-width">
+    <title>NP-Complete问题乱证</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css"
+          integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+          crossorigin="anonymous">
+    <link rel="stylesheet"
+          href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/androidstudio.min.css">
+    <link rel="stylesheet"
+          href="./../../../../../global.css">
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async
+            src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+    </script>
+    <script  src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
+    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.min.js"
+    integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">Kvrmnks' blog</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav">
+            <li class="nav-item active">
+              <a class="nav-link" href="./../../../../../index.html" target="_self">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="./../../../../../blog.html">Blog</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="./../../../../../about.html">About</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+
+
+
+    <div class='container'>
+      <h3>NP-Complete问题乱证</h3>
+
+<h5>最长通路问题(longest path)</h5>
+
+<h6>实例</h6>
+
+<p>图\(G=&lt;V,E&gt;\)，是否存在一条长度至少为\(K\)的路</p>
+
+<h6>证明</h6>
+
+<p>令\(K = |V|\)于是问题变成了Hamilton 通路问题，证毕。</p>
+
+<h5>集合包装问题</h5>
+
+<h6>实例</h6>
+
+<p>令某个集合\(|S| &lt; \infin\), \(C \sub 2^{S}\)，\(n = |C|\)，询问是否存在\(C\)中的\(k\)个元素，使得任意两个互不交叉</p>
+
+<h6>证明</h6>
+
+<p>这个问题显然是团问题...</p>
+
+<h5>哈密尔顿子图划分(partition into Hamilton subgraph)</h5>
+
+<h6>实例</h6>
+
+<p>图\(G\)，能否被划分成\(k\)个互补相交的集合使得每个导出子图包含一个哈密尔顿回路</p>
+
+<h6>证明</h6>
+
+<p>令\(k=1\)问题变成Hamilton 回路问题</p>
+
+<h5>最大公共子图问题(largest common subgraph)</h5>
+
+<h6>实例</h6>
+
+<p>给两张图\(G_{1}\)，\(G_{2}\)，求两个最大的子图同构</p>
+
+<h6>证明</h6>
+
+<p>令第二张图为大小为\(k\)的完全图，整个问题变成了团问题。</p>
+
+<h5>最小平方和问题(minimum sum of squares)</h5>
+
+<h6>实例</h6>
+
+<p>有限集合\(A\) ，每个元素\(a \in A\)，每个元素均有一个值\(f: A \rightarrow R\)</p>
+
+<p>将集合\(A\)分成\(K\)个互补相交的集合，使得每个子集的平方和的和小于等于\(J\)</p>
+
+<h6>证明</h6>
+
+<p>对于这个划分问题，考虑用二划分问题向这个方向来检测</p>
+
+<p>考虑平方增长的速度比线性快得多，直接复制n份，然后规约二划分</p>
+
+<p>这里不是很严谨，下次一定</p>
+
+<h5>返回顶点集(feedback vertex set)</h5>
+
+<h6>实例</h6>
+
+<p>暂时不会</p>
+
+<h6>证明</h6>
+
+<p>暂时不会</p>
+
+<h5>四元素集合的严格覆盖(exact cover by 4-sets)</h5>
+
+<h6>实例</h6>
+
+<p>即X3C问题直接扩展成4的形式</p>
+
+<h6>证明</h6>
+
+<p>考虑将X3C问题归约到X4C问题</p>
+
+<p>对于每个X3C中的第\(i\)个集合\((a,b,c)\) ，直接扩展成\((a,b,c,d_{i})\)</p>
+
+<p>这样会多出\(n\)个分量，为了保证多出的\(n\)个分量，直接添加\(C_{n}^{4}\)个元素，来保证全部被覆盖</p>
+
+<p>当然这样还是有问题的，即不一定能整除，直接补全就好了</p>
+
+<h5>支配集问题(dominating set)</h5>
+
+<h6>实例</h6>
+
+<h6>证明</h6>
+
+<h5>图3染色问题(graph 3-colorability)</h5>
+
+<h6>实例</h6>
+
+<p>世人皆知</p>
+
+<h6>证明</h6>
+
+<p>暂时不会+1</p>
+
+
+    </div>
+
+    <!-- The Modal -->
+    <div id="myModal" class="modal">
+
+      <!-- The Close Button -->
+      <span class="close">&times;</span>
+
+      <!-- Modal Content (The Image) -->
+      <div style="display: flex; height: 100%;">
+        <img class="modal-content" id="img01">
+      </div>
+
+    </div>
+
+    <footer class="footer navbar-fixed-bottom ">
+      <div class="container">
+        Powered by <a href="https://github.com/kvrmnks/white-blog">White-blog</a>
+      </div>
+    </footer>
+
+    <script>
+      hljs.initHighlightingOnLoad()
+    </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlightjs-line-numbers.js/2.5.0/highlightjs-line-numbers.min.js"></script>
+  <script>
+      hljs.initHighlightingOnLoad();
+      hljs.initLineNumbersOnLoad();
+  </script>
+  <script src="./../../../../../global.js"></script>
+  </body>
+</html>
