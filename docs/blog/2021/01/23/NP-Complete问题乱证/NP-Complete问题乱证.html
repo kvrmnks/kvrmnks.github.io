@@ -51,55 +51,55 @@
     <div class='container'>
       <h3>NP-Complete问题乱证</h3>
 
-<h5>最长通路问题(longest path)</h5>
+<h4>最长通路问题(longest path)</h4>
 
-<h6>实例</h6>
+<h5>实例</h5>
 
 <p>图\(G=&lt;V,E&gt;\)，是否存在一条长度至少为\(K\)的路</p>
 
-<h6>证明</h6>
+<h5>证明</h5>
 
 <p>令\(K = |V|\)于是问题变成了Hamilton 通路问题，证毕。</p>
 
-<h5>集合包装问题</h5>
+<h4>集合包装问题</h4>
 
-<h6>实例</h6>
+<h5>实例</h5>
 
 <p>令某个集合\(|S| &lt; \infty\), \(C \subset 2^{S}\)，\(n = |C|\)，询问是否存在\(C\)中的\(k\)个元素，使得任意两个互不交叉</p>
 
-<h6>证明</h6>
+<h5>证明</h5>
 
 <p>这个问题显然是团问题...</p>
 
-<h5>哈密尔顿子图划分(partition into Hamilton subgraph)</h5>
+<h4>哈密尔顿子图划分(partition into Hamilton subgraph)</h4>
 
-<h6>实例</h6>
+<h5>实例</h5>
 
 <p>图\(G\)，能否被划分成\(k\)个互补相交的集合使得每个导出子图包含一个哈密尔顿回路</p>
 
-<h6>证明</h6>
+<h5>证明</h5>
 
 <p>令\(k=1\)问题变成Hamilton 回路问题</p>
 
-<h5>最大公共子图问题(largest common subgraph)</h5>
+<h4>最大公共子图问题(largest common subgraph)</h4>
 
-<h6>实例</h6>
+<h5>实例</h5>
 
 <p>给两张图\(G_{1}\)，\(G_{2}\)，求两个最大的子图同构</p>
 
-<h6>证明</h6>
+<h5>证明</h5>
 
 <p>令第二张图为大小为\(k\)的完全图，整个问题变成了团问题。</p>
 
-<h5>最小平方和问题(minimum sum of squares)</h5>
+<h4>最小平方和问题(minimum sum of squares)</h4>
 
-<h6>实例</h6>
+<h5>实例</h5>
 
 <p>有限集合\(A\) ，每个元素\(a \in A\)，每个元素均有一个值\(f: A \rightarrow R\)</p>
 
 <p>将集合\(A\)分成\(K\)个互补相交的集合，使得每个子集的平方和的和小于等于\(J\)</p>
 
-<h6>证明</h6>
+<h5>证明</h5>
 
 <p>对于这个划分问题，考虑用二划分问题向这个方向来检测</p>
 
@@ -107,25 +107,25 @@
 
 <p>这里不是很严谨，下次一定</p>
 
-<h5>返回顶点集(feedback vertex set)</h5>
+<h4>返回顶点集(feedback vertex set)</h4>
 
-<h6>实例</h6>
+<h5>实例</h5>
 
 <p>有向图\(G=&lt;V,A&gt;\)，正整数\(K \leq |V|\)</p>
 
 <p>询问是否存在\(V&#39;\subset V\)，\(|V&#39;|\leq K\)，且\(G\)的每一条有向回路至少包含\(V&#39;\)的一个点</p>
 
-<h6>证明</h6>
+<h5>证明</h5>
 
 <p>这很显然是个击中集问题。</p>
 
-<h5>四元素集合的严格覆盖(exact cover by 4-sets)</h5>
+<h4>四元素集合的严格覆盖(exact cover by 4-sets)</h4>
 
-<h6>实例</h6>
+<h5>实例</h5>
 
 <p>即X3C问题直接扩展成4的形式</p>
 
-<h6>证明</h6>
+<h5>证明</h5>
 
 <p>考虑将X3C问题归约到X4C问题</p>
 
@@ -135,15 +135,15 @@
 
 <p>当然这样还是有问题的，即不一定能整除，直接补全就好了</p>
 
-<h5>支配集问题(dominating set)</h5>
+<h4>支配集问题(dominating set)</h4>
 
-<h6>实例</h6>
+<h5>实例</h5>
 
 <p>无向图\(G=&lt;V,E&gt;\)，\(K \leq |V|, K\in N^{+}\)</p>
 
 <p>询问是否存在\(V&#39;\subset V\)，st\(|V&#39;|\leq K\)，且\(\forall v\in V/V&#39;,st,\exists u\in V&#39;,uv\in E\)</p>
 
-<h6>证明</h6>
+<h5>证明</h5>
 
 <p>被我xjb画画出来了。</p>
 
@@ -169,13 +169,13 @@
 
 <p><img src="NP-Complete问题乱证.assets/image-20210125090844936.png" alt="image-20210125090844936" style="zoom: 33%;" /></p>
 
-<h5>图3染色问题(graph 3-colorability)</h5>
+<h4>图3染色问题(graph 3-colorability)</h4>
 
-<h6>实例</h6>
+<h5>实例</h5>
 
 <p>世人皆知</p>
 
-<h6>证明</h6>
+<h5>证明</h5>
 
 <p>爆智力*1</p>
 
@@ -193,9 +193,9 @@
 
 <p><img src="image-20210124214445870.png" alt="image-20210124214445870" style="zoom:33%;" /></p>
 
-<h5>划分为长度为2的通路（partition into paths of length 2）</h5>
+<h4>划分为长度为2的通路（partition into paths of length 2）</h4>
 
-<h6>实例</h6>
+<h5>实例</h5>
 
 <p>图\(G=&lt;V,E&gt;\)，\(|V|=3q\)</p>
 
@@ -203,19 +203,67 @@
 
 <p>其点导出子图，存在一条长度为2的路。</p>
 
-<h6>证明</h6>
+<h5>证明</h5>
 
-<p>暂时不会</p>
+<p>考虑通过X3C问题规约到这个问题</p>
 
-<h5>k-median</h5>
+<p>假设有一个X3C的问题实例\((a_{i},b_{i},c_{i})\)</p>
 
-<h6>实例</h6>
+<p>构造\(3q\)个点，然后连边\((a_{i},b_{i}),(b_{i},c_{i})\)</p>
+
+<p>这样每次一个划分，就代表了选择了X3C问题中的一个元素。</p>
+
+<h4>k-median</h4>
+
+<h5>实例</h5>
 
 <p>世人皆知</p>
 
-<h6>证明</h6>
+<h5>证明</h5>
 
-<p>暂时不会</p>
+<p>考虑通过支配集问题归约到这个问题。</p>
+
+<p>对于支配集问题的图\(G=&lt;V,E&gt;\)</p>
+
+<p>将\(V\)中顶点复制一份作为工厂，每个点向自己和关联点连\(d=0\)的边。</p>
+
+<p>然后就做完了/youl</p>
+
+<h4>Steiner tree</h4>
+
+<h5>实例</h5>
+
+<p>世人皆知</p>
+
+<h5>证明</h5>
+
+<p>被爆智力*3，被爆到不想写证明了</p>
+
+<p><a href="http://profs.sci.univr.it/%7Errizzi/classes/Complexity/provette/Santuari/steiner.pdf">http://profs.sci.univr.it/~rrizzi/classes/Complexity/provette/Santuari/steiner.pdf</a></p>
+
+<h4>集合分裂问题（set splitting）</h4>
+
+<h5>实例</h5>
+
+<p>一个有限集\(S\)，\(C \subset 2^{S}\)</p>
+
+<p>询问是否存在一个\(S\)的划分\(S_{1},S_{2}\)，使得\(\forall x \in C, x \not\subset S_{1},x\not\subset S_{2}\)</p>
+
+<h5>证明</h5>
+
+<p>被爆智力*2</p>
+
+<p><img src="NP-Complete问题乱证.assets/image-20210125172252680.png" alt="image-20210125172252680" style="zoom: 33%;" /></p>
+
+<p>这个东西真的好靠直觉呀/youl，给个提示就好想了。</p>
+
+<p>考虑使用3SAT归约到这个问题，下面来着手构造\(C\)</p>
+
+<p>对于\((a_{i},b_{i},c_{i})\)来说，构造\((a_{i},\overline a_{i}),(b_{i},\overline b_{i}),(c_{i},\overline c_{i})\)</p>
+
+<p>以及\((d, \overline a_{i}, \overline b_{i}, \overline c_{i})\)</p>
+
+<p>假设这个集合分裂问题得到了一个解，将\(d\)所在的集合的变量全设为真，其余全设为假。</p>
 
 
     </div>
