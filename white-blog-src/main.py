@@ -1,14 +1,18 @@
 import render
+import json
 
 if __name__ == '__main__':
-    r = render.Render(r'../blog',
-                      r'../docs',
-                      './template/web_template.html',
-                      './template/blog_template.html',
-                      './template/card_template.html',
-                      './css/global.css',
-                      './javascript/global.js',
-                      "Kvrmnks' blog")
-    # r.render_markdown_content('dsfsdfsdfsd')
+    user_config_file = open('./user_config.json', 'r', encoding='utf-8')
+    system_config_file = open('./system_config.json', 'r', encoding='utf-8')
+    user_json = json.loads(user_config_file.read())
+    system_json = json.loads(system_config_file.read())
+
+    user_config_file.close()
+    system_config_file.close()
+
+    r = render.Render(
+        user_json,
+        system_json
+    )
     r.build()
-    print(r.blog_list)
+    # print(r.blog_list)

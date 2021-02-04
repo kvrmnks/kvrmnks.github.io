@@ -116,11 +116,11 @@
 
 基础点覆盖问题
 
-<img src="NP-Complete问题乱证.assets/image-20210125090750977.png" alt="image-20210125090750977" style="zoom: 33%;" />
+<img src="./image-20210125090750977.png" alt="image-20210125090750977" style="zoom: 33%;" />
 
 新构造3个点4，5，6，转化成一个支配集的问题
 
-<img src="NP-Complete问题乱证.assets/image-20210125090844936.png" alt="image-20210125090844936" style="zoom: 33%;" />
+<img src="./image-20210125090844936.png" alt="image-20210125090844936" style="zoom: 33%;" />
 
 #### 图3染色问题(graph 3-colorability)
 
@@ -212,7 +212,7 @@ http://profs.sci.univr.it/~rrizzi/classes/Complexity/provette/Santuari/steiner.p
 
 被爆智力*2
 
-<img src="NP-Complete问题乱证.assets/image-20210125172252680.png" alt="image-20210125172252680" style="zoom: 33%;" />
+<img src="./image-20210125172252680.png" alt="image-20210125172252680" style="zoom: 33%;" />
 
 这个东西真的好靠直觉呀/youl，给个提示就好想了。
 
