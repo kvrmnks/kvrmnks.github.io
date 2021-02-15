@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8"> <meta name="viewport" content="width=device-width">
+    <title>Strassen Algorithm</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1, shrink-to-fit=no">
+    	<link rel="icon" href="./../../../../favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="./../../../../favicon.ico" type="image/x-icon">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css"
+          integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+          crossorigin="anonymous">
+    <link rel="stylesheet"
+          href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/androidstudio.min.css">
+    <link rel="stylesheet"
+          href="./../../../../global.css">
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async
+            src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+    </script>
+    <script  src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
+    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.min.js"
+    integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">Kvrmnks' blog</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav">
+            <li class="nav-item ">
+              <a class="nav-link" href="./../../../../index.html">Home </a>
+            </li>
+            <li class="nav-item active">
+              <a class="nav-link" href="./../../../../blog.html">Blog</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="./../../../../about.html">About</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+
+
+
+    <div class='container'>
+      <h2>Strassen Algorithm</h2>
+
+<p>此处指的是计算矩阵乘法的那个Strassen算法。</p>
+
+<p>本文假设你了解Strassen算法的流程</p>
+
+<h3>推导</h3>
+
+<p>我们事后得知这种算法是将原有的\(8\)的乘法结果压缩成了\(7\)个。</p>
+
+<p>我们首先来约定三种small case</p>
+
+<h4>3种 small case</h4>
+
+<p>3种small case都是经过分成**大小相同**的块，形成矩阵乘一个向量的形式。</p>
+
+<p>形如下面的样子</p>
+
+<p>\[\begin{pmatrix}a_{11}  &amp; a_{12} \\ a_{21} &amp; a_{22}\end{pmatrix}\begin{pmatrix} b_{1} \\ b_{2}\end{pmatrix}\]</p>
+
+<h5>1st</h5>
+
+<p>第一种为\(a_{11},a_{12},a_{21},a_{22}\)都相等，这个时候乘法结果就是</p>
+
+<p>\[\begin{pmatrix} a(b_{1}+b_{2}) \\ a(b_{1}+b_{2})\end{pmatrix}\]</p>
+
+<p>显然对于这种情况我们只需要**实际**计算一次矩阵乘法就好了</p>
+
+<h5>2nd</h5>
+
+<p>第二种情况首先\(a_{11},a_{12},a_{21},a_{22}\)的**绝对值相等**，其次对于符号来说</p>
+
+<p>要么两行的符号不同，要么两列的符号不同</p>
+
+<p>这里给出两行符号不同的情况下的结果。</p>
+
+<p>\[\begin{pmatrix} a(b_{1}+b_{2}) \\ -a(b_{1}+b_{2})\end{pmatrix}\]</p>
+
+<p>可以发现我们也只需要**实际**计算一次矩阵乘法。</p>
+
+<h5>3rd</h5>
+
+<p>第三种情况分块后的矩阵要么是上三角矩阵，要么是下三角矩阵，且矩阵不位于对角线上的非零元绝对值等于对角线之差。</p>
+
+<p>形如\(\begin{pmatrix}a_{1}&amp; a_{1}-a_{2} \\ 0 &amp; a_{2}\end{pmatrix}\)</p>
+
+<p>可以发现这种情况下只需要**实际**计算两次次矩阵乘法。</p>
+
+<p>\[\begin{pmatrix} a_{1}(b_{1}+b_{2}) -  a_{2}b_{2} \\ a_{2}b_{2}\end{pmatrix}\]</p>
+
+<h4>乘法组的矩阵表示方法</h4>
+
+<p>重新回到问题开始，我们要计算两个方阵相乘，记为</p>
+
+<p>\[\begin{pmatrix}  A_{11} &amp; A_{12} \\ A_{21} &amp; A_{22} \end{pmatrix} \times  \begin{pmatrix} B_{11} &amp; B_{12} \\ B_{21} &amp; B_{22} \end{pmatrix} = \begin{pmatrix} C_{11} &amp; C_{12} \\ C_{21} &amp; C_{22} \end{pmatrix}\]</p>
+
+<p>显然</p>
+
+<p>\[C_{11} = A_{11}B_{11} + A_{12}B_{21} \\ C_{12}=A_{11}B_{12}+A_{12}B_{22} \\ C_{21}=A_{21}B_{11}+A_{22}B_{21} \\ C_{22}=A_{21}B_{12}+A_{22}B_{22}\]</p>
+
+<p>我们要的其实是这四个分量于是现在将结果展平，如下</p>
+
+<p>\[\begin{pmatrix} C_{11} \\ C_{12} \\ C_{21} \\ C_{22}\end{pmatrix} = \begin{pmatrix} A_{11} &amp; A_{12} &amp; 0 &amp; 0 \\ A_{21} &amp; A_{22} &amp; 0 &amp; 0 \\ 0 &amp; 0 &amp; A_{11} &amp; A_{12} \\ 0 &amp; 0 &amp; A_{21} &amp; A_{22}  \end{pmatrix}\begin{pmatrix} B_{11} \\ B_{21} \\ B_{12} \\ B_{22}\end{pmatrix}\]</p>
+
+<p>下一步是将中间这个大的矩阵用上面3种small case拆开。</p>
+
+<p>实测这里拆其实也有技巧，必须挑选对角线上的元素，我试了一次在一行或一列上的时候并不能继续化简（也可能是我sb了，总之我放在最后了，欢迎尝试构造）</p>
+
+<p>\[\begin{pmatrix} A_{11} &amp; A_{12} &amp; 0 &amp; 0 \\ A_{21} &amp; A_{22} &amp; 0 &amp; 0 \\ 0 &amp; 0 &amp; A_{11} &amp; A_{12} \\ 0 &amp; 0 &amp; A_{21} &amp; A_{22}  \end{pmatrix} = \begin{pmatrix}A_{11} &amp; -A_{11} &amp; 0 &amp; 0 \\ A_{11} &amp; -A_{11} &amp; 0 &amp; 0 \\ 0 &amp; 0 &amp; -A_{22} &amp; A_{22} \\ 0 &amp; 0 &amp; -A_{22} &amp; A_{22}\end{pmatrix} + \begin{pmatrix}0 &amp; A_{12}+A_{11} &amp; 0 &amp; 0 \\ A_{21}-A_{11} &amp; A_{22}+A_{11} &amp; 0 &amp; 0 \\ 0 &amp; 0 &amp; A_{11}+A_{22} &amp; A_{12}-A_{22} \\ 0 &amp; 0 &amp; A_{21}+A_{22} &amp; 0\end{pmatrix}\]</p>
+
+<p>对于左侧的矩阵再进行分块后（左上角和右下角，便成为了2个case2）可以通过2次乘法得到结果。</p>
+
+<p>而对于右侧的矩阵。</p>
+
+<p>\[ \begin{pmatrix}0 &amp; A_{12}+A_{11} &amp; 0 &amp; 0 \\ A_{21}-A_{11} &amp; A_{22}+A_{11} &amp; 0 &amp; 0 \\ 0 &amp; 0 &amp; A_{11}+A_{22} &amp; A_{12}-A_{22} \\ 0 &amp; 0 &amp; A_{21}+A_{22} &amp; 0\end{pmatrix} = \\ \begin{pmatrix}0 &amp; A_{12}+A_{11} &amp; 0 &amp; 0 \\ A_{21}-A_{11} &amp; 0 &amp; -A_{11}-A_{22} &amp; 0 \\ 0 &amp; -A_{11}-A_{22} &amp; 0 &amp; A_{12}-A_{22} \\ 0 &amp; 0 &amp; A_{21}+A_{22} &amp; 0\end{pmatrix}+\begin{pmatrix}0 &amp; 0 &amp; 0&amp; 0 \\ 0 &amp; A_{11}+A_{22} &amp; A_{11}+A_{22} &amp; 0 \\ 0 &amp; A_{11}+A_{22} &amp; A_{11}+A_{22} &amp; 0 \\ 0 &amp; 0 &amp; 0 &amp; 0 \end{pmatrix}\]</p>
+
+<p>其中右侧的矩阵对应于case1，只需要一次乘法就好了</p>
+
+<p>对于等号右侧第一个矩阵来说可以分成两个case3</p>
+
+<p>即</p>
+
+<p>\[\begin{pmatrix}A_{22}-A_{11} &amp; -A_{11}-A_{22} \\0 &amp; A_{21} + 22\end{pmatrix}, \begin{pmatrix}A_{12}+A_{11} &amp; 0 \\ -A_{11}-A_{22} &amp; A_{12}-A_{22}\end{pmatrix}\]</p>
+
+<p>周围的0就补不了</p>
+
+<p>总之对于本节一开始的大矩阵来说可以分解成这么几个矩阵，一种进行7次乘法就可以得到结果。</p>
+
+<h3>参考文献</h3>
+
+<p><a href="https://ccjou.wordpress.com/2013/06/04/%E5%88%86%E6%B2%BB%E7%9F%A9%E9%99%A3%E4%B9%98%E6%B3%95%E2%94%80%E2%94%80strassen-%E6%BC%94%E7%AE%97%E6%B3%95/">https://ccjou.wordpress.com/2013/06/04/%E5%88%86%E6%B2%BB%E7%9F%A9%E9%99%A3%E4%B9%98%E6%B3%95%E2%94%80%E2%94%80strassen-%E6%BC%94%E7%AE%97%E6%B3%95/</a></p>
+
+<hr>
+
+<h3>附录</h3>
+
+<p>\[\begin{pmatrix} A_{11} &amp; A_{12} &amp; 0 &amp; 0 \\ A_{21} &amp; A_{22} &amp; 0 &amp; 0 \\ 0 &amp; 0 &amp; A_{11} &amp; A_{12} \\ 0 &amp; 0 &amp; A_{21} &amp; A_{22}  \end{pmatrix} = \begin{pmatrix}A_{11} &amp; -A_{11} &amp; 0 &amp; 0 \\ A_{11} &amp; -A_{11} &amp; 0 &amp; 0 \\ 0 &amp; 0 &amp; -A_{12} &amp; A_{12} \\ 0 &amp; 0 &amp; -A_{12} &amp; A_{12}\end{pmatrix} + \begin{pmatrix}0 &amp; A_{12}+A_{11} &amp; 0 &amp; 0 \\ A_{21}-A_{11} &amp; A_{22}+A_{11} &amp; 0 &amp; 0 \\ 0 &amp; 0 &amp; A_{11}+A_{12} &amp; 0 \\ 0 &amp; 0 &amp; A_{21}+A_{12} &amp; A_{22}-A_{12}\end{pmatrix}\]</p>
+
+<p>对于左侧的矩阵再进行分块后（左上角和右下角，便成为了2个case2）可以通过2次乘法得到结果。</p>
+
+<p>而对于右侧的矩阵。</p>
+
+<p>\[ \begin{pmatrix}0 &amp; A_{12}+A_{11} &amp; 0 &amp; 0 \\ A_{21}-A_{11} &amp; A_{22}+A_{11} &amp; 0 &amp; 0 \\ 0 &amp; 0 &amp; A_{11}+A_{12} &amp; 0 \\ 0 &amp; 0 &amp; A_{21}+A_{12} &amp; A_{22}-A_{12}\end{pmatrix} = \\ \begin{pmatrix}0 &amp; 0 &amp; -A_{11}-A_{12} &amp; 0 \\ A_{21}-A_{11} &amp; A_{22}+A_{11} &amp; 0 &amp; 0 \\ 0 &amp; -A_{11}-A_{12} &amp; 0 &amp; 0 \\ 0 &amp; 0 &amp; A_{21}+A_{12} &amp; A_{22}-A_{12}\end{pmatrix}+\begin{pmatrix}0 &amp; A_{12}+A_{11} &amp; A_{12}+A_{11}&amp; 0 \\ 0 &amp; 0 &amp; 0 &amp; 0 \\ 0 &amp; A_{11}+A_{12} &amp; A_{11}+A_{12} &amp; 0 \\ 0 &amp; 0 &amp; 0 &amp; 0 \end{pmatrix}\]</p>
+
+      <a class="alert-link" style="float: left; text-align: left" href="./../../../.././2020/01/28/一些学习过程中用到的电子书/一些学习过程中用到的电子书.html">上一篇：一些学习过程中用到的电子书</a>
+      <a class="alert-link" style="float: right; text-align: right" href="./../../../.././2021/01/23/NP-Complete问题乱证/NP-Complete问题乱证.html">下一篇：NP-Complete问题乱证</a>
+    </div>
+
+    <!-- The Modal -->
+    <div id="myModal" class="modal">
+
+      <!-- The Close Button -->
+      <span class="close">&times;</span>
+
+      <!-- Modal Content (The Image) -->
+      <div style="display: flex; height: 100%;">
+        <img class="modal-content" id="img01">
+      </div>
+
+    </div>
+
+    <footer class="footer navbar-fixed-bottom ">
+      <div class="container">
+        Powered by <a href="https://github.com/kvrmnks/white-blog">White-blog</a>
+      </div>
+    </footer>
+
+    <script>
+      hljs.initHighlightingOnLoad()
+    </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlightjs-line-numbers.js/2.5.0/highlightjs-line-numbers.min.js"></script>
+  <script>
+      hljs.initHighlightingOnLoad();
+      hljs.initLineNumbersOnLoad();
+  </script>
+  <script src="./../../../../global.js"></script>
+  </body>
+</html>
