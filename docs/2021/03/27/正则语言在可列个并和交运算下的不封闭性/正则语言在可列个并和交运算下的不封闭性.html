@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="utf-8"> <meta name="viewport" content="width=device-width">
-    <title>push-relabel algorithm</title>
+    <title>正则语言在可列个并和交运算下的不封闭性</title>
     <meta name="viewport" content="width=device-width,initial-scale=1, shrink-to-fit=no">
     	<link rel="icon" href="./../../../../../favicon.ico" type="image/x-icon">
     <link rel="shortcut icon" href="./../../../../../favicon.ico" type="image/x-icon">
@@ -51,16 +51,56 @@
 
 
     <div class='container'>
-      <h2>push relabel algorithm</h2>
+      <h2>正则语言在可列个并和交运算下的不封闭性</h2>
 
-<p>手断了不敢写太多代码</p>
+<h3>引理 Myhill–Nerode定理</h3>
 
-<p>看看手写pdf吧（</p>
+<p>在\(L \subset \Sigma^{*}\)上定义等价关系。</p>
 
-<p><a href="./push%20relabel%20algorithn.pdf">push relabel algorithn.pdf</a> </p>
+<p>\(\forall x, y \in L\) 若\(x=y\)则有\(\forall w \in \Sigma^*\),\(xw \in L, yw\in L\)同时成立或同时不成立。</p>
 
-      <a class="alert-link" style="float: left; text-align: left" href="./../../../../.././2021/03/27/正则语言在可列个并和交运算下的不封闭性/正则语言在可列个并和交运算下的不封闭性.html">上一篇：正则语言在可列个并和交运算下的不封闭性</a>
-      <a class="alert-link" style="float: right; text-align: right" href="./../../../../.././2021/02/28/edge-decomposition.html">下一篇：edge-decomposition</a>
+<p>记该等价关系为\(R\)</p>
+
+<p>若\(|L/R| &lt; \infty\)当且仅当\(L\)是正则语言。</p>
+
+<h3>可列个正则语言的并</h3>
+
+<p>定义</p>
+
+<p>字符集\(\Sigma = \{0,1\}\)</p>
+
+<p>字符串集合满足以下递推式</p>
+
+<p>\(S_{i} = S_{i-1}0^{i}1\)</p>
+
+<p>初始条件为</p>
+
+<p>\(S_{0}=1\)</p>
+
+<p>可以简单列一下前几个</p>
+
+<p>\(S_{1}=101,S_{2}=101001,S_{3}=1010010001\)</p>
+
+<p>显然一个有限长的字符串形成的集合一定是正则语言。</p>
+
+<p>考虑\(\large S = \bigcup_{i=0}^{\infty}\{S_{i}\}\)</p>
+
+<p>显然\(S_{i} \neq S_{j}, \forall i\neq j\)</p>
+
+<p>则\(|S/R| = \aleph_{0}\)，故由Myhill-Nerode定理，\(S\)不是正则语言。</p>
+
+<h3>可列个正则语言的交</h3>
+
+<p>不妨记各个正则语言为\(S_{i}\)</p>
+
+<p>根据De Morgan`s law</p>
+
+<p>\[\large S = \bigcap_{i=0}^{\infty}S_{i} = \bigcup_{i=0}^{\infty}\overline{S_{i}}\]</p>
+
+<p>根据前一部分的说明，该结果不一定是正则语言。</p>
+
+      <a class="alert-link" style="float: left; text-align: left" href="./../../../../.././2020/01/28/一些学习过程中用到的电子书/一些学习过程中用到的电子书.html">上一篇：一些学习过程中用到的电子书</a>
+      <a class="alert-link" style="float: right; text-align: right" href="./../../../../.././2021/03/07/push-relabel algorithm/push-relabel algorithm.html">下一篇：push-relabel algorithm</a>
     </div>
 
     <!-- The Modal -->
