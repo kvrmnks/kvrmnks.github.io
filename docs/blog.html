@@ -66,6 +66,18 @@
         <div class="col-sm-4 blog-card">
           <div class="card">
             <div class="card-body">
+              <h4 class="card-title"> Quartus2与modelsim联用时的一些坑 </h4>
+              <p class="card-text"> <p>调试的时候姑且做了一个调试笔记, 稍微列一些回忆中的坑吧.</p>
+ </p>
+                <p class="card-text"> 2021.05.02 </p>
+              <a href="./2021/05/02/Quartus2与modelsim联用时的一些坑/Quartus2与modelsim联用时的一些坑.html" class="btn btn-primary">查看全文</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-4 blog-card">
+          <div class="card">
+            <div class="card-body">
               <h4 class="card-title"> 二维最短路Np-complete </h4>
               <p class="card-text"> 阿巴阿巴, 这篇文章没写简介 </p>
                 <p class="card-text"> 2021.04.04 </p>
@@ -415,18 +427,44 @@
     <script src="./global.js"></script>
 
     <script>
-      $('document').ready(function () {
-        let $grid = $('.row').packery({
-          itemSelector: '.col-sm-4',
-          isAnimated: true,
-          columnWidth: 0
-        });
+      function isMobile() {
+        var userAgentInfo = navigator.userAgent;
 
-        $grid.find('.col-sm-4').each(function(i, gridItem) {
-          let draggie = new Draggabilly(gridItem);
-          $grid.packery('bindDraggabillyEvents', draggie);
+        var mobileAgents = ["Android", "iPhone", "SymbianOS", "Windows Phone", "iPad", "iPod"];
+
+        var mobile_flag = false;
+
+        //根据userAgent判断是否是手机
+        for (var v = 0; v < mobileAgents.length; v++) {
+          if (userAgentInfo.indexOf(mobileAgents[v]) > 0) {
+            mobile_flag = true;
+            break;
+          }
+        }
+        var screen_width = window.screen.width;
+        var screen_height = window.screen.height;
+
+        //根据屏幕分辨率判断是否是手机
+        if (screen_width < 500 && screen_height < 800) {
+          mobile_flag = true;
+        }
+
+        return mobile_flag;
+      }
+      if(!isMobile()){
+        $('document').ready(function () {
+          let $grid = $('.row').packery({
+            itemSelector: '.col-sm-4',
+            isAnimated: true,
+            columnWidth: 0
+          });
+          $grid.find('.col-sm-4').each(function(i, gridItem) {
+            let draggie = new Draggabilly(gridItem);
+            $grid.packery('bindDraggabillyEvents', draggie);
+          });
         });
-      });
+      }
+
     </script>
 
   <script>
