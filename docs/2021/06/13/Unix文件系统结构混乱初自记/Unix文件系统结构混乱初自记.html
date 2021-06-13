@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8"> <meta name="viewport" content="width=device-width">
+    <title>Unix文件系统结构混乱初自记</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1, shrink-to-fit=no">
+    	<link rel="icon" href="./../../../../../favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="./../../../../../favicon.ico" type="image/x-icon">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css"
+          integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+          crossorigin="anonymous">
+    <link rel="stylesheet"
+          href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/androidstudio.min.css">
+    <link rel="stylesheet"
+          href="./../../../../../global.css">
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async
+            src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+    </script>
+    <script  src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
+    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.min.js"
+    integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">Kvrmnks' blog</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav">
+            <li class="nav-item ">
+              <a class="nav-link" href="./../../../../../index.html">Home </a>
+            </li>
+            <li class="nav-item active">
+              <a class="nav-link" href="./../../../../../blog.html">Blog</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="./../../../../../about.html">About</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+
+
+
+    <div class='container'>
+      <p>一般来说理清这种问题有两种不同的视角。</p>
+
+<h3>进程角度</h3>
+
+<p>每个进程自己都维护了两个dentry 一个是文件系统的根的dentry另一个就是当前工作目录的dentry</p>
+
+<p>什么是dentry？</p>
+
+<p>对于这样一个路径 /home/kvrmnks/a</p>
+
+<p>/ 这个路径对应了一个dentry</p>
+
+<p>/home 这个路径对应了一个dentry</p>
+
+<p>/home/kvrmnks 这个路径也对应了一个dentry</p>
+
+<p>dentry就是描述一个目录的数据结构。</p>
+
+<p>这个数据结构**不存在**外存，仅仅存在于内存（当然内存交换的时候并不考虑）。</p>
+
+<p>这个数据结构中存放了对应文件（包括文件夹和文件外设blabla，文中文件均为UNIX下的文件定义）的inode节点。</p>
+
+<p>也存放了目录下的子dentry，当然还有父dentry。</p>
+
+<p>什么是inode？</p>
+
+<p>由于inode同时存在于外设内存，文中用外设inode与内存inode，进行区分，没有前缀时代表共同点。</p>
+
+<p>inode中存放了文件的元数据（创建时间，修改时间，访问权限，大小，块大小等）</p>
+
+<p>内存inode中存放有对应目录下的dentry，当然也有一些比如读写指针的数据。</p>
+
+<p>到这里就可以发现，在内存inode和dentry可以互相访问，当然是一对多的关系（注意这里并不意味着访问不可一对一），毕竟不同目录可以指向同一个文件（inode）。</p>
+
+<p>如果索引文件？</p>
+
+<p>其实十分显然，首先不考虑有mount和软硬链接以及dentry缓存的情况下。</p>
+
+<p>首先判断是从root开始找，还是从工作目录开始找，找到dentry。</p>
+
+<p>看看是不是找到了，否则就从dentry的子dentry里找，重复以上过程，直到找到对应的dentry，返回内存inode。</p>
+
+<p>拿到内存inode了怎么进行操作呢？</p>
+
+<p>首先系统会创建一个file数据结构来代表**这个进程打开的文件**（当然可以联系一下课上内容，这里其实是内核创建了这个file数据结构，进程得到了指针，指向了内核中的file数据结构），这个数据结构也是不存在于外设上的。</p>
+
+<p>这个数据结构理所当然地有着指向内存inode的指针（不然它有什么用）。</p>
+
+<p>干嘛还要再用file封装一层呢，用inode不好吗？</p>
+
+<p>不好，因为存在多个用户打开同一个文件或者一个用户不同进程多次打开一个文件的情况，联系到内存inode中存放着读写指针，显然不可能对每一次打开多维护一个，于是就重新封装了一层，封装成file，实则操作file时操作内存inode。</p>
+
+<p>怎么操作file数据结构呢？</p>
+
+<p>首先UNIX中抽象出了VFS这种东西，实现方式之一就是对于每个数据结构维护一个函数指针表，通过这个指针表来进行操作。</p>
+
+<h3>操作系统角度</h3>
+
+<p>从操作系统的角度来看主要的问题便是考虑如何维护以上出现地数据结构。</p>
+
+<p>首先不考虑mount，缓存的情况下，mount的存在像是给整个系统打了个补丁，于是先不考虑。</p>
+
+<p>dentry都不在外设里，怎么维护呢？</p>
+
+<p>首先dentry是随着内核运行动态创建的，起始的目录存放在superblock中。</p>
+
+<p>但是连dentry都没有，该怎么访问一个目录下的文件呢？</p>
+
+<p><del>一开始确实被这个问题困扰了好久</del>，不过想想看目录也是一个文件，其文件数据就是子文件了。</p>
+
+<p>superblock是什么？</p>
+
+<p>superblock存放着整个文件系统的元数据，比如块大小等。</p>
+
+<p>当然对于不同的文件系统来说，superblock的定义也可能不同。</p>
+
+<p>内存superblock中存放着所有内存inode的指针。</p>
+
+<p>如此说来，内核中对于一个文件系统需要维护一个superblock，所有的内存inode节点，以及随着运行动态创建的dentry。</p>
+
+<p>为了给进程操作文件，也要维护一个全局的file数据结构链表。</p>
+
+<p>其中dentry形成一颗树的形状，每个节点指向了内存inode。</p>
+
+<p>内存inode中存放着文件的元数据。</p>
+
+<p>那么在加入mount的情况下，会发生什么样的变化呢？</p>
+
+<p>首先每个dentry多加了一个标记位，来标记这个dentry是不是被mount了。</p>
+
+<p>同时内核需要维护一棵mount数据结构树</p>
+
+<p>mount数据结构中维护了父mount指针，mount挂载的dentry，mount的root dentry，还有子mount链表。</p>
+
+<p>主要的修改在索引文件时，如果当前的dentry被标记了被mount</p>
+
+<p>从父mount中搜索子mount链表，查看子mount中的挂载dentry，如果匹配，跳到子mount的root dentry，继续以上流程。</p>
+
+<p>mount同时也会带来其他的影响，比如由于文件系统类型的不同，处理函数也会发生相应的改变，同样利用函数指针表的方式进行解决。</p>
+
+<p>在添加缓存的情况下呢？</p>
+
+<p>其实也没啥，无非就是内存inode可能不全了，不需要的时候就写回到外设。</p>
+
+<hr>
+
+<p>总之就是胡说完了（</p>
+
+<p><a href="https://blog.csdn.net/jinking01/article/details/105683360">参考文献1</a></p>
+
+<p><a href="https://blog.csdn.net/qwaszx523/article/details/72764690">参考文献2</a></p>
+
+<p><a href="https://blog.csdn.net/JuliusRyan/article/details/8283323">参考文献3</a></p>
+
+      <a class="alert-link" style="float: left; text-align: left" href="./../../../../.././2020/01/28/一些学习过程中用到的电子书/一些学习过程中用到的电子书.html">上一篇：一些学习过程中用到的电子书</a>
+      <a class="alert-link" style="float: right; text-align: right" href="./../../../../.././2021/06/13/cmake的坑。。。/cmake的坑。。。.html">下一篇：cmake的坑。。。</a>
+    </div>
+
+    <!-- The Modal -->
+    <div id="myModal" class="modal">
+
+      <!-- The Close Button -->
+      <span class="close">&times;</span>
+
+      <!-- Modal Content (The Image) -->
+      <div style="display: flex; height: 100%;">
+        <img class="modal-content" id="img01">
+      </div>
+
+    </div>
+
+    <footer class="footer navbar-fixed-bottom ">
+      <div class="container">
+        Powered by <a href="https://github.com/kvrmnks/white-blog">White-blog</a>
+      </div>
+    </footer>
+
+    <script>
+      hljs.initHighlightingOnLoad()
+    </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlightjs-line-numbers.js/2.5.0/highlightjs-line-numbers.min.js"></script>
+  <script>
+      hljs.initHighlightingOnLoad();
+      hljs.initLineNumbersOnLoad();
+  </script>
+  <script src="./../../../../../global.js"></script>
+  </body>
+</html>
