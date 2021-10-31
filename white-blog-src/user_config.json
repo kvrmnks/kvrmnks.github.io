@@ -1,8 +1,0 @@
-{
-    "blog_location": ["../blog/blog"],
-    "draft_location": ["../blog/draft"],
-    "home_page_location": "../blog/index.md",
-    "about_page_location": "../blog/about.md",
-    "output_location": "../docs",
-    "web_name": "Kvrmnks' blog"
-}
