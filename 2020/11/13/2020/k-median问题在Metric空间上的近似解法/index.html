@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"kvrmnks.top","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="问题定义先定义一下用到的符号 空间中有许多工厂，也有许多客户，集合$F$表示工厂集合，集合$C$表示客户集合，y要求给每个客户选择一个工厂，一个工厂可以被多个客户所选择，若一个工厂$x$被客户$y$所选择了，那么称$y$规$x$管理，定义距离函数为$d(x,y)，x \in F, y\in C$表示$y$选择$x$的代价。 具体问题是找到最多$k$个工厂，管理所有的客户，使得距离函数和最小。 这个">
+<meta property="og:type" content="article">
+<meta property="og:title" content="k-median问题在Metric空间上的近似解法">
+<meta property="og:url" content="https://kvrmnks.top/2020/11/13/2020/k-median%E9%97%AE%E9%A2%98%E5%9C%A8Metric%E7%A9%BA%E9%97%B4%E4%B8%8A%E7%9A%84%E8%BF%91%E4%BC%BC%E8%A7%A3%E6%B3%95/index.html">
+<meta property="og:site_name" content="Kvrmnks&#39; blog">
+<meta property="og:description" content="问题定义先定义一下用到的符号 空间中有许多工厂，也有许多客户，集合$F$表示工厂集合，集合$C$表示客户集合，y要求给每个客户选择一个工厂，一个工厂可以被多个客户所选择，若一个工厂$x$被客户$y$所选择了，那么称$y$规$x$管理，定义距离函数为$d(x,y)，x \in F, y\in C$表示$y$选择$x$的代价。 具体问题是找到最多$k$个工厂，管理所有的客户，使得距离函数和最小。 这个">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-11-13T13:34:44.000Z">
+<meta property="article:modified_time" content="2022-02-12T01:51:36.634Z">
+<meta property="article:author" content="kvrmnks">
+<meta property="article:tag" content="TCS">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://kvrmnks.top/2020/11/13/2020/k-median%E9%97%AE%E9%A2%98%E5%9C%A8Metric%E7%A9%BA%E9%97%B4%E4%B8%8A%E7%9A%84%E8%BF%91%E4%BC%BC%E8%A7%A3%E6%B3%95/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>k-median问题在Metric空间上的近似解法 | Kvrmnks' blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Kvrmnks' blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://kvrmnks.top/2020/11/13/2020/k-median%E9%97%AE%E9%A2%98%E5%9C%A8Metric%E7%A9%BA%E9%97%B4%E4%B8%8A%E7%9A%84%E8%BF%91%E4%BC%BC%E8%A7%A3%E6%B3%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="kvrmnks">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Kvrmnks' blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          k-median问题在Metric空间上的近似解法
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-11-13 21:34:44" itemprop="dateCreated datePublished" datetime="2020-11-13T21:34:44+08:00">2020-11-13</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2022-02-12 09:51:36" itemprop="dateModified" datetime="2022-02-12T09:51:36+08:00">2022-02-12</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h3 id="问题定义"><a href="#问题定义" class="headerlink" title="问题定义"></a>问题定义</h3><p>先定义一下用到的符号</p>
+<p>空间中有许多工厂，也有许多客户，集合$F$表示工厂集合，集合$C$表示客户集合，y要求给每个客户选择一个工厂，一个工厂可以被多个客户所选择，若一个工厂$x$被客户$y$所选择了，那么称$y$规$x$管理，定义距离函数为$d(x,y)，x \in F, y\in C$表示$y$选择$x$的代价。</p>
+<p>具体问题是找到最多$k$个工厂，管理所有的客户，使得距离函数和最小。</p>
+<p>这个问题在公制空间上的版本成为Metric K-median问题，是指$d(x,y)$满足正定性，对称性和三角形不等式。</p>
+<h3 id="NP？"><a href="#NP？" class="headerlink" title="NP？"></a>NP？</h3><p>这其实并不是一个NP-Hard问题，设计近似算法的原因在于加速运算</p>
+<p>$C_{2n}^{n}$依旧是多项式复杂度内的问题。</p>
+<h3 id="局部搜索算法"><a href="#局部搜索算法" class="headerlink" title="局部搜索算法"></a>局部搜索算法</h3><p>首先可以通过简单分析得到选$k$个工厂一定比选择小于$k$个工厂要优。</p>
+<p>现在来介绍一种简单的近似算法。</p>
+<p>首先随机选择一个集合$S$, 使得$S \subset F$， 并且$|S| &#x3D; k$， 为了描述方便，扩展一下距离函数的定义令$d(S,y) &#x3D; \min{d(x,y)},x\in S, y\in C$</p>
+<p>然后枚举每个不在$S$中的工厂$z$, 尝试替换$S$中的工厂$x$, 如果能使得答案变得更优就换掉。</p>
+<p>这样就会得到一个局部最优解。</p>
+<p>实现思路非常简单而且是多项式时间复杂度的做法。</p>
+<h3 id="近似度分析"><a href="#近似度分析" class="headerlink" title="近似度分析"></a>近似度分析</h3><p>令最优解所选择的工厂集合为$S^{*}$, 其中的元素一般使用$o$来表示。</p>
+<p>令上面算法得到的工厂集合为$S$, 其中的元素一般使用$s$来表示。</p>
+<p>令$C(x)，x\in F$表示$x$这个元素管理的客户的集合。</p>
+<p>首先定义一个术语叫做<strong>捕获</strong>，如果$C(s) \bigcap C(o) \geq \frac{1}{2}C(o)$则称$s$捕获了$o$。</p>
+<h4 id="引理"><a href="#引理" class="headerlink" title="引理"></a>引理</h4><p>如果$C(s) \bigcap C(o) &lt; \frac{1}{2}C(o)$，则$C(o)$存在一个自己到自己的满射，使得每一个$x \in C(s)\bigcap C(o)$，可以映射到$C(o) - C(s)$.</p>
+<p><del>我也不知道为什么</del></p>
+<h4 id="定理"><a href="#定理" class="headerlink" title="定理"></a>定理</h4><p>该局部搜索算法的近似度为5</p>
+<h4 id="证明"><a href="#证明" class="headerlink" title="证明"></a>证明</h4><p>首先将$S$根据捕获的最优解中元素的个数分类</p>
+<ul>
+<li><p>$S_{0}$集合表示每个元素不捕获任何最优解中的元素</p>
+</li>
+<li><p>$S_{1}$集合表示每个元素都捕获最优解中的一个元素</p>
+</li>
+<li><p>$S_{2}$集合表示每个元素都捕获最优解中的至少两个元素</p>
+</li>
+</ul>
+<p>下面进行$k$次交换，注意并不是连续进行$k$次交换，而是每次都从初始状态进行交换，综合考虑其的代价。</p>
+<p>考虑$s \in S_{1}$它所捕获的元素为$o$对于$C(o) \bigcap C(s)$的元素分配给$o$，更严格地这里将$C(o)$的所有元素全部分配$o$(这样相较于之前那种方式并不一定使得当前的答案更加优)，对于$C(o)-C(s)$的元素，因为其中的有个元素为$y$，假设在$S^{<em>}$中分配给了$o^{</em>}$,由于$s$已经捕获了$o$并且因为$s \in S_{1}$于是$o^{<em>}$一定不被$s$所捕获，于是在$C(o^{</em>})$存在一个单射，假设$s^{‘}$为其的像，同时$s^{’} \in C(s^{<em>})$ ,于是将$s$分配给$s^{</em>}$</p>
+<p>由三角不等式$$d(y, s^{<em>}) \leq d(y,o^{</em>})+d(o^{<em>},s^{‘}) + d(s^{‘}, s^{</em>})$$</p>
+<p>这样一次交换之后$Cost$的变化为</p>
+<p>$0 \leq Cost(S-s+o) - Cost(S) \leq \sum_{x \in C(o)} [d(o,x) - d(s,x)] + \sum_{x \in C(s) - C(o)}[d(y,o^{<em>})+d(o^{</em>},s^{‘}) + d(s^{‘}, s^{*}) - d(s, x)]$</p>
+<p>接下来考虑剩下的元素该如何交换，可以发现$S_{0}$中的每个元素最多使用$2$次便可以完成最优解中的每个元素被交换一次。</p>
+<p>同时可以发现也满足以上不等式。</p>
+<p>于是。</p>
+<p>将这个不等式累加$k$次，得到$0 \leq Cost(OPT) - Cost(S) + 2*(Cost(OPT) + Cost(OPT) + Cost(S) - Cost(S))$</p>
+<p>于是近似度为$5$.</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/TCS/" rel="tag"># TCS</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/01/28/2020/%E4%B8%80%E4%BA%9B%E5%AD%A6%E4%B9%A0%E8%BF%87%E7%A8%8B%E4%B8%AD%E7%94%A8%E5%88%B0%E7%9A%84%E7%94%B5%E5%AD%90%E4%B9%A6/" rel="prev" title="一些学习过程中用到的电子书">
+      <i class="fa fa-chevron-left"></i> 一些学习过程中用到的电子书
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/11/15/2020/Burnside%E5%BC%95%E7%90%86%E4%B8%8EPolya%E8%AE%A1%E6%95%B0%E5%8E%9F%E7%90%86/" rel="next" title="Burnside引理与Polya计数原理">
+      Burnside引理与Polya计数原理 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  <div>abab</div>
+ <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+</script>
+<script type="text/javascript"
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+     
+
+          </div>
+          
+    <div class="comments" id="gitalk-container"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%97%AE%E9%A2%98%E5%AE%9A%E4%B9%89"><span class="nav-number">1.</span> <span class="nav-text">问题定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#NP%EF%BC%9F"><span class="nav-number">2.</span> <span class="nav-text">NP？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B1%80%E9%83%A8%E6%90%9C%E7%B4%A2%E7%AE%97%E6%B3%95"><span class="nav-number">3.</span> <span class="nav-text">局部搜索算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%91%E4%BC%BC%E5%BA%A6%E5%88%86%E6%9E%90"><span class="nav-number">4.</span> <span class="nav-text">近似度分析</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%BC%95%E7%90%86"><span class="nav-number">4.1.</span> <span class="nav-text">引理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%9A%E7%90%86"><span class="nav-number">4.2.</span> <span class="nav-text">定理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%AF%81%E6%98%8E"><span class="nav-number">4.3.</span> <span class="nav-text">证明</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">kvrmnks</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">19</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">kvrmnks</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+<script>
+document.querySelectorAll('.pdfobject-container').forEach(element => {
+  let url = element.dataset.target;
+  let pdfOpenParams = {
+    navpanes : 0,
+    toolbar  : 0,
+    statusbar: 0,
+    pagemode : 'thumbs',
+    view     : 'FitH'
+  };
+  let pdfOpenFragment = '#' + Object.entries(pdfOpenParams).map(([key, value]) => `${key}=${encodeURIComponent(value)}`).join('&');
+  let fullURL = `/lib/pdf/web/viewer.html?file=${encodeURIComponent(url)}${pdfOpenFragment}`;
+
+  if (NexT.utils.supportsPDFs()) {
+    element.innerHTML = `<embed class="pdfobject" src="${url + pdfOpenFragment}" type="application/pdf" style="height: ${element.dataset.height};">`;
+  } else {
+    element.innerHTML = `<iframe src="${fullURL}" style="height: ${element.dataset.height};" frameborder="0"></iframe>`;
+  }
+});
+</script>
+
+
+
+
+  
+
+  
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
+
+<script>
+NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
+    var gitalk = new Gitalk({
+      clientID    : 'b11ba47959b7933d9453',
+      clientSecret: '40de9b16c351672241e5fb10f5066856d4b853de',
+      repo        : 'kvrmnks.github.io',
+      owner       : 'kvrmnks',
+      admin       : ['kvrmnks'],
+      id          : '03812aa5e6393fac99804ba73efae976',
+        language: '',
+      distractionFreeMode: false
+    });
+    gitalk.render('gitalk-container');
+  }, window.Gitalk);
+});
+</script>
+
+</body>
+</html>

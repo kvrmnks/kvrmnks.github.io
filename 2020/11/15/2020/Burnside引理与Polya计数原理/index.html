@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"kvrmnks.top","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="Burnside引理与Polya计数原理Burnside引理简介这个定理主要叙述了在置换群作用下元素的不动情况。 为了方便起见，我们引入颜色的概念，假设一个长度为$n$的向量$x$,其中$x$的第$i$维度记为$x_{i}$,定义一共有$m$种颜色，即$x_{i}\in{1,2,\cdots,m}$。假设$y$是$n$上的一个置换，则$y(x)$表示相应颜色的置换。 设$G$是一个置换群，设两个本">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Burnside引理与Polya计数原理">
+<meta property="og:url" content="https://kvrmnks.top/2020/11/15/2020/Burnside%E5%BC%95%E7%90%86%E4%B8%8EPolya%E8%AE%A1%E6%95%B0%E5%8E%9F%E7%90%86/index.html">
+<meta property="og:site_name" content="Kvrmnks&#39; blog">
+<meta property="og:description" content="Burnside引理与Polya计数原理Burnside引理简介这个定理主要叙述了在置换群作用下元素的不动情况。 为了方便起见，我们引入颜色的概念，假设一个长度为$n$的向量$x$,其中$x$的第$i$维度记为$x_{i}$,定义一共有$m$种颜色，即$x_{i}\in{1,2,\cdots,m}$。假设$y$是$n$上的一个置换，则$y(x)$表示相应颜色的置换。 设$G$是一个置换群，设两个本">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-11-15T09:10:20.000Z">
+<meta property="article:modified_time" content="2022-02-12T01:51:36.633Z">
+<meta property="article:author" content="kvrmnks">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://kvrmnks.top/2020/11/15/2020/Burnside%E5%BC%95%E7%90%86%E4%B8%8EPolya%E8%AE%A1%E6%95%B0%E5%8E%9F%E7%90%86/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>Burnside引理与Polya计数原理 | Kvrmnks' blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Kvrmnks' blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://kvrmnks.top/2020/11/15/2020/Burnside%E5%BC%95%E7%90%86%E4%B8%8EPolya%E8%AE%A1%E6%95%B0%E5%8E%9F%E7%90%86/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="kvrmnks">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Kvrmnks' blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Burnside引理与Polya计数原理
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-11-15 17:10:20" itemprop="dateCreated datePublished" datetime="2020-11-15T17:10:20+08:00">2020-11-15</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2022-02-12 09:51:36" itemprop="dateModified" datetime="2022-02-12T09:51:36+08:00">2022-02-12</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h3 id="Burnside引理与Polya计数原理"><a href="#Burnside引理与Polya计数原理" class="headerlink" title="Burnside引理与Polya计数原理"></a>Burnside引理与Polya计数原理</h3><h4 id="Burnside引理简介"><a href="#Burnside引理简介" class="headerlink" title="Burnside引理简介"></a>Burnside引理简介</h4><p>这个定理主要叙述了在置换群作用下元素的不动情况。</p>
+<p>为了方便起见，我们引入颜色的概念，假设一个长度为$n$的向量$x$,其中$x$的第$i$维度记为$x_{i}$,定义一共有$m$种颜色，即$x_{i}\in{1,2,\cdots,m}$。假设$y$是$n$上的一个置换，则$y(x)$表示相应颜色的置换。</p>
+<p>设$G$是一个置换群，设两个本质不同的染色为两个维度为$n$的向量$x$与$t$，且不存在$g \in G$，使得$g(x) &#x3D; y$.</p>
+<p>假设所有的染色方案集合为$S$.</p>
+<p>则可以发现上面定义了一种等价关系。</p>
+<p>$Burnside$引理给出了计数这个商集大小的方法。</p>
+<h4 id="Burnside引理感性证明"><a href="#Burnside引理感性证明" class="headerlink" title="Burnside引理感性证明"></a>Burnside引理感性证明</h4><p>我知道自己没法写出严格的证明，我只能按照自己的思路整理出合我自己思路的证明思路。</p>
+<p>严格思路可以参考<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/80261375">链接</a></p>
+<p>该定理的证明方式主要基于对于$G$的不同分组计数方式。</p>
+<p>我们知道不同的$G$的计数方式可以形成一个等式，而只要我们要求的商集大小存在于这个等式之中，我们就可以求得商集的大小。</p>
+<p>我们考虑$G$是一个置换群，将其作用于${1,2,\cdots,n}$上亦是一个等价关系，先考虑其中的一个等价类$[k]$.</p>
+<p>不妨记$[k] &#x3D; {k,k_{1},\cdots,k_{p}}$,其中由等价关系得到对于任意一个$k_{i}$都存在一个$g_{i} \in G$使得$g_{i}(k_{i})&#x3D;k$</p>
+<p>更感性一点，我们可以发现通过$k_{i}$可以找到一个$G$的子集$G_{k_{i}}$对于这个子集中的任意一个元素，都是一个置换，且是一个可以从$k_{i} \rightarrow k$的置换。</p>
+<p>根据这样的一个简单说明,我们知道$[k]$中的每个元素都对应了一个$G$的子集，并且这些子集是无交的而且这些的并是$G$，想想为什么吧。</p>
+<p>于是我们得到了一个关于$|G|$的式子，即$$|G| &#x3D; \sum_{\hat{k}\in [k]}|G_{\hat{k}}|$$</p>
+<p>到此为止便是简单思路能够思考到的位置了。</p>
+<p>下面就是些只能仰慕的推导了。</p>
+<p>数学家们发现$|G_{\hat{k}}|$是相等的。</p>
+<p>可以简单在这里证明一下。</p>
+<p>令$G_{k_{i}} &#x3D; {g_{1},\cdots,g_{q}}$，取$g_{1}$作用于$G_{k}$,记结果为$\hat{G_{k}}$现在$\hat{G_{k}}$的每个元素都是$k \rightarrow k_{i}$的一个置换，根据定义$\hat{G_{j}} \subseteq G_{k}$ 用来比大小的话就是$|G_{k_{i}}| &#x3D; \hat{G_{k}} \leq G_{k}$ </p>
+<p>接下来只要证明反向包含就行了。</p>
+<p>任取$G_{k_{i}}$的一个元素$g_{j}$, 显然$g_{j} &#x3D; g_{1}*g_{1}^{-1}*g_{j}$,其中$g_{1}^{-1}*g_{j} \in G_{k}$,于是$g_{j} \in \hat{G_{k}}$，于是反向包含就证好了。</p>
+<p>于是我们得到了$$|G| &#x3D; |G_{k}||[k]|$$</p>
+<p>为了思路的连贯，并没有保持和参考文章一样的记号。</p>
+<p>接下来，对于$G$与$S$列一个矩阵，定义$\mu(g,s) &#x3D; [g(s)&#x3D;&#x3D;s]$ </p>
+<p>$\sum_{g}\sum_{s}\mu(g,s) &#x3D; \sum_{s}|G_{s}| &#x3D; t |G_{s}|[s] &#x3D; t|G|$</p>
+<p>于是最后的结果为$t &#x3D; \frac{1}{|G|}\sum_{g}\sum_{s}\mu(g,s)$</p>
+<h4 id="Polya计数原理的简述与感性证明"><a href="#Polya计数原理的简述与感性证明" class="headerlink" title="Polya计数原理的简述与感性证明"></a>Polya计数原理的简述与感性证明</h4><p>之所以将它称之为计数原理在于这个方法简化了上面引理的一部分计算。</p>
+<p>引用上面Burnside引理的结果$t &#x3D; \frac{1}{|G|}\sum_{g}\sum_{s}\mu(g,s)$</p>
+<p>Polya计数原理简化了$\sum_{s}\mu(g,s)$的计算。</p>
+<p>原理在于对每个置换进行循环分解。</p>
+<p>大概举个例子$g &#x3D; (1)(2,3)(4,5,7)(6)(9)$</p>
+<p>可以理性观察这个置换，只有每个括号里的元素颜色一样的时候才会对答案有贡献。</p>
+<p>于是$\sum_{s}\mu(g,s) &#x3D; m^{|g|}$</p>
+<p>其中$|g|$表示$g$再进行循环分解后有多少个括号。</p>
+<p>于是上面的式子就变成了$t &#x3D; \frac{1}{|G|}\sum_{g}m^{|g|}$</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/11/13/2020/k-median%E9%97%AE%E9%A2%98%E5%9C%A8Metric%E7%A9%BA%E9%97%B4%E4%B8%8A%E7%9A%84%E8%BF%91%E4%BC%BC%E8%A7%A3%E6%B3%95/" rel="prev" title="k-median问题在Metric空间上的近似解法">
+      <i class="fa fa-chevron-left"></i> k-median问题在Metric空间上的近似解法
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/11/18/2020/23%E6%A0%91%E7%9A%84%E4%B8%80%E7%A7%8D%E5%88%A0%E9%99%A4%E6%96%B9%E6%B3%95/" rel="next" title="23树的一种删除方法">
+      23树的一种删除方法 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  <div>abab</div>
+ <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+</script>
+<script type="text/javascript"
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+     
+
+          </div>
+          
+    <div class="comments" id="gitalk-container"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Burnside%E5%BC%95%E7%90%86%E4%B8%8EPolya%E8%AE%A1%E6%95%B0%E5%8E%9F%E7%90%86"><span class="nav-number">1.</span> <span class="nav-text">Burnside引理与Polya计数原理</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Burnside%E5%BC%95%E7%90%86%E7%AE%80%E4%BB%8B"><span class="nav-number">1.1.</span> <span class="nav-text">Burnside引理简介</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Burnside%E5%BC%95%E7%90%86%E6%84%9F%E6%80%A7%E8%AF%81%E6%98%8E"><span class="nav-number">1.2.</span> <span class="nav-text">Burnside引理感性证明</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Polya%E8%AE%A1%E6%95%B0%E5%8E%9F%E7%90%86%E7%9A%84%E7%AE%80%E8%BF%B0%E4%B8%8E%E6%84%9F%E6%80%A7%E8%AF%81%E6%98%8E"><span class="nav-number">1.3.</span> <span class="nav-text">Polya计数原理的简述与感性证明</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">kvrmnks</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">19</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">kvrmnks</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+<script>
+document.querySelectorAll('.pdfobject-container').forEach(element => {
+  let url = element.dataset.target;
+  let pdfOpenParams = {
+    navpanes : 0,
+    toolbar  : 0,
+    statusbar: 0,
+    pagemode : 'thumbs',
+    view     : 'FitH'
+  };
+  let pdfOpenFragment = '#' + Object.entries(pdfOpenParams).map(([key, value]) => `${key}=${encodeURIComponent(value)}`).join('&');
+  let fullURL = `/lib/pdf/web/viewer.html?file=${encodeURIComponent(url)}${pdfOpenFragment}`;
+
+  if (NexT.utils.supportsPDFs()) {
+    element.innerHTML = `<embed class="pdfobject" src="${url + pdfOpenFragment}" type="application/pdf" style="height: ${element.dataset.height};">`;
+  } else {
+    element.innerHTML = `<iframe src="${fullURL}" style="height: ${element.dataset.height};" frameborder="0"></iframe>`;
+  }
+});
+</script>
+
+
+
+
+  
+
+  
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
+
+<script>
+NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
+    var gitalk = new Gitalk({
+      clientID    : 'b11ba47959b7933d9453',
+      clientSecret: '40de9b16c351672241e5fb10f5066856d4b853de',
+      repo        : 'kvrmnks.github.io',
+      owner       : 'kvrmnks',
+      admin       : ['kvrmnks'],
+      id          : '2dd097b5d1b9ee2c1d923f29a7c2d86d',
+        language: '',
+      distractionFreeMode: false
+    });
+    gitalk.render('gitalk-container');
+  }, window.Gitalk);
+});
+</script>
+
+</body>
+</html>
