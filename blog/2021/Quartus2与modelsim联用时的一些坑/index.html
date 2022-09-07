@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../../../img/favicon.ico">
+        <title>Quartus2与modelsim联用时的一些坑 - My Docs</title>
+        <link href="../../../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../../../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../../../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css">
+
+        <script src="../../../js/jquery-1.10.2.min.js" defer></script>
+        <script src="../../../js/bootstrap.min.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="../../..">My Docs</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="navitem">
+                                <a href="../../.." class="nav-link">Welcome to MkDocs</a>
+                            </li>
+                            <li class="dropdown active">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Blog <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">2020</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../../2020/23%E6%A0%91%E7%9A%84%E4%B8%80%E7%A7%8D%E5%88%A0%E9%99%A4%E6%96%B9%E6%B3%95/" class="dropdown-item">23树的一种删除方法</a>
+</li>
+            
+<li>
+    <a href="../../2020/3-3SAT%E9%97%AE%E9%A2%98NP%E5%AE%8C%E5%85%A8%E6%80%A7%E8%AF%81%E6%98%8E/" class="dropdown-item">3-3SAT问题NP完全性证明</a>
+</li>
+            
+<li>
+    <a href="../../2020/Burnside%E5%BC%95%E7%90%86%E4%B8%8EPolya%E8%AE%A1%E6%95%B0%E5%8E%9F%E7%90%86/" class="dropdown-item">Burnside引理与Polya计数原理</a>
+</li>
+            
+<li>
+    <a href="../../2020/k-median%E9%97%AE%E9%A2%98%E5%9C%A8Metric%E7%A9%BA%E9%97%B4%E4%B8%8A%E7%9A%84%E8%BF%91%E4%BC%BC%E8%A7%A3%E6%B3%95/" class="dropdown-item">k-median问题在Metric空间上的近似解法</a>
+</li>
+            
+<li>
+    <a href="../../2020/%E4%B8%80%E4%BA%9B%E5%AD%A6%E4%B9%A0%E8%BF%87%E7%A8%8B%E4%B8%AD%E7%94%A8%E5%88%B0%E7%9A%84%E7%94%B5%E5%AD%90%E4%B9%A6/" class="dropdown-item">一些学习过程中用到的电子书</a>
+</li>
+            
+<li>
+    <a href="../../2020/%E9%A1%B6%E7%82%B9%E8%A6%86%E7%9B%96%E9%97%AE%E9%A2%98%E5%BA%A6%E6%95%B0%E8%B4%AA%E5%BF%83%E7%AE%97%E6%B3%95%E7%9A%84%E4%B8%80%E4%B8%AA%E4%B8%8B%E7%95%8C/" class="dropdown-item">顶点覆盖问题度数贪心算法的一个下界</a>
+</li>
+    </ul>
+  </li>
+                                    
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">2021</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../HelloWorld%E4%B8%AD%E7%9A%84%E9%98%BF%E5%B0%94%E5%A1%94%E6%8B%89%E6%98%AF%E5%90%A6%E6%98%AF%E5%9B%BE%E7%81%B5%E6%9C%BA/" class="dropdown-item">HelloWorld中的阿尔塔拉是否是图灵机</a>
+</li>
+            
+<li>
+    <a href="../NP-Complete%E9%97%AE%E9%A2%98%E4%B9%B1%E8%AF%81/" class="dropdown-item">NP-Complete问题乱证</a>
+</li>
+            
+<li>
+    <a href="./" class="dropdown-item active">Quartus2与modelsim联用时的一些坑</a>
+</li>
+            
+<li>
+    <a href="../StrassenAlgorithm/" class="dropdown-item">StrassenAlgorithm</a>
+</li>
+            
+<li>
+    <a href="../X3C-1%E4%B8%8E%E5%B9%BF%E4%B9%89%E5%88%92%E5%88%86%E9%97%AE%E9%A2%98%E7%9A%84NP%E5%AE%8C%E5%85%A8%E6%80%A7%E8%AF%81%E6%98%8E/" class="dropdown-item">X3C-1与广义划分问题的NP完全性证明</a>
+</li>
+            
+<li>
+    <a href="../cmake%E7%9A%84%E5%9D%91/" class="dropdown-item">cmake的坑</a>
+</li>
+            
+<li>
+    <a href="../edge-decomposition/" class="dropdown-item">edge-decomposition</a>
+</li>
+            
+<li>
+    <a href="../push-relabel-algorithm/" class="dropdown-item">push-relabel_algorithm</a>
+</li>
+            
+<li>
+    <a href="../%E4%BA%8C%E7%BB%B4%E6%9C%80%E7%9F%AD%E8%B7%AFNP-complete/" class="dropdown-item">二维最短路NP-complete</a>
+</li>
+            
+<li>
+    <a href="../%E6%8E%B7%E8%89%B2%E5%AD%90%E5%8F%AF%E4%BB%A5%E8%AE%A9%E6%88%91%E5%8F%98%E8%81%AA%E6%98%8E%E5%90%97/" class="dropdown-item">掷色子可以让我变聪明吗</a>
+</li>
+            
+<li>
+    <a href="../%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%B7%B7%E4%B9%B1%E6%9D%82%E8%AE%B0/" class="dropdown-item">操作系统混乱杂记</a>
+</li>
+            
+<li>
+    <a href="../%E6%AD%A3%E5%88%99%E8%AF%AD%E8%A8%80%E5%9C%A8%E5%8F%AF%E5%88%97%E4%B8%AA%E5%B9%B6%E5%92%8C%E4%BA%A4%E8%BF%90%E7%AE%97%E4%B8%8B%E7%9A%84%E4%B8%8D%E5%B0%81%E9%97%AD%E6%80%A7/" class="dropdown-item">正则语言在可列个并和交运算下的不封闭性</a>
+</li>
+    </ul>
+  </li>
+                                    
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">2022</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../../2022/CS168Toolbox/" class="dropdown-item">CS168 The Modern Algorithmic Toolbox</a>
+</li>
+            
+<li>
+    <a href="../../2022/LinearAlgebraDownRight%E9%98%85%E8%AF%BB/" class="dropdown-item">LinearAlgebraDownRight阅读</a>
+</li>
+    </ul>
+  </li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-toggle="modal" data-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li class="nav-item">
+                                <a rel="prev" href="../NP-Complete%E9%97%AE%E9%A2%98%E4%B9%B1%E8%AF%81/" class="nav-link">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" href="../StrassenAlgorithm/" class="nav-link">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-light navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
+        <ul class="nav flex-column">
+            
+            
+            
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<p>调试的时候姑且做了一个调试笔记, 稍微列一些回忆中的坑吧.</p>
+<!-- more -->
+
+<hr />
+<p>安装ModelSim的时候一定要保证和Quartus版本号一致</p>
+<hr />
+<h3 id="verilog-bug">由Verilog中产生的 "bug"</h3>
+<p>Verilog中的initial模块在下载到开发板上时并不会生效.</p>
+<p>所谓的"初始化"仅仅在模拟中生效.</p>
+<p>所以严格来说还是要加一个信号来对寄存器进行初始化.</p>
+<p>Verilog 在Quartus中编译时一定要看其中的警告信息, 因为verilog允许了隐式声明一个wire</p>
+<p>例如我有一个module abab(input[3:0] a);</p>
+<p>在调用时直接写了 abab xxx(b); 隐式产生了一个wire b, 但是这个隐式产生的信号b只有一个bit长, 并不是4bit长的.</p>
+<p>同样的使用assign 隐式来定义一个wire 也会产生如上的 "bug".</p>
+<p>Verilog 中对于输入的长度没有做到严格的匹配, 比如上文中的</p>
+<p>module abab(input[3:0] a);</p>
+<p>我也可以, 这样传参</p>
+<p>wire [100:0] b;</p>
+<p>abab xxx(b);</p>
+<p>这样虽然可以过编译, 但是在RTL模拟中会出现一些奇怪的bug  比如输出为"z".</p>
+<p>还有是Verilog中同时检测两个信号的always, 不过这里我也不知道正统的方法是什么, 为了保证正确.</p>
+<p>最好采取如下写法</p>
+<pre><code>always @(posedge clk or negedge rst) begin
+    if(!rst) begin
+        ...
+    end else begin
+        ..
+    end
+end
+</code></pre>
+<hr />
+<h3 id="quartusbug">由Quartus产生的"bug"</h3>
+<p>Quartus中的仿真功能不能看到仿真后的内存情况.</p>
+<p>可以通过采取使用Quartus生成测试文件, 通过modelsim进行模拟仿真的方式.</p>
+<p>这个方式需要自己写testbench文件.</p>
+<p>仿真的步骤可以查看这个<a href="https://www.bilibili.com/video/BV1Ez411z7xf">视频</a></p>
+<p>期间可能遭遇无法正确加载RAM&amp;ROM 初始化文件的情况, 可以查看这个<a href="https://blog.csdn.net/weixin_44939178/article/details/111928005">链接</a></p>
+<p>Quartus编译过程中包含了许多在仿真过程中可能用不到的工序.</p>
+<p>对于RTL模拟(功能模拟)来说, 并不需要在Quartus中重新编译, 只需要关掉ModelSim 重新进行仿真就可以了.</p>
+<p>而对于时序模拟来说, 需要重新编译.</p>
+<p>利用这些步骤可以加快debug速度, 当然最稳健的方式还是每次重新编译.</p>
+<p>Quartus中重新编译并不会自动产生testbench文件, 需要手动按按钮来生成.</p>
+<hr />
+<h3 id="modelsim-bug">由ModelSim 产生的"bug"</h3>
+<p>你可能会发现仿真结果在时序仿真和功能仿真下结果不一样.</p>
+<p>这种情况十分有风险, 尽可能保证两种仿真下结果一致.</p>
+<p>但是时序仿真中无法查看ROM&amp;RAM中的数据.</p>
+<p>在功能仿真中可以, 具体方式可查看这个<a href="https://www.cnblogs.com/halflife/archive/2011/03/08/1977508.html">链接</a></p>
+<p>同时在时序仿真的时候一定要注意时钟间隔不能太短，否则可能会导致计算结果还没稳定的时候就进行了下一步。</p>
+<hr />
+<p>无了, 祝好.</p></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script>
+            var base_url = "../../..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../../../js/base.js" defer></script>
+        <script src="../../../javascripts/mathjax.js" defer></script>
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6" defer></script>
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" defer></script>
+        <script src="../../../search/main.js" defer></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <p>From here you can search these documents. Enter your search terms below.</p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

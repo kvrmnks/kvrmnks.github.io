@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../../../img/favicon.ico">
+        <title>操作系统混乱杂记 - My Docs</title>
+        <link href="../../../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../../../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../../../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css">
+
+        <script src="../../../js/jquery-1.10.2.min.js" defer></script>
+        <script src="../../../js/bootstrap.min.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="../../..">My Docs</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="navitem">
+                                <a href="../../.." class="nav-link">Welcome to MkDocs</a>
+                            </li>
+                            <li class="dropdown active">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Blog <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">2020</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../../2020/23%E6%A0%91%E7%9A%84%E4%B8%80%E7%A7%8D%E5%88%A0%E9%99%A4%E6%96%B9%E6%B3%95/" class="dropdown-item">23树的一种删除方法</a>
+</li>
+            
+<li>
+    <a href="../../2020/3-3SAT%E9%97%AE%E9%A2%98NP%E5%AE%8C%E5%85%A8%E6%80%A7%E8%AF%81%E6%98%8E/" class="dropdown-item">3-3SAT问题NP完全性证明</a>
+</li>
+            
+<li>
+    <a href="../../2020/Burnside%E5%BC%95%E7%90%86%E4%B8%8EPolya%E8%AE%A1%E6%95%B0%E5%8E%9F%E7%90%86/" class="dropdown-item">Burnside引理与Polya计数原理</a>
+</li>
+            
+<li>
+    <a href="../../2020/k-median%E9%97%AE%E9%A2%98%E5%9C%A8Metric%E7%A9%BA%E9%97%B4%E4%B8%8A%E7%9A%84%E8%BF%91%E4%BC%BC%E8%A7%A3%E6%B3%95/" class="dropdown-item">k-median问题在Metric空间上的近似解法</a>
+</li>
+            
+<li>
+    <a href="../../2020/%E4%B8%80%E4%BA%9B%E5%AD%A6%E4%B9%A0%E8%BF%87%E7%A8%8B%E4%B8%AD%E7%94%A8%E5%88%B0%E7%9A%84%E7%94%B5%E5%AD%90%E4%B9%A6/" class="dropdown-item">一些学习过程中用到的电子书</a>
+</li>
+            
+<li>
+    <a href="../../2020/%E9%A1%B6%E7%82%B9%E8%A6%86%E7%9B%96%E9%97%AE%E9%A2%98%E5%BA%A6%E6%95%B0%E8%B4%AA%E5%BF%83%E7%AE%97%E6%B3%95%E7%9A%84%E4%B8%80%E4%B8%AA%E4%B8%8B%E7%95%8C/" class="dropdown-item">顶点覆盖问题度数贪心算法的一个下界</a>
+</li>
+    </ul>
+  </li>
+                                    
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">2021</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../HelloWorld%E4%B8%AD%E7%9A%84%E9%98%BF%E5%B0%94%E5%A1%94%E6%8B%89%E6%98%AF%E5%90%A6%E6%98%AF%E5%9B%BE%E7%81%B5%E6%9C%BA/" class="dropdown-item">HelloWorld中的阿尔塔拉是否是图灵机</a>
+</li>
+            
+<li>
+    <a href="../NP-Complete%E9%97%AE%E9%A2%98%E4%B9%B1%E8%AF%81/" class="dropdown-item">NP-Complete问题乱证</a>
+</li>
+            
+<li>
+    <a href="../Quartus2%E4%B8%8Emodelsim%E8%81%94%E7%94%A8%E6%97%B6%E7%9A%84%E4%B8%80%E4%BA%9B%E5%9D%91/" class="dropdown-item">Quartus2与modelsim联用时的一些坑</a>
+</li>
+            
+<li>
+    <a href="../StrassenAlgorithm/" class="dropdown-item">StrassenAlgorithm</a>
+</li>
+            
+<li>
+    <a href="../X3C-1%E4%B8%8E%E5%B9%BF%E4%B9%89%E5%88%92%E5%88%86%E9%97%AE%E9%A2%98%E7%9A%84NP%E5%AE%8C%E5%85%A8%E6%80%A7%E8%AF%81%E6%98%8E/" class="dropdown-item">X3C-1与广义划分问题的NP完全性证明</a>
+</li>
+            
+<li>
+    <a href="../cmake%E7%9A%84%E5%9D%91/" class="dropdown-item">cmake的坑</a>
+</li>
+            
+<li>
+    <a href="../edge-decomposition/" class="dropdown-item">edge-decomposition</a>
+</li>
+            
+<li>
+    <a href="../push-relabel-algorithm/" class="dropdown-item">push-relabel_algorithm</a>
+</li>
+            
+<li>
+    <a href="../%E4%BA%8C%E7%BB%B4%E6%9C%80%E7%9F%AD%E8%B7%AFNP-complete/" class="dropdown-item">二维最短路NP-complete</a>
+</li>
+            
+<li>
+    <a href="../%E6%8E%B7%E8%89%B2%E5%AD%90%E5%8F%AF%E4%BB%A5%E8%AE%A9%E6%88%91%E5%8F%98%E8%81%AA%E6%98%8E%E5%90%97/" class="dropdown-item">掷色子可以让我变聪明吗</a>
+</li>
+            
+<li>
+    <a href="./" class="dropdown-item active">操作系统混乱杂记</a>
+</li>
+            
+<li>
+    <a href="../%E6%AD%A3%E5%88%99%E8%AF%AD%E8%A8%80%E5%9C%A8%E5%8F%AF%E5%88%97%E4%B8%AA%E5%B9%B6%E5%92%8C%E4%BA%A4%E8%BF%90%E7%AE%97%E4%B8%8B%E7%9A%84%E4%B8%8D%E5%B0%81%E9%97%AD%E6%80%A7/" class="dropdown-item">正则语言在可列个并和交运算下的不封闭性</a>
+</li>
+    </ul>
+  </li>
+                                    
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">2022</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../../2022/CS168Toolbox/" class="dropdown-item">CS168 The Modern Algorithmic Toolbox</a>
+</li>
+            
+<li>
+    <a href="../../2022/LinearAlgebraDownRight%E9%98%85%E8%AF%BB/" class="dropdown-item">LinearAlgebraDownRight阅读</a>
+</li>
+    </ul>
+  </li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-toggle="modal" data-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li class="nav-item">
+                                <a rel="prev" href="../%E6%8E%B7%E8%89%B2%E5%AD%90%E5%8F%AF%E4%BB%A5%E8%AE%A9%E6%88%91%E5%8F%98%E8%81%AA%E6%98%8E%E5%90%97/" class="nav-link">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" href="../%E6%AD%A3%E5%88%99%E8%AF%AD%E8%A8%80%E5%9C%A8%E5%8F%AF%E5%88%97%E4%B8%AA%E5%B9%B6%E5%92%8C%E4%BA%A4%E8%BF%90%E7%AE%97%E4%B8%8B%E7%9A%84%E4%B8%8D%E5%B0%81%E9%97%AD%E6%80%A7/" class="nav-link">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-light navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-level="2"><a href="#_1" class="nav-link">文件系统</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="2"><a href="#_4" class="nav-link">同步与死锁</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<p>搞了点资料搜索和自行yy</p>
+<p>本来就写了写文件系统，后来干脆扩展到整个操作系统了。</p>
+<!-- more -->
+
+<p>一般来说理清这种问题有两种不同的视角。</p>
+<h2 id="_1">文件系统</h2>
+<h3 id="_2">进程角度</h3>
+<p>每个进程自己都维护了两个dentry 一个是文件系统的根的dentry另一个就是当前工作目录的dentry</p>
+<p>什么是dentry？</p>
+<p>对于这样一个路径 /home/kvrmnks/a</p>
+<p>/ 这个路径对应了一个dentry</p>
+<p>/home 这个路径对应了一个dentry</p>
+<p>/home/kvrmnks 这个路径也对应了一个dentry</p>
+<p>dentry就是描述一个目录的数据结构。</p>
+<p>这个数据结构<strong>不存在</strong>外存，仅仅存在于内存（当然内存交换的时候并不考虑）。</p>
+<p>这个数据结构中存放了对应文件（包括文件夹和文件外设blabla，文中文件均为UNIX下的文件定义）的inode节点。</p>
+<p>也存放了目录下的子dentry，当然还有父dentry。</p>
+<p>什么是inode？</p>
+<p>由于inode同时存在于外设内存，文中用外设inode与内存inode，进行区分，没有前缀时代表共同点。</p>
+<p>inode中存放了文件的元数据（创建时间，修改时间，访问权限，大小，块大小等）</p>
+<p>内存inode中存放有对应目录下的dentry，当然也有一些比如读写指针的数据。</p>
+<p>到这里就可以发现，在内存inode和dentry可以互相访问，当然是一对多的关系（注意这里并不意味着访问不可一对一），毕竟不同目录可以指向同一个文件（inode）。</p>
+<p>如果索引文件？</p>
+<p>其实十分显然，首先不考虑有mount和软硬链接以及dentry缓存的情况下。</p>
+<p>首先判断是从root开始找，还是从工作目录开始找，找到dentry。</p>
+<p>看看是不是找到了，否则就从dentry的子dentry里找，重复以上过程，直到找到对应的dentry，返回内存inode。</p>
+<p>拿到内存inode了怎么进行操作呢？</p>
+<p>首先系统会创建一个file数据结构来代表<strong>这个进程打开的文件</strong>（当然可以联系一下课上内容，这里其实是内核创建了这个file数据结构，进程得到了指针，指向了内核中的file数据结构），这个数据结构也是不存在于外设上的。</p>
+<p>这个数据结构理所当然地有着指向内存inode的指针（不然它有什么用）。</p>
+<p>干嘛还要再用file封装一层呢，用inode不好吗？</p>
+<p>不好，因为存在多个用户打开同一个文件或者一个用户不同进程多次打开一个文件的情况，联系到内存inode中存放着读写指针，显然不可能对每一次打开多维护一个，于是就重新封装了一层，封装成file，实则操作file时操作内存inode。</p>
+<p>怎么操作file数据结构呢？</p>
+<p>首先UNIX中抽象出了VFS这种东西，实现方式之一就是对于每个数据结构维护一个函数指针表，通过这个指针表来进行操作。</p>
+<h3 id="_3">操作系统角度</h3>
+<p>从操作系统的角度来看主要的问题便是考虑如何维护以上出现地数据结构。</p>
+<p>首先不考虑mount，缓存的情况下，mount的存在像是给整个系统打了个补丁，于是先不考虑。</p>
+<p>dentry都不在外设里，怎么维护呢？</p>
+<p>首先dentry是随着内核运行动态创建的，起始的目录存放在superblock中。</p>
+<p>但是连dentry都没有，该怎么访问一个目录下的文件呢？</p>
+<p>~~一开始确实被这个问题困扰了好久~~，不过想想看目录也是一个文件，其文件数据就是子文件了。</p>
+<p>superblock是什么？</p>
+<p>superblock存放着整个文件系统的元数据，比如块大小等。</p>
+<p>当然对于不同的文件系统来说，superblock的定义也可能不同。</p>
+<p>内存superblock中存放着所有内存inode的指针。</p>
+<p>如此说来，内核中对于一个文件系统需要维护一个superblock，所有的内存inode节点，以及随着运行动态创建的dentry。</p>
+<p>为了给进程操作文件，也要维护一个全局的file数据结构链表。</p>
+<p>其中dentry形成一颗树的形状，每个节点指向了内存inode。</p>
+<p>内存inode中存放着文件的元数据。</p>
+<p>那么在加入mount的情况下，会发生什么样的变化呢？</p>
+<p>首先每个dentry多加了一个标记位，来标记这个dentry是不是被mount了。</p>
+<p>同时内核需要维护一棵mount数据结构树</p>
+<p>mount数据结构中维护了父mount指针，mount挂载的dentry，mount的root dentry，还有子mount链表。</p>
+<p>主要的修改在索引文件时，如果当前的dentry被标记了被mount</p>
+<p>从父mount中搜索子mount链表，查看子mount中的挂载dentry，如果匹配，跳到子mount的root dentry，继续以上流程。</p>
+<p>mount同时也会带来其他的影响，比如由于文件系统类型的不同，处理函数也会发生相应的改变，同样利用函数指针表的方式进行解决。</p>
+<p>在添加缓存的情况下呢？</p>
+<p>其实也没啥，无非就是内存inode可能不全了，不需要的时候就写回到外设。</p>
+<hr />
+<h2 id="_4">同步与死锁</h2>
+<p>关于饥饿</p>
+<p>显然在进程管理（CPU调度），外设管理等地方也涉及到了饥饿这个概念。</p>
+<p>但是在不同地方讨论饥饿时完全有可能陷入主语的混乱。</p>
+<p>在外设管理的地方，磁盘的调度算法（非先来先服务）有可能会产生饥饿，更详细地说，是导致有些请求永远也无法响应。</p>
+<p>在进程管理中，一些调度算法也会产生饥饿，例如FIFO，又如设定优先级的方法，这时候饥饿的结果是一些进程永远也无法被调度到。</p>
+<p>而这里的饥饿的表述则更加模糊，甚至在我个人的理解里，似乎所有除了死锁之外的导致并发出现问题的情形都叫饥饿。</p>
+<p>讨论有关同步与死锁的饥饿时，<strong>理应应该将进程管理的饥饿抛出在讨论范围</strong>。</p>
+<p>例如在哲学家就餐问题中，如果一直只允许1个哲学家就餐，也不能说发生了死锁，程序也能一直执行不会中断。</p>
+<p>但是这样导致的结果是其他哲学家被饿死了。</p>
+<p>再比如一座桥，有来回两个方向，设置了优先级，保证每次先从南到北，这样程序也可以正常运行，但是会导致从北向南的车辆拥堵，这也是这里讨论的一种饥饿。</p>
+<p>那么是不是定义这里的饥饿为“每个线程，都可以机会均等地进入临界区”，或者是课本上那句有关判断是否解决了缓冲区问题的判据“一个线程等待其他线程进入临界区的次数是有上界的”等等诸如此类意思的句子。</p>
+<p>很容易就能给出“反例”，例如进入了临界区，然后发现什么也操作不了。</p>
+<p>于是就产生了同步与死锁这里“饥饿”定义的混乱。当然我也没什么好办法。</p>
+<p>关于在资源分配图上检查是否发生死锁的算法</p>
+<p>本来以为经典算法已经达到下界了，就在尝试能不能证明这个下界，尝试了许多问题的归约，最后发现能给出一个更好的算法。。。</p>
+<p>首先定义一些记号，定义图<span class="arithmatex">\(G = &lt;V, E&gt;\)</span>为资源分配图，<span class="arithmatex">\(P\)</span>为进程集合，<span class="arithmatex">\(F\)</span>表示资源集合。</p>
+<p>首先对于<span class="arithmatex">\(P\)</span>中的每一个元素，枚举出边到<span class="arithmatex">\(F\)</span>中的元素，<span class="arithmatex">\(F\)</span>中元素上标记，还需要分配多少这类资源。</p>
+<p>每个<span class="arithmatex">\(F\)</span>上进行排序，显然可以维护一个指针，因为在释放的时候是单调的。</p>
+<p>突然不想写了，大不了当个练习题，总之这个复杂度是<span class="arithmatex">\(O(E + VlogV)\)</span>的</p>
+<p>关于“预防”和“避免”</p>
+<p>个人也不知道为什么要用这么两个十分相近的词语来混淆概念，总之这里提供一个大概可行的意会方式。</p>
+<p>预防 prevent 避免 avoid</p>
+<p>避免代表死锁可能发生，但是操作系统“绕”了过去</p>
+<p>预防代表死锁根本不可能发生，因为其必要条件被破坏掉了。</p>
+<hr />
+<p>总之就是胡说完了（</p>
+<p><a href="https://blog.csdn.net/jinking01/article/details/105683360">参考文献1</a></p>
+<p><a href="https://blog.csdn.net/qwaszx523/article/details/72764690">参考文献2</a></p>
+<p><a href="https://blog.csdn.net/JuliusRyan/article/details/8283323">参考文献3</a></p></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script>
+            var base_url = "../../..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../../../js/base.js" defer></script>
+        <script src="../../../javascripts/mathjax.js" defer></script>
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6" defer></script>
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" defer></script>
+        <script src="../../../search/main.js" defer></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <p>From here you can search these documents. Enter your search terms below.</p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

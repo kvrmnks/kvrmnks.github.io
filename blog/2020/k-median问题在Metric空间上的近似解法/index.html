@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../../../img/favicon.ico">
+        <title>k-median问题在Metric空间上的近似解法 - My Docs</title>
+        <link href="../../../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../../../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../../../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css">
+
+        <script src="../../../js/jquery-1.10.2.min.js" defer></script>
+        <script src="../../../js/bootstrap.min.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="../../..">My Docs</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="navitem">
+                                <a href="../../.." class="nav-link">Welcome to MkDocs</a>
+                            </li>
+                            <li class="dropdown active">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Blog <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">2020</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../23%E6%A0%91%E7%9A%84%E4%B8%80%E7%A7%8D%E5%88%A0%E9%99%A4%E6%96%B9%E6%B3%95/" class="dropdown-item">23树的一种删除方法</a>
+</li>
+            
+<li>
+    <a href="../3-3SAT%E9%97%AE%E9%A2%98NP%E5%AE%8C%E5%85%A8%E6%80%A7%E8%AF%81%E6%98%8E/" class="dropdown-item">3-3SAT问题NP完全性证明</a>
+</li>
+            
+<li>
+    <a href="../Burnside%E5%BC%95%E7%90%86%E4%B8%8EPolya%E8%AE%A1%E6%95%B0%E5%8E%9F%E7%90%86/" class="dropdown-item">Burnside引理与Polya计数原理</a>
+</li>
+            
+<li>
+    <a href="./" class="dropdown-item active">k-median问题在Metric空间上的近似解法</a>
+</li>
+            
+<li>
+    <a href="../%E4%B8%80%E4%BA%9B%E5%AD%A6%E4%B9%A0%E8%BF%87%E7%A8%8B%E4%B8%AD%E7%94%A8%E5%88%B0%E7%9A%84%E7%94%B5%E5%AD%90%E4%B9%A6/" class="dropdown-item">一些学习过程中用到的电子书</a>
+</li>
+            
+<li>
+    <a href="../%E9%A1%B6%E7%82%B9%E8%A6%86%E7%9B%96%E9%97%AE%E9%A2%98%E5%BA%A6%E6%95%B0%E8%B4%AA%E5%BF%83%E7%AE%97%E6%B3%95%E7%9A%84%E4%B8%80%E4%B8%AA%E4%B8%8B%E7%95%8C/" class="dropdown-item">顶点覆盖问题度数贪心算法的一个下界</a>
+</li>
+    </ul>
+  </li>
+                                    
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">2021</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../../2021/HelloWorld%E4%B8%AD%E7%9A%84%E9%98%BF%E5%B0%94%E5%A1%94%E6%8B%89%E6%98%AF%E5%90%A6%E6%98%AF%E5%9B%BE%E7%81%B5%E6%9C%BA/" class="dropdown-item">HelloWorld中的阿尔塔拉是否是图灵机</a>
+</li>
+            
+<li>
+    <a href="../../2021/NP-Complete%E9%97%AE%E9%A2%98%E4%B9%B1%E8%AF%81/" class="dropdown-item">NP-Complete问题乱证</a>
+</li>
+            
+<li>
+    <a href="../../2021/Quartus2%E4%B8%8Emodelsim%E8%81%94%E7%94%A8%E6%97%B6%E7%9A%84%E4%B8%80%E4%BA%9B%E5%9D%91/" class="dropdown-item">Quartus2与modelsim联用时的一些坑</a>
+</li>
+            
+<li>
+    <a href="../../2021/StrassenAlgorithm/" class="dropdown-item">StrassenAlgorithm</a>
+</li>
+            
+<li>
+    <a href="../../2021/X3C-1%E4%B8%8E%E5%B9%BF%E4%B9%89%E5%88%92%E5%88%86%E9%97%AE%E9%A2%98%E7%9A%84NP%E5%AE%8C%E5%85%A8%E6%80%A7%E8%AF%81%E6%98%8E/" class="dropdown-item">X3C-1与广义划分问题的NP完全性证明</a>
+</li>
+            
+<li>
+    <a href="../../2021/cmake%E7%9A%84%E5%9D%91/" class="dropdown-item">cmake的坑</a>
+</li>
+            
+<li>
+    <a href="../../2021/edge-decomposition/" class="dropdown-item">edge-decomposition</a>
+</li>
+            
+<li>
+    <a href="../../2021/push-relabel-algorithm/" class="dropdown-item">push-relabel_algorithm</a>
+</li>
+            
+<li>
+    <a href="../../2021/%E4%BA%8C%E7%BB%B4%E6%9C%80%E7%9F%AD%E8%B7%AFNP-complete/" class="dropdown-item">二维最短路NP-complete</a>
+</li>
+            
+<li>
+    <a href="../../2021/%E6%8E%B7%E8%89%B2%E5%AD%90%E5%8F%AF%E4%BB%A5%E8%AE%A9%E6%88%91%E5%8F%98%E8%81%AA%E6%98%8E%E5%90%97/" class="dropdown-item">掷色子可以让我变聪明吗</a>
+</li>
+            
+<li>
+    <a href="../../2021/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%B7%B7%E4%B9%B1%E6%9D%82%E8%AE%B0/" class="dropdown-item">操作系统混乱杂记</a>
+</li>
+            
+<li>
+    <a href="../../2021/%E6%AD%A3%E5%88%99%E8%AF%AD%E8%A8%80%E5%9C%A8%E5%8F%AF%E5%88%97%E4%B8%AA%E5%B9%B6%E5%92%8C%E4%BA%A4%E8%BF%90%E7%AE%97%E4%B8%8B%E7%9A%84%E4%B8%8D%E5%B0%81%E9%97%AD%E6%80%A7/" class="dropdown-item">正则语言在可列个并和交运算下的不封闭性</a>
+</li>
+    </ul>
+  </li>
+                                    
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">2022</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../../2022/CS168Toolbox/" class="dropdown-item">CS168 The Modern Algorithmic Toolbox</a>
+</li>
+            
+<li>
+    <a href="../../2022/LinearAlgebraDownRight%E9%98%85%E8%AF%BB/" class="dropdown-item">LinearAlgebraDownRight阅读</a>
+</li>
+    </ul>
+  </li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-toggle="modal" data-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li class="nav-item">
+                                <a rel="prev" href="../Burnside%E5%BC%95%E7%90%86%E4%B8%8EPolya%E8%AE%A1%E6%95%B0%E5%8E%9F%E7%90%86/" class="nav-link">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" href="../%E4%B8%80%E4%BA%9B%E5%AD%A6%E4%B9%A0%E8%BF%87%E7%A8%8B%E4%B8%AD%E7%94%A8%E5%88%B0%E7%9A%84%E7%94%B5%E5%AD%90%E4%B9%A6/" class="nav-link">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-light navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
+        <ul class="nav flex-column">
+            
+            
+            
+            
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h3 id="_1">问题定义</h3>
+<p>先定义一下用到的符号</p>
+<p>空间中有许多工厂，也有许多客户，集合<span class="arithmatex">\(F\)</span>表示工厂集合，集合<span class="arithmatex">\(C\)</span>表示客户集合，y要求给每个客户选择一个工厂，一个工厂可以被多个客户所选择，若一个工厂<span class="arithmatex">\(x\)</span>被客户<span class="arithmatex">\(y\)</span>所选择了，那么称<span class="arithmatex">\(y\)</span>规<span class="arithmatex">\(x\)</span>管理，定义距离函数为<span class="arithmatex">\(d(x,y)，x \in F, y\in C\)</span>表示<span class="arithmatex">\(y\)</span>选择<span class="arithmatex">\(x\)</span>的代价。</p>
+<p>具体问题是找到最多<span class="arithmatex">\(k\)</span>个工厂，管理所有的客户，使得距离函数和最小。</p>
+<p>这个问题在公制空间上的版本成为Metric K-median问题，是指<span class="arithmatex">\(d(x,y)\)</span>满足正定性，对称性和三角形不等式。</p>
+<h3 id="np">NP？</h3>
+<p>这其实并不是一个NP-Hard问题，设计近似算法的原因在于加速运算</p>
+<p><span class="arithmatex">\(C_{2n}^{n}\)</span>依旧是多项式复杂度内的问题。</p>
+<h3 id="_2">局部搜索算法</h3>
+<p>首先可以通过简单分析得到选<span class="arithmatex">\(k\)</span>个工厂一定比选择小于<span class="arithmatex">\(k\)</span>个工厂要优。</p>
+<p>现在来介绍一种简单的近似算法。</p>
+<p>首先随机选择一个集合<span class="arithmatex">\(S\)</span>, 使得<span class="arithmatex">\(S \subset F\)</span>， 并且<span class="arithmatex">\(|S| = k\)</span>， 为了描述方便，扩展一下距离函数的定义令<span class="arithmatex">\(d(S,y) = \min{d(x,y)},x\in S, y\in C\)</span></p>
+<p>然后枚举每个不在<span class="arithmatex">\(S\)</span>中的工厂<span class="arithmatex">\(z\)</span>, 尝试替换<span class="arithmatex">\(S\)</span>中的工厂<span class="arithmatex">\(x\)</span>, 如果能使得答案变得更优就换掉。</p>
+<p>这样就会得到一个局部最优解。</p>
+<p>实现思路非常简单而且是多项式时间复杂度的做法。</p>
+<h3 id="_3">近似度分析</h3>
+<p>令最优解所选择的工厂集合为<span class="arithmatex">\(S^{*}\)</span>, 其中的元素一般使用<span class="arithmatex">\(o\)</span>来表示。</p>
+<p>令上面算法得到的工厂集合为<span class="arithmatex">\(S\)</span>, 其中的元素一般使用<span class="arithmatex">\(s\)</span>来表示。</p>
+<p>令<span class="arithmatex">\(C(x)，x\in F\)</span>表示<span class="arithmatex">\(x\)</span>这个元素管理的客户的集合。</p>
+<p>首先定义一个术语叫做<strong>捕获</strong>，如果<span class="arithmatex">\(C(s) \bigcap C(o) \geq \frac{1}{2}C(o)\)</span>则称<span class="arithmatex">\(s\)</span>捕获了<span class="arithmatex">\(o\)</span>。</p>
+<h4 id="_4">引理</h4>
+<p>如果<span class="arithmatex">\(C(s) \bigcap C(o) &lt; \frac{1}{2}C(o)\)</span>，则<span class="arithmatex">\(C(o)\)</span>存在一个自己到自己的满射，使得每一个<span class="arithmatex">\(x \in C(s)\bigcap C(o)\)</span>，可以映射到<span class="arithmatex">\(C(o) - C(s)\)</span>.</p>
+<p>~~我也不知道为什么~~</p>
+<h4 id="_5">定理</h4>
+<p>该局部搜索算法的近似度为5</p>
+<h4 id="_6">证明</h4>
+<p>首先将<span class="arithmatex">\(S\)</span>根据捕获的最优解中元素的个数分类</p>
+<ul>
+<li>
+<p><span class="arithmatex">\(S_{0}\)</span>集合表示每个元素不捕获任何最优解中的元素</p>
+</li>
+<li>
+<p><span class="arithmatex">\(S_{1}\)</span>集合表示每个元素都捕获最优解中的一个元素</p>
+</li>
+<li>
+<p><span class="arithmatex">\(S_{2}\)</span>集合表示每个元素都捕获最优解中的至少两个元素</p>
+</li>
+</ul>
+<p>下面进行<span class="arithmatex">\(k\)</span>次交换，注意并不是连续进行<span class="arithmatex">\(k\)</span>次交换，而是每次都从初始状态进行交换，综合考虑其的代价。</p>
+<p>考虑<span class="arithmatex">\(s \in S_{1}\)</span>它所捕获的元素为<span class="arithmatex">\(o\)</span>对于<span class="arithmatex">\(C(o) \bigcap C(s)\)</span>的元素分配给<span class="arithmatex">\(o\)</span>，更严格地这里将<span class="arithmatex">\(C(o)\)</span>的所有元素全部分配<span class="arithmatex">\(o\)</span>(这样相较于之前那种方式并不一定使得当前的答案更加优)，对于<span class="arithmatex">\(C(o)-C(s)\)</span>的元素，因为其中的有个元素为<span class="arithmatex">\(y\)</span>，假设在<span class="arithmatex">\(S^{*}\)</span>中分配给了<span class="arithmatex">\(o^{*}\)</span>,由于<span class="arithmatex">\(s\)</span>已经捕获了<span class="arithmatex">\(o\)</span>并且因为<span class="arithmatex">\(s \in S_{1}\)</span>于是<span class="arithmatex">\(o^{*}\)</span>一定不被<span class="arithmatex">\(s\)</span>所捕获，于是在<span class="arithmatex">\(C(o^{*})\)</span>存在一个单射，假设<span class="arithmatex">\(s^{‘}\)</span>为其的像，同时<span class="arithmatex">\(s^{’} \in C(s^{*})\)</span> ,于是将<span class="arithmatex">\(s\)</span>分配给<span class="arithmatex">\(s^{*}\)</span></p>
+<p>由三角不等式<span class="arithmatex">\(<span class="arithmatex">\(d(y, s^{*}) \leq d(y,o^{*})+d(o^{*},s^{'}) + d(s^{'}, s^{*})\)</span>\)</span></p>
+<p>这样一次交换之后<span class="arithmatex">\(Cost\)</span>的变化为</p>
+<p><span class="arithmatex">\(0 \leq Cost(S-s+o) - Cost(S) \leq \sum_{x \in C(o)} [d(o,x) - d(s,x)] + \sum_{x \in C(s) - C(o)}[d(y,o^{*})+d(o^{*},s^{'}) + d(s^{'}, s^{*}) - d(s, x)]\)</span></p>
+<p>接下来考虑剩下的元素该如何交换，可以发现<span class="arithmatex">\(S_{0}\)</span>中的每个元素最多使用<span class="arithmatex">\(2\)</span>次便可以完成最优解中的每个元素被交换一次。</p>
+<p>同时可以发现也满足以上不等式。</p>
+<p>于是。</p>
+<p>将这个不等式累加<span class="arithmatex">\(k\)</span>次，得到<span class="arithmatex">\(0 \leq Cost(OPT) - Cost(S) + 2*(Cost(OPT) + Cost(OPT) + Cost(S) - Cost(S))\)</span></p>
+<p>于是近似度为<span class="arithmatex">\(5\)</span>.</p></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script>
+            var base_url = "../../..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../../../js/base.js" defer></script>
+        <script src="../../../javascripts/mathjax.js" defer></script>
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6" defer></script>
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" defer></script>
+        <script src="../../../search/main.js" defer></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <p>From here you can search these documents. Enter your search terms below.</p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

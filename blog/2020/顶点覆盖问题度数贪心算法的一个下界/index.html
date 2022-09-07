@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../../../img/favicon.ico">
+        <title>顶点覆盖问题度数贪心算法的一个下界 - My Docs</title>
+        <link href="../../../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../../../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../../../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css">
+
+        <script src="../../../js/jquery-1.10.2.min.js" defer></script>
+        <script src="../../../js/bootstrap.min.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="../../..">My Docs</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="navitem">
+                                <a href="../../.." class="nav-link">Welcome to MkDocs</a>
+                            </li>
+                            <li class="dropdown active">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Blog <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">2020</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../23%E6%A0%91%E7%9A%84%E4%B8%80%E7%A7%8D%E5%88%A0%E9%99%A4%E6%96%B9%E6%B3%95/" class="dropdown-item">23树的一种删除方法</a>
+</li>
+            
+<li>
+    <a href="../3-3SAT%E9%97%AE%E9%A2%98NP%E5%AE%8C%E5%85%A8%E6%80%A7%E8%AF%81%E6%98%8E/" class="dropdown-item">3-3SAT问题NP完全性证明</a>
+</li>
+            
+<li>
+    <a href="../Burnside%E5%BC%95%E7%90%86%E4%B8%8EPolya%E8%AE%A1%E6%95%B0%E5%8E%9F%E7%90%86/" class="dropdown-item">Burnside引理与Polya计数原理</a>
+</li>
+            
+<li>
+    <a href="../k-median%E9%97%AE%E9%A2%98%E5%9C%A8Metric%E7%A9%BA%E9%97%B4%E4%B8%8A%E7%9A%84%E8%BF%91%E4%BC%BC%E8%A7%A3%E6%B3%95/" class="dropdown-item">k-median问题在Metric空间上的近似解法</a>
+</li>
+            
+<li>
+    <a href="../%E4%B8%80%E4%BA%9B%E5%AD%A6%E4%B9%A0%E8%BF%87%E7%A8%8B%E4%B8%AD%E7%94%A8%E5%88%B0%E7%9A%84%E7%94%B5%E5%AD%90%E4%B9%A6/" class="dropdown-item">一些学习过程中用到的电子书</a>
+</li>
+            
+<li>
+    <a href="./" class="dropdown-item active">顶点覆盖问题度数贪心算法的一个下界</a>
+</li>
+    </ul>
+  </li>
+                                    
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">2021</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../../2021/HelloWorld%E4%B8%AD%E7%9A%84%E9%98%BF%E5%B0%94%E5%A1%94%E6%8B%89%E6%98%AF%E5%90%A6%E6%98%AF%E5%9B%BE%E7%81%B5%E6%9C%BA/" class="dropdown-item">HelloWorld中的阿尔塔拉是否是图灵机</a>
+</li>
+            
+<li>
+    <a href="../../2021/NP-Complete%E9%97%AE%E9%A2%98%E4%B9%B1%E8%AF%81/" class="dropdown-item">NP-Complete问题乱证</a>
+</li>
+            
+<li>
+    <a href="../../2021/Quartus2%E4%B8%8Emodelsim%E8%81%94%E7%94%A8%E6%97%B6%E7%9A%84%E4%B8%80%E4%BA%9B%E5%9D%91/" class="dropdown-item">Quartus2与modelsim联用时的一些坑</a>
+</li>
+            
+<li>
+    <a href="../../2021/StrassenAlgorithm/" class="dropdown-item">StrassenAlgorithm</a>
+</li>
+            
+<li>
+    <a href="../../2021/X3C-1%E4%B8%8E%E5%B9%BF%E4%B9%89%E5%88%92%E5%88%86%E9%97%AE%E9%A2%98%E7%9A%84NP%E5%AE%8C%E5%85%A8%E6%80%A7%E8%AF%81%E6%98%8E/" class="dropdown-item">X3C-1与广义划分问题的NP完全性证明</a>
+</li>
+            
+<li>
+    <a href="../../2021/cmake%E7%9A%84%E5%9D%91/" class="dropdown-item">cmake的坑</a>
+</li>
+            
+<li>
+    <a href="../../2021/edge-decomposition/" class="dropdown-item">edge-decomposition</a>
+</li>
+            
+<li>
+    <a href="../../2021/push-relabel-algorithm/" class="dropdown-item">push-relabel_algorithm</a>
+</li>
+            
+<li>
+    <a href="../../2021/%E4%BA%8C%E7%BB%B4%E6%9C%80%E7%9F%AD%E8%B7%AFNP-complete/" class="dropdown-item">二维最短路NP-complete</a>
+</li>
+            
+<li>
+    <a href="../../2021/%E6%8E%B7%E8%89%B2%E5%AD%90%E5%8F%AF%E4%BB%A5%E8%AE%A9%E6%88%91%E5%8F%98%E8%81%AA%E6%98%8E%E5%90%97/" class="dropdown-item">掷色子可以让我变聪明吗</a>
+</li>
+            
+<li>
+    <a href="../../2021/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%B7%B7%E4%B9%B1%E6%9D%82%E8%AE%B0/" class="dropdown-item">操作系统混乱杂记</a>
+</li>
+            
+<li>
+    <a href="../../2021/%E6%AD%A3%E5%88%99%E8%AF%AD%E8%A8%80%E5%9C%A8%E5%8F%AF%E5%88%97%E4%B8%AA%E5%B9%B6%E5%92%8C%E4%BA%A4%E8%BF%90%E7%AE%97%E4%B8%8B%E7%9A%84%E4%B8%8D%E5%B0%81%E9%97%AD%E6%80%A7/" class="dropdown-item">正则语言在可列个并和交运算下的不封闭性</a>
+</li>
+    </ul>
+  </li>
+                                    
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">2022</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../../2022/CS168Toolbox/" class="dropdown-item">CS168 The Modern Algorithmic Toolbox</a>
+</li>
+            
+<li>
+    <a href="../../2022/LinearAlgebraDownRight%E9%98%85%E8%AF%BB/" class="dropdown-item">LinearAlgebraDownRight阅读</a>
+</li>
+    </ul>
+  </li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-toggle="modal" data-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li class="nav-item">
+                                <a rel="prev" href="../%E4%B8%80%E4%BA%9B%E5%AD%A6%E4%B9%A0%E8%BF%87%E7%A8%8B%E4%B8%AD%E7%94%A8%E5%88%B0%E7%9A%84%E7%94%B5%E5%AD%90%E4%B9%A6/" class="nav-link">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" href="../../2021/HelloWorld%E4%B8%AD%E7%9A%84%E9%98%BF%E5%B0%94%E5%A1%94%E6%8B%89%E6%98%AF%E5%90%A6%E6%98%AF%E5%9B%BE%E7%81%B5%E6%9C%BA/" class="nav-link">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-light navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-level="2"><a href="#_1" class="nav-link">顶点覆盖问题度数贪心算法的一个下界</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h2 id="_1">顶点覆盖问题度数贪心算法的一个下界</h2>
+<p>这个是我做课后题遇到了，结果我构造了大约50min...</p>
+<!-- more -->
+
+<h4 id="_2">度数贪心算法</h4>
+<p>先描述一下这个贪心近似算法.</p>
+<p>假设一张图<span class="arithmatex">\(G=&lt;V,E&gt;\)</span>, 存在映射<span class="arithmatex">\(degree:V \rightarrow Z^{+}, degree(x) = \#\{xy|xy \in E\}\)</span></p>
+<p>算法每次得到<span class="arithmatex">\(x = \operatorname{argmax}_{degree(x)}{x}\)</span></p>
+<p>令<span class="arithmatex">\(S = S\bigcup\{x\}\)</span></p>
+<p><span class="arithmatex">\(E = E - \{xy|xy\in E\}\)</span></p>
+<p><span class="arithmatex">\(V = V / \{x\}\)</span></p>
+<p><span class="arithmatex">\(S\)</span>便是这种放的得到的一个贪心解。</p>
+<p>说人话就是给一张图，每次找度数最大的顶点，然后删掉这个点和关联边继续这个过程。</p>
+<h4 id="_3">度数贪心算法的一个近似度下界</h4>
+<p>先说结论吧，结论是存在一种图，可以让这个算法的近似度下界为<span class="arithmatex">\(O (\log{n})\)</span></p>
+<p>下面我们就来构造这类图</p>
+<p>我们先定义一个上部结点和下部结点。</p>
+<p>令上部结点中有<span class="arithmatex">\(n\)</span>个结点，按照随便一个顺序编成<span class="arithmatex">\(1\cdots n\)</span>号结点。</p>
+<p>下部结点由<span class="arithmatex">\(n\)</span>的小部分构成，第<span class="arithmatex">\(i\)</span>个部分有<span class="arithmatex">\(\lfloor \frac{n}{i}\rfloor\)</span>个结点</p>
+<p>下面我们来构造边，考虑第<span class="arithmatex">\(i\)</span>个小部分, 为了<strong>描述方便</strong>给这个小部分编号为<span class="arithmatex">\(1\cdots \lfloor \frac{n}{i} \rfloor\)</span>。</p>
+<p>对于每个上部结点，都按某种规律与<strong>一个</strong>小部分中的结点相连，假设现在是编号为<span class="arithmatex">\(j\)</span>的上部结点，构造边<span class="arithmatex">\(j - ((j \quad mod \quad \lfloor\frac{n}{i} \rfloor)  + 1)\)</span></p>
+<p><img src="image-20201128150616101.png" alt="image-20201128150616101" style="zoom: 33%;" /></p>
+<p>类似上图</p>
+<hr />
+<p>现在来尝试证明这个下界</p>
+<p>首先我们可以知道取所有的上部结点作为答案便是一个最小的顶点覆盖。</p>
+<p>也就是说对于这类图的最优解是<span class="arithmatex">\(n\)</span></p>
+<p>如果你对调和级数熟悉的话你会发现下部结点的个数和，即<span class="arithmatex">\(\sum_{i=1}^{n}\lfloor\frac{n}{i}\rfloor = O(n\log{n})\)</span></p>
+<p>于是如果我们能证明这个算法在某种最坏情况(因为有的时候会有多个点度数相同)下每次都会选取下部结点中的某个加入答案的话，那么我们就能证明这类图能够使得近似度下界达到<span class="arithmatex">\(O(\log{n})\)</span></p>
+<p>我们首先将一类下部结点看做一个整体。</p>
+<p>即<span class="arithmatex">\(P_{k} = \{i|\lfloor \frac{n}{i}\rfloor = k\}\)</span></p>
+<p>之所以要这样划分整个下部结点，是因为每个<span class="arithmatex">\(P_{k}\)</span>中的不同编号的小部分其中度数有着相同的分布。</p>
+<hr />
+<h5 id="_4">定理一</h5>
+<p><span class="arithmatex">\(P_{j} \quad j &lt;i\)</span>中的小部分中的最大点度数一定小于<span class="arithmatex">\(P_{i}\)</span>中的最小点度数。</p>
+<p>令<span class="arithmatex">\(p \in P_{j}, q\in P_{i}\)</span></p>
+<div class="arithmatex">\[n = jp +a \\ n = iq + b\]</div>
+<p>根据上面连边的顺序可以得到，<span class="arithmatex">\(P_{j}\)</span>中的最大点度数为<span class="arithmatex">\(j+1\)</span>，而<span class="arithmatex">\(P_{i}\)</span>中的最小点度数为<span class="arithmatex">\(i\)</span>，由条件<span class="arithmatex">\(j &lt; i\)</span>得到这个定理成立。</p>
+<p>这个定理代表的是如果在不考虑上部结点时，一定是先取编号比较大的小部分中的点作为答案。</p>
+<hr />
+<h5 id="_5">定理二</h5>
+<p>在任意时刻，下部顶点的最大点度一定大于等于上部顶点的最大点度。</p>
+<p>首先发现一个小性质，在取下部顶点作为答案时，不会改变下部结点中其他节点的点度，而只会改变上部结点的点度，且一定是变小。</p>
+<p>于是我们可以把一个小部分看做一个整体，每次取完一个小部分假设取完了第<span class="arithmatex">\(i\)</span>个小部分，则这个时候上部结点中每个结点的度数均为<span class="arithmatex">\(i-1\)</span></p>
+<p>由<span class="arithmatex">\(n = k(i-1)+a\)</span></p>
+<p>第<span class="arithmatex">\(i-1\)</span>个小部分的最小度数为<span class="arithmatex">\(\lfloor\frac{n}{k}\rfloor\)</span></p>
+<p>这个显然大于等于<span class="arithmatex">\(i-1\)</span></p>
+<hr />
+<h4 id="_6">后话</h4>
+<p>利用集合覆盖的近似度可以证明这个算法的上界也是<span class="arithmatex">\(O(\log{n})\)</span>的。</p></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script>
+            var base_url = "../../..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../../../js/base.js" defer></script>
+        <script src="../../../javascripts/mathjax.js" defer></script>
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6" defer></script>
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" defer></script>
+        <script src="../../../search/main.js" defer></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <p>From here you can search these documents. Enter your search terms below.</p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>
