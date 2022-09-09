@@ -62,3 +62,114 @@ random vector  $\textbf{r} \sim N^{n}(0, 1)$
 
 $$X = \textbf{x}_{1}\textbf{r} - \textbf{x}_{2}\textbf{r} = \sum_{i=1}^{n} (x_{1,i} - x_{2, i})r_{i} \sim N(0, l_{2}^2)$$
 
+which means that $X$ is an unbiased estimator of $l^{2}_{2}$.
+
+### other distances ...
+what about cosine similarity, edit distance and wasserstein distance.
+
+
+## Learning (Binary classification here)
+
+Assume data are samples from a prior distribution $D$ on the universe $U$.
+
+element has its only label.
+
+mainly cares about the sample complexity.
+### finite well-separated case
+
+finite: there is a function set $\{f_{1}, ..., f_{h}\}$ including the ground truth $f^{*}$.
+
+well-separated: if $f_{i} \neq f^{*}$, then the generalization error is at least $\epsilon$.
+
+Theorem: if
+
+$$n \geq \frac{1}{\epsilon}(\ln h+\ln \frac{1}{\delta} )$$
+
+Then with probability $1 - \delta$, the output $f = f^{*}$.
+
+PROOF:
+
+$Pr[ f=^{X}f^{*} | f\neq f^{*}] \leq (1-\epsilon)^{n} \leq e^{-\epsilon n}$
+
+$Pr[\exists f_{i} = f^{*}] \leq (h-1)e^{-\epsilon n} \leq he^{-\epsilon n}$
+
+$he^{-\epsilon n} \leq \delta$
+
+$n \geq \frac{1}{\epsilon}(\ln h + \ln \frac{1}{\delta})$
+
+Q.E.D
+
+### finite case
+
+Theorem: if
+
+$$n \geq \frac{c}{\epsilon}(\ln h+\ln \frac{1}{\delta})$$
+
+Then with probability $1 - \delta$, the output $f$'s generalization error is less than $\epsilon$.
+
+easy to drive from previous theorem.
+
+### Linear Classifiers
+
+Throw the assumption of finite function set.
+
+However there is still the ground true that has the form of linear classifier.
+
+Theorem: if
+$$n \geq \frac{c}{\epsilon}(d + \ln \frac{1}{\delta})$$
+Then there is a constant $c$, with probability $1 - \delta$, the generalization error is less than $\epsilon$.
+
+proof motivation: the curse of dimensionality (approximation).
+
+note the number of samples is linear to the dimension.
+
+(because we use about $e^{d}$ functions to approximate in theory, but we usually calculate the superplane to express the function)
+
+### Non-Zero Training Error and the ERM Algorithm
+
+ERM (empirical risk minimization)
+
+just output the function with minimum training error.
+
+Theorem (Uniform Convergence):
+
+if
+
+$$n \geq \frac{c}{\epsilon ^2}(d + \ln \frac{1}{\delta})$$
+
+then for every linear classifier, it holds that 
+
+generalization error in training error +- $\epsilon$
+
+Theorem (PAC for non-zero training error):
+
+easy to drive from previous theorem
+
+### Increasing Dimensionality
+
+according to the previous section, when samples are larger than (or linear to) dimension, it will lead to best-fit.
+
+but for non-zero error case, we do not know the dimension exactly. 
+
+So we may need to flirt with line between overfitting and generalization.
+
+when n << d, we need to increase the dimension.
+
+#### Polynomial embedding
+
+just add cross-product into the higher dimension.
+
+It is better when the dimension is meaningful.
+
+#### JL transform
+actually we need to apply some non-linear operator to each dimension.
+
+Because JL transform actually the combination of each dimension.
+
+In real world, the kernel function is a good way to implement.
+
+
+### Regularization
+
+Regularization states that you have some preference of your model.
+
