@@ -173,3 +173,85 @@ In real world, the kernel function is a good way to implement.
 
 Regularization states that you have some preference of your model.
 
+There are usually two views about the effect of regularization.
+
+Bayesian view and frequentist view
+
+#### Bayesian view
+
+Here the regularization comes naturally from the likelihood.
+
+For example, we assume the model is $y = \left \langle x, a\right \rangle + z$
+
+$z \sim N(0, 1)$, $a_{i} \sim N(0, \sigma^2)$
+
+we assume that $x$'s are fixed for simplicity.
+
+The likelihood is 
+$$\mathrm{Pr}(a)\mathrm{Pr}(\frac{data}{a}) = \prod_{i}^{d}e^{-\frac{a^2_{i}}{2\sigma^2}}\prod_{i}^{n}e^{-\frac{(y_{i}-\left \langle x_{i}, a \right \rangle)^{2}}{2}}$$
+
+max this likelihood means minimize $\sum_{i=1}^{d}\frac{a_{i}^{2}}{2\sigma^2} + \sum_{i=1}^{n} (y_{i} - \left \langle x_{i}, a\right \rangle)^2$
+
+The first part is regularization.
+
+Also it shows that the regularization may depend on the hypothesis of model.
+#### Frequentist view
+The given example is about $l_{0}$ regularization. (define $0^0 = 0$)
+
+$l_{0}$ regularization shows the sparsity. 
+
+##### $l_{1}$ regularization
+
+it can be a proxy of $l_{0}$ regularization.
+
+## Principle Component Analysis
+
+The motivation is that we want to map the data into a $d$ - dimension vector space.
+
+Somehow we want to preserve the $|\prod_{S}v| \sim |v|$
+
+Luckily, we know that $d$ - dimension space can be interpret into a span of d vectors $v_{1}, ..., v_{d}$.
+
+And the objective function is $\max \sum_{i=1}^{n} \sqrt{\sum_{j=1}^{d} \left \langle x_{i}, v_{j} \right \rangle ^{2}}$.
+
+why max? Because of the triangle inequality.
+
+Usually we compact the data as a matrix $A$ whose columns states for attributes and row stand for pieces of data.
+
+We create a new matrix $X$ of vectors $v$ whose $i$ th column is $v_{i}$, in order to model the objective function as matrix operation.
+
+The objective function is $(AX)^{T}AX = X^{T}A^{T}AX = X^{T}U^{T}DUX$ according to spectrum theorem.
+
+$U$ is orthogonal matrix and $D$ is diagonal matrix. 
+
+Basically $X$ is variable that we can choose.
+
+If $d=1$, $|Ux| = |x|$, denote $u = Ux$the objective function becomes $u^{T}Du$. 
+
+Assume the elements of $D$ are sorted as decreasing order. $u = e_{1}$.
+
+So $x = U^{T}e_{1}$ or x is the first column of $U$.
+
+### Implementation (The Power Iteration)
+
+The key problems of PCA are singular values and singular vectors.
+
+Singular polynomial is hard to find roots ...
+
+Maybe there are some ways to find reductions.
+
+But here the motivation is that we pick a vector $x$ and apply to operator many times.
+
+Theorem, for any $\delta, \epsilon > 0$, letting $v_{1}$ denote the top eigenvector of $A$, with probability at least $1-\delta$ over the choice of $u_{0}$,
+
+$$|\left \langle \frac{A^{t}u_{0}}{|A^{t}u_{0}|}, v_{1} \right \rangle | \geq 1 - \epsilon$$
+
+provided 
+
+$$t > O(\frac{\log d + \log \frac{1}{\epsilon} + \log \frac{1}{\delta}}{\log \frac{\lambda_{1}}{\lambda_{2}}})$$
+
+where $\frac{\lambda_{1}}{\lambda_{2}}$ is the spectral gap.
+
+
+proof ???
+
