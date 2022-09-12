@@ -184,6 +184,11 @@
               <ul class="nav flex-column">
               </ul>
             </li>
+            
+            <li class="nav-item" data-level="2"><a href="#principle-component-analysis" class="nav-link">Principle Component Analysis</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
         </ul>
     </div>
 </div></div>
@@ -273,7 +278,49 @@ Then there is a constant <span class="arithmatex">\(c\)</span>, with probability
 <p>Because JL transform actually the combination of each dimension.</p>
 <p>In real world, the kernel function is a good way to implement.</p>
 <h3 id="regularization">Regularization</h3>
-<p>Regularization states that you have some preference of your model.</p></div>
+<p>Regularization states that you have some preference of your model.</p>
+<p>There are usually two views about the effect of regularization.</p>
+<p>Bayesian view and frequentist view</p>
+<h4 id="bayesian-view">Bayesian view</h4>
+<p>Here the regularization comes naturally from the likelihood.</p>
+<p>For example, we assume the model is <span class="arithmatex">\(y = \left \langle x, a\right \rangle + z\)</span></p>
+<p><span class="arithmatex">\(z \sim N(0, 1)\)</span>, <span class="arithmatex">\(a_{i} \sim N(0, \sigma^2)\)</span></p>
+<p>we assume that <span class="arithmatex">\(x\)</span>'s are fixed for simplicity.</p>
+<p>The likelihood is 
+<span class="arithmatex">\(<span class="arithmatex">\(\mathrm{Pr}(a)\mathrm{Pr}(\frac{data}{a}) = \prod_{i}^{d}e^{-\frac{a^2_{i}}{2\sigma^2}}\prod_{i}^{n}e^{-\frac{(y_{i}-\left \langle x_{i}, a \right \rangle)^{2}}{2}}\)</span>\)</span></p>
+<p>max this likelihood means minimize <span class="arithmatex">\(\sum_{i=1}^{d}\frac{a_{i}^{2}}{2\sigma^2} + \sum_{i=1}^{n} (y_{i} - \left \langle x_{i}, a\right \rangle)^2\)</span></p>
+<p>The first part is regularization.</p>
+<p>Also it shows that the regularization may depend on the hypothesis of model.</p>
+<h4 id="frequentist-view">Frequentist view</h4>
+<p>The given example is about <span class="arithmatex">\(l_{0}\)</span> regularization. (define <span class="arithmatex">\(0^0 = 0\)</span>)</p>
+<p><span class="arithmatex">\(l_{0}\)</span> regularization shows the sparsity. </p>
+<h5 id="l_1-regularization"><span class="arithmatex">\(l_{1}\)</span> regularization</h5>
+<p>it can be a proxy of <span class="arithmatex">\(l_{0}\)</span> regularization.</p>
+<h2 id="principle-component-analysis">Principle Component Analysis</h2>
+<p>The motivation is that we want to map the data into a <span class="arithmatex">\(d\)</span> - dimension vector space.</p>
+<p>Somehow we want to preserve the <span class="arithmatex">\(|\prod_{S}v| \sim |v|\)</span></p>
+<p>Luckily, we know that <span class="arithmatex">\(d\)</span> - dimension space can be interpret into a span of d vectors <span class="arithmatex">\(v_{1}, ..., v_{d}\)</span>.</p>
+<p>And the objective function is <span class="arithmatex">\(\max \sum_{i=1}^{n} \sqrt{\sum_{j=1}^{d} \left \langle x_{i}, v_{j} \right \rangle ^{2}}\)</span>.</p>
+<p>why max? Because of the triangle inequality.</p>
+<p>Usually we compact the data as a matrix <span class="arithmatex">\(A\)</span> whose columns states for attributes and row stand for pieces of data.</p>
+<p>We create a new matrix <span class="arithmatex">\(X\)</span> of vectors <span class="arithmatex">\(v\)</span> whose <span class="arithmatex">\(i\)</span> th column is <span class="arithmatex">\(v_{i}\)</span>, in order to model the objective function as matrix operation.</p>
+<p>The objective function is <span class="arithmatex">\((AX)^{T}AX = X^{T}A^{T}AX = X^{T}U^{T}DUX\)</span> according to spectrum theorem.</p>
+<p><span class="arithmatex">\(U\)</span> is orthogonal matrix and <span class="arithmatex">\(D\)</span> is diagonal matrix. </p>
+<p>Basically <span class="arithmatex">\(X\)</span> is variable that we can choose.</p>
+<p>If <span class="arithmatex">\(d=1\)</span>, <span class="arithmatex">\(|Ux| = |x|\)</span>, denote <span class="arithmatex">\(u = Ux\)</span>the objective function becomes <span class="arithmatex">\(u^{T}Du\)</span>. </p>
+<p>Assume the elements of <span class="arithmatex">\(D\)</span> are sorted as decreasing order. <span class="arithmatex">\(u = e_{1}\)</span>.</p>
+<p>So <span class="arithmatex">\(x = U^{T}e_{1}\)</span> or x is the first column of <span class="arithmatex">\(U\)</span>.</p>
+<h3 id="implementation-the-power-iteration">Implementation (The Power Iteration)</h3>
+<p>The key problems of PCA are singular values and singular vectors.</p>
+<p>Singular polynomial is hard to find roots ...</p>
+<p>Maybe there are some ways to find reductions.</p>
+<p>But here the motivation is that we pick a vector <span class="arithmatex">\(x\)</span> and apply to operator many times.</p>
+<p>Theorem, for any <span class="arithmatex">\(\delta, \epsilon &gt; 0\)</span>, letting <span class="arithmatex">\(v_{1}\)</span> denote the top eigenvector of <span class="arithmatex">\(A\)</span>, with probability at least <span class="arithmatex">\(1-\delta\)</span> over the choice of <span class="arithmatex">\(u_{0}\)</span>,</p>
+<div class="arithmatex">\[|\left \langle \frac{A^{t}u_{0}}{|A^{t}u_{0}|}, v_{1} \right \rangle | \geq 1 - \epsilon\]</div>
+<p>provided </p>
+<div class="arithmatex">\[t &gt; O(\frac{\log d + \log \frac{1}{\epsilon} + \log \frac{1}{\delta}}{\log \frac{\lambda_{1}}{\lambda_{2}}})\]</div>
+<p>where <span class="arithmatex">\(\frac{\lambda_{1}}{\lambda_{2}}\)</span> is the spectral gap.</p>
+<p>proof ???</p></div>
             </div>
         </div>
 
