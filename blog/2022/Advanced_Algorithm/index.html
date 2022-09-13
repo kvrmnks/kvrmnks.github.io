@@ -8,7 +8,7 @@
         
         
         <link rel="shortcut icon" href="../../../img/favicon.ico">
-        <title>LinearAlgebraDownRight阅读 - My Docs</title>
+        <title>Advanced Algorithm - My Docs</title>
         <link href="../../../css/bootstrap.min.css" rel="stylesheet">
         <link href="../../../css/font-awesome.min.css" rel="stylesheet">
         <link href="../../../css/base.css" rel="stylesheet">
@@ -129,7 +129,7 @@
     <ul class="dropdown-menu">
             
 <li>
-    <a href="../Advanced_Algorithm/" class="dropdown-item">Advanced Algorithm</a>
+    <a href="./" class="dropdown-item active">Advanced Algorithm</a>
 </li>
             
 <li>
@@ -137,7 +137,7 @@
 </li>
             
 <li>
-    <a href="./" class="dropdown-item active">LinearAlgebraDownRight阅读</a>
+    <a href="../LinearAlgebraDownRight%E9%98%85%E8%AF%BB/" class="dropdown-item">LinearAlgebraDownRight阅读</a>
 </li>
     </ul>
   </li>
@@ -152,12 +152,12 @@
                             </a>
                         </li>
                             <li class="nav-item">
-                                <a rel="prev" href="../CS168Toolbox/" class="nav-link">
+                                <a rel="prev" href="../../2021/%E6%AD%A3%E5%88%99%E8%AF%AD%E8%A8%80%E5%9C%A8%E5%8F%AF%E5%88%97%E4%B8%AA%E5%B9%B6%E5%92%8C%E4%BA%A4%E8%BF%90%E7%AE%97%E4%B8%8B%E7%9A%84%E4%B8%8D%E5%B0%81%E9%97%AD%E6%80%A7/" class="nav-link">
                                     <i class="fa fa-arrow-left"></i> Previous
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a rel="next" class="nav-link disabled">
+                                <a rel="next" href="../CS168Toolbox/" class="nav-link">
                                     Next <i class="fa fa-arrow-right"></i>
                                 </a>
                             </li>
@@ -178,22 +178,83 @@
     
     <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
         <ul class="nav flex-column">
+            
+            <li class="nav-item" data-level="2"><a href="#maximum-cut" class="nav-link">Maximum Cut</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="2"><a href="#fingerprinting" class="nav-link">Fingerprinting</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
         </ul>
     </div>
 </div></div>
                     <div class="col-md-9" role="main">
 
-<p><img alt="67679f5113f7a5fc8da29adeeeb30df679905b9c.jpg@942w_531h_progressive" src="67679f5113f7a5fc8da29adeeeb30df679905b9c.jpg%40942w_531h_progressive.webp" /></p>
-<p>不知道为什么标题不能有空格，只能换成驼峰命名法了。</p>
-<!-- more -->
-
-<p>读了前7章，就当复习了一下线性代数吧，但这书几乎只关注了 operator 的内容，导致大部分课程中线性代数的内容和它交集不是很大，也可能是我还没领悟到怎么自然地扩展它。</p>
-<p>不过令人高兴的是，我会求投影算子了（</p>
-<p><img alt="QQ图片20220212105627" src="QQ%E5%9B%BE%E7%89%8720220212105627.png" /></p>
-<p>希望能有机会把后面3章读完。</p>
-<p>这次逼着自己在读的时候记了点笔记（抄了抄书），放在下面，免得丢了...</p>
-<p><a href="./lg.pdf">pdf</a></p>
-<p>{% pdf ./lg.pdf %}</p></div>
+<h2 id="maximum-cut">Maximum Cut</h2>
+<p>greedy cut -&gt;
+<span class="arithmatex">\(\frac{1}{2}\)</span>-approximation</p>
+<p>maximization approximation ratio <span class="arithmatex">\(\alpha\)</span>
+<span class="arithmatex">\(<span class="arithmatex">\(\frac{SOL_{G}}{OPT_{G}} \geq \alpha\)</span>\)</span></p>
+<p>minimization ... <span class="arithmatex">\(\leq\)</span></p>
+<p>best approximation now 0.878~ (SDP semi-definite programming)</p>
+<p>unique games conjecture -&gt; hard to do better.</p>
+<p>如何设计的?</p>
+<h3 id="random-cut">Random Cut</h3>
+<p>Theorem for uniform random cut <span class="arithmatex">\(E(S, T)\)</span> in graph <span class="arithmatex">\(G\)</span>.</p>
+<div class="arithmatex">\[E[|E(S, T)|] = \frac{|E|}{2}\]</div>
+<p>Then </p>
+<h4 id="de-randomization-by-conditional-expectation">De-randomization by conditional expectation.</h4>
+<p>Travel from root to leaf while mark the vertex on decision tree.</p>
+<h4 id="de-randomization-by-pairwise-independence">De-randomization by pairwise independence</h4>
+<p>pairwise independent <span class="arithmatex">\(X_{v}\)</span></p>
+<p>mutual independent (<span class="arithmatex">\(\log n\)</span>) -&gt; pairwise independent (<span class="arithmatex">\(n\)</span>)</p>
+<p>use Parity construction </p>
+<p>enumerate all assignments of <span class="arithmatex">\(\log n\)</span> bit. </p>
+<p>Parity search.</p>
+<h2 id="fingerprinting">Fingerprinting</h2>
+<p>answer equality.</p>
+<h3 id="abc">AB=C ?</h3>
+<p><span class="arithmatex">\(O(n^{\omega})\)</span></p>
+<p>find a truth</p>
+<p>Freivald's Algorithm 1979</p>
+<p>pick a uniform random <span class="arithmatex">\(r \in \{0, 1\}^{n}\)</span></p>
+<p>check <span class="arithmatex">\(A(Br) = Cr\)</span>?</p>
+<p>proof ???</p>
+<p>each time <span class="arithmatex">\(\frac{1}{2}\)</span></p>
+<h3 id="polynomial-identity-testing-pit">Polynomial Identity Testing (PIT)</h3>
+<p><span class="arithmatex">\(f, g \in F[x]\)</span> of degree <span class="arithmatex">\(d\)</span></p>
+<p>if <span class="arithmatex">\(f = g\)</span> ?</p>
+<p>f and g are black-box.</p>
+<p>You can do evaluation.</p>
+<p>Deterministic algorithm (polynomial interpolation)</p>
+<p>Fundamental theorem of algebra</p>
+<p>Randomized algorithm </p>
+<p>pick a uniform random r</p>
+<p>check if <span class="arithmatex">\(f(r) = 0\)</span></p>
+<p>communication complexity</p>
+<p>consider # of bits communicated</p>
+<p>Yao 1979</p>
+<p>Every deterministic communication protocol solving EQ communicates <span class="arithmatex">\(n\)</span> bits in the worst-case.</p>
+<p>use a small field like [p] <span class="arithmatex">\(Z_{p}\)</span></p>
+<p>pick a prime <span class="arithmatex">\(p \in [n^2, 2n^2]\)</span></p>
+<p>probability <span class="arithmatex">\(O(\frac{1}{n})\)</span></p>
+<p>what about <span class="arithmatex">\(f \in F[x_{1}, \cdots, x_{n}]\)</span> of degree d.</p>
+<p>poly-time deterministic for PIT -&gt; either NEXP != P/poly or #P != FP</p>
+<p>means that w.h.p. there is a poly-time deterministic for PIT.</p>
+<p>There are some unknown powerful weapons.</p>
+<p>Vandermonde determinant (like a black block)</p>
+<h4 id="schwartz-zippel-theorem">Schwartz-Zippel Theorem</h4>
+<p><span class="arithmatex">\(f \neq 0 \rightarrow \mathrm{Pr}[f(x_{1}, \cdots, x_{n})=0] \leq \frac{d}{|S|}\)</span></p>
+<p># of any <span class="arithmatex">\(f \neq 0\)</span> in any cube <span class="arithmatex">\(S^{n}\)</span> <span class="arithmatex">\(\leq d |S|^{n-1}\)</span></p>
+<p>application of Schwartz-Zippel</p>
+<p>graph perfect matching</p>
+<p>isomorphism of rooted tree</p>
+<p>Reed-Muller codes</p>
+<p>hardness vs randomness tradeoff</p>
+<p>PCP</p></div>
             </div>
         </div>
 
