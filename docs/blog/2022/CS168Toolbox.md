@@ -244,7 +244,7 @@ But here the motivation is that we pick a vector $x$ and apply to operator many 
 
 Theorem, for any $\delta, \epsilon > 0$, letting $v_{1}$ denote the top eigenvector of $A$, with probability at least $1-\delta$ over the choice of $u_{0}$,
 
-$$|\left \langle \frac{A^{t}u_{0}}{|A^{t}u_{0}|}, v_{1} \right \rangle | \geq 1 - \epsilon$$
+$$|\lang \frac{A^{t}u_{0}}{|A^{t}u_{0}|}, v_{1} \rang| \geq 1 - \epsilon$$
 
 provided 
 
@@ -253,5 +253,24 @@ $$t > O(\frac{\log d + \log \frac{1}{\epsilon} + \log \frac{1}{\delta}}{\log \fr
 where $\frac{\lambda_{1}}{\lambda_{2}}$ is the spectral gap.
 
 
-proof ???
+proof 
 
+let $v_{1}, \cdots, v_{k}$ be k orthonormal vectors.
+
+$$
+\begin{align}
+|\lang \frac{A^{t}u_{0}}{|A^{t}u_{0}|}, v_{1} \rang | 
+&= |\frac{\lang u_{0}, v_{1} \rang \lambda_{1}^{t}}{\sqrt{\sum_{i=1}^{d}\lang u_{0}, v_{i} \rang^{2} \lambda_{i}^{2t}}}| \\
+&\geq |\frac{\lang u_{0}, v_{1}\rang \lambda^{t}}{\sqrt{\lang u_{0}, v_{1} \rang^2 \lambda_{1}^{2t} + \lambda_{2}^{2t}}}| \\
+&\geq |\frac{\lang u_{0}, v_{i} \rang \lambda^{t}}{|\lang u_{0}, v_{1} \rang| \lambda_{1}^{t} + \lambda_{2}^{t}}|\\
+&= |\frac{1}{1 + \frac{1}{\lang u_{0}, v_{1} \rang } \frac{\lambda_{2}}{\lambda_{1}}^{t}}|
+\end{align}
+$$
+
+So, let this < $\epsilon$.
+
+$$ t > \frac{\log |\frac{1}{\lang u_{0}, v_{1} \rang}| + \log \frac{1}{\epsilon}}{\log |\frac{\lambda_{1}}{\lambda_{2}}|}$$
+
+Someone told me that $\lang u_{0}, v_{1} \rang > \frac{\delta}{2\sqrt{d}}$ with probability $1 - \delta$. (I do not how to prove this.) 
+
+so $\log \frac{1}{\lang u_{0}, v_{1} \rang}  < \log d + \log \frac{1}{\delta}$ which completes the proof.
