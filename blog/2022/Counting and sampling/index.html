@@ -193,7 +193,7 @@
                     <div class="col-md-9" role="main">
 
 <p>A notes for CSE 599: Counting and Sampling.</p>
-<p>What is sampling: Assume there is a giant space <span class="arithmatex">\(\Omega\)</span>(usually finite). There is a function <span class="arithmatex">\(w: \Omega \rightarrow \mathbb{R}_{+}\)</span>. And the unknown partition function <span class="arithmatex">\(Z = \sum_{x \in \Omega'} w(x)\)</span>. We need to generate a sample <span class="arithmatex">\(x\)</span> with probability <span class="arithmatex">\(\frac{w(s)}{Z}\)</span>. </p>
+<p>What is sampling: Assume there is a giant space <span class="arithmatex">\(\Omega\)</span>(usually finite). There is a function <span class="arithmatex">\(w: \Omega \rightarrow \mathbb{R}_{+}\)</span>. And the unknown partition function <span class="arithmatex">\(Z = \sum_{x \in \Omega} w(x)\)</span>. We need to generate a sample <span class="arithmatex">\(x\)</span> with probability <span class="arithmatex">\(\frac{w(s)}{Z}\)</span>. </p>
 <p>Definition of <span class="arithmatex">\(\#P\)</span>: a function <span class="arithmatex">\(f \in \#P\)</span> if and only if it counts accept paths of a NTM of a problem in <span class="arithmatex">\(NP\)</span>. Or equally count the evidences. So #Circuit-SAT is #P-complete. And if #R is #P-complete, them R is in NP-Complete.</p>
 <p>Counting and sampling deals with some #P problems.</p>
 <h2 id="equivalence-of-counting-and-sampling">Equivalence of Counting and Sampling</h2>
@@ -216,15 +216,57 @@
 <p>For the second formula, we can see that if we pick <span class="arithmatex">\(X = \{x| \mu(x) &gt; \nu(x) \}\)</span>, RHS is maximized.</p>
 <p>$$
 \begin{align}
-|\mu(\Omega - X) - \nu(\Omega - X)| &amp;= |\nu(\Omega - X) - \mu(\Omega - X)| \
+|\mu(\Omega - X) - \nu(\Omega - X)| 
+&amp;= |\nu(\Omega - X) - \mu(\Omega - X)| \
 &amp;= | (1 - \mu(X)) - (1 - \nu(X)) | \
 &amp;= |\nu(X) - \mu(X)| \
-&amp;= |\mu(X) - \nu(X)| 
+&amp;= |\mu(X) - \nu(X)|  \
 \end{align}
 $$
 So </p>
 <div class="arithmatex">\[\max_{X \subset \Omega}|\mu(X) - \nu(X)| = \frac{1}{2} \sum_{x \in \Omega}|\mu(x) - \nu(x)| \]</div>
-<p>Definition of FPAUS: </p></div>
+<p>Definition of FPAUS: </p>
+<p>fully polynomial almost uniform sampler</p>
+<p>There is a finite space <span class="arithmatex">\(\Omega\)</span> and a weight functiton <span class="arithmatex">\(w: \Omega \rightarrow \mathbb{R}_{+}\)</span>, and a partition function <span class="arithmatex">\(Z = \sum_{x \in \Omega}w(x)\)</span>, <span class="arithmatex">\(\pi(x) = \frac{w(x)}{Z}\)</span>, fully polynomial almost uniform sampler is an algorithm with given error rate <span class="arithmatex">\(\delta\)</span> generate a sample from distribution <span class="arithmatex">\(\nu\)</span> s.t.</p>
+<div class="arithmatex">\[||\mu - \nu||_{TV} &lt; \delta\]</div>
+<p>running in <span class="arithmatex">\(Poly(n, \log \frac{1}{\delta})\)</span></p>
+<p>For self-reducible problems, it can be proved that FPRAS means FPAUS.</p>
+<h4 id="cut-counting">Cut counting</h4>
+<p>In this example we show that for cut counting problem FPRAS &lt;=&gt; FPAUS.</p>
+<p>For FPAUS =&gt; FPRAS</p>
+<p>Assume we have FPAUS of cut counting problem.</p>
+<p>We mainly consider this decomposisiont</p>
+<p>Denote the cut set of graph <span class="arithmatex">\(G\)</span> as <span class="arithmatex">\(M(G)\)</span></p>
+<div class="arithmatex">\[\frac{1}{|M(G)|} = \frac{|M(G_{1})|}{|M(G_{0})|} \frac{ |M(G_{2})| }{ |M(G_{1})| }  \cdots \frac{ |M(G_{m})| }{ |M(G_{m-1})| }    \]</div>
+<p>Lemma 1</p>
+<div class="arithmatex">\[\frac{ |M(G_{i})| }{ |M(G_{i-1})| } \geq \frac{1}{2}\]</div>
+<p>proof: consider an element of <span class="arithmatex">\(G_{i}\)</span>, it does not contain <span class="arithmatex">\(e_{i}\)</span>. We can generate a distinctive cut by make one node of <span class="arithmatex">\(e_{i}\)</span> in other cut set. So </p>
+<div class="arithmatex">\[ |M(G_{i})| \leq  |M(G_{i-1})| - |M(G_{i})| \]</div>
+<p><span class="arithmatex">\(\blacksquare\)</span></p>
+<p>Lemma 2</p>
+<p>given a FPAUS of cut counting problem, that </p>
+<div class="arithmatex">\[ ||\mu - \pi||_{TV} \leq K \]</div>
+<p>then </p>
+<div class="arithmatex">\[ |\mathbb{Pr}_{x \sim \mu}[x \in M(G_{i})]  - \mathbb{Pr}_{x \sim \pi}[x \in M(G_{i})] |\leq K\]</div>
+<p>proof:</p>
+<p>Let <span class="arithmatex">\(A = \{x | x \in M(G_{i})\}\)</span>, A is a subset. From total variance's definition, it's trivial.</p>
+<p><span class="arithmatex">\(\blacksquare\)</span></p>
+<p>We have to use lemma2 to calculate the real probability because FPAUS only generates a sample.</p>
+<p>Theorem: Chernoff bound for <span class="arithmatex">\(X_{1}, X_{2}, \cdots, X_{n}\)</span> i.i.d. <span class="arithmatex">\(0 \leq X_{i} leq 1\)</span>. Define <span class="arithmatex">\(\bar{X} = \frac{1}{n}\sum_{i=1}^{n}X_{i}\)</span>. Then for any <span class="arithmatex">\(\alpha &gt; 0\)</span></p>
+<div class="arithmatex">\[\mathbb{Pr}[ |\bar{X} - \mathbb{E}[X]| \geq \alpha \mathbb{E}[X]] \leq 2e^{-n\alpha^2\mathbb{E}[X]/3}\]</div>
+<p>Lemma 3 </p>
+<p>If we approximate <span class="arithmatex">\(p\)</span>  in <span class="arithmatex">\(1 + \frac{\epsilon}{4m}\)</span> with error probability <span class="arithmatex">\(\delta\)</span>, then we can approximate <span class="arithmatex">\(\frac{1}{p}\)</span> in <span class="arithmatex">\(1 + \frac{\epsilon}{2m}\)</span></p>
+<p>proof:</p>
+<p>$$</p>
+<p>\begin{aligned}</p>
+<p>\mathbb{Pr}[ |\tilde{p_{i}} - p_{i} | &gt; \frac{\epsilon}{4m}p_{i}] &amp;= \mathbb{Pr}[  (1 - \frac{\epsilon}{4m})p_{i} &lt; \tilde{p}<em>{i} &lt; (1 + \frac{\epsilon}{4m}) p</em>{i} ]</p>
+<p>\end{aligned}</p>
+<p>$$</p>
+<div class="arithmatex">\[\tilde{p}_{i} &lt; (1 + \frac{\epsilon}{4m})p_{i} \rightarrow (1 - \frac{\epsilon}{4m + \epsilon})\frac{1}{p_{i}} &lt; \frac{1}{\tilde{p}_{i}}\]</div>
+<div class="arithmatex">\[(1 - \frac{\epsilon}{4m + \epsilon}) &gt; (1 - \frac{\epsilon}{2m}) \]</div>
+<p>similar for other side.</p>
+<p>Lemma 4</p>
+<p>If we approximate <span class="arithmatex">\(p_{i}\)</span> with additive error <span class="arithmatex">\(\epsilon\)</span>, then we can approximate </p></div>
             </div>
         </div>
 
@@ -237,7 +279,6 @@ So </p>
                 shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
         </script>
         <script src="../../../js/base.js" defer></script>
-        <script src="../../../javascripts/mathjax.js" defer></script>
         <script src="https://polyfill.io/v3/polyfill.min.js?features=es6" defer></script>
         <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" defer></script>
         <script src="../../../search/main.js" defer></script>

@@ -212,6 +212,7 @@
 </div></div>
                     <div class="col-md-9" role="main">
 
+<p>This is my notes about the CS168 in Stanford University</p>
 <h2 id="dimensionality-reduction">Dimensionality Reduction</h2>
 <p>Want to reduce the large dimension into small dimension ( usually independent with input size )  while preserving distance.</p>
 <h3 id="distance">Distance</h3>
@@ -341,13 +342,13 @@
 <p>proof </p>
 <p>let <span class="arithmatex">\(v_{1}, \cdots, v_{k}\)</span> be k orthonormal vectors.</p>
 <div class="arithmatex">\[
-\begin{align}
+\begin{aligned}
 |\langle \frac{A^{t}u_{0}}{|A^{t}u_{0}|}, v_{1} \rangle | 
 &amp;= |\frac{\langle u_{0}, v_{1} \rangle \lambda_{1}^{t}}{\sqrt{\sum_{i=1}^{d}\langle u_{0}, v_{i} \rangle^{2} \lambda_{i}^{2t}}}| \\
 &amp;\geq |\frac{\langle u_{0}, v_{1}\rangle \lambda^{t}}{\sqrt{\langle u_{0}, v_{1} \rangle^2 \lambda_{1}^{2t} + \lambda_{2}^{2t}}}| \\
 &amp;\geq |\frac{\langle u_{0}, v_{i} \rangle \lambda^{t}}{|\langle u_{0}, v_{1} \rangle| \lambda_{1}^{t} + \lambda_{2}^{t}}|\\
 &amp;= |\frac{1}{1 + \frac{1}{\langle u_{0}, v_{1} \rangle } \frac{\lambda_{2}}{\lambda_{1}}^{t}}|
-\end{align}
+\end{aligned}
 \]</div>
 <p>So, let this &lt; <span class="arithmatex">\(\epsilon\)</span>.</p>
 <div class="arithmatex">\[ t &gt; \frac{\log |\frac{1}{\langle u_{0}, v_{1} \rangle}| + \log \frac{1}{\epsilon}}{\log |\frac{\lambda_{1}}{\lambda_{2}}|}\]</div>
@@ -427,7 +428,6 @@
                 shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
         </script>
         <script src="../../../js/base.js" defer></script>
-        <script src="../../../javascripts/mathjax.js" defer></script>
         <script src="https://polyfill.io/v3/polyfill.min.js?features=es6" defer></script>
         <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" defer></script>
         <script src="../../../search/main.js" defer></script>
