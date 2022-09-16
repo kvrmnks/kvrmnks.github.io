@@ -114,9 +114,17 @@ $\blacksquare$
 
 We have to use lemma2 to calculate the real probability because FPAUS only generates a sample.
 
-Theorem: Chernoff bound for $X_{1}, X_{2}, \cdots, X_{n}$ i.i.d. $0 \leq X_{i} leq 1$. Define $\bar{X} = \frac{1}{n}\sum_{i=1}^{n}X_{i}$. Then for any $\alpha > 0$
+Theorem: Chernoff bound for $X_{1}, X_{2}, \cdots, X_{n}$ i.i.d. $0 \leq X_{i} \leq 1$. Define $\bar{X} = \frac{1}{n}\sum_{i=1}^{n}X_{i}$. Then for any $\alpha > 0$
 
 $$\mathbb{Pr}[ |\bar{X} - \mathbb{E}[X]| \geq \alpha \mathbb{E}[X]] \leq 2e^{-n\alpha^2\mathbb{E}[X]/3}$$
+
+Lemma 2.5
+
+With $O(\frac{m^{2}}{\epsilon^{2}}\log \frac{m}{\delta})$ sample, we can approximate $\bar{X}$ with additive error $\frac{\epsilon}{20m}$ and confidence interval $\frac{\delta}{m}$.
+
+Use Lemma 2 and Lemma 2.5 we can approximate $p_{i}$ with additive error $\frac{\epsilon}{10m}$ and confidence interval $\frac{\delta}{m}$
+
+
 
 Lemma 3 
 
@@ -142,5 +150,17 @@ similar for other side.
 
 Lemma 4
 
-If we approximate $p_{i}$ with additive error $\epsilon$, then we can approximate 
+If we approximate $p_{i}$ with additive error $\epsilon$, then we can approximate it with multiplicative error $2 \epsilon$
+
+proof:
+
+$$ |\tilde{p}_{i} - p_{i}| < \epsilon = \epsilon 2 \frac{1}{2}  < 2\epsilon p_{i} $$
+
+$\blacksquare$
+
+With lemma 2, lemma 2.5 and lemma 4, we can approximate $\frac{1}{p_{i}}$ with multiplicative error $\frac{\epsilon}{5m}$ and confidence interval $\frac{\delta}{m}$
+
+Use union bound, we can prove there is an FPRAS. 
+
+
 
