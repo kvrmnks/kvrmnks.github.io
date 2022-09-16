@@ -4,6 +4,8 @@ date: 2022-9-7 10:14:00
 tags: [TCS]
 ---
 
+This is my notes about the CS168 in Stanford University
+
 ## Dimensionality Reduction
 
 Want to reduce the large dimension into small dimension ( usually independent with input size )  while preserving distance.
@@ -261,13 +263,13 @@ proof
 let $v_{1}, \cdots, v_{k}$ be k orthonormal vectors.
 
 $$
-\begin{align}
+\begin{aligned}
 |\langle \frac{A^{t}u_{0}}{|A^{t}u_{0}|}, v_{1} \rangle | 
 &= |\frac{\langle u_{0}, v_{1} \rangle \lambda_{1}^{t}}{\sqrt{\sum_{i=1}^{d}\langle u_{0}, v_{i} \rangle^{2} \lambda_{i}^{2t}}}| \\
 &\geq |\frac{\langle u_{0}, v_{1}\rangle \lambda^{t}}{\sqrt{\langle u_{0}, v_{1} \rangle^2 \lambda_{1}^{2t} + \lambda_{2}^{2t}}}| \\
 &\geq |\frac{\langle u_{0}, v_{i} \rangle \lambda^{t}}{|\langle u_{0}, v_{1} \rangle| \lambda_{1}^{t} + \lambda_{2}^{t}}|\\
 &= |\frac{1}{1 + \frac{1}{\langle u_{0}, v_{1} \rangle } \frac{\lambda_{2}}{\lambda_{1}}^{t}}|
-\end{align}
+\end{aligned}
 $$
 
 So, let this < $\epsilon$.
