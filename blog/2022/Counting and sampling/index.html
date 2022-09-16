@@ -252,8 +252,11 @@ So </p>
 <p>Let <span class="arithmatex">\(A = \{x | x \in M(G_{i})\}\)</span>, A is a subset. From total variance's definition, it's trivial.</p>
 <p><span class="arithmatex">\(\blacksquare\)</span></p>
 <p>We have to use lemma2 to calculate the real probability because FPAUS only generates a sample.</p>
-<p>Theorem: Chernoff bound for <span class="arithmatex">\(X_{1}, X_{2}, \cdots, X_{n}\)</span> i.i.d. <span class="arithmatex">\(0 \leq X_{i} leq 1\)</span>. Define <span class="arithmatex">\(\bar{X} = \frac{1}{n}\sum_{i=1}^{n}X_{i}\)</span>. Then for any <span class="arithmatex">\(\alpha &gt; 0\)</span></p>
+<p>Theorem: Chernoff bound for <span class="arithmatex">\(X_{1}, X_{2}, \cdots, X_{n}\)</span> i.i.d. <span class="arithmatex">\(0 \leq X_{i} \leq 1\)</span>. Define <span class="arithmatex">\(\bar{X} = \frac{1}{n}\sum_{i=1}^{n}X_{i}\)</span>. Then for any <span class="arithmatex">\(\alpha &gt; 0\)</span></p>
 <div class="arithmatex">\[\mathbb{Pr}[ |\bar{X} - \mathbb{E}[X]| \geq \alpha \mathbb{E}[X]] \leq 2e^{-n\alpha^2\mathbb{E}[X]/3}\]</div>
+<p>Lemma 2.5</p>
+<p>With <span class="arithmatex">\(O(\frac{m^{2}}{\epsilon^{2}}\log \frac{m}{\delta})\)</span> sample, we can approximate <span class="arithmatex">\(\bar{X}\)</span> with additive error <span class="arithmatex">\(\frac{\epsilon}{20m}\)</span> and confidence interval <span class="arithmatex">\(\frac{\delta}{m}\)</span>.</p>
+<p>Use Lemma 2 and Lemma 2.5 we can approximate <span class="arithmatex">\(p_{i}\)</span> with additive error <span class="arithmatex">\(\frac{\epsilon}{10m}\)</span> and confidence interval <span class="arithmatex">\(\frac{\delta}{m}\)</span></p>
 <p>Lemma 3 </p>
 <p>If we approximate <span class="arithmatex">\(p\)</span>  in <span class="arithmatex">\(1 + \frac{\epsilon}{4m}\)</span> with error probability <span class="arithmatex">\(\delta\)</span>, then we can approximate <span class="arithmatex">\(\frac{1}{p}\)</span> in <span class="arithmatex">\(1 + \frac{\epsilon}{2m}\)</span></p>
 <p>proof:</p>
@@ -266,7 +269,12 @@ So </p>
 <div class="arithmatex">\[(1 - \frac{\epsilon}{4m + \epsilon}) &gt; (1 - \frac{\epsilon}{2m}) \]</div>
 <p>similar for other side.</p>
 <p>Lemma 4</p>
-<p>If we approximate <span class="arithmatex">\(p_{i}\)</span> with additive error <span class="arithmatex">\(\epsilon\)</span>, then we can approximate </p></div>
+<p>If we approximate <span class="arithmatex">\(p_{i}\)</span> with additive error <span class="arithmatex">\(\epsilon\)</span>, then we can approximate it with multiplicative error <span class="arithmatex">\(2 \epsilon\)</span></p>
+<p>proof:</p>
+<div class="arithmatex">\[ |\tilde{p}_{i} - p_{i}| &lt; \epsilon = \epsilon 2 \frac{1}{2}  &lt; 2\epsilon p_{i} \]</div>
+<p><span class="arithmatex">\(\blacksquare\)</span></p>
+<p>With lemma 2, lemma 2.5 and lemma 4, we can approximate <span class="arithmatex">\(\frac{1}{p_{i}}\)</span> with multiplicative error <span class="arithmatex">\(\frac{\epsilon}{5m}\)</span> and confidence interval <span class="arithmatex">\(\frac{\delta}{m}\)</span></p>
+<p>Use union bound, we can prove there is an FPRAS. </p></div>
             </div>
         </div>
 
