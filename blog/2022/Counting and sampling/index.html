@@ -8,7 +8,7 @@
         
         
         <link rel="shortcut icon" href="../../../img/favicon.ico">
-        <title>Advanced Algorithm - My Docs</title>
+        <title>Counting and sampling notes - My Docs</title>
         <link href="../../../css/bootstrap.min.css" rel="stylesheet">
         <link href="../../../css/font-awesome.min.css" rel="stylesheet">
         <link href="../../../css/base.css" rel="stylesheet">
@@ -129,7 +129,7 @@
     <ul class="dropdown-menu">
             
 <li>
-    <a href="./" class="dropdown-item active">Advanced Algorithm</a>
+    <a href="../Advanced_Algorithm/" class="dropdown-item">Advanced Algorithm</a>
 </li>
             
 <li>
@@ -137,7 +137,7 @@
 </li>
             
 <li>
-    <a href="../Counting%20and%20sampling/" class="dropdown-item">Counting and sampling notes</a>
+    <a href="./" class="dropdown-item active">Counting and sampling notes</a>
 </li>
             
 <li>
@@ -156,12 +156,12 @@
                             </a>
                         </li>
                             <li class="nav-item">
-                                <a rel="prev" href="../../2021/%E6%AD%A3%E5%88%99%E8%AF%AD%E8%A8%80%E5%9C%A8%E5%8F%AF%E5%88%97%E4%B8%AA%E5%B9%B6%E5%92%8C%E4%BA%A4%E8%BF%90%E7%AE%97%E4%B8%8B%E7%9A%84%E4%B8%8D%E5%B0%81%E9%97%AD%E6%80%A7/" class="nav-link">
+                                <a rel="prev" href="../CS168Toolbox/" class="nav-link">
                                     <i class="fa fa-arrow-left"></i> Previous
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a rel="next" href="../CS168Toolbox/" class="nav-link">
+                                <a rel="next" href="../LinearAlgebraDownRight%E9%98%85%E8%AF%BB/" class="nav-link">
                                     Next <i class="fa fa-arrow-right"></i>
                                 </a>
                             </li>
@@ -183,12 +183,7 @@
     <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
         <ul class="nav flex-column">
             
-            <li class="nav-item" data-level="2"><a href="#maximum-cut" class="nav-link">Maximum Cut</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            
-            <li class="nav-item" data-level="2"><a href="#fingerprinting" class="nav-link">Fingerprinting</a>
+            <li class="nav-item" data-level="2"><a href="#equivalence-of-counting-and-sampling" class="nav-link">Equivalence of Counting and Sampling</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -197,68 +192,39 @@
 </div></div>
                     <div class="col-md-9" role="main">
 
-<h2 id="maximum-cut">Maximum Cut</h2>
-<p>greedy cut -&gt;
-<span class="arithmatex">\(\frac{1}{2}\)</span>-approximation</p>
-<p>maximization approximation ratio <span class="arithmatex">\(\alpha\)</span>
-<span class="arithmatex">\(<span class="arithmatex">\(\frac{SOL_{G}}{OPT_{G}} \geq \alpha\)</span>\)</span></p>
-<p>minimization ... <span class="arithmatex">\(\leq\)</span></p>
-<p>best approximation now 0.878~ (SDP semi-definite programming)</p>
-<p>unique games conjecture -&gt; hard to do better.</p>
-<p>如何设计的?</p>
-<h3 id="random-cut">Random Cut</h3>
-<p>Theorem for uniform random cut <span class="arithmatex">\(E(S, T)\)</span> in graph <span class="arithmatex">\(G\)</span>.</p>
-<div class="arithmatex">\[E[|E(S, T)|] = \frac{|E|}{2}\]</div>
-<p>Then </p>
-<h4 id="de-randomization-by-conditional-expectation">De-randomization by conditional expectation.</h4>
-<p>Travel from root to leaf while mark the vertex on decision tree.</p>
-<h4 id="de-randomization-by-pairwise-independence">De-randomization by pairwise independence</h4>
-<p>pairwise independent <span class="arithmatex">\(X_{v}\)</span></p>
-<p>mutual independent (<span class="arithmatex">\(\log n\)</span>) -&gt; pairwise independent (<span class="arithmatex">\(n\)</span>)</p>
-<p>use Parity construction </p>
-<p>enumerate all assignments of <span class="arithmatex">\(\log n\)</span> bit. </p>
-<p>Parity search.</p>
-<h2 id="fingerprinting">Fingerprinting</h2>
-<p>answer equality.</p>
-<h3 id="abc">AB=C ?</h3>
-<p><span class="arithmatex">\(O(n^{\omega})\)</span></p>
-<p>find a truth</p>
-<p>Freivald's Algorithm 1979</p>
-<p>pick a uniform random <span class="arithmatex">\(r \in \{0, 1\}^{n}\)</span></p>
-<p>check <span class="arithmatex">\(A(Br) = Cr\)</span>?</p>
-<p>proof ???</p>
-<p>each time <span class="arithmatex">\(\frac{1}{2}\)</span></p>
-<h3 id="polynomial-identity-testing-pit">Polynomial Identity Testing (PIT)</h3>
-<p><span class="arithmatex">\(f, g \in F[x]\)</span> of degree <span class="arithmatex">\(d\)</span></p>
-<p>if <span class="arithmatex">\(f = g\)</span> ?</p>
-<p>f and g are black-box.</p>
-<p>You can do evaluation.</p>
-<p>Deterministic algorithm (polynomial interpolation)</p>
-<p>Fundamental theorem of algebra</p>
-<p>Randomized algorithm </p>
-<p>pick a uniform random r</p>
-<p>check if <span class="arithmatex">\(f(r) = 0\)</span></p>
-<p>communication complexity</p>
-<p>consider # of bits communicated</p>
-<p>Yao 1979</p>
-<p>Every deterministic communication protocol solving EQ communicates <span class="arithmatex">\(n\)</span> bits in the worst-case.</p>
-<p>use a small field like [p] <span class="arithmatex">\(Z_{p}\)</span></p>
-<p>pick a prime <span class="arithmatex">\(p \in [n^2, 2n^2]\)</span></p>
-<p>probability <span class="arithmatex">\(O(\frac{1}{n})\)</span></p>
-<p>what about <span class="arithmatex">\(f \in F[x_{1}, \cdots, x_{n}]\)</span> of degree d.</p>
-<p>poly-time deterministic for PIT -&gt; either NEXP != P/poly or #P != FP</p>
-<p>means that w.h.p. there is a poly-time deterministic for PIT.</p>
-<p>There are some unknown powerful weapons.</p>
-<p>Vandermonde determinant (like a black block)</p>
-<h4 id="schwartz-zippel-theorem">Schwartz-Zippel Theorem</h4>
-<p><span class="arithmatex">\(f \neq 0 \rightarrow \mathrm{Pr}[f(x_{1}, \cdots, x_{n})=0] \leq \frac{d}{|S|}\)</span></p>
-<p># of any <span class="arithmatex">\(f \neq 0\)</span> in any cube <span class="arithmatex">\(S^{n}\)</span> <span class="arithmatex">\(\leq d |S|^{n-1}\)</span></p>
-<p>application of Schwartz-Zippel</p>
-<p>graph perfect matching</p>
-<p>isomorphism of rooted tree</p>
-<p>Reed-Muller codes</p>
-<p>hardness vs randomness tradeoff</p>
-<p>PCP</p></div>
+<p>A notes for CSE 599: Counting and Sampling.</p>
+<p>What is sampling: Assume there is a giant space <span class="arithmatex">\(\Omega\)</span>(usually finite). There is a function <span class="arithmatex">\(w: \Omega \rightarrow \mathbb{R}_{+}\)</span>. And the unknown partition function <span class="arithmatex">\(Z = \sum_{x \in \Omega'} w(x)\)</span>. We need to generate a sample <span class="arithmatex">\(x\)</span> with probability <span class="arithmatex">\(\frac{w(s)}{Z}\)</span>. </p>
+<p>Definition of <span class="arithmatex">\(\#P\)</span>: a function <span class="arithmatex">\(f \in \#P\)</span> if and only if it counts accept paths of a NTM of a problem in <span class="arithmatex">\(NP\)</span>. Or equally count the evidences. So #Circuit-SAT is #P-complete. And if #R is #P-complete, them R is in NP-Complete.</p>
+<p>Counting and sampling deals with some #P problems.</p>
+<h2 id="equivalence-of-counting-and-sampling">Equivalence of Counting and Sampling</h2>
+<p>The two basic problem is FPRAS and FPAUS.</p>
+<h3 id="fpras">FPRAS</h3>
+<p>Fully polynomial randomized approximation scheme.</p>
+<p>Definition: Given a set <span class="arithmatex">\(\Omega\)</span> and a weight function <span class="arithmatex">\(w: \Omega \rightarrow \mathbb{R}_{+}\)</span> and a partition function <span class="arithmatex">\(Z = \sum_{x \in \Omega'} w(x)\)</span>, the FPRAS is an algorithm with given error rate <span class="arithmatex">\(\epsilon\)</span> and confidence interval <span class="arithmatex">\(\delta\)</span> that return <span class="arithmatex">\(\tilde{Z}\)</span> , s.t.</p>
+<div class="arithmatex">\[\mathrm{Pr}[(1 - \epsilon)Z &lt; \tilde{Z} &lt; (1 + \epsilon)Z] &gt; 1 - \delta\]</div>
+<p>The algorithm must run in <span class="arithmatex">\(Poly(n, \frac{1}{\epsilon}, \log \frac{1}{\delta})\)</span></p>
+<h3 id="fpaus">FPAUS</h3>
+<p>Fully polynomial almost uniform sampler</p>
+<p>Before giving the formal definition, we have to define total variance.</p>
+<h4 id="total-variance">Total variance</h4>
+<p>Supppose <span class="arithmatex">\(\mu, \nu: \Omega \rightarrow \mathbb{R}_{+}\)</span> are two probability distribution. </p>
+<p>The total variance is defined as </p>
+<div class="arithmatex">\[ ||\mu - \nu||_{TV} = \frac{1}{2} \sum_{x \in \Omega} |\mu(x) - \nu(x)|\]</div>
+<p>Or equally </p>
+<div class="arithmatex">\[||\mu - \nu||_{TV} = \max_{X \subset \Omega}|\mu(X) - \nu(X)|\]</div>
+<p>Proof:</p>
+<p>For the second formula, we can see that if we pick <span class="arithmatex">\(X = \{x| \mu(x) &gt; \nu(x) \}\)</span>, RHS is maximized.</p>
+<p>$$
+\begin{align}
+|\mu(\Omega - X) - \nu(\Omega - X)| &amp;= |\nu(\Omega - X) - \mu(\Omega - X)| \
+&amp;= | (1 - \mu(X)) - (1 - \nu(X)) | \
+&amp;= |\nu(X) - \mu(X)| \
+&amp;= |\mu(X) - \nu(X)| 
+\end{align}
+$$
+So </p>
+<div class="arithmatex">\[\max_{X \subset \Omega}|\mu(X) - \nu(X)| = \frac{1}{2} \sum_{x \in \Omega}|\mu(x) - \nu(x)| \]</div>
+<p>Definition of FPAUS: </p></div>
             </div>
         </div>
 

@@ -137,6 +137,10 @@
 </li>
             
 <li>
+    <a href="../Counting%20and%20sampling/" class="dropdown-item">Counting and sampling notes</a>
+</li>
+            
+<li>
     <a href="../LinearAlgebraDownRight%E9%98%85%E8%AF%BB/" class="dropdown-item">LinearAlgebraDownRight阅读</a>
 </li>
     </ul>
@@ -157,7 +161,7 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a rel="next" href="../LinearAlgebraDownRight%E9%98%85%E8%AF%BB/" class="nav-link">
+                                <a rel="next" href="../Counting%20and%20sampling/" class="nav-link">
                                     Next <i class="fa fa-arrow-right"></i>
                                 </a>
                             </li>
@@ -190,6 +194,16 @@
             </li>
             
             <li class="nav-item" data-level="2"><a href="#principle-component-analysis" class="nav-link">Principle Component Analysis</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="2"><a href="#low-rank-matrix-decomposition" class="nav-link">Low-rank Matrix Decomposition</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="2"><a href="#low-rank-tensor-decomposition" class="nav-link">Low-rank tensor Decomposition</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -253,9 +267,9 @@
 <h3 id="linear-classifiers">Linear Classifiers</h3>
 <p>Throw the assumption of finite function set.</p>
 <p>However there is still the ground true that has the form of linear classifier.</p>
-<p>Theorem: if
-<span class="arithmatex">\(<span class="arithmatex">\(n \geq \frac{c}{\epsilon}(d + \ln \frac{1}{\delta})\)</span>\)</span>
-Then there is a constant <span class="arithmatex">\(c\)</span>, with probability <span class="arithmatex">\(1 - \delta\)</span>, the generalization error is less than <span class="arithmatex">\(\epsilon\)</span>.</p>
+<p>Theorem: if</p>
+<div class="arithmatex">\[n \geq \frac{c}{\epsilon}(d + \ln \frac{1}{\delta})\]</div>
+<p>Then there is a constant <span class="arithmatex">\(c\)</span>, with probability <span class="arithmatex">\(1 - \delta\)</span>, the generalization error is less than <span class="arithmatex">\(\epsilon\)</span>.</p>
 <p>proof motivation: the curse of dimensionality (approximation).</p>
 <p>note the number of samples is linear to the dimension.</p>
 <p>(because we use about <span class="arithmatex">\(e^{d}\)</span> functions to approximate in theory, but we usually calculate the superplane to express the function)</p>
@@ -290,8 +304,8 @@ Then there is a constant <span class="arithmatex">\(c\)</span>, with probability
 <p>For example, we assume the model is <span class="arithmatex">\(y = \left \langle x, a\right \rangle + z\)</span></p>
 <p><span class="arithmatex">\(z \sim N(0, 1)\)</span>, <span class="arithmatex">\(a_{i} \sim N(0, \sigma^2)\)</span></p>
 <p>we assume that <span class="arithmatex">\(x\)</span>'s are fixed for simplicity.</p>
-<p>The likelihood is 
-<span class="arithmatex">\(<span class="arithmatex">\(\mathrm{Pr}(a)\mathrm{Pr}(\frac{data}{a}) = \prod_{i}^{d}e^{-\frac{a^2_{i}}{2\sigma^2}}\prod_{i}^{n}e^{-\frac{(y_{i}-\left \langle x_{i}, a \right \rangle)^{2}}{2}}\)</span>\)</span></p>
+<p>The likelihood is </p>
+<div class="arithmatex">\[\mathrm{Pr}(a)\mathrm{Pr}(\frac{data}{a}) = \prod_{i}^{d}e^{-\frac{a^2_{i}}{2\sigma^2}}\prod_{i}^{n}e^{-\frac{(y_{i}-\left \langle x_{i}, a \right \rangle)^{2}}{2}}\]</div>
 <p>max this likelihood means minimize <span class="arithmatex">\(\sum_{i=1}^{d}\frac{a_{i}^{2}}{2\sigma^2} + \sum_{i=1}^{n} (y_{i} - \left \langle x_{i}, a\right \rangle)^2\)</span></p>
 <p>The first part is regularization.</p>
 <p>Also it shows that the regularization may depend on the hypothesis of model.</p>
@@ -320,7 +334,7 @@ Then there is a constant <span class="arithmatex">\(c\)</span>, with probability
 <p>Maybe there are some ways to find reductions.</p>
 <p>But here the motivation is that we pick a vector <span class="arithmatex">\(x\)</span> and apply to operator many times.</p>
 <p>Theorem, for any <span class="arithmatex">\(\delta, \epsilon &gt; 0\)</span>, letting <span class="arithmatex">\(v_{1}\)</span> denote the top eigenvector of <span class="arithmatex">\(A\)</span>, with probability at least <span class="arithmatex">\(1-\delta\)</span> over the choice of <span class="arithmatex">\(u_{0}\)</span>,</p>
-<div class="arithmatex">\[|\lang \frac{A^{t}u_{0}}{|A^{t}u_{0}|}, v_{1} \rang| \geq 1 - \epsilon\]</div>
+<div class="arithmatex">\[|\langle \frac{A^{t}u_{0}}{|A^{t}u_{0}|}, v_{1} \rangle| \geq 1 - \epsilon\]</div>
 <p>provided </p>
 <div class="arithmatex">\[t &gt; O(\frac{\log d + \log \frac{1}{\epsilon} + \log \frac{1}{\delta}}{\log \frac{\lambda_{1}}{\lambda_{2}}})\]</div>
 <p>where <span class="arithmatex">\(\frac{\lambda_{1}}{\lambda_{2}}\)</span> is the spectral gap.</p>
@@ -328,17 +342,79 @@ Then there is a constant <span class="arithmatex">\(c\)</span>, with probability
 <p>let <span class="arithmatex">\(v_{1}, \cdots, v_{k}\)</span> be k orthonormal vectors.</p>
 <div class="arithmatex">\[
 \begin{align}
-|\lang \frac{A^{t}u_{0}}{|A^{t}u_{0}|}, v_{1} \rang | 
-&amp;= |\frac{\lang u_{0}, v_{1} \rang \lambda_{1}^{t}}{\sqrt{\sum_{i=1}^{d}\lang u_{0}, v_{i} \rang^{2} \lambda_{i}^{2t}}}| \\
-&amp;\geq |\frac{\lang u_{0}, v_{1}\rang \lambda^{t}}{\sqrt{\lang u_{0}, v_{1} \rang^2 \lambda_{1}^{2t} + \lambda_{2}^{2t}}}| \\
-&amp;\geq |\frac{\lang u_{0}, v_{i} \rang \lambda^{t}}{|\lang u_{0}, v_{1} \rang| \lambda_{1}^{t} + \lambda_{2}^{t}}|\\
-&amp;= |\frac{1}{1 + \frac{1}{\lang u_{0}, v_{1} \rang } \frac{\lambda_{2}}{\lambda_{1}}^{t}}|
+|\langle \frac{A^{t}u_{0}}{|A^{t}u_{0}|}, v_{1} \rangle | 
+&amp;= |\frac{\langle u_{0}, v_{1} \rangle \lambda_{1}^{t}}{\sqrt{\sum_{i=1}^{d}\langle u_{0}, v_{i} \rangle^{2} \lambda_{i}^{2t}}}| \\
+&amp;\geq |\frac{\langle u_{0}, v_{1}\rangle \lambda^{t}}{\sqrt{\langle u_{0}, v_{1} \rangle^2 \lambda_{1}^{2t} + \lambda_{2}^{2t}}}| \\
+&amp;\geq |\frac{\langle u_{0}, v_{i} \rangle \lambda^{t}}{|\langle u_{0}, v_{1} \rangle| \lambda_{1}^{t} + \lambda_{2}^{t}}|\\
+&amp;= |\frac{1}{1 + \frac{1}{\langle u_{0}, v_{1} \rangle } \frac{\lambda_{2}}{\lambda_{1}}^{t}}|
 \end{align}
 \]</div>
 <p>So, let this &lt; <span class="arithmatex">\(\epsilon\)</span>.</p>
-<div class="arithmatex">\[ t &gt; \frac{\log |\frac{1}{\lang u_{0}, v_{1} \rang}| + \log \frac{1}{\epsilon}}{\log |\frac{\lambda_{1}}{\lambda_{2}}|}\]</div>
-<p>Someone told me that <span class="arithmatex">\(\lang u_{0}, v_{1} \rang &gt; \frac{\delta}{2\sqrt{d}}\)</span> with probability <span class="arithmatex">\(1 - \delta\)</span>. (I do not how to prove this.) </p>
-<p>so <span class="arithmatex">\(\log \frac{1}{\lang u_{0}, v_{1} \rang}  &lt; \log d + \log \frac{1}{\delta}\)</span> which completes the proof.</p></div>
+<div class="arithmatex">\[ t &gt; \frac{\log |\frac{1}{\langle u_{0}, v_{1} \rangle}| + \log \frac{1}{\epsilon}}{\log |\frac{\lambda_{1}}{\lambda_{2}}|}\]</div>
+<p>Someone told me that <span class="arithmatex">\(\langle u_{0}, v_{1} \rangle &gt; \frac{\delta}{2\sqrt{d}}\)</span> with probability <span class="arithmatex">\(1 - \delta\)</span>. (I do not how to prove this.) </p>
+<p>so <span class="arithmatex">\(\log \frac{1}{\langle u_{0}, v_{1} \rangle}  &lt; \log d + \log \frac{1}{\delta}\)</span> which completes the proof.</p>
+<h2 id="low-rank-matrix-decomposition">Low-rank Matrix Decomposition</h2>
+<h3 id="svd">SVD</h3>
+<p>The key method is the SVD(Singular Value Decomposition) which states that every matrix <span class="arithmatex">\(A\)</span> can be interpreted as <span class="arithmatex">\(USV^{T}\)</span></p>
+<p>I do not willing to include the proof here, because that the constructive proof shows few motivation.</p>
+<p>Some motivations are here </p>
+<div class="arithmatex">\[A^{T}A = (USV^{T})^{T} USV^{T} = VS^{T}SV^{T}\]</div>
+<p>According to PCA, V contains eigen-vectors of <span class="arithmatex">\(A\)</span>.</p>
+<p>Also </p>
+<div class="arithmatex">\[ AA^{T} = (VS^{T}U^{T})^{T}(VS^{T}U^{T}) = USS^{T}U^{T} \]</div>
+<p>The similarity holds for <span class="arithmatex">\(U\)</span>.</p>
+<p>Actually SVD links the eigenvalues of <span class="arithmatex">\(A\)</span> and <span class="arithmatex">\(A^{T}\)</span></p>
+<p>Also these facts help us to calculate the SVD(just use power iteration).</p>
+<h3 id="low-rank-matrix">Low-rank Matrix</h3>
+<p>Recall the matrix with rank <span class="arithmatex">\(k\)</span> can be interpret as <span class="arithmatex">\(\sum_{i=1}^{k}\textbf{u}_{i} \textbf{v}_{i}^{T}\)</span>.</p>
+<p>under Frobenius norm, it can be shown the SVD derives the best approximation.</p>
+<p>Frobenius norm </p>
+<div class="arithmatex">\[||M||_{F} = \sqrt{\sum_{i,j}m^{2}_{i,j}}\]</div>
+<p>for any matrix <span class="arithmatex">\(A\)</span> and its rank-k approximation using SVD <span class="arithmatex">\(A_{k}\)</span>.</p>
+<p>Then for any rank-k matrix <span class="arithmatex">\(B\)</span>.</p>
+<p>Then </p>
+<div class="arithmatex">\[||A - A_{k}||_{F} \leq ||A - B||_{F}\]</div>
+<hr />
+<p>Although we can approximate the matrix under Frobenius norm, but the decomposition is not unique.</p>
+<div class="arithmatex">\[A_{k} = U_{k}V^{T}_{k} = U_{k}B^{-1}BT^{T}_{k} = (U_{k}B^{-1})(T_{k}B^{T})^{T}\]</div>
+<p>But if we extend matrix to tensor, something will happen.</p>
+<h2 id="low-rank-tensor-decomposition">Low-rank tensor Decomposition</h2>
+<p>A rank-k <span class="arithmatex">\(n \times n \times n\)</span> tensor <span class="arithmatex">\(A\)</span> can be interpret as </p>
+<div class="arithmatex">\[A_{x,y,z} = \sum_{i=1}^{k} u_{i}(x)v_{i}(y)w_{i}(z) \]</div>
+<p>ATTENTION: <span class="arithmatex">\((u_{1}, \cdots, u_{k})\)</span> linearly independent, same for <span class="arithmatex">\(v's\)</span> and <span class="arithmatex">\(w's\)</span></p>
+<p>And we can use the notation <span class="arithmatex">\(\oplus\)</span>.</p>
+<div class="arithmatex">\[A = \sum_{i=1}^{k} u_{i} \oplus v_{i} \oplus w_{i}\]</div>
+<p>Theorem: Given a 3-tensor with rank <span class="arithmatex">\(k\)</span>, the decomposition is unique(up to scale a constant)</p>
+<h3 id="jenrichs-algorithm">Jenrich's algorithm</h3>
+<ol>
+<li>
+<p>random two unit vectors <span class="arithmatex">\(x, y \in \mathbb{R}^{n}\)</span> </p>
+</li>
+<li>
+<p>define <span class="arithmatex">\(A_{x}, A_{y}\)</span>.</p>
+</li>
+</ol>
+<div class="arithmatex">\[A_{x}(a, b) = \sum_{i=1}^{k} u_{i}(a) v_{i}(b)\sum_{j=1}^{n}w_{i}(j)x(j) = \sum_{i=1}^{k} u_{i}(a) v_{i}(b) \langle w, x_{i} \rangle\]</div>
+<div class="arithmatex">\[A_{y}(a, b) = \sum_{i=1}^{k} u_{i}(a) v_{i}(b)\sum_{j=1}^{n}w_{i}(j)y(j) = \sum_{i=1}^{k} u_{i}(a) v_{i}(b) \langle w, y_{i} \rangle\]</div>
+<ol>
+<li>compute </li>
+</ol>
+<div class="arithmatex">\[A_{x}A_{y}^{-1} = QSQ^{-1}\]</div>
+<div class="arithmatex">\[A_{x}^{-1}A_{y} = (Y^{T})^{-1}TY^{T}\]</div>
+<ol>
+<li>
+<p>with probability 1, <span class="arithmatex">\(Q\)</span> describes <span class="arithmatex">\((u_{1}, u_{2}, \cdots, u_{k})\)</span> and <span class="arithmatex">\(Y\)</span> describes <span class="arithmatex">\((v_{1}, v_{2}, \cdots, v_{k})\)</span>.</p>
+</li>
+<li>
+<p>solve the linear system to compute <span class="arithmatex">\((w_{1}, w_{2}, \cdots, w_{k})\)</span>.</p>
+</li>
+</ol>
+<p>correctness: </p>
+<div class="arithmatex">\[A_{x} = UDV^{T}, A_{y} = UEV^{T}\]</div>
+<div class="arithmatex">\[A_{x}A^{-1}_{y} = UDE^{-1}U^{-1}\]</div>
+<div class="arithmatex">\[A_{x}^{-1}A_{y} = V^{T^{-1}}D^{-1}EV^{T}\]</div>
+<p>if <span class="arithmatex">\(x, y\)</span> pick randomly, it's likely that <span class="arithmatex">\(A_{x}A_{y}^{-1}\)</span> and <span class="arithmatex">\(A^{-1}_{x}A_{y}\)</span>'s eigenvalues are distinct, so we can distinguish different eigenvectors.</p>
+<p>And because of the <span class="arithmatex">\(S, T\)</span> should be the reciprocative, so we can group correct eigenvectors.</p></div>
             </div>
         </div>
 
