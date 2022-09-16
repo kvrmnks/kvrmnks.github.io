@@ -116,7 +116,9 @@ Throw the assumption of finite function set.
 However there is still the ground true that has the form of linear classifier.
 
 Theorem: if
+
 $$n \geq \frac{c}{\epsilon}(d + \ln \frac{1}{\delta})$$
+
 Then there is a constant $c$, with probability $1 - \delta$, the generalization error is less than $\epsilon$.
 
 proof motivation: the curse of dimensionality (approximation).
@@ -188,6 +190,7 @@ $z \sim N(0, 1)$, $a_{i} \sim N(0, \sigma^2)$
 we assume that $x$'s are fixed for simplicity.
 
 The likelihood is 
+
 $$\mathrm{Pr}(a)\mathrm{Pr}(\frac{data}{a}) = \prod_{i}^{d}e^{-\frac{a^2_{i}}{2\sigma^2}}\prod_{i}^{n}e^{-\frac{(y_{i}-\left \langle x_{i}, a \right \rangle)^{2}}{2}}$$
 
 max this likelihood means minimize $\sum_{i=1}^{d}\frac{a_{i}^{2}}{2\sigma^2} + \sum_{i=1}^{n} (y_{i} - \left \langle x_{i}, a\right \rangle)^2$
@@ -244,7 +247,7 @@ But here the motivation is that we pick a vector $x$ and apply to operator many 
 
 Theorem, for any $\delta, \epsilon > 0$, letting $v_{1}$ denote the top eigenvector of $A$, with probability at least $1-\delta$ over the choice of $u_{0}$,
 
-$$|\lang \frac{A^{t}u_{0}}{|A^{t}u_{0}|}, v_{1} \rang| \geq 1 - \epsilon$$
+$$|\langle \frac{A^{t}u_{0}}{|A^{t}u_{0}|}, v_{1} \rangle| \geq 1 - \epsilon$$
 
 provided 
 
@@ -259,18 +262,119 @@ let $v_{1}, \cdots, v_{k}$ be k orthonormal vectors.
 
 $$
 \begin{align}
-|\lang \frac{A^{t}u_{0}}{|A^{t}u_{0}|}, v_{1} \rang | 
-&= |\frac{\lang u_{0}, v_{1} \rang \lambda_{1}^{t}}{\sqrt{\sum_{i=1}^{d}\lang u_{0}, v_{i} \rang^{2} \lambda_{i}^{2t}}}| \\
-&\geq |\frac{\lang u_{0}, v_{1}\rang \lambda^{t}}{\sqrt{\lang u_{0}, v_{1} \rang^2 \lambda_{1}^{2t} + \lambda_{2}^{2t}}}| \\
-&\geq |\frac{\lang u_{0}, v_{i} \rang \lambda^{t}}{|\lang u_{0}, v_{1} \rang| \lambda_{1}^{t} + \lambda_{2}^{t}}|\\
-&= |\frac{1}{1 + \frac{1}{\lang u_{0}, v_{1} \rang } \frac{\lambda_{2}}{\lambda_{1}}^{t}}|
+|\langle \frac{A^{t}u_{0}}{|A^{t}u_{0}|}, v_{1} \rangle | 
+&= |\frac{\langle u_{0}, v_{1} \rangle \lambda_{1}^{t}}{\sqrt{\sum_{i=1}^{d}\langle u_{0}, v_{i} \rangle^{2} \lambda_{i}^{2t}}}| \\
+&\geq |\frac{\langle u_{0}, v_{1}\rangle \lambda^{t}}{\sqrt{\langle u_{0}, v_{1} \rangle^2 \lambda_{1}^{2t} + \lambda_{2}^{2t}}}| \\
+&\geq |\frac{\langle u_{0}, v_{i} \rangle \lambda^{t}}{|\langle u_{0}, v_{1} \rangle| \lambda_{1}^{t} + \lambda_{2}^{t}}|\\
+&= |\frac{1}{1 + \frac{1}{\langle u_{0}, v_{1} \rangle } \frac{\lambda_{2}}{\lambda_{1}}^{t}}|
 \end{align}
 $$
 
 So, let this < $\epsilon$.
 
-$$ t > \frac{\log |\frac{1}{\lang u_{0}, v_{1} \rang}| + \log \frac{1}{\epsilon}}{\log |\frac{\lambda_{1}}{\lambda_{2}}|}$$
+$$ t > \frac{\log |\frac{1}{\langle u_{0}, v_{1} \rangle}| + \log \frac{1}{\epsilon}}{\log |\frac{\lambda_{1}}{\lambda_{2}}|}$$
 
-Someone told me that $\lang u_{0}, v_{1} \rang > \frac{\delta}{2\sqrt{d}}$ with probability $1 - \delta$. (I do not how to prove this.) 
+Someone told me that $\langle u_{0}, v_{1} \rangle > \frac{\delta}{2\sqrt{d}}$ with probability $1 - \delta$. (I do not how to prove this.) 
 
-so $\log \frac{1}{\lang u_{0}, v_{1} \rang}  < \log d + \log \frac{1}{\delta}$ which completes the proof.
+so $\log \frac{1}{\langle u_{0}, v_{1} \rangle}  < \log d + \log \frac{1}{\delta}$ which completes the proof.
+
+## Low-rank Matrix Decomposition
+
+### SVD
+
+The key method is the SVD(Singular Value Decomposition) which states that every matrix $A$ can be interpreted as $USV^{T}$
+
+I do not willing to include the proof here, because that the constructive proof shows few motivation.
+
+Some motivations are here 
+
+$$A^{T}A = (USV^{T})^{T} USV^{T} = VS^{T}SV^{T}$$
+
+According to PCA, V contains eigen-vectors of $A$.
+
+Also 
+
+$$ AA^{T} = (VS^{T}U^{T})^{T}(VS^{T}U^{T}) = USS^{T}U^{T} $$
+
+The similarity holds for $U$.
+
+Actually SVD links the eigenvalues of $A$ and $A^{T}$
+
+Also these facts help us to calculate the SVD(just use power iteration).
+
+### Low-rank Matrix
+
+Recall the matrix with rank $k$ can be interpret as $\sum_{i=1}^{k}\textbf{u}_{i} \textbf{v}_{i}^{T}$.
+
+under Frobenius norm, it can be shown the SVD derives the best approximation.
+
+Frobenius norm 
+
+$$||M||_{F} = \sqrt{\sum_{i,j}m^{2}_{i,j}}$$
+
+for any matrix $A$ and its rank-k approximation using SVD $A_{k}$.
+
+Then for any rank-k matrix $B$.
+
+Then 
+
+$$||A - A_{k}||_{F} \leq ||A - B||_{F}$$
+
+---
+Although we can approximate the matrix under Frobenius norm, but the decomposition is not unique.
+
+$$A_{k} = U_{k}V^{T}_{k} = U_{k}B^{-1}BT^{T}_{k} = (U_{k}B^{-1})(T_{k}B^{T})^{T}$$
+
+But if we extend matrix to tensor, something will happen.
+
+
+## Low-rank tensor Decomposition
+
+A rank-k $n \times n \times n$ tensor $A$ can be interpret as 
+
+$$A_{x,y,z} = \sum_{i=1}^{k} u_{i}(x)v_{i}(y)w_{i}(z) $$
+
+ATTENTION: $(u_{1}, \cdots, u_{k})$ linearly independent, same for $v's$ and $w's$
+
+And we can use the notation $\oplus$.
+
+$$A = \sum_{i=1}^{k} u_{i} \oplus v_{i} \oplus w_{i}$$
+
+Theorem: Given a 3-tensor with rank $k$, the decomposition is unique(up to scale a constant)
+
+### Jenrich's algorithm
+
+1. random two unit vectors $x, y \in \mathbb{R}^{n}$ 
+
+2. define $A_{x}, A_{y}$.
+
+$$A_{x}(a, b) = \sum_{i=1}^{k} u_{i}(a) v_{i}(b)\sum_{j=1}^{n}w_{i}(j)x(j) = \sum_{i=1}^{k} u_{i}(a) v_{i}(b) \langle w, x_{i} \rangle$$
+
+$$A_{y}(a, b) = \sum_{i=1}^{k} u_{i}(a) v_{i}(b)\sum_{j=1}^{n}w_{i}(j)y(j) = \sum_{i=1}^{k} u_{i}(a) v_{i}(b) \langle w, y_{i} \rangle$$
+
+
+3. compute 
+
+$$A_{x}A_{y}^{-1} = QSQ^{-1}$$
+
+$$A_{x}^{-1}A_{y} = (Y^{T})^{-1}TY^{T}$$
+
+4. with probability 1, $Q$ describes $(u_{1}, u_{2}, \cdots, u_{k})$ and $Y$ describes $(v_{1}, v_{2}, \cdots, v_{k})$.
+
+5. solve the linear system to compute $(w_{1}, w_{2}, \cdots, w_{k})$.
+
+
+correctness: 
+
+$$A_{x} = UDV^{T}, A_{y} = UEV^{T}$$
+
+$$A_{x}A^{-1}_{y} = UDE^{-1}U^{-1}$$
+
+$$A_{x}^{-1}A_{y} = V^{T^{-1}}D^{-1}EV^{T}$$
+
+if $x, y$ pick randomly, it's likely that $A_{x}A_{y}^{-1}$ and $A^{-1}_{x}A_{y}$'s eigenvalues are distinct, so we can distinguish different eigenvectors.
+
+And because of the $S, T$ should be the reciprocative, so we can group correct eigenvectors.
+
+
+
