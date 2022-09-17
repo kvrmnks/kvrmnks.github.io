@@ -378,5 +378,50 @@ if $x, y$ pick randomly, it's likely that $A_{x}A_{y}^{-1}$ and $A^{-1}_{x}A_{y}
 
 And because of the $S, T$ should be the reciprocative, so we can group correct eigenvectors.
 
+## Spectral Graph Theory
 
+The magic about representing the graph as matrix.
+
+Denote rank matrix as $D$ and adjacent matrix as $A$.
+
+Define Laplacian matrix as $L = D - A$.
+
+Note $L$ is a symmetric matrix.
+
+now consider
+
+$$
+Lv_{i} = deg(i)v_{i} - \sum_{j\sim i} v_{j} = \sum_{j \sim i} (v_{i} - v_{j})
+$$
+
+$$
+\begin{align}
+v^{T}Lv &= \sum_{i=1}^{n} v_{i} \sum_{j \sim i} (v_{i} - v_{j}) \\
+&= \sum_{i<j: j \sim i}(v_{i} - v_{j})^{2}
+\end{align}
+$$
+
+So if we put all the vertices on the real numberline. 
+$v^{T}Lv$ is the square sum of all the path.
+
+### Eigenvalues and Eigenvectors
+$L$ has $n$ non-negative real eigenvalues because $L$ is a symmetric matrix and $v^{T}Lv \geq 0$. 
+
+The fact is that the minimum eigenvalue is $0$. Let $v = (\frac{1}{\sqrt{n}}, \cdots, \frac{1}{\sqrt{n}})$.
+
+$$Lv_{i} = \sum_{j \sim i} (v_{i} - v_{j}) = 0$$
+
+Theorem: The number of zero eigenvalues of the Laplacian matrix equals the number connected components of the graph.
+
+proof
+
+we first show that \# connected components < \# zero eigenvalues
+
+Let $S_{i}$ be a maximal connected components, construct a vector $v$, $v_{i} = \frac{1}{\sqrt{|S_{i}|}}  \mathbb{I}[x \in S_{i}]$
+
+So it can form \# connected component orthonormal vectors.
+
+Then about the other side, recall $v^{T}Lv$, if $v_{k+1}$ is orthogonal to $v_{1}, \cdots, v_{k}$, assume $v_{k+1, j} \neq 0$, then for positions of the same maximal connected component must $\neq 0$, so it must not orthogonal to all vectors.
+
+$\blacksquare$
 
