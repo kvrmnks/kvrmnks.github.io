@@ -187,6 +187,16 @@
               <ul class="nav flex-column">
               </ul>
             </li>
+            
+            <li class="nav-item" data-level="2"><a href="#fpras-for-dnf-counting" class="nav-link">FPRAS for DNF counting</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="2"><a href="#network-unreliability" class="nav-link">Network Unreliability</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
         </ul>
     </div>
 </div></div>
@@ -196,6 +206,13 @@
 <p>What is sampling: Assume there is a giant space <span class="arithmatex">\(\Omega\)</span>(usually finite). There is a function <span class="arithmatex">\(w: \Omega \rightarrow \mathbb{R}_{+}\)</span>. And the unknown partition function <span class="arithmatex">\(Z = \sum_{x \in \Omega} w(x)\)</span>. We need to generate a sample <span class="arithmatex">\(x\)</span> with probability <span class="arithmatex">\(\frac{w(s)}{Z}\)</span>. </p>
 <p>Definition of <span class="arithmatex">\(\#P\)</span>: a function <span class="arithmatex">\(f \in \#P\)</span> if and only if it counts accept paths of a NTM of a problem in <span class="arithmatex">\(NP\)</span>. Or equally count the evidences. So #Circuit-SAT is #P-complete. And if #R is #P-complete, them R is in NP-Complete.</p>
 <p>Counting and sampling deals with some #P problems.</p>
+<p>Definition of multiplicative error: </p>
+<p>real value <span class="arithmatex">\(p\)</span> and estimation <span class="arithmatex">\(\tilde{p}\)</span> with multiplicative error <span class="arithmatex">\(1 + \epsilon\)</span> means that </p>
+<div class="arithmatex">\[(1 - \epsilon)p \leq \tilde{p} \leq (1 + \epsilon) p\]</div>
+<p>or equally</p>
+<div class="arithmatex">\[ |\tilde{p} - p| \leq \epsilon p\]</div>
+<p><span class="arithmatex">\(p\)</span> with additive error <span class="arithmatex">\(\epsilon\)</span> means that </p>
+<div class="arithmatex">\[ |\tilde{p} - p| \leq p\]</div>
 <h2 id="equivalence-of-counting-and-sampling">Equivalence of Counting and Sampling</h2>
 <p>The two basic problem is FPRAS and FPAUS.</p>
 <h3 id="fpras">FPRAS</h3>
@@ -231,20 +248,20 @@ So </p>
 <div class="arithmatex">\[||\mu - \nu||_{TV} &lt; \delta\]</div>
 <p>running in <span class="arithmatex">\(Poly(n, \log \frac{1}{\delta})\)</span></p>
 <p>For self-reducible problems, it can be proved that FPRAS means FPAUS.</p>
-<h4 id="cut-counting">Cut counting</h4>
-<p>In this example we show that for cut counting problem FPRAS &lt;=&gt; FPAUS.</p>
+<h4 id="matching-counting">Matching counting</h4>
+<p>In this example we show that for matching counting problem FPRAS &lt;=&gt; FPAUS.</p>
 <p>For FPAUS =&gt; FPRAS</p>
-<p>Assume we have FPAUS of cut counting problem.</p>
+<p>Assume we have FPAUS of matching counting problem.</p>
 <p>We mainly consider this decomposisiont</p>
-<p>Denote the cut set of graph <span class="arithmatex">\(G\)</span> as <span class="arithmatex">\(M(G)\)</span></p>
+<p>Denote the matching set of graph <span class="arithmatex">\(G\)</span> as <span class="arithmatex">\(M(G)\)</span></p>
 <div class="arithmatex">\[\frac{1}{|M(G)|} = \frac{|M(G_{1})|}{|M(G_{0})|} \frac{ |M(G_{2})| }{ |M(G_{1})| }  \cdots \frac{ |M(G_{m})| }{ |M(G_{m-1})| }    \]</div>
 <p>Lemma 1</p>
 <div class="arithmatex">\[\frac{ |M(G_{i})| }{ |M(G_{i-1})| } \geq \frac{1}{2}\]</div>
-<p>proof: consider an element of <span class="arithmatex">\(G_{i}\)</span>, it does not contain <span class="arithmatex">\(e_{i}\)</span>. We can generate a distinctive cut by make one node of <span class="arithmatex">\(e_{i}\)</span> in other cut set. So </p>
+<p>proof: consider an element of <span class="arithmatex">\(G_{i}\)</span>, it does not contain <span class="arithmatex">\(e_{i}\)</span>. We can generate a distinctive matching by make one node of <span class="arithmatex">\(e_{i}\)</span> in other matching set. So </p>
 <div class="arithmatex">\[ |M(G_{i})| \leq  |M(G_{i-1})| - |M(G_{i})| \]</div>
 <p><span class="arithmatex">\(\blacksquare\)</span></p>
 <p>Lemma 2</p>
-<p>given a FPAUS of cut counting problem, that </p>
+<p>given a FPAUS of matching counting problem, that </p>
 <div class="arithmatex">\[ ||\mu - \pi||_{TV} \leq K \]</div>
 <p>then </p>
 <div class="arithmatex">\[ |\mathbb{Pr}_{x \sim \mu}[x \in M(G_{i})]  - \mathbb{Pr}_{x \sim \pi}[x \in M(G_{i})] |\leq K\]</div>
@@ -261,20 +278,48 @@ So </p>
 <p>If we approximate <span class="arithmatex">\(p\)</span>  in <span class="arithmatex">\(1 + \frac{\epsilon}{4m}\)</span> with error probability <span class="arithmatex">\(\delta\)</span>, then we can approximate <span class="arithmatex">\(\frac{1}{p}\)</span> in <span class="arithmatex">\(1 + \frac{\epsilon}{2m}\)</span></p>
 <p>proof:</p>
 <p>$$</p>
-<p>\begin{aligned}</p>
-<p>\mathbb{Pr}[ |\tilde{p_{i}} - p_{i} | &gt; \frac{\epsilon}{4m}p_{i}] &amp;= \mathbb{Pr}[  (1 - \frac{\epsilon}{4m})p_{i} &lt; \tilde{p}<em>{i} &lt; (1 + \frac{\epsilon}{4m}) p</em>{i} ]</p>
-<p>\end{aligned}</p>
+<p>\mathbb{Pr}[ |\tilde{p_{i}} - p_{i} | &gt; \frac{\epsilon}{4m}p_{i}] = \mathbb{Pr}[  (1 - \frac{\epsilon}{4m})p_{i} &lt; \tilde{p}<em>{i} &lt; (1 + \frac{\epsilon}{4m}) p</em>{i} ]</p>
 <p>$$</p>
 <div class="arithmatex">\[\tilde{p}_{i} &lt; (1 + \frac{\epsilon}{4m})p_{i} \rightarrow (1 - \frac{\epsilon}{4m + \epsilon})\frac{1}{p_{i}} &lt; \frac{1}{\tilde{p}_{i}}\]</div>
 <div class="arithmatex">\[(1 - \frac{\epsilon}{4m + \epsilon}) &gt; (1 - \frac{\epsilon}{2m}) \]</div>
-<p>similar for other side.</p>
+<p>similar for the other side.</p>
 <p>Lemma 4</p>
-<p>If we approximate <span class="arithmatex">\(p_{i}\)</span> with additive error <span class="arithmatex">\(\epsilon\)</span>, then we can approximate it with multiplicative error <span class="arithmatex">\(2 \epsilon\)</span></p>
+<p>If we approximate <span class="arithmatex">\(p_{i}\)</span> with additive error <span class="arithmatex">\(\epsilon\)</span>, then we can approximate it with multiplicative error <span class="arithmatex">\(1 + 2 \epsilon\)</span></p>
 <p>proof:</p>
 <div class="arithmatex">\[ |\tilde{p}_{i} - p_{i}| &lt; \epsilon = \epsilon 2 \frac{1}{2}  &lt; 2\epsilon p_{i} \]</div>
 <p><span class="arithmatex">\(\blacksquare\)</span></p>
-<p>With lemma 2, lemma 2.5 and lemma 4, we can approximate <span class="arithmatex">\(\frac{1}{p_{i}}\)</span> with multiplicative error <span class="arithmatex">\(\frac{\epsilon}{5m}\)</span> and confidence interval <span class="arithmatex">\(\frac{\delta}{m}\)</span></p>
-<p>Use union bound, we can prove there is an FPRAS. </p></div>
+<p>With lemma 2, lemma 2.5 and lemma 4, we can approximate <span class="arithmatex">\(\frac{1}{p_{i}}\)</span> with multiplicative error <span class="arithmatex">\(1 + \frac{\epsilon}{5m}\)</span> and confidence interval <span class="arithmatex">\(\frac{\delta}{m}\)</span></p>
+<p>Use union bound, we can prove there is an FPRAS. </p>
+<p>FPRAS =&gt; FPAUS</p>
+<p>Suppose we have a exact counter, we can derive a exact sampler by conditional probability method.</p>
+<p>Now try to extend to approximate area.</p>
+<p>Denote the <span class="arithmatex">\(i\)</span> th graph as <span class="arithmatex">\(G^{i}\)</span>, we can formulate the probability of a sample <span class="arithmatex">\(x\)</span>, <span class="arithmatex">\(e_{i} = (u_{i}, v_{i})\)</span>.</p>
+<div class="arithmatex">\[\mathbb{Pr}[x] = \prod_{i}^{|E|}\max(\mathbb{I}[e_{i} \notin V(G_{i-1})], \frac{\mathbb{I}[e_{i} \notin x] |M(G^{i-1} / \{e^{i}\})| + \mathbb{I}[e_{i} \in x] |M(G^{i-1}/ \{u_{i}, v_{i}\})|}{|M(G^{i-1})|})\]</div>
+<p>Using FPRAS, we can approximate <span class="arithmatex">\(|M(.)|\)</span> with multiplicative error <span class="arithmatex">\(1 + \epsilon\)</span>, and confidence interval <span class="arithmatex">\(\delta\)</span>. </p>
+<p>So, we can approximate <span class="arithmatex">\(\frac{1}{\mathbb{Pr}[x]}\)</span> with multiplicative error <span class="arithmatex">\((1 + \epsilon)^{n^{2}}\)</span> and confidence interval <span class="arithmatex">\(n^{2}\delta\)</span>(union bound).</p>
+<p><strong>I think process can end at here, but the lecture brings out rejection sampling that I do not understand.</strong></p>
+<div class="arithmatex">\[ \tilde{\pi}(M) \geq \frac{(1 - \epsilon)^{n^2}}{|M(G)|} \geq \frac{(1 - \epsilon)^{n^2 + 1}}{|\tilde{M}(G)|} := \alpha\]</div>
+<p>Once construct <span class="arithmatex">\(M\)</span>, we construct </p>
+<p><span class="arithmatex">\(p_{accept}(M) = \frac{\alpha}{\tilde{\pi}(M)}\)</span></p>
+<p>So every samples has the same probability. </p>
+<h2 id="fpras-for-dnf-counting">FPRAS for DNF counting</h2>
+<p>Assume there are <span class="arithmatex">\(n\)</span> variables and <span class="arithmatex">\(m\)</span> clauses.</p>
+<p>Consider the most straight way, sample <span class="arithmatex">\(N\)</span> samples <span class="arithmatex">\(X_{1}, X_{2}, \cdots, X_{n}\)</span>. <span class="arithmatex">\(X_{i}\)</span> contains an assignment for each variable. If DNF satisfies, then <span class="arithmatex">\(X_{i} = 1\)</span></p>
+<p>So
+<span class="arithmatex">\(<span class="arithmatex">\(\frac{1}{N}\sum_{i=1}^{N}X_{i} = \frac{ANS}{2^{n}}\)</span>\)</span> </p>
+<p>According to Chernoff Bound, if we want to sample <span class="arithmatex">\(ANS\)</span> with multiplicative error <span class="arithmatex">\(1 + \epsilon\)</span> and confidence interval <span class="arithmatex">\(\delta\)</span>. </p>
+<p>We need to hold</p>
+<div class="arithmatex">\[e^{-N\epsilon^{2}\frac{ANS}{3\times 2^{n}}} \leq \delta\]</div>
+<p>So <span class="arithmatex">\(N &gt; \frac{2^{n}}{\epsilon^{2} ANS}\)</span>, but <span class="arithmatex">\(N\)</span> may be exp about <span class="arithmatex">\(n\)</span>.</p>
+<h3 id="karp-luby-and-madras-algorithm-klm">Karp, Luby and Madras algorithm [KLM]</h3>
+<p>This is a simple way to decrease the size of universe. </p>
+<p>We sample from the union of ground set instead of all the assignments.</p>
+<p>Let the ground set(feasible solutions) of <span class="arithmatex">\(i\)</span> th clause be <span class="arithmatex">\(S_{i}\)</span>.</p>
+<p>We sample from <span class="arithmatex">\(\sum_{i=1}^{m} S_{i}\)</span>.</p>
+<p>The estimator is <span class="arithmatex">\(\frac{|\bigcup_{i=1}^{m}S_{i}|}{\sum_{i=1}^{m} |S_{i}|}\)</span></p>
+<p>In DNF counting problem, it is easy to sample <span class="arithmatex">\(\sum_{i=1}^{m}|S_{i}|\)</span>, we can use brute hash to exclude those same elements.</p>
+<h2 id="network-unreliability">Network Unreliability</h2>
+<p>...</p></div>
             </div>
         </div>
 

@@ -207,6 +207,11 @@
               <ul class="nav flex-column">
               </ul>
             </li>
+            
+            <li class="nav-item" data-level="2"><a href="#spectral-graph-theory" class="nav-link">Spectral Graph Theory</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
         </ul>
     </div>
 </div></div>
@@ -415,7 +420,35 @@
 <div class="arithmatex">\[A_{x}A^{-1}_{y} = UDE^{-1}U^{-1}\]</div>
 <div class="arithmatex">\[A_{x}^{-1}A_{y} = V^{T^{-1}}D^{-1}EV^{T}\]</div>
 <p>if <span class="arithmatex">\(x, y\)</span> pick randomly, it's likely that <span class="arithmatex">\(A_{x}A_{y}^{-1}\)</span> and <span class="arithmatex">\(A^{-1}_{x}A_{y}\)</span>'s eigenvalues are distinct, so we can distinguish different eigenvectors.</p>
-<p>And because of the <span class="arithmatex">\(S, T\)</span> should be the reciprocative, so we can group correct eigenvectors.</p></div>
+<p>And because of the <span class="arithmatex">\(S, T\)</span> should be the reciprocative, so we can group correct eigenvectors.</p>
+<h2 id="spectral-graph-theory">Spectral Graph Theory</h2>
+<p>The magic about representing the graph as matrix.</p>
+<p>Denote rank matrix as <span class="arithmatex">\(D\)</span> and adjacent matrix as <span class="arithmatex">\(A\)</span>.</p>
+<p>Define Laplacian matrix as <span class="arithmatex">\(L = D - A\)</span>.</p>
+<p>Note <span class="arithmatex">\(L\)</span> is a symmetric matrix.</p>
+<p>now consider</p>
+<div class="arithmatex">\[
+Lv_{i} = deg(i)v_{i} - \sum_{j\sim i} v_{j} = \sum_{j \sim i} (v_{i} - v_{j})
+\]</div>
+<div class="arithmatex">\[
+\begin{align}
+v^{T}Lv &amp;= \sum_{i=1}^{n} v_{i} \sum_{j \sim i} (v_{i} - v_{j}) \\
+&amp;= \sum_{i&lt;j: j \sim i}(v_{i} - v_{j})^{2}
+\end{align}
+\]</div>
+<p>So if we put all the vertices on the real numberline. 
+<span class="arithmatex">\(v^{T}Lv\)</span> is the square sum of all the path.</p>
+<h3 id="eigenvalues-and-eigenvectors">Eigenvalues and Eigenvectors</h3>
+<p><span class="arithmatex">\(L\)</span> has <span class="arithmatex">\(n\)</span> non-negative real eigenvalues because <span class="arithmatex">\(L\)</span> is a symmetric matrix and <span class="arithmatex">\(v^{T}Lv \geq 0\)</span>. </p>
+<p>The fact is that the minimum eigenvalue is <span class="arithmatex">\(0\)</span>. Let <span class="arithmatex">\(v = (\frac{1}{\sqrt{n}}, \cdots, \frac{1}{\sqrt{n}})\)</span>.</p>
+<div class="arithmatex">\[Lv_{i} = \sum_{j \sim i} (v_{i} - v_{j}) = 0\]</div>
+<p>Theorem: The number of zero eigenvalues of the Laplacian matrix equals the number connected components of the graph.</p>
+<p>proof</p>
+<p>we first show that # connected components &lt; # zero eigenvalues</p>
+<p>Let <span class="arithmatex">\(S_{i}\)</span> be a maximal connected components, construct a vector <span class="arithmatex">\(v\)</span>, <span class="arithmatex">\(v_{i} = \frac{1}{\sqrt{|S_{i}|}}  \mathbb{I}[x \in S_{i}]\)</span></p>
+<p>So it can form # connected component orthonormal vectors.</p>
+<p>Then about the other side, recall <span class="arithmatex">\(v^{T}Lv\)</span>, if <span class="arithmatex">\(v_{k+1}\)</span> is orthogonal to <span class="arithmatex">\(v_{1}, \cdots, v_{k}\)</span>, assume <span class="arithmatex">\(v_{k+1, j} \neq 0\)</span>, then for positions of the same maximal connected component must <span class="arithmatex">\(\neq 0\)</span>, so it must not orthogonal to all vectors.</p>
+<p><span class="arithmatex">\(\blacksquare\)</span></p></div>
             </div>
         </div>
 
