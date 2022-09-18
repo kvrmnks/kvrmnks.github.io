@@ -425,3 +425,69 @@ Then about the other side, recall $v^{T}Lv$, if $v_{k+1}$ is orthogonal to $v_{1
 
 $\blacksquare$
 
+### Conductance and isoperimeter 
+
+Some intuitions are that $v^{T}Lv = \lambda v^{T}v = \sum_{i \sim j} (v_{i} - v_{j})^{2}$, the 2nd smallest eigenvalue somehow place vertices ``near''.
+
+
+This fact can be used to embed vertices into a $d$-dimensional space. Map vertex $i$ to $(v_{2}(i), v_{3}(i))$ making the adjacancy near. While choose the 2 largest eigenvector will bring them apart.
+
+This also lead to the implementation in clustering and graph coloring.
+
+Definition: isoperimeter of a cut $\theta(S)$
+
+$$\theta(S) = \frac{|\delta(S)|}{\min(|S|, |V - S|)}$$
+
+The isoperimeter ratio of the graph $G$ is 
+
+$$\min_{S \subset V(G)} \delta(S)$$
+
+This number interpret the connectivity of a graph.
+
+And the second smallest eigenvalue $\lambda_{2}$ (maybe $\lambda_{2} = 0$) will give some insight of this number like those intuitions above.
+
+Theorem: Given a graph $G = (V, E)$ and any set $S \subset V$, it holds that
+
+$$\delta(S) \geq \lambda_{2} (1 - \frac{\min(|S|, |V - S|)}{|V|})$$
+
+proof:
+
+We assume that $|S| < |V - S|$.
+
+We can interpret $\delta(S)$ by $v^{T}Lv$.
+
+Define $v$ as when $i \notin S$, $v(i) = -\frac{|S|}{|V|}$, while $i \in S$, $v(i) = 1 - \frac{|S|}{|V|}$.
+
+$$v^{T}Lv = \sum_{(i,j) \in \delta(S)} (v_{i} - v_{j})^{2} = |\delta(S)|$$
+
+Recall that if $\lambda_{1}, \cdots, \lambda_{n}$ and $v_{1}, \cdots, v_{n}$ are eigenvalues and eigenvectors of $L$.
+
+$$v^{T}Lv = \sum_{i=1}^{n} \langle v, v_{i} \rangle v_{i}^{T}v_{i}$$
+
+So if we extract the eigenvalue $0$ and corresponding eigenvector $(\frac{1}{\sqrt{n}}, \cdots, \frac{1}{\sqrt{n}})$. 
+
+So
+
+$$\lambda_{2} = \min_{x: x^{T}v_{1} = 0} \frac{v^{T}Lv}{v^{T}v} \leq \frac{|\delta(S)|}{|S|(1 - \frac{|S|}{|v|})}$$
+
+So
+
+$$|\delta(S)| \geq \lambda_{2} |S|(1 - \frac{|S|}{|V|})$$
+
+$\blacksquare$
+
+Cheeger's Theorem
+
+If $\lambda_{2}$ is the second smallest eigenvalue of a d-regular graph, Then there exists a set $S \subset V$ such that
+
+$$\frac{\lambda_{2}}{2d} \leq \mathrm{cond}(S) \leq \frac{\sqrt{2\lambda_{2}}}{\sqrt{d}}$$
+
+
+### Diffusion model and Random walks
+
+Let $w: V \rightarrow \mathbb{R}$, define this process $w_{i+1}(x) = \frac{1}{\mathrm{Adj}(x)}\sum_{x\sim y}w_{i}(y)$
+
+So we know that $w_{i+1} = D^{-1}Aw_{i}$
+
+This is actually the power iteration. 
+
