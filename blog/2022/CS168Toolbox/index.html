@@ -448,7 +448,39 @@ v^{T}Lv &amp;= \sum_{i=1}^{n} v_{i} \sum_{j \sim i} (v_{i} - v_{j}) \\
 <p>Let <span class="arithmatex">\(S_{i}\)</span> be a maximal connected components, construct a vector <span class="arithmatex">\(v\)</span>, <span class="arithmatex">\(v_{i} = \frac{1}{\sqrt{|S_{i}|}}  \mathbb{I}[x \in S_{i}]\)</span></p>
 <p>So it can form # connected component orthonormal vectors.</p>
 <p>Then about the other side, recall <span class="arithmatex">\(v^{T}Lv\)</span>, if <span class="arithmatex">\(v_{k+1}\)</span> is orthogonal to <span class="arithmatex">\(v_{1}, \cdots, v_{k}\)</span>, assume <span class="arithmatex">\(v_{k+1, j} \neq 0\)</span>, then for positions of the same maximal connected component must <span class="arithmatex">\(\neq 0\)</span>, so it must not orthogonal to all vectors.</p>
-<p><span class="arithmatex">\(\blacksquare\)</span></p></div>
+<p><span class="arithmatex">\(\blacksquare\)</span></p>
+<h3 id="conductance-and-isoperimeter">Conductance and isoperimeter</h3>
+<p>Some intuitions are that <span class="arithmatex">\(v^{T}Lv = \lambda v^{T}v = \sum_{i \sim j} (v_{i} - v_{j})^{2}\)</span>, the 2nd smallest eigenvalue somehow place vertices ``near''.</p>
+<p>This fact can be used to embed vertices into a <span class="arithmatex">\(d\)</span>-dimensional space. Map vertex <span class="arithmatex">\(i\)</span> to <span class="arithmatex">\((v_{2}(i), v_{3}(i))\)</span> making the adjacancy near. While choose the 2 largest eigenvector will bring them apart.</p>
+<p>This also lead to the implementation in clustering and graph coloring.</p>
+<p>Definition: isoperimeter of a cut <span class="arithmatex">\(\theta(S)\)</span></p>
+<div class="arithmatex">\[\theta(S) = \frac{|\delta(S)|}{\min(|S|, |V - S|)}\]</div>
+<p>The isoperimeter ratio of the graph <span class="arithmatex">\(G\)</span> is </p>
+<div class="arithmatex">\[\min_{S \subset V(G)} \delta(S)\]</div>
+<p>This number interpret the connectivity of a graph.</p>
+<p>And the second smallest eigenvalue <span class="arithmatex">\(\lambda_{2}\)</span> (maybe <span class="arithmatex">\(\lambda_{2} = 0\)</span>) will give some insight of this number like those intuitions above.</p>
+<p>Theorem: Given a graph <span class="arithmatex">\(G = (V, E)\)</span> and any set <span class="arithmatex">\(S \subset V\)</span>, it holds that</p>
+<div class="arithmatex">\[\delta(S) \geq \lambda_{2} (1 - \frac{\min(|S|, |V - S|)}{|V|})\]</div>
+<p>proof:</p>
+<p>We assume that <span class="arithmatex">\(|S| &lt; |V - S|\)</span>.</p>
+<p>We can interpret <span class="arithmatex">\(\delta(S)\)</span> by <span class="arithmatex">\(v^{T}Lv\)</span>.</p>
+<p>Define <span class="arithmatex">\(v\)</span> as when <span class="arithmatex">\(i \notin S\)</span>, <span class="arithmatex">\(v(i) = -\frac{|S|}{|V|}\)</span>, while <span class="arithmatex">\(i \in S\)</span>, <span class="arithmatex">\(v(i) = 1 - \frac{|S|}{|V|}\)</span>.</p>
+<div class="arithmatex">\[v^{T}Lv = \sum_{(i,j) \in \delta(S)} (v_{i} - v_{j})^{2} = |\delta(S)|\]</div>
+<p>Recall that if <span class="arithmatex">\(\lambda_{1}, \cdots, \lambda_{n}\)</span> and <span class="arithmatex">\(v_{1}, \cdots, v_{n}\)</span> are eigenvalues and eigenvectors of <span class="arithmatex">\(L\)</span>.</p>
+<div class="arithmatex">\[v^{T}Lv = \sum_{i=1}^{n} \langle v, v_{i} \rangle v_{i}^{T}v_{i}\]</div>
+<p>So if we extract the eigenvalue <span class="arithmatex">\(0\)</span> and corresponding eigenvector <span class="arithmatex">\((\frac{1}{\sqrt{n}}, \cdots, \frac{1}{\sqrt{n}})\)</span>. </p>
+<p>So</p>
+<div class="arithmatex">\[\lambda_{2} = \min_{x: x^{T}v_{1} = 0} \frac{v^{T}Lv}{v^{T}v} \leq \frac{|\delta(S)|}{|S|(1 - \frac{|S|}{|v|})}\]</div>
+<p>So</p>
+<div class="arithmatex">\[|\delta(S)| \geq \lambda_{2} |S|(1 - \frac{|S|}{|V|})\]</div>
+<p><span class="arithmatex">\(\blacksquare\)</span></p>
+<p>Cheeger's Theorem</p>
+<p>If <span class="arithmatex">\(\lambda_{2}\)</span> is the second smallest eigenvalue of a d-regular graph, Then there exists a set <span class="arithmatex">\(S \subset V\)</span> such that</p>
+<div class="arithmatex">\[\frac{\lambda_{2}}{2d} \leq \mathrm{cond}(S) \leq \frac{\sqrt{2\lambda_{2}}}{\sqrt{d}}\]</div>
+<h3 id="diffusion-model-and-random-walks">Diffusion model and Random walks</h3>
+<p>Let <span class="arithmatex">\(w: V \rightarrow \mathbb{R}\)</span>, define this process <span class="arithmatex">\(w_{i+1}(x) = \frac{1}{\mathrm{Adj}(x)}\sum_{x\sim y}w_{i}(y)\)</span></p>
+<p>So we know that <span class="arithmatex">\(w_{i+1} = D^{-1}Aw_{i}\)</span></p>
+<p>This is actually the power iteration. </p></div>
             </div>
         </div>
 
