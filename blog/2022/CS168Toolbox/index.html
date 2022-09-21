@@ -212,6 +212,11 @@
               <ul class="nav flex-column">
               </ul>
             </li>
+            
+            <li class="nav-item" data-level="2"><a href="#sampling-and-estimation" class="nav-link">Sampling and estimation</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
         </ul>
     </div>
 </div></div>
@@ -480,7 +485,31 @@ v^{T}Lv &amp;= \sum_{i=1}^{n} v_{i} \sum_{j \sim i} (v_{i} - v_{j}) \\
 <h3 id="diffusion-model-and-random-walks">Diffusion model and Random walks</h3>
 <p>Let <span class="arithmatex">\(w: V \rightarrow \mathbb{R}\)</span>, define this process <span class="arithmatex">\(w_{i+1}(x) = \frac{1}{\mathrm{Adj}(x)}\sum_{x\sim y}w_{i}(y)\)</span></p>
 <p>So we know that <span class="arithmatex">\(w_{i+1} = D^{-1}Aw_{i}\)</span></p>
-<p>This is actually the power iteration. </p></div>
+<p>This is actually the power iteration. </p>
+<h2 id="sampling-and-estimation">Sampling and estimation</h2>
+<h3 id="reservoir-sampling">Reservoir Sampling</h3>
+<p>want to sample <span class="arithmatex">\(k\)</span> data from totally <span class="arithmatex">\(N\)</span> data uniformly. </p>
+<p>Just recall how to implement permutation in C++.</p>
+<p>uniform random swap this datum with some element existing.</p>
+<h3 id="markov-inequality-and-chebyshevs-inequality">Markov inequality and Chebyshev's inequality</h3>
+<p>all included by the ''counting and sampling''</p>
+<h3 id="importance-sampling">Importance Sampling</h3>
+<p>intuitions are sample more important data (long-tail distribution) or much variance data (cut down variance).</p>
+<h3 id="estimating-the-missing-mass">Estimating the missing mass</h3>
+<p>Good-Turing frequency estimation scheme.</p>
+<div class="arithmatex">\[\mathbb{Pr}[next draw is something new] \approx \frac{\# elements\quad seen\quad once}{n}\]</div>
+<h3 id="mcmc">MCMC</h3>
+<p>Theorem Fundamental theory of Markov Chain</p>
+<ol>
+<li>
+<p>for every two states <span class="arithmatex">\(s_{i}, s_{j}\)</span>, it is possible to eventually get to state <span class="arithmatex">\(s_{j}\)</span>, if one starts in state <span class="arithmatex">\(s_{i}\)</span>.</p>
+</li>
+<li>
+<p>The chain is aperiodic: for a pair states, <span class="arithmatex">\(s_{i}\)</span>, <span class="arithmatex">\(s_{j}\)</span>, consider the set of time <span class="arithmatex">\(\{t_{1}, t_{2},\cdots \}\)</span> consisting of all <span class="arithmatex">\(t\)</span> for which <span class="arithmatex">\(\mathbb{Pr}[X_{t}=s_{j}|X_{0}=s_{i}]&gt;0\)</span>. A chain is aperiodic if $gcd({t_{1}, t_{2},\cdots })=1  $</p>
+</li>
+</ol>
+<p>Then for any states <span class="arithmatex">\(s\)</span>,</p>
+<p><span class="arithmatex">\(\lim_{t \rightarrow \infty}D(t,s) \rightarrow \pi\)</span></p></div>
             </div>
         </div>
 

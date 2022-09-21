@@ -192,6 +192,11 @@
               <ul class="nav flex-column">
               </ul>
             </li>
+            
+            <li class="nav-item" data-level="2"><a href="#balls-into-bins" class="nav-link">Balls into Bins</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
         </ul>
     </div>
 </div></div>
@@ -258,7 +263,45 @@
 <p>isomorphism of rooted tree</p>
 <p>Reed-Muller codes</p>
 <p>hardness vs randomness tradeoff</p>
-<p>PCP</p></div>
+<p>PCP</p>
+<h3 id="binary-graph-perfect-matching">binary graph perfect matching</h3>
+<p>Hall's theorem (matching theorem!)</p>
+<p>Hungarian method O(n^3)</p>
+<p>Hopcroft-Karp algorithm <span class="arithmatex">\(O(m\sqrt{n})\)</span></p>
+<p>Edmonds matrix </p>
+<p>entries are variables (n*n not same as adjacent matrix) </p>
+<p>perfect matching -&gt; permutation</p>
+<p>det(A) != 0 &lt;=&gt; exists a perfect matching</p>
+<div class="arithmatex">\[det(A):=\sum_{\pi \in S_{n}} (-1)^{sgn(\pi)} \prod_{i=1}^{n}A_{i,\pi(i)}\]</div>
+<p>use Schwartz-Zippel to check <span class="arithmatex">\(det(A) = 0 ?\)</span></p>
+<p>(Chistov's algorithm) to solve det(A) parallel!</p>
+<p>Fingerprinting: hidden requisite: random function</p>
+<p>another fingerprint （通信协议那里）</p>
+<p>直接解读成为2进制表示，pick random prime <span class="arithmatex">\(p \in [k]\)</span></p>
+<p>Karp-Rabin algorthm (pattern-matching)</p>
+<h2 id="balls-into-bins">Balls into Bins</h2>
+<p>birthday 单射</p>
+<p>coupon collector 满射</p>
+<p>occupancy 最大值</p>
+<div class="arithmatex">\[\frac{1}{|[m]\rightarrow[n]|}\]</div>
+<p>1-1 birthday</p>
+<p>on-to coupon collector</p>
+<p>pre-image size  occupancy</p>
+<h3 id="birthday-paradox">Birthday Paradox</h3>
+<p><span class="arithmatex">\(m &gt; 57\)</span> more than 99% two same birthday</p>
+<div class="arithmatex">\[\prod_{i=0}^{n-1} (1 - \frac{i}{m})\]</div>
+<p>use chain rule</p>
+<h3 id="perfect-hashing">Perfect Hashing</h3>
+<p><span class="arithmatex">\(m = n^2\)</span> Pr[no collision]</p>
+<p>Simple Uniform Hash Assumption</p>
+<p>H(|[n] - &gt; [m]|) = nlogm</p>
+<p>Break the assumption !</p>
+<p>Universal Hashing (Universal hash family)</p>
+<p>k-universal </p>
+<p>Linear congruential model</p>
+<p>Proposal Algorithm (Gale-Shapley algorithm)</p>
+<p>Conwey Lattice theorem</p>
+<p>Principle of Deferred Decisions</p></div>
             </div>
         </div>
 
