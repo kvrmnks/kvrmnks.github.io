@@ -129,3 +129,84 @@ PCP
 
 
 
+### binary graph perfect matching
+
+Hall's theorem (matching theorem!)
+
+Hungarian method O(n^3)
+
+Hopcroft-Karp algorithm $O(m\sqrt{n})$
+
+Edmonds matrix 
+
+entries are variables (n*n not same as adjacent matrix) 
+
+perfect matching -> permutation
+
+det(A) != 0 <=> exists a perfect matching
+
+$$det(A):=\sum_{\pi \in S_{n}} (-1)^{sgn(\pi)} \prod_{i=1}^{n}A_{i,\pi(i)}$$
+
+use Schwartz-Zippel to check $det(A) = 0 ?$
+
+(Chistov's algorithm) to solve det(A) parallel!
+
+Fingerprinting: hidden requisite: random function
+
+another fingerprint （通信协议那里）
+
+直接解读成为2进制表示，pick random prime $p \in [k]$
+
+Karp-Rabin algorthm (pattern-matching)
+
+
+## Balls into Bins
+
+birthday 单射
+
+coupon collector 满射
+
+occupancy 最大值
+
+$$\frac{1}{|[m]\rightarrow[n]|}$$
+
+1-1 birthday
+
+on-to coupon collector
+
+pre-image size  occupancy
+
+### Birthday Paradox
+
+$m > 57$ more than 99% two same birthday
+ 
+$$\prod_{i=0}^{n-1} (1 - \frac{i}{m})$$
+
+use chain rule
+
+### Perfect Hashing
+
+$m = n^2$ Pr[no collision]
+
+Simple Uniform Hash Assumption
+
+H(|[n] - > [m]|) = nlogm
+
+Break the assumption !
+
+Universal Hashing (Universal hash family)
+
+k-universal 
+
+Linear congruential model
+
+Proposal Algorithm (Gale-Shapley algorithm)
+
+Conwey Lattice theorem
+
+Principle of Deferred Decisions
+
+
+
+
+

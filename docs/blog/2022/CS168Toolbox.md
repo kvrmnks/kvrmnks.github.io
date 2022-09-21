@@ -491,3 +491,39 @@ So we know that $w_{i+1} = D^{-1}Aw_{i}$
 
 This is actually the power iteration. 
 
+## Sampling and estimation
+
+### Reservoir Sampling
+
+want to sample $k$ data from totally $N$ data uniformly. 
+
+Just recall how to implement permutation in C++.
+
+uniform random swap this datum with some element existing.
+
+### Markov inequality and Chebyshev's inequality
+
+all included by the ''counting and sampling''
+
+### Importance Sampling
+
+intuitions are sample more important data (long-tail distribution) or much variance data (cut down variance).
+
+### Estimating the missing mass
+
+Good-Turing frequency estimation scheme.
+
+$$\mathbb{Pr}[next draw is something new] \approx \frac{\# elements\quad seen\quad once}{n}$$
+
+### MCMC
+
+Theorem Fundamental theory of Markov Chain
+
+1. for every two states $s_{i}, s_{j}$, it is possible to eventually get to state $s_{j}$, if one starts in state $s_{i}$.
+
+2. The chain is aperiodic: for a pair states, $s_{i}$, $s_{j}$, consider the set of time $\{t_{1}, t_{2},\cdots \}$ consisting of all $t$ for which $\mathbb{Pr}[X_{t}=s_{j}|X_{0}=s_{i}]>0$. A chain is aperiodic if $gcd(\{t_{1}, t_{2},\cdots \})=1  $
+
+Then for any states $s$,
+
+$\lim_{t \rightarrow \infty}D(t,s) \rightarrow \pi$
+
