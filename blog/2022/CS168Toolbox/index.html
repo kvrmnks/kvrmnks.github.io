@@ -217,6 +217,11 @@
               <ul class="nav flex-column">
               </ul>
             </li>
+            
+            <li class="nav-item" data-level="2"><a href="#discrete-fourier-transform-and-convolution" class="nav-link">Discrete Fourier Transform and Convolution</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
         </ul>
     </div>
 </div></div>
@@ -509,7 +514,34 @@ v^{T}Lv &amp;= \sum_{i=1}^{n} v_{i} \sum_{j \sim i} (v_{i} - v_{j}) \\
 </li>
 </ol>
 <p>Then for any states <span class="arithmatex">\(s\)</span>,</p>
-<p><span class="arithmatex">\(\lim_{t \rightarrow \infty}D(t,s) \rightarrow \pi\)</span></p></div>
+<div class="arithmatex">\[\lim_{t \rightarrow \infty}D(t,s) \rightarrow \pi\]</div>
+<p>other information will be included by Counting and sampling.</p>
+<h2 id="discrete-fourier-transform-and-convolution">Discrete Fourier Transform and Convolution</h2>
+<p>As a mathematical tool, Fourier transform has a variety of implementations.</p>
+<p>There are also different versions to define Fourier transform.</p>
+<h3 id="matrix-form">Matrix form</h3>
+<div class="arithmatex">\[\mathcal{F}(v) = M_{n}v\]</div>
+<p>Let <span class="arithmatex">\(w_{n} = e^{-\frac{2\pi i}{n}}\)</span>. Then <span class="arithmatex">\(M_{i,j} = w_{n}^{ij}\)</span>. </p>
+<p>NB <span class="arithmatex">\(M_{n}\)</span> is 0-indexed.</p>
+<p>To get the inverse of <span class="arithmatex">\(M\)</span>, first consider <span class="arithmatex">\(M^{2}\)</span></p>
+<p>consider <span class="arithmatex">\(k\)</span> th column of <span class="arithmatex">\(M\)</span> is <span class="arithmatex">\((e^{-\frac{2\pi i 0}{n}}, e^{-\frac{2\pi ik}{n}}, e^{-\frac{2\pi i2k}{n}}, \cdots, e^{-\frac{2\pi i(n-1)k}{n}})^{T}\)</span></p>
+<p><span class="arithmatex">\(M\)</span> is a symmetric matrix. So its <span class="arithmatex">\(p\)</span> th row is <span class="arithmatex">\((e^{-\frac{2\pi i0}{n}}, e^{-\frac{2\pi ip}{n}}, e^{-\frac{2\pi i 2p}{n}}, \cdots, e^{-\frac{2\pi i(n-1)p}{n}})\)</span></p>
+<p>compute inner-product</p>
+<p>When <span class="arithmatex">\(1 \neq e^{- \frac{2\pi i (k+p)}{n}}\)</span></p>
+<div class="arithmatex">\[\sum_{j=0}^{n-1} e^{-\frac{2\pi ij(k+p)}{n}} = \frac{1 - e^{-2\pi i(k+q)}}{1 - e^{-\frac{2\pi i(k+q)}{n}}}\]</div>
+<p>So <span class="arithmatex">\(M^{2}\)</span> is analogous with the <span class="arithmatex">\(\mathbb{I}_{n}\)</span></p>
+<p>Let <span class="arithmatex">\(k\)</span> th column of <span class="arithmatex">\(M\)</span> be <span class="arithmatex">\(M^{i}\)</span>. Then </p>
+<div class="arithmatex">\[M^{-1} = \frac{1}{n}(M^{1}, M^{n}, M^{n-1}, \cdots, M^{2})\]</div>
+<p>We can also use inverse representation of <span class="arithmatex">\(w_{n}\)</span>.</p>
+<h3 id="polynomial-evaluation-and-interpolation">Polynomial evaluation and interpolation</h3>
+<p>Matrix in that form can be view as linear polynomial evaluation on specific points set.</p>
+<p>Both the evaluation and interpolation can be done in <span class="arithmatex">\(O(n\log n)\)</span> time.</p>
+<p>Also the killer method is the convolution. </p>
+<h3 id="change-of-basis">Change of basis</h3>
+<p>The discrete Fourier transform can be viewed as a way of basis decomposition like the continuous version of Fourier transform.</p>
+<h3 id="the-fast-fourier-transform">The Fast Fourier transform</h3>
+<p>Discrete fourier transform can be done in <span class="arithmatex">\(O(n\log n)\)</span> time much faster than the matrix multiplication.</p>
+<p>Intuitively <span class="arithmatex">\(M\)</span> are well-structured. </p></div>
             </div>
         </div>
 
