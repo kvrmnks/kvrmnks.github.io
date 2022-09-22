@@ -525,5 +525,59 @@ Theorem Fundamental theory of Markov Chain
 
 Then for any states $s$,
 
-$\lim_{t \rightarrow \infty}D(t,s) \rightarrow \pi$
+$$\lim_{t \rightarrow \infty}D(t,s) \rightarrow \pi$$
+
+other information will be included by Counting and sampling.
+
+## Discrete Fourier Transform and Convolution
+
+As a mathematical tool, Fourier transform has a variety of implementations.
+
+There are also different versions to define Fourier transform.
+
+### Matrix form
+
+$$\mathcal{F}(v) = M_{n}v$$
+
+Let $w_{n} = e^{-\frac{2\pi i}{n}}$. Then $M_{i,j} = w_{n}^{ij}$. 
+
+NB $M_{n}$ is 0-indexed.
+
+To get the inverse of $M$, first consider $M^{2}$
+
+consider $k$ th column of $M$ is $(e^{-\frac{2\pi i 0}{n}}, e^{-\frac{2\pi ik}{n}}, e^{-\frac{2\pi i2k}{n}}, \cdots, e^{-\frac{2\pi i(n-1)k}{n}})^{T}$
+
+$M$ is a symmetric matrix. So its $p$ th row is $(e^{-\frac{2\pi i0}{n}}, e^{-\frac{2\pi ip}{n}}, e^{-\frac{2\pi i 2p}{n}}, \cdots, e^{-\frac{2\pi i(n-1)p}{n}})$
+
+compute inner-product
+
+When $1 \neq e^{- \frac{2\pi i (k+p)}{n}}$
+
+$$\sum_{j=0}^{n-1} e^{-\frac{2\pi ij(k+p)}{n}} = \frac{1 - e^{-2\pi i(k+q)}}{1 - e^{-\frac{2\pi i(k+q)}{n}}}$$
+
+So $M^{2}$ is analogous with the $\mathbb{I}_{n}$
+
+Let $k$ th column of $M$ be $M^{i}$. Then 
+
+$$M^{-1} = \frac{1}{n}(M^{1}, M^{n}, M^{n-1}, \cdots, M^{2})$$
+
+We can also use inverse representation of $w_{n}$.
+
+### Polynomial evaluation and interpolation
+
+Matrix in that form can be view as linear polynomial evaluation on specific points set.
+
+Both the evaluation and interpolation can be done in $O(n\log n)$ time.
+
+Also the killer method is the convolution. 
+
+### Change of basis
+
+The discrete Fourier transform can be viewed as a way of basis decomposition like the continuous version of Fourier transform.
+
+### The Fast Fourier transform
+
+Discrete fourier transform can be done in $O(n\log n)$ time much faster than the matrix multiplication.
+
+Intuitively $M$ are well-structured. 
 
