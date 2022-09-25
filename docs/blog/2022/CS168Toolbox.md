@@ -581,3 +581,25 @@ Discrete fourier transform can be done in $O(n\log n)$ time much faster than the
 
 Intuitively $M$ are well-structured. 
 
+### Convolution
+
+There are many ways to define convolution. One is using polynomial multiplication.
+
+Definition: the convolution of two vectors $v, w$ of respective length $n, m$ is denoted $v*u = u*v$ and is defined to be the vector of coefficients of the product of the polynomials associated to $v$ and $w$, $P_{v}(x)P_{w}(x)$.
+
+Fact: convolution can be interpreted by Fourier transform as
+
+$$v*w = \mathcal{F}^{-1}(\mathcal{F}(v) \times \mathcal{F}(w))$$
+
+NB here we do not specify the dimension of Fourier transform. But with the view of polynomial multiplication, the dimension is at least $n + m$.
+
+(The continuous version of Fourier transform usually has infinite dimensions.)
+
+Also if $q = v*w$, then
+
+$$v = \mathcal{F}^{-1}(\mathcal{F}(q)./\mathcal{F}(w))$$
+
+Another definition: Any transformation of a vector that is linear and translational invariant is a convolution.
+
+Can be used in differential equations and physical force.(?)
+

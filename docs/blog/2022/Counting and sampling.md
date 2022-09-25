@@ -232,5 +232,4 @@ In DNF counting problem, it is easy to sample $\sum_{i=1}^{m}|S_{i}|$, we can us
 
 ## Network Unreliability
 
-...
-
+If we 
