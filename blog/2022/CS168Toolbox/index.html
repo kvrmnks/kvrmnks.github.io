@@ -541,7 +541,18 @@ v^{T}Lv &amp;= \sum_{i=1}^{n} v_{i} \sum_{j \sim i} (v_{i} - v_{j}) \\
 <p>The discrete Fourier transform can be viewed as a way of basis decomposition like the continuous version of Fourier transform.</p>
 <h3 id="the-fast-fourier-transform">The Fast Fourier transform</h3>
 <p>Discrete fourier transform can be done in <span class="arithmatex">\(O(n\log n)\)</span> time much faster than the matrix multiplication.</p>
-<p>Intuitively <span class="arithmatex">\(M\)</span> are well-structured. </p></div>
+<p>Intuitively <span class="arithmatex">\(M\)</span> are well-structured. </p>
+<h3 id="convolution">Convolution</h3>
+<p>There are many ways to define convolution. One is using polynomial multiplication.</p>
+<p>Definition: the convolution of two vectors <span class="arithmatex">\(v, w\)</span> of respective length <span class="arithmatex">\(n, m\)</span> is denoted <span class="arithmatex">\(v*u = u*v\)</span> and is defined to be the vector of coefficients of the product of the polynomials associated to <span class="arithmatex">\(v\)</span> and <span class="arithmatex">\(w\)</span>, <span class="arithmatex">\(P_{v}(x)P_{w}(x)\)</span>.</p>
+<p>Fact: convolution can be interpreted by Fourier transform as</p>
+<div class="arithmatex">\[v*w = \mathcal{F}^{-1}(\mathcal{F}(v) \times \mathcal{F}(w))\]</div>
+<p>NB here we do not specify the dimension of Fourier transform. But with the view of polynomial multiplication, the dimension is at least <span class="arithmatex">\(n + m\)</span>.</p>
+<p>(The continuous version of Fourier transform usually has infinite dimensions.)</p>
+<p>Also if <span class="arithmatex">\(q = v*w\)</span>, then</p>
+<div class="arithmatex">\[v = \mathcal{F}^{-1}(\mathcal{F}(q)./\mathcal{F}(w))\]</div>
+<p>Another definition: Any transformation of a vector that is linear and translational invariant is a convolution.</p>
+<p>Can be used in differential equations and physical force.(?)</p></div>
             </div>
         </div>
 
