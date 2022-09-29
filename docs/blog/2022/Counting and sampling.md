@@ -218,6 +218,8 @@ So $N > \frac{2^{n}}{\epsilon^{2} ANS}$, but $N$ may be exp about $n$.
 
 ### Karp, Luby and Madras algorithm \[KLM\]
 
+**The motivation is that choose a small and count-efficient universe, then a estimator with good(polynomial) lower bound in order to use Chernoff Bound.**
+
 This is a simple way to decrease the size of universe. 
 
 We sample from the union of ground set instead of all the assignments.
@@ -226,10 +228,87 @@ Let the ground set(feasible solutions) of $i$ th clause be $S_{i}$.
 
 We sample from $\sum_{i=1}^{m} S_{i}$.
 
-The estimator is $\frac{|\bigcup_{i=1}^{m}S_{i}|}{\sum_{i=1}^{m} |S_{i}|}$
+The estimator is $\frac{|\bigcup_{i=1}^{m}S_{i}|}{\sum_{i=1}^{m} |S_{i}|}$. 
+
+Obviously,
+
+$$\frac{1}{m} \leq \frac{|\bigcup_{i=1}^{m}S_{i}|}{\sum_{i=1}^{m}S_{i}}\leq 1$$
+
+This 'large' lower bound means that we can use Chernoff bound more effectively.
+
+recall that $\mathbb{Pr}[|X - \mathbb{E}[x]| > \alpha \mathbb{E}[x]] < e^{-\frac{N\alpha^{2}\mathbb{E}[x]}{3}}$. To get FPRAS, we only need
+
+$$e^{-\frac{N\epsilon^2 \mathbb{E}[x]}{3}} \leq e^{-\frac{N\epsilon^{2}}{3m}}\leq \delta$$
+
+$$N >  3m\frac{1}{\epsilon^{2}}\log\frac{1}{\delta}$$
+
+which achieves FPRAS
 
 In DNF counting problem, it is easy to sample $\sum_{i=1}^{m}|S_{i}|$, we can use brute hash to exclude those same elements.
 
 ## Network Unreliability
 
-If we 
+Definition: Given a graph $G$ with a probability function states that a link $e$ disappears independently with probability $p_{e}$.
+
+Here we assume that $\forall e\in E$, $p_{e} = p$. Now consider the probability that the surviving network is disconnected. Let $Fail(p)$ be this problem.
+
+Network unreliability problem can be trivially expressed as a DNF problem.
+
+Let $C_{1}, C_{2}, \cdots, C_{k}$ be $k$ cuts of graph $G$.
+
+$x_{e}$ is the indicator variable that $e$ is broken.
+
+Then $G$ is disconnected iff
+
+$$\lor _{i=1}^{k} \land_{e\in C_{i}}x_{e}$$
+
+Is it solved by the KLM algorithm?
+
+But it does not fit the standards of FPRAS because maybe $k = \Theta(e^{n})$
+
+### Karger's algorithm
+
+**Motivation: divide the problem into two parts, one is small, the other is large enough. Like the tricks in calculus.**
+
+Let $C$ be the size of the minimum cut of $G$. 
+
+$$Fail(p) \geq p^{C} = q$$
+
+Case 1:  $q > \frac{1}{poly(n)}$. We can use the Chernoff Bound directly because **this property actually gives a lower bound**.
+
+$$$$
+
+Case 2: $q < \frac{1}{poly(n)}$.
+
+Theorem Karger's theorem. For any graph $G$ with $n$ vertices and with minimum cut $C$, and for any $\alpha \geq 1$, the number of cuts of size at most $\alpha C$ in is at most $n^{2\alpha}$.
+
+proof: Karger's contraction algorithm 
+
+Lemma: Let $C_{1}, C_{2}, \cdots, C_{r}$ be all the cuts of $G$ and let us sort them in the order of their size
+
+$$|C_{1}| \leq |C_{2}| \leq \cdots \leq |C_{r}|$$
+
+For any $\alpha \geq 1$, and $q = n^{-\beta}$ we have
+
+$$\mathbb{Pr}[\exist i \geq n^{2\alpha}: C_{i} fails] \leq \frac{n^{2\alpha(-\frac{\beta}{2}+1)}}{\frac{\beta}{2}-1}$$
+
+proof:
+
+recall that the theorem above actually gives the relation between the index and the cut size.
+
+Let $i = n^{2\alpha}$, $\alpha = \frac{\log i}{2 \log n}$. So $|C_{i}| \geq \frac{\log i}{2 \log n}C$
+
+By union bound 
+
+$$
+\begin{aligned}
+\mathbb{Pr}[\exist i \geq n^{2\alpha}: C_{i} fails] &\leq \sum_{i\geq n^{2\alpha}} \mathbb{Pr}[C_{i} \quad fails] \\
+&= \sum_{i\geq n^{2\alpha}} p^{|C_{i}|} \\
+&\leq \sum_{i \geq n^{2\alpha}} p^{\frac{\log i}{2\log n}C} \\
+&= \sum_{i \geq n^{2\alpha}}q^{\frac{\log i}{2\log n}} \\
+&\leq \int_{n^{2\alpha}}^{\infty}q^{\frac{\log i}{2\log n}} \mathrm{d}i \\
+&= \frac{n^{2\alpha(-\frac{\beta}{2} + 1)}}{\frac{\beta}{2} - 1}
+\end{aligned}
+$$
+
+<!-- With this lemma,  -->

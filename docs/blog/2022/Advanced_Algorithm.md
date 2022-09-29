@@ -206,7 +206,76 @@ Conwey Lattice theorem
 
 Principle of Deferred Decisions
 
+### Load Balancing
 
+application:
 
+HashTable's query time complexity
 
+Distributed computation (namely load balancing )
 
+$Y_{i,j}$ iff ball $j$ lands in bin $i$.
+
+$$\mathbb{E}[\max] \neq \max \mathbb{E}[]$$
+
+Conclusion
+
+$m = \Theta(n)$, $O(\frac{\log n}{\log \log n})$ whp
+
+$m = \Omega(n\log n)$, $O(\frac{m}{n})$ whp
+
+whp $1 - \frac{1}{n}$ or $1 - \frac{1}{n^{c}}$ usually c does not have influence on time complexity.
+
+$$\frac{1}{nn^{c-1}} \leq \frac{1}{100n^{c-1}} \leq \frac{1}{100}$$
+
+why such definition? usually polynomial false examples
+
+wlp
+
+wvlp(exp) whlp
+
+$$\mathbb{P^{i}}(\exists i:X_{i}>t) \leq \sum_{i=1}^{n}\mathbb{P}(X_{i}\geq t) \leq \frac{1}{n}$$
+
+$C_{m}^{t} \leq \frac{em}{t}^{t}$
+
+### Concentration
+
+Chernoff Bounds (Herman Chernoff) much stronger thant Markov's inequality (linear descent)
+
+convenient chernoff bounds (when $\mathbb{E} \in \Omega(\log n)$, somehow linear)
+
+Moment generating function + extended Markov's inequality
+
+1.Use Markov's inequality on moment generating function
+
+2.use independence of $X_{i}$, (NOT linearity of expectation)
+
+3.$1+y \leq e^{y}$
+
+4.optimize $\lambda$
+
+(More) Chernoff Bounds
+
+negatively associated r.v.
+
+Hoeffding's inequality
+
+Hoeffding's lemma
+
+$X \in [a, b]$, $\mathbb{E}[X]=0$
+
+$$\mathbb{E}[e^{\lambda X}] \leq exp(\frac{\lambda^{2}(b-a)^{2}}{8})$$
+
+Hoeffding's inequality in Action:
+
+Randomized Quicksort
+
+$\Theta (n\log n)$ whp
+
+proof: consider every path then union bound
+
+Power of two choices
+
+place the ball in the less loaded bin.
+
+Power of d choices $O(\log^{d}(n))$?    X!
