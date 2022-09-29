@@ -301,7 +301,44 @@
 <p>Linear congruential model</p>
 <p>Proposal Algorithm (Gale-Shapley algorithm)</p>
 <p>Conwey Lattice theorem</p>
-<p>Principle of Deferred Decisions</p></div>
+<p>Principle of Deferred Decisions</p>
+<h3 id="load-balancing">Load Balancing</h3>
+<p>application:</p>
+<p>HashTable's query time complexity</p>
+<p>Distributed computation (namely load balancing )</p>
+<p><span class="arithmatex">\(Y_{i,j}\)</span> iff ball <span class="arithmatex">\(j\)</span> lands in bin <span class="arithmatex">\(i\)</span>.</p>
+<div class="arithmatex">\[\mathbb{E}[\max] \neq \max \mathbb{E}[]\]</div>
+<p>Conclusion</p>
+<p><span class="arithmatex">\(m = \Theta(n)\)</span>, <span class="arithmatex">\(O(\frac{\log n}{\log \log n})\)</span> whp</p>
+<p><span class="arithmatex">\(m = \Omega(n\log n)\)</span>, <span class="arithmatex">\(O(\frac{m}{n})\)</span> whp</p>
+<p>whp <span class="arithmatex">\(1 - \frac{1}{n}\)</span> or <span class="arithmatex">\(1 - \frac{1}{n^{c}}\)</span> usually c does not have influence on time complexity.</p>
+<div class="arithmatex">\[\frac{1}{nn^{c-1}} \leq \frac{1}{100n^{c-1}} \leq \frac{1}{100}\]</div>
+<p>why such definition? usually polynomial false examples</p>
+<p>wlp</p>
+<p>wvlp(exp) whlp</p>
+<div class="arithmatex">\[\mathbb{P^{i}}(\exists i:X_{i}&gt;t) \leq \sum_{i=1}^{n}\mathbb{P}(X_{i}\geq t) \leq \frac{1}{n}\]</div>
+<p><span class="arithmatex">\(C_{m}^{t} \leq \frac{em}{t}^{t}\)</span></p>
+<h3 id="concentration">Concentration</h3>
+<p>Chernoff Bounds (Herman Chernoff) much stronger thant Markov's inequality (linear descent)</p>
+<p>convenient chernoff bounds (when <span class="arithmatex">\(\mathbb{E} \in \Omega(\log n)\)</span>, somehow linear)</p>
+<p>Moment generating function + extended Markov's inequality</p>
+<p>1.Use Markov's inequality on moment generating function</p>
+<p>2.use independence of <span class="arithmatex">\(X_{i}\)</span>, (NOT linearity of expectation)</p>
+<p>3.<span class="arithmatex">\(1+y \leq e^{y}\)</span></p>
+<p>4.optimize <span class="arithmatex">\(\lambda\)</span></p>
+<p>(More) Chernoff Bounds</p>
+<p>negatively associated r.v.</p>
+<p>Hoeffding's inequality</p>
+<p>Hoeffding's lemma</p>
+<p><span class="arithmatex">\(X \in [a, b]\)</span>, <span class="arithmatex">\(\mathbb{E}[X]=0\)</span></p>
+<div class="arithmatex">\[\mathbb{E}[e^{\lambda X}] \leq exp(\frac{\lambda^{2}(b-a)^{2}}{8})\]</div>
+<p>Hoeffding's inequality in Action:</p>
+<p>Randomized Quicksort</p>
+<p><span class="arithmatex">\(\Theta (n\log n)\)</span> whp</p>
+<p>proof: consider every path then union bound</p>
+<p>Power of two choices</p>
+<p>place the ball in the less loaded bin.</p>
+<p>Power of d choices <span class="arithmatex">\(O(\log^{d}(n))\)</span>?    X!</p></div>
             </div>
         </div>
 

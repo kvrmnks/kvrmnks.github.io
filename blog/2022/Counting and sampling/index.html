@@ -312,14 +312,58 @@ So </p>
 <div class="arithmatex">\[e^{-N\epsilon^{2}\frac{ANS}{3\times 2^{n}}} \leq \delta\]</div>
 <p>So <span class="arithmatex">\(N &gt; \frac{2^{n}}{\epsilon^{2} ANS}\)</span>, but <span class="arithmatex">\(N\)</span> may be exp about <span class="arithmatex">\(n\)</span>.</p>
 <h3 id="karp-luby-and-madras-algorithm-klm">Karp, Luby and Madras algorithm [KLM]</h3>
+<p><strong>The motivation is that choose a small and count-efficient universe, then a estimator with good(polynomial) lower bound in order to use Chernoff Bound.</strong></p>
 <p>This is a simple way to decrease the size of universe. </p>
 <p>We sample from the union of ground set instead of all the assignments.</p>
 <p>Let the ground set(feasible solutions) of <span class="arithmatex">\(i\)</span> th clause be <span class="arithmatex">\(S_{i}\)</span>.</p>
 <p>We sample from <span class="arithmatex">\(\sum_{i=1}^{m} S_{i}\)</span>.</p>
-<p>The estimator is <span class="arithmatex">\(\frac{|\bigcup_{i=1}^{m}S_{i}|}{\sum_{i=1}^{m} |S_{i}|}\)</span></p>
+<p>The estimator is <span class="arithmatex">\(\frac{|\bigcup_{i=1}^{m}S_{i}|}{\sum_{i=1}^{m} |S_{i}|}\)</span>. </p>
+<p>Obviously,</p>
+<div class="arithmatex">\[\frac{1}{m} \leq \frac{|\bigcup_{i=1}^{m}S_{i}|}{\sum_{i=1}^{m}S_{i}}\leq 1\]</div>
+<p>This 'large' lower bound means that we can use Chernoff bound more effectively.</p>
+<p>recall that <span class="arithmatex">\(\mathbb{Pr}[|X - \mathbb{E}[x]| &gt; \alpha \mathbb{E}[x]] &lt; e^{-\frac{N\alpha^{2}\mathbb{E}[x]}{3}}\)</span>. To get FPRAS, we only need</p>
+<div class="arithmatex">\[e^{-\frac{N\epsilon^2 \mathbb{E}[x]}{3}} \leq e^{-\frac{N\epsilon^{2}}{3m}}\leq \delta\]</div>
+<div class="arithmatex">\[N &gt;  3m\frac{1}{\epsilon^{2}}\log\frac{1}{\delta}\]</div>
+<p>which achieves FPRAS</p>
 <p>In DNF counting problem, it is easy to sample <span class="arithmatex">\(\sum_{i=1}^{m}|S_{i}|\)</span>, we can use brute hash to exclude those same elements.</p>
 <h2 id="network-unreliability">Network Unreliability</h2>
-<p>If we </p></div>
+<p>Definition: Given a graph <span class="arithmatex">\(G\)</span> with a probability function states that a link <span class="arithmatex">\(e\)</span> disappears independently with probability <span class="arithmatex">\(p_{e}\)</span>.</p>
+<p>Here we assume that <span class="arithmatex">\(\forall e\in E\)</span>, <span class="arithmatex">\(p_{e} = p\)</span>. Now consider the probability that the surviving network is disconnected. Let <span class="arithmatex">\(Fail(p)\)</span> be this problem.</p>
+<p>Network unreliability problem can be trivially expressed as a DNF problem.</p>
+<p>Let <span class="arithmatex">\(C_{1}, C_{2}, \cdots, C_{k}\)</span> be <span class="arithmatex">\(k\)</span> cuts of graph <span class="arithmatex">\(G\)</span>.</p>
+<p><span class="arithmatex">\(x_{e}\)</span> is the indicator variable that <span class="arithmatex">\(e\)</span> is broken.</p>
+<p>Then <span class="arithmatex">\(G\)</span> is disconnected iff</p>
+<div class="arithmatex">\[\lor _{i=1}^{k} \land_{e\in C_{i}}x_{e}\]</div>
+<p>Is it solved by the KLM algorithm?</p>
+<p>But it does not fit the standards of FPRAS because maybe <span class="arithmatex">\(k = \Theta(e^{n})\)</span></p>
+<h3 id="kargers-algorithm">Karger's algorithm</h3>
+<p><strong>Motivation: divide the problem into two parts, one is small, the other is large enough. Like the tricks in calculus.</strong></p>
+<p>Let <span class="arithmatex">\(C\)</span> be the size of the minimum cut of <span class="arithmatex">\(G\)</span>. </p>
+<div class="arithmatex">\[Fail(p) \geq p^{C} = q\]</div>
+<p>Case 1:  <span class="arithmatex">\(q &gt; \frac{1}{poly(n)}\)</span>. We can use the Chernoff Bound directly because <strong>this property actually gives a lower bound</strong>.</p>
+<p>$$$$</p>
+<p>Case 2: <span class="arithmatex">\(q &lt; \frac{1}{poly(n)}\)</span>.</p>
+<p>Theorem Karger's theorem. For any graph <span class="arithmatex">\(G\)</span> with <span class="arithmatex">\(n\)</span> vertices and with minimum cut <span class="arithmatex">\(C\)</span>, and for any <span class="arithmatex">\(\alpha \geq 1\)</span>, the number of cuts of size at most <span class="arithmatex">\(\alpha C\)</span> in is at most <span class="arithmatex">\(n^{2\alpha}\)</span>.</p>
+<p>proof: Karger's contraction algorithm </p>
+<p>Lemma: Let <span class="arithmatex">\(C_{1}, C_{2}, \cdots, C_{r}\)</span> be all the cuts of <span class="arithmatex">\(G\)</span> and let us sort them in the order of their size</p>
+<div class="arithmatex">\[|C_{1}| \leq |C_{2}| \leq \cdots \leq |C_{r}|\]</div>
+<p>For any <span class="arithmatex">\(\alpha \geq 1\)</span>, and <span class="arithmatex">\(q = n^{-\beta}\)</span> we have</p>
+<div class="arithmatex">\[\mathbb{Pr}[\exist i \geq n^{2\alpha}: C_{i} fails] \leq \frac{n^{2\alpha(-\frac{\beta}{2}+1)}}{\frac{\beta}{2}-1}\]</div>
+<p>proof:</p>
+<p>recall that the theorem above actually gives the relation between the index and the cut size.</p>
+<p>Let <span class="arithmatex">\(i = n^{2\alpha}\)</span>, <span class="arithmatex">\(\alpha = \frac{\log i}{2 \log n}\)</span>. So <span class="arithmatex">\(|C_{i}| \geq \frac{\log i}{2 \log n}C\)</span></p>
+<p>By union bound </p>
+<div class="arithmatex">\[
+\begin{aligned}
+\mathbb{Pr}[\exist i \geq n^{2\alpha}: C_{i} fails] &amp;\leq \sum_{i\geq n^{2\alpha}} \mathbb{Pr}[C_{i} \quad fails] \\
+&amp;= \sum_{i\geq n^{2\alpha}} p^{|C_{i}|} \\
+&amp;\leq \sum_{i \geq n^{2\alpha}} p^{\frac{\log i}{2\log n}C} \\
+&amp;= \sum_{i \geq n^{2\alpha}}q^{\frac{\log i}{2\log n}} \\
+&amp;\leq \int_{n^{2\alpha}}^{\infty}q^{\frac{\log i}{2\log n}} \mathrm{d}i \\
+&amp;= \frac{n^{2\alpha(-\frac{\beta}{2} + 1)}}{\frac{\beta}{2} - 1}
+\end{aligned}
+\]</div>
+<!-- With this lemma,  --></div>
             </div>
         </div>
 
