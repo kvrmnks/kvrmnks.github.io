@@ -290,7 +290,7 @@ $$|C_{1}| \leq |C_{2}| \leq \cdots \leq |C_{r}|$$
 
 For any $\alpha \geq 1$, and $q = n^{-\beta}$ we have
 
-$$\mathbb{Pr}[\exist i \geq n^{2\alpha}: C_{i} fails] \leq \frac{n^{2\alpha(-\frac{\beta}{2}+1)}}{\frac{\beta}{2}-1}$$
+$$\mathbb{Pr}[\exists i \geq n^{2\alpha}: C_{i} fails] \leq \frac{n^{2\alpha(-\frac{\beta}{2}+1)}}{\frac{\beta}{2}-1}$$
 
 proof:
 
@@ -302,7 +302,7 @@ By union bound
 
 $$
 \begin{aligned}
-\mathbb{Pr}[\exist i \geq n^{2\alpha}: C_{i} fails] &\leq \sum_{i\geq n^{2\alpha}} \mathbb{Pr}[C_{i} \quad fails] \\
+\mathbb{Pr}[\exists i \geq n^{2\alpha}: C_{i} fails] &\leq \sum_{i\geq n^{2\alpha}} \mathbb{Pr}[C_{i} \quad fails] \\
 &= \sum_{i\geq n^{2\alpha}} p^{|C_{i}|} \\
 &\leq \sum_{i \geq n^{2\alpha}} p^{\frac{\log i}{2\log n}C} \\
 &= \sum_{i \geq n^{2\alpha}}q^{\frac{\log i}{2\log n}} \\
@@ -311,4 +311,115 @@ $$
 \end{aligned}
 $$
 
-<!-- With this lemma,  -->
+With this lemma, the "large cuts" has few probability to fail.
+
+## Markov Chains
+
+Markov chains is a stochastic process on the state $\Omega$. 
+
+Markov property 
+
+$$\mathbb{Pr}[X_{t+1} | X_{0}, \cdots, X_{t}]  = \mathbb{Pr}[X_{t+1} | X_{t}]$$
+
+
+Markov kenel 
+
+$$\mathbb{Pr}[X_{t+1}|X_{t}] = K(X_{t}, X_{t+1})$$
+
+
+Also Markov chain can be represent as a weighted direct graph, if $K(x, y) = c > 0$ then there is a edge weighted $c$ from $x$ to $y$.
+
+If we sample $X_{0} \sim p$. 
+
+$$\mathbb{Pr}[X_{1}=x] = \sum_{y \in \Omega}p(y)K(y, x) = p^{T}K(x)$$
+
+Corollery 
+
+$$\mathbb{Pr}[X_{t} = y| X_{0} \sim p] = p^{T}K^{t}$$
+
+### Stationary Distribution
+Every Markov chain has a stationery distribution(may not unique).
+
+
+First of all the Markov kernel must have eigenvalue $1$ and corresponding eigenvector $v$. 
+
+It is easy to show that $\mathrm{det}(K - I) = 0$, as the sum of every column of $K$ is exactly $1$.
+
+Now let $\pi = (|v_{1}|, |v_{2}|, \cdots, |v_{k}|)^{T}$.  We show that $\pi$ is a stationery distribution.
+
+If $\pi^{T}\pi \neq 1$, then we can normalize it into normal vector.
+
+$$\pi_{i} = |v_{i}| = |\sum_{j}v_{j}K(j,i)| \leq \sum_{j}|v_{j}|K(j,i) \leq \sum_{j}\pi_{j}K(j,i)$$
+
+This is a trivial inequality. But the next one is somehow magic ...
+
+$$
+\begin{aligned}
+\sum_{i}\pi_{i} &= \sum_{i}\pi_{i}(\sum_{j}K(i,j)) \\\
+&= \sum_{j}\sum_{i}\pi_{i}K(i,j) \\
+&\geq \sum_{j} \pi_{j}
+\end{aligned}
+$$
+
+But actually the last inequality must be tight, so the it must holds that $\pi_{i} = \sum_{j}\pi_{j}K(j,i)$.
+
+**NB: in lecture notes it chose relu(v), but here I modified a little bit.**
+
+Definition (Reversible Markov Chains): A Markov chain is reversible iff **there exists a nonnegative weight function** $w: \Omega \rightarrow \mathbb{R}_{+}$. Such that for every $x, y$.
+
+$$\pi(x)K(x, y) = \pi(y)K(y, x)$$
+
+It follows that $\frac{\pi}{Z}$ is the stationery distribution. 
+
+### Mixing of Markov Chain
+Definition(Irreducible Markov Chain): A Markov chain is irreducible iff for any states $x$, $y$, it exits $t$ such that $K^{t}(x,y) > 0$.
+
+Definition(aperiodic): A Markov Chain is aperiodic if for all $x, y$ we have $\gcd\{t|K^{t}(x,y)>0\} = 1$
+
+Lemma: Let $K$ be an irreducible, aperiodic Markov Chain. Then there exists $t>0$ such that for all $x, y$
+
+$$K^{t}(x,y) > 0$$
+
+**Actually I do not know how to formally prove this...**
+
+Theorem (Fundamental Theorem of Markov Chains): Any irreducible and aperiodic Markov chain has a **unique** stationery distribution. Futhermore, for all $x, y$,
+
+$$K^{t}(x, y) \rightarrow \pi(y)$$
+
+as t goes infinity. In particular, for any $\epsilon > 0$ there exits $t > 0$ such that $||K^{t}(x, .) - \pi||_{TV} < \epsilon$.
+
+How to make an arbitrary Markov chain ergodic: 
+All add a self-loop with $\frac{1}{2}$
+
+### Metropolis Rule
+
+Given a finite state set and a weight function $w: \Omega \rightarrow \mathbb{R}_{+}$. We would like to sample from the distribution $\pi(x) = \frac{w(x)}{Z}$. 
+
+Metropolis rule is a general tool to construct such a ergodic Markov chain.
+
+#### Neighborhood Structure
+
+The first requirement is a undirected connected graph $G = (\Omega, E)$, two state are connected iff they different by some local changes. 
+
+#### Proposal Distribution
+At any vertex $x$ we require a proposal distribution, $p(x, .)$ satisfying the following properties:
+
+1. $p(x,y) > 0$ only if $y$ is a neighbor of $x$.
+2. $p(x,y) = p(y,x)$ for all $y$
+3. $\sum_{y}p(x,y) = 1$
+
+
+#### Metropolis chain
+
+1. decide a propose move from $x$ to $y$ with probability $p(x, y)$.
+2. accept the propose move with probability $\min\{1, \frac{\pi(y)}{\pi(x)}\}$. else reject and stay at $x$
+
+**NB: this is like the simulated annealing ideas in optimization**
+
+Lemma: Metropolis chain is reversible with stationery distribution $\pi$
+
+(But how to prove that $\pi$ is the stationery distribution?)
+
+### Coupling
+
+
