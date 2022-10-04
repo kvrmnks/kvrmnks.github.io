@@ -279,3 +279,145 @@ Power of two choices
 place the ball in the less loaded bin.
 
 Power of d choices $O(\log^{d}(n))$?    X!
+
+## Hashing and Sketching
+
+based on random mapping 
+
+### Count distinct elements
+input: $x_{1}, \cdots, x_{n} \in U = [n]$
+
+output: $Z = |\{x_{1}, \cdots, x_{n}\}|$
+
+Data stream model: input date item comes one at a time.
+
+Naive alg: $\Omega(z\log N)$
+
+Sketch: (lossy) representation of data using space << Z
+
+Is it possible? No
+
+Lower bound: (Alon-Matias-Szegedy Godel prize): any deterministic(exact or approx) alg must use $\Omega(N)$ bits of space in the worst case. (Intuition: communication complexity set disjoin)
+
+must use both random and approx
+
+Sketcher!:
+fu jian yi bo, yi quan chao ren 
+
+$(\epsilon, \delta)$-estimator: $\hat{Z}$
+
+$$\mathbb{Pr}[(1 - \epsilon)z \leq \hat{Z} \leq (1 + \epsilon)z] > 1 - \delta$$
+
+PAC learning 
+
+insight: need both random and approx
+
+Shakespeare: 30k words
+
+(idealized)uniform hash function h: $U \rightarrow [0,1]$
+
+$\{h(x_{1}), \cdots, h(x_{n})\}$ 
+
+estimator:
+
+$$\mathbb{E}[\min h(x_{i})] = \mathbb{Pr}[] = \frac{1}{z+1}$$
+
+First order approximation
+
+$\hat{Z} = \frac{1}{\min_{i} h(x_{i})} - 1$ 
+
+estimator variance is too large!
+
+Markov's inequality
+
+$$\mathbb{Pr}[X > t] \leq \frac{\mathbb{E}[X]}{t}$$
+
+Corollary
+
+$f(x) \geq 0$
+
+$$\mathbb{Pr}[f(X) > t] \leq \frac{\mathbb{E}[f(X)]}{t}$$
+
+Chebyshev's inequality
+
+$$\mathbb{Pr}[|X-\mathbb{E}[X]| \geq t] \leq \frac{\mathrm{Var}[X]}{t^{t}}$$
+
+<!-- $$\mathrm{Var}[Y]$$/ -->
+
+variance cannot be bounded.
+
+找找是哪里贡献过去的
+
+exchange of sum and variance needs only pair-wise independent.
+
+
+
+### 超纲内容 Universal Hash family (Carter and Wegman 1979) Flajolet-Martin algorithm
+
+k-universal
+
+strong k-universal
+
+Linear congruential hashing:
+
+Degree-k polynomial in finite field with random coefficients
+
+zeros(y) = max(i: 2^{i}|y) denote # of trailing 0's
+
+$$\mathbb{Pr}[\hat{Z} < \frac{z}{C} \lor \hat{Z} > C z] \leq \frac{3}{C}$$
+
+一个函数能做到的最好的了
+
+### BJKST Algorithm
+
+2-wise independent hash function $h: [N] \rightarrow [M]$
+
+$$\hat{Z} = \frac{kM}{Y_{k}}$$
+
+对理想化的 min sketch 的离散化.
+
+定义一个随机变量, 写成 pair-wise 事件的和. (方便求期望和方差)
+
+### Frequency Moments
+
+Data stream: $x_{1}, x_{2}, \cdots, x_{n} \in U$
+
+for each $x \in U$, define frequency of $x$ as $f_{x} = |\{i: x_{i} = x\}|$
+
+k-th frequency moments: $F_{k} = \sum_{x \in U} f^{k}_{x}$
+
+Space complexity for $(\epsilon, \delta)$-estimation: constant $\epsilon, \delta$
+
+for $k \leq 2$: polylog(N) AMS'96
+
+for $k > 2$: $\theta(N^{1 - \frac{2}{k}})$ Indyk-Woodruff'05
+
+Count distinct elements: $F_{0}$
+
+optimal algorithm \[Kane-Nelson-Woodruff'10\] $O(\epsilon^{-2}+\log N)$
+
+### Frequency estimation
+
+output estimator of $f_{x}$ within **additive error**
+
+multiplicative error 太难了
+
+Heavy hitters: items that appears $> \epsilon n$ times.
+
+防止ddos
+
+### Data Structure for set
+
+look CS168 Tool box!
+
+bloom filter
+
+数据库
+
+bloom counter 
+
+count min sketch (CMS) 为什么这里只需要 2-universal 呢??? 感觉是因为扩大了内存>
+
+
+
+

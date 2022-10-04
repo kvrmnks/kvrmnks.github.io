@@ -148,9 +148,7 @@ If we approximate $p$  in $1 + \frac{\epsilon}{4m}$ with error probability $\del
 proof:
 
 $$
-
 \mathbb{Pr}[ |\tilde{p_{i}} - p_{i} | > \frac{\epsilon}{4m}p_{i}] = \mathbb{Pr}[  (1 - \frac{\epsilon}{4m})p_{i} < \tilde{p}_{i} < (1 + \frac{\epsilon}{4m}) p_{i} ]
-
 $$
 
 $$\tilde{p}_{i} < (1 + \frac{\epsilon}{4m})p_{i} \rightarrow (1 - \frac{\epsilon}{4m + \epsilon})\frac{1}{p_{i}} < \frac{1}{\tilde{p}_{i}}$$
@@ -421,5 +419,19 @@ Lemma: Metropolis chain is reversible with stationery distribution $\pi$
 (But how to prove that $\pi$ is the stationery distribution?)
 
 ### Coupling
+
+Definition(Coupling): Let $\mu, \nu$ be probability distributions over $\Omega$, A coupling between $\mu, \nu$ is a probability distribution $\pi$ on $\Omega \times \Omega$ that preserves the marginals of $\mu, \nu$. 
+
+$$\sum_{y} \pi(x, y) = \mu(x)$$
+
+$$\sum_{x} \pi(x, y) = \nu(y)$$
+
+Lemma(Coupling Lemma): Let $X \sim \mu$, $Y \sim \nu$
+
+Then 
+
+1. $\mathbb{Pr}[X \neq Y] \geq ||\mu - \nu||_{TV}$
+2. There exists a coupling $\pi$ between $\mu$ and $\nu$ such that $\mathbb{Pr}[X \neq Y] = ||\mu - \nu||_{TV}$
+
 
 
