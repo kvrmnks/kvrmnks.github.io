@@ -197,6 +197,11 @@
               <ul class="nav flex-column">
               </ul>
             </li>
+            
+            <li class="nav-item" data-level="2"><a href="#hashing-and-sketching" class="nav-link">Hashing and Sketching</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
         </ul>
     </div>
 </div></div>
@@ -338,7 +343,77 @@
 <p>proof: consider every path then union bound</p>
 <p>Power of two choices</p>
 <p>place the ball in the less loaded bin.</p>
-<p>Power of d choices <span class="arithmatex">\(O(\log^{d}(n))\)</span>?    X!</p></div>
+<p>Power of d choices <span class="arithmatex">\(O(\log^{d}(n))\)</span>?    X!</p>
+<h2 id="hashing-and-sketching">Hashing and Sketching</h2>
+<p>based on random mapping </p>
+<h3 id="count-distinct-elements">Count distinct elements</h3>
+<p>input: <span class="arithmatex">\(x_{1}, \cdots, x_{n} \in U = [n]\)</span></p>
+<p>output: <span class="arithmatex">\(Z = |\{x_{1}, \cdots, x_{n}\}|\)</span></p>
+<p>Data stream model: input date item comes one at a time.</p>
+<p>Naive alg: <span class="arithmatex">\(\Omega(z\log N)\)</span></p>
+<p>Sketch: (lossy) representation of data using space &lt;&lt; Z</p>
+<p>Is it possible? No</p>
+<p>Lower bound: (Alon-Matias-Szegedy Godel prize): any deterministic(exact or approx) alg must use <span class="arithmatex">\(\Omega(N)\)</span> bits of space in the worst case. (Intuition: communication complexity set disjoin)</p>
+<p>must use both random and approx</p>
+<p>Sketcher!:
+fu jian yi bo, yi quan chao ren </p>
+<p><span class="arithmatex">\((\epsilon, \delta)\)</span>-estimator: <span class="arithmatex">\(\hat{Z}\)</span></p>
+<div class="arithmatex">\[\mathbb{Pr}[(1 - \epsilon)z \leq \hat{Z} \leq (1 + \epsilon)z] &gt; 1 - \delta\]</div>
+<p>PAC learning </p>
+<p>insight: need both random and approx</p>
+<p>Shakespeare: 30k words</p>
+<p>(idealized)uniform hash function h: <span class="arithmatex">\(U \rightarrow [0,1]\)</span></p>
+<p><span class="arithmatex">\(\{h(x_{1}), \cdots, h(x_{n})\}\)</span> </p>
+<p>estimator:</p>
+<div class="arithmatex">\[\mathbb{E}[\min h(x_{i})] = \mathbb{Pr}[] = \frac{1}{z+1}\]</div>
+<p>First order approximation</p>
+<p><span class="arithmatex">\(\hat{Z} = \frac{1}{\min_{i} h(x_{i})} - 1\)</span> </p>
+<p>estimator variance is too large!</p>
+<p>Markov's inequality</p>
+<div class="arithmatex">\[\mathbb{Pr}[X &gt; t] \leq \frac{\mathbb{E}[X]}{t}\]</div>
+<p>Corollary</p>
+<p><span class="arithmatex">\(f(x) \geq 0\)</span></p>
+<div class="arithmatex">\[\mathbb{Pr}[f(X) &gt; t] \leq \frac{\mathbb{E}[f(X)]}{t}\]</div>
+<p>Chebyshev's inequality</p>
+<div class="arithmatex">\[\mathbb{Pr}[|X-\mathbb{E}[X]| \geq t] \leq \frac{\mathrm{Var}[X]}{t^{t}}\]</div>
+<!-- $$\mathrm{Var}[Y]$$/ -->
+
+<p>variance cannot be bounded.</p>
+<p>找找是哪里贡献过去的</p>
+<p>exchange of sum and variance needs only pair-wise independent.</p>
+<h3 id="universal-hash-family-carter-and-wegman-1979-flajolet-martin-algorithm">超纲内容 Universal Hash family (Carter and Wegman 1979) Flajolet-Martin algorithm</h3>
+<p>k-universal</p>
+<p>strong k-universal</p>
+<p>Linear congruential hashing:</p>
+<p>Degree-k polynomial in finite field with random coefficients</p>
+<p>zeros(y) = max(i: 2^{i}|y) denote # of trailing 0's</p>
+<div class="arithmatex">\[\mathbb{Pr}[\hat{Z} &lt; \frac{z}{C} \lor \hat{Z} &gt; C z] \leq \frac{3}{C}\]</div>
+<p>一个函数能做到的最好的了</p>
+<h3 id="bjkst-algorithm">BJKST Algorithm</h3>
+<p>2-wise independent hash function <span class="arithmatex">\(h: [N] \rightarrow [M]\)</span></p>
+<div class="arithmatex">\[\hat{Z} = \frac{kM}{Y_{k}}\]</div>
+<p>对理想化的 min sketch 的离散化.</p>
+<p>定义一个随机变量, 写成 pair-wise 事件的和. (方便求期望和方差)</p>
+<h3 id="frequency-moments">Frequency Moments</h3>
+<p>Data stream: <span class="arithmatex">\(x_{1}, x_{2}, \cdots, x_{n} \in U\)</span></p>
+<p>for each <span class="arithmatex">\(x \in U\)</span>, define frequency of <span class="arithmatex">\(x\)</span> as <span class="arithmatex">\(f_{x} = |\{i: x_{i} = x\}|\)</span></p>
+<p>k-th frequency moments: <span class="arithmatex">\(F_{k} = \sum_{x \in U} f^{k}_{x}\)</span></p>
+<p>Space complexity for <span class="arithmatex">\((\epsilon, \delta)\)</span>-estimation: constant <span class="arithmatex">\(\epsilon, \delta\)</span></p>
+<p>for <span class="arithmatex">\(k \leq 2\)</span>: polylog(N) AMS'96</p>
+<p>for <span class="arithmatex">\(k &gt; 2\)</span>: <span class="arithmatex">\(\theta(N^{1 - \frac{2}{k}})\)</span> Indyk-Woodruff'05</p>
+<p>Count distinct elements: <span class="arithmatex">\(F_{0}\)</span></p>
+<p>optimal algorithm [Kane-Nelson-Woodruff'10] <span class="arithmatex">\(O(\epsilon^{-2}+\log N)\)</span></p>
+<h3 id="frequency-estimation">Frequency estimation</h3>
+<p>output estimator of <span class="arithmatex">\(f_{x}\)</span> within <strong>additive error</strong></p>
+<p>multiplicative error 太难了</p>
+<p>Heavy hitters: items that appears <span class="arithmatex">\(&gt; \epsilon n\)</span> times.</p>
+<p>防止ddos</p>
+<h3 id="data-structure-for-set">Data Structure for set</h3>
+<p>look CS168 Tool box!</p>
+<p>bloom filter</p>
+<p>数据库</p>
+<p>bloom counter </p>
+<p>count min sketch (CMS) 为什么这里只需要 2-universal 呢??? 感觉是因为扩大了内存&gt;</p></div>
             </div>
         </div>
 
