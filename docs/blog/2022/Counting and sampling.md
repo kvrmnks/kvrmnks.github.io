@@ -435,3 +435,91 @@ Then
 
 
 
+proof:
+
+A simple observation is that $\mathbb{Pr}[X=Y=a] \leq \min\{\mu(a), \nu(a)\}$
+
+$$
+\begin{aligned}
+\mathbb{Pr}[X \neq Y] &= 1 - \sum_{a \in \Omega} \mathbb{Pr}[X = Y = a]\\
+&\leq 1 - \sum_{a \in \Omega} \min\{\mu(a), \nu(a)\} \\
+&= \sum_{a \in \Omega} (\mu(a) - \min\{\mu(a), \nu(a)\}) \\
+&= ||\mu - \nu||_{TV}
+\end{aligned}
+$$
+
+So we just need to "properly" set  remaining probability to let the inequality be tight.
+
+$\blacksquare$
+
+#### Mixing time
+Terminology:
+
+$$\Delta_{x}^{t} = ||K(x,.)^{t} - \pi||_{TV}$$
+
+$$\tau_{x}(\epsilon) = \min\{t|\Delta_{x}^{t} < \epsilon\}$$
+
+$$\tau (\epsilon) = \max \{\tau_{x}(\epsilon)| x\in \Omega \}$$
+
+Definition (Mixing time): $\tau(\frac{1}{2e})$
+
+Lemma: 
+
+$$\Delta_{x}(t+1) \leq \Delta_{x}(t)$$
+
+proof:
+
+This proof shows the power of coupling.
+
+Let $X_{0} = x$, $Y_{0} \sim \pi$.
+
+Suppose now we get a coupling such that $\mathbb{Pr}[X_{t}\neq Y_{t}] = \Delta_{x}(t)$
+
+Now define $X_{t+1}$, $Y_{t+1}$ as below
+
+1. If $X_{t} = Y_{t}$, then set $X_{t+1} = Y_{t+1}$
+
+2. else random walk independently
+
+So 
+$$\Delta_{x}(t+1) \leq \mathbb{Pr}[X_{t+1} \neq Y_{t+1}] \leq \mathbb{Pr}[X_{t}\neq Y_{t}] = \Delta_{x}(t)$$
+
+$\blacksquare$
+
+General bound for mixing time
+
+Lemma:
+
+$$\tau_{mix} \leq \frac{1}{|\Omega|\min_{x,y} K(x,y)^{2}}$$
+
+proof:
+
+Pick the same coupling
+
+$$
+\begin{aligned}
+
+\Delta_{x}(t+1) &\leq \mathbb{Pr}[X_{t+1} \neq Y_{t+1}] \\
+&= \mathbb{Pr}[X_{t+1}\neq Y_{t+1}|X_{t} \neq Y_{t}]\Delta_{x}(t)\\
+&= (1 - \sum_{x} K(X_{t}, x) K(Y_{t}, x))\Delta_{x}(t)\\
+&\leq (1 - |\Omega|\min_{x, y} K(x, y)^2)\Delta_{x}(t)
+
+\end{aligned}
+$$
+
+
+So
+
+$$\Delta_{x}(t) \leq (1 - |\Omega|\min_{x, y} K(x, y)^2)^{t}$$
+
+Let 
+$$(1 - |\Omega|\min_{x, y} K(x, y)^2)^{t} \leq \frac{1}{2e}$$
+
+$\blacksquare$
+
+The above also proves the Fundamental Theorem of Markov Chain.
+
+
+
+Theorem: For any Markov Chain, $\tau(\epsilon) \leq O(\tau_{mix}\log\frac{1}{\epsilon})$
+
