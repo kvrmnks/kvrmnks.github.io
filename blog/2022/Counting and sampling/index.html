@@ -440,7 +440,63 @@ All add a self-loop with <span class="arithmatex">\(\frac{1}{2}\)</span></p>
 <ol>
 <li><span class="arithmatex">\(\mathbb{Pr}[X \neq Y] \geq ||\mu - \nu||_{TV}\)</span></li>
 <li>There exists a coupling <span class="arithmatex">\(\pi\)</span> between <span class="arithmatex">\(\mu\)</span> and <span class="arithmatex">\(\nu\)</span> such that <span class="arithmatex">\(\mathbb{Pr}[X \neq Y] = ||\mu - \nu||_{TV}\)</span></li>
-</ol></div>
+</ol>
+<p>proof:</p>
+<p>A simple observation is that <span class="arithmatex">\(\mathbb{Pr}[X=Y=a] \leq \min\{\mu(a), \nu(a)\}\)</span></p>
+<div class="arithmatex">\[
+\begin{aligned}
+\mathbb{Pr}[X \neq Y] &amp;= 1 - \sum_{a \in \Omega} \mathbb{Pr}[X = Y = a]\\
+&amp;\leq 1 - \sum_{a \in \Omega} \min\{\mu(a), \nu(a)\} \\
+&amp;= \sum_{a \in \Omega} (\mu(a) - \min\{\mu(a), \nu(a)\}) \\
+&amp;= ||\mu - \nu||_{TV}
+\end{aligned}
+\]</div>
+<p>So we just need to "properly" set  remaining probability to let the inequality be tight.</p>
+<p><span class="arithmatex">\(\blacksquare\)</span></p>
+<h4 id="mixing-time">Mixing time</h4>
+<p>Terminology:</p>
+<div class="arithmatex">\[\Delta_{x}^{t} = ||K(x,.)^{t} - \pi||_{TV}\]</div>
+<div class="arithmatex">\[\tau_{x}(\epsilon) = \min\{t|\Delta_{x}^{t} &lt; \epsilon\}\]</div>
+<div class="arithmatex">\[\tau (\epsilon) = \max \{\tau_{x}(\epsilon)| x\in \Omega \}\]</div>
+<p>Definition (Mixing time): <span class="arithmatex">\(\tau(\frac{1}{2e})\)</span></p>
+<p>Lemma: </p>
+<div class="arithmatex">\[\Delta_{x}(t+1) \leq \Delta_{x}(t)\]</div>
+<p>proof:</p>
+<p>This proof shows the power of coupling.</p>
+<p>Let <span class="arithmatex">\(X_{0} = x\)</span>, <span class="arithmatex">\(Y_{0} \sim \pi\)</span>.</p>
+<p>Suppose now we get a coupling such that <span class="arithmatex">\(\mathbb{Pr}[X_{t}\neq Y_{t}] = \Delta_{x}(t)\)</span></p>
+<p>Now define <span class="arithmatex">\(X_{t+1}\)</span>, <span class="arithmatex">\(Y_{t+1}\)</span> as below</p>
+<ol>
+<li>
+<p>If <span class="arithmatex">\(X_{t} = Y_{t}\)</span>, then set <span class="arithmatex">\(X_{t+1} = Y_{t+1}\)</span></p>
+</li>
+<li>
+<p>else random walk independently</p>
+</li>
+</ol>
+<p>So 
+<span class="arithmatex">\(<span class="arithmatex">\(\Delta_{x}(t+1) \leq \mathbb{Pr}[X_{t+1} \neq Y_{t+1}] \leq \mathbb{Pr}[X_{t}\neq Y_{t}] = \Delta_{x}(t)\)</span>\)</span></p>
+<p><span class="arithmatex">\(\blacksquare\)</span></p>
+<p>General bound for mixing time</p>
+<p>Lemma:</p>
+<div class="arithmatex">\[\tau_{mix} \leq \frac{1}{|\Omega|\min_{x,y} K(x,y)^{2}}\]</div>
+<p>proof:</p>
+<p>Pick the same coupling</p>
+<p>$$
+\begin{aligned}</p>
+<p>\Delta_{x}(t+1) &amp;\leq \mathbb{Pr}[X_{t+1} \neq Y_{t+1}] \
+&amp;= \mathbb{Pr}[X_{t+1}\neq Y_{t+1}|X_{t} \neq Y_{t}]\Delta_{x}(t)\
+&amp;= (1 - \sum_{x} K(X_{t}, x) K(Y_{t}, x))\Delta_{x}(t)\
+&amp;\leq (1 - |\Omega|\min_{x, y} K(x, y)^2)\Delta_{x}(t)</p>
+<p>\end{aligned}
+$$</p>
+<p>So</p>
+<div class="arithmatex">\[\Delta_{x}(t) \leq (1 - |\Omega|\min_{x, y} K(x, y)^2)^{t}\]</div>
+<p>Let 
+<span class="arithmatex">\(<span class="arithmatex">\((1 - |\Omega|\min_{x, y} K(x, y)^2)^{t} \leq \frac{1}{2e}\)</span>\)</span></p>
+<p><span class="arithmatex">\(\blacksquare\)</span></p>
+<p>The above also proves the Fundamental Theorem of Markov Chain.</p>
+<p>Theorem: For any Markov Chain, <span class="arithmatex">\(\tau(\epsilon) \leq O(\tau_{mix}\log\frac{1}{\epsilon})\)</span></p></div>
             </div>
         </div>
 
