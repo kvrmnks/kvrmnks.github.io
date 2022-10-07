@@ -523,3 +523,72 @@ The above also proves the Fundamental Theorem of Markov Chain.
 
 Theorem: For any Markov Chain, $\tau(\epsilon) \leq O(\tau_{mix}\log\frac{1}{\epsilon})$
 
+#### Coloring
+
+Try to assign $q$ colors for a graph with maximum degree $\Delta$.
+
+We want to sample proper color assignments.
+
+Define the coupling as follows $(X, Y)$.
+
+Randomly choose a vertex and a color, try to change the color in both $X$ and $Y$ of corresponding vertex.
+
+$$
+\begin{aligned}
+\mathbb{E}[d(X_{t+1}, Y_{t+1})] &= \mathbb{Pr}[A](d(X_{t}, Y_{t})) + \mathbb{Pr}[B](d(X_{t}, Y_{t}) + 1) + \mathbb{Pr}[C](d(X_{t}, Y_{t}) - 1)\\
+&\leq d(X_{t}, Y_{t}) + \mathbb{Pr}[B] - \mathbb{Pr}[C] \\
+&\leq d(X_{t}, Y_{t}) + \frac{2\Delta d(X_{t}, Y_{t})}{nq} - \frac{d(X_{t}, Y_{t})(q - 2\Delta)}{nq}\\
+&= (1 - \frac{q - 4\Delta}{nq})d(X_{t}, Y_{t})
+\end{aligned}
+$$
+Also $d(X_{0}, Y_{0}) \leq n$
+
+So
+
+$$\mathbb{E}[d(X_{t}, Y_{t})] \leq n(1 - \frac{q-4\Delta}{nq})^{t}$$
+
+$$\mathbb{Pr}[d(X_{t}, Y_{t}) \geq 1] \leq \mathbb{E}[d(X_{t}, Y_{t})] \leq n(1 - \frac{q-4\Delta}{nq})^{t} \leq \delta$$
+
+
+So to achieve $\frac{1}{n}$ error, we need $O(nq\log n)$ steps. 
+
+**Also we need $q > 4\Delta + 1$**
+
+### Path coupling
+
+Path coupling is defined on the pre-metric. And it is the property that holds for adjacent vertices and can be extend to the whole $\Omega$.
+
+Definition (pre-metric): A pre-metric defined on $\Omega$ holds that for any adjacent edge $uv$, $d(uv) = d(u, v)$.
+
+
+Definition (path coupling): Define $(X', Y')$ is a coupling define on a pre-metric graph. If for any adjacent vertices $(x, y)$ holds that 
+
+$$\mathbb{E}[d(X', Y')|(x, y)] \leq (1 - \alpha)d(x, y)$$
+
+Then for every pair vertices, they all hold the above inequality.
+
+insight: The original coupling is about to converge. And the uniform weighted graph is naturally holds the pre-metric.
+
+proof:
+
+For any pair of vertices $(s, t)$. 
+
+Chose an arbitrary shortest path $(s=u_{0}, u_{1}, u_{2}, \cdots, u_{k}, t=u_{k+1})$.
+
+
+
+Naturally extend the coupling into multi-vertices coupling $(U_{0}, U_{1}, U_{2}, \cdots, U_{k}, U_{k+1})$.
+
+
+
+$$
+\begin{aligned}
+\mathbb{E}[d(S, T)] &= \mathbb{E}[\sum_{i=0}^{k}d(U_{i}, U_{i+1})] \\
+&= \sum_{i=0}^{k}\mathbb{E}[d(U_{i}, U_{i+1})] \\
+&\leq \sum_{i=0}^{k}(1-\alpha)d(u_{i}, u_{i+1})\\
+&= (1-\alpha)d(s, t)
+\end{aligned}
+$$
+
+$\blacksquare$
+
