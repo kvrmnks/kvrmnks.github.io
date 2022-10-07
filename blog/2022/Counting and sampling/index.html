@@ -496,7 +496,46 @@ $$</p>
 <span class="arithmatex">\(<span class="arithmatex">\((1 - |\Omega|\min_{x, y} K(x, y)^2)^{t} \leq \frac{1}{2e}\)</span>\)</span></p>
 <p><span class="arithmatex">\(\blacksquare\)</span></p>
 <p>The above also proves the Fundamental Theorem of Markov Chain.</p>
-<p>Theorem: For any Markov Chain, <span class="arithmatex">\(\tau(\epsilon) \leq O(\tau_{mix}\log\frac{1}{\epsilon})\)</span></p></div>
+<p>Theorem: For any Markov Chain, <span class="arithmatex">\(\tau(\epsilon) \leq O(\tau_{mix}\log\frac{1}{\epsilon})\)</span></p>
+<h4 id="coloring">Coloring</h4>
+<p>Try to assign <span class="arithmatex">\(q\)</span> colors for a graph with maximum degree <span class="arithmatex">\(\Delta\)</span>.</p>
+<p>We want to sample proper color assignments.</p>
+<p>Define the coupling as follows <span class="arithmatex">\((X, Y)\)</span>.</p>
+<p>Randomly choose a vertex and a color, try to change the color in both <span class="arithmatex">\(X\)</span> and <span class="arithmatex">\(Y\)</span> of corresponding vertex.</p>
+<p>$$
+\begin{aligned}
+\mathbb{E}[d(X_{t+1}, Y_{t+1})] &amp;= \mathbb{Pr}<a href="d(X_{t}, Y_{t})">A</a> + \mathbb{Pr}<a href="d(X_{t}, Y_{t}) + 1">B</a> + \mathbb{Pr}<a href="d(X_{t}, Y_{t}) - 1">C</a>\
+&amp;\leq d(X_{t}, Y_{t}) + \mathbb{Pr}[B] - \mathbb{Pr}[C] \
+&amp;\leq d(X_{t}, Y_{t}) + \frac{2\Delta d(X_{t}, Y_{t})}{nq} - \frac{d(X_{t}, Y_{t})(q - 2\Delta)}{nq}\
+&amp;= (1 - \frac{q - 4\Delta}{nq})d(X_{t}, Y_{t})
+\end{aligned}
+$$
+Also <span class="arithmatex">\(d(X_{0}, Y_{0}) \leq n\)</span></p>
+<p>So</p>
+<div class="arithmatex">\[\mathbb{E}[d(X_{t}, Y_{t})] \leq n(1 - \frac{q-4\Delta}{nq})^{t}\]</div>
+<div class="arithmatex">\[\mathbb{Pr}[d(X_{t}, Y_{t}) \geq 1] \leq \mathbb{E}[d(X_{t}, Y_{t})] \leq n(1 - \frac{q-4\Delta}{nq})^{t} \leq \delta\]</div>
+<p>So to achieve <span class="arithmatex">\(\frac{1}{n}\)</span> error, we need <span class="arithmatex">\(O(nq\log n)\)</span> steps. </p>
+<p><strong>Also we need <span class="arithmatex">\(q &gt; 4\Delta + 1\)</span></strong></p>
+<h3 id="path-coupling">Path coupling</h3>
+<p>Path coupling is defined on the pre-metric. And it is the property that holds for adjacent vertices and can be extend to the whole <span class="arithmatex">\(\Omega\)</span>.</p>
+<p>Definition (pre-metric): A pre-metric defined on <span class="arithmatex">\(\Omega\)</span> holds that for any adjacent edge <span class="arithmatex">\(uv\)</span>, <span class="arithmatex">\(d(uv) = d(u, v)\)</span>.</p>
+<p>Definition (path coupling): Define <span class="arithmatex">\((X', Y')\)</span> is a coupling define on a pre-metric graph. If for any adjacent vertices <span class="arithmatex">\((x, y)\)</span> holds that </p>
+<div class="arithmatex">\[\mathbb{E}[d(X', Y')|(x, y)] \leq (1 - \alpha)d(x, y)\]</div>
+<p>Then for every pair vertices, they all hold the above inequality.</p>
+<p>insight: The original coupling is about to converge. And the uniform weighted graph is naturally holds the pre-metric.</p>
+<p>proof:</p>
+<p>For any pair of vertices <span class="arithmatex">\((s, t)\)</span>. </p>
+<p>Chose an arbitrary shortest path <span class="arithmatex">\((s=u_{0}, u_{1}, u_{2}, \cdots, u_{k}, t=u_{k+1})\)</span>.</p>
+<p>Naturally extend the coupling into multi-vertices coupling <span class="arithmatex">\((U_{0}, U_{1}, U_{2}, \cdots, U_{k}, U_{k+1})\)</span>.</p>
+<div class="arithmatex">\[
+\begin{aligned}
+\mathbb{E}[d(S, T)] &amp;= \mathbb{E}[\sum_{i=0}^{k}d(U_{i}, U_{i+1})] \\
+&amp;= \sum_{i=0}^{k}\mathbb{E}[d(U_{i}, U_{i+1})] \\
+&amp;\leq \sum_{i=0}^{k}(1-\alpha)d(u_{i}, u_{i+1})\\
+&amp;= (1-\alpha)d(s, t)
+\end{aligned}
+\]</div>
+<p><span class="arithmatex">\(\blacksquare\)</span></p></div>
             </div>
         </div>
 
