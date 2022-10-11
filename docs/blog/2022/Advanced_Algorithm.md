@@ -416,8 +416,130 @@ bloom filter
 
 bloom counter 
 
-count min sketch (CMS) 为什么这里只需要 2-universal 呢??? 感觉是因为扩大了内存>
+count min sketch (CMS) 为什么这里只需要 2-universal 呢??? 感觉是因为扩大了内存
 
 
 
+
+## Concentration of Measure
+概率论沉思录
+
+Chernoff Bound
+
+Bernstein Inequality
+
+sum of independent trials
+
+### Sub-Gaussian Random variables
+
+A centered($\mathbb{E}[Y] = 0$) random variable Y is said to be sub-Gaussian with variance factor $\nu$ if 
+
+$$\mathbb{E}[e^{\lambda Y}] \leq \exp\frac{\lambda^{2} \nu}{2}$$
+
+Another interpretation of Chernoff-Hoeffding
+
+
+### The method of bounded differences
+
+(McDiarmid's Inequality)
+
+任何 lipschitz function 在 prod measure 都接近一个常函数
+
+即使 alg 不随机, data 也可能随机.
+
+
+Chernoff -> 1-Lipschitz
+
+Hoeffding -> $(b_{i} - a_{i})$-Lipschitz
+
+
+心理史学(?)
+
+consider \# empty bins in Balls into Bins
+
+$$Y = f(X_{1}, \cdots, X_{m}) = n - |\{X_{1}, \cdots, X_{m}\}|$$
+
+is 1-Lipschitz.
+
+Pattern Matching
+
+k-Lipschitz
+
+Sprinkling Points on Hypercube
+
+iso pari metric
+
+Harper's inequality (iso pari metric in Hamming Space)
+
+telagrand inequality
+
+### Martingale
+
+A sequence of random variables $X_{0}, X_{1}, \cdots$ is a martingale if for all $t>0$,
+
+$$\mathbb{E}[X_{t}|X_{0}, X_{1}, \cdots, X_{t-1}] = X_{t-1}$$
+
+This expectancy is actually a function.
+
+$f(X_{0}, X_{1}, \cdots, X_{t-1})$
+
+$$\mathbb{E}[\mathbb{E}[X|Y]] = \mathbb{E}[X]$$
+
+$$\mathbb{E}[\mathbb{E}[X|Y, Z]|Z] = \mathbb{E}[X|Z]$$
+
+e.g. Fair gambling game 
+
+Super-Martingale
+
+$$\mathbb{E}[X_{t}|X_{0}, X_{1}, \cdots, X_{t-1}] \geq X_{t-1}$$
+
+Sub-Martingale 
+
+$$\mathbb{E}[X_{t}|X_{0}, X_{1}, \cdots, X_{t-1}] \leq X_{t-1}$$
+
+Martingale (Generalized Version) (filtration of a sequence of $\sigma$-algebra):
+
+A sequence of random variables $Y_{0}, Y_{1}, \cdots$ is a martingale
+
+w.r.t. to $X_{0}, X_{1}, \cdots$ if for all $t \geq 0$,
+
+$Y_{t}$ is a function of $X_{0}, \cdots, X_{t}$
+
+$$\mathbb{E}[Y_{t+1}|X_{0}, \cdots, X_{t}] = Y_{t}$$
+
+A fair gambling game:
+
+$X_{i}$: outcome (win/loss) of the $i$-th betting
+
+$Y_{i}$: capital after the $i$-th betting
+
+#### Azuma's Inequality
+
+For martingale $Y_{0}, Y_{1}, \cdots$ (w.r.t. $X_{0}, X_{1}, ...$) satisfying:
+
+$$\forall i \geq 0, |Y_{i} - Y_{i-1}| \leq c_{i}$$
+
+for any $n\geq 1$ and $t > 0$:
+
+$$\mathbb{Pr}[|Y_{n} - Y_{0}| \geq t] \leq \exp (-\frac{t^{2}}{2\sum_{i=1}^{n}c_{i}^{2}})$$
+
+Martingale rules: 如何必胜!
+
+赌输了就加倍, 赢了立马跑路! 
+
+所以下注是有上限的...
+
+(别想了别想了)
+
+#### Doob Martingale
+
+A Doob sequence $Y_{0}, Y_{1}, \cdots, Y_{n}$ of an $n$-variate function $f$ w.r.t. a random vector $(X_{1}, ..., X_{n})$ is:
+
+$$\forall 0 \leq i \leq n, Y_{i} = \mathbb{E}[f(X_{1}, \cdots, X_{n})|X_{1}, \cdots, X_{i}]$$
+<!-- 
+$Y_{0} = \mathbb{E}[]$ -->
+
+Theorem:
+
+The Doob sequence $Y_{0}, Y_{1}, \cdots, Y_{n}$ is a martingale w.r.t. $X_{1}, X_{2}, \cdots, X_{n}$. 
 
