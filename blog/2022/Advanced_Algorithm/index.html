@@ -34,7 +34,7 @@
                         <!-- Main navigation -->
                         <ul class="nav navbar-nav">
                             <li class="navitem">
-                                <a href="../../.." class="nav-link">Welcome to MkDocs</a>
+                                <a href="../../.." class="nav-link">Welcome to kvrmnks's blog</a>
                             </li>
                             <li class="dropdown active">
                                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Blog <b class="caret"></b></a>
@@ -199,6 +199,11 @@
             </li>
             
             <li class="nav-item" data-level="2"><a href="#hashing-and-sketching" class="nav-link">Hashing and Sketching</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="2"><a href="#concentration-of-measure" class="nav-link">Concentration of Measure</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -413,7 +418,69 @@ fu jian yi bo, yi quan chao ren </p>
 <p>bloom filter</p>
 <p>数据库</p>
 <p>bloom counter </p>
-<p>count min sketch (CMS) 为什么这里只需要 2-universal 呢??? 感觉是因为扩大了内存&gt;</p></div>
+<p>count min sketch (CMS) 为什么这里只需要 2-universal 呢??? 感觉是因为扩大了内存</p>
+<h2 id="concentration-of-measure">Concentration of Measure</h2>
+<p>概率论沉思录</p>
+<p>Chernoff Bound</p>
+<p>Bernstein Inequality</p>
+<p>sum of independent trials</p>
+<h3 id="sub-gaussian-random-variables">Sub-Gaussian Random variables</h3>
+<p>A centered(<span class="arithmatex">\(\mathbb{E}[Y] = 0\)</span>) random variable Y is said to be sub-Gaussian with variance factor <span class="arithmatex">\(\nu\)</span> if </p>
+<div class="arithmatex">\[\mathbb{E}[e^{\lambda Y}] \leq \exp\frac{\lambda^{2} \nu}{2}\]</div>
+<p>Another interpretation of Chernoff-Hoeffding</p>
+<h3 id="the-method-of-bounded-differences">The method of bounded differences</h3>
+<p>(McDiarmid's Inequality)</p>
+<p>任何 lipschitz function 在 prod measure 都接近一个常函数</p>
+<p>即使 alg 不随机, data 也可能随机.</p>
+<p>Chernoff -&gt; 1-Lipschitz</p>
+<p>Hoeffding -&gt; <span class="arithmatex">\((b_{i} - a_{i})\)</span>-Lipschitz</p>
+<p>心理史学(?)</p>
+<p>consider # empty bins in Balls into Bins</p>
+<div class="arithmatex">\[Y = f(X_{1}, \cdots, X_{m}) = n - |\{X_{1}, \cdots, X_{m}\}|\]</div>
+<p>is 1-Lipschitz.</p>
+<p>Pattern Matching</p>
+<p>k-Lipschitz</p>
+<p>Sprinkling Points on Hypercube</p>
+<p>iso pari metric</p>
+<p>Harper's inequality (iso pari metric in Hamming Space)</p>
+<p>telagrand inequality</p>
+<h3 id="martingale">Martingale</h3>
+<p>A sequence of random variables <span class="arithmatex">\(X_{0}, X_{1}, \cdots\)</span> is a martingale if for all <span class="arithmatex">\(t&gt;0\)</span>,</p>
+<div class="arithmatex">\[\mathbb{E}[X_{t}|X_{0}, X_{1}, \cdots, X_{t-1}] = X_{t-1}\]</div>
+<p>This expectancy is actually a function.</p>
+<p><span class="arithmatex">\(f(X_{0}, X_{1}, \cdots, X_{t-1})\)</span></p>
+<div class="arithmatex">\[\mathbb{E}[\mathbb{E}[X|Y]] = \mathbb{E}[X]\]</div>
+<div class="arithmatex">\[\mathbb{E}[\mathbb{E}[X|Y, Z]|Z] = \mathbb{E}[X|Z]\]</div>
+<p>e.g. Fair gambling game </p>
+<p>Super-Martingale</p>
+<div class="arithmatex">\[\mathbb{E}[X_{t}|X_{0}, X_{1}, \cdots, X_{t-1}] \geq X_{t-1}\]</div>
+<p>Sub-Martingale </p>
+<div class="arithmatex">\[\mathbb{E}[X_{t}|X_{0}, X_{1}, \cdots, X_{t-1}] \leq X_{t-1}\]</div>
+<p>Martingale (Generalized Version) (filtration of a sequence of <span class="arithmatex">\(\sigma\)</span>-algebra):</p>
+<p>A sequence of random variables <span class="arithmatex">\(Y_{0}, Y_{1}, \cdots\)</span> is a martingale</p>
+<p>w.r.t. to <span class="arithmatex">\(X_{0}, X_{1}, \cdots\)</span> if for all <span class="arithmatex">\(t \geq 0\)</span>,</p>
+<p><span class="arithmatex">\(Y_{t}\)</span> is a function of <span class="arithmatex">\(X_{0}, \cdots, X_{t}\)</span></p>
+<div class="arithmatex">\[\mathbb{E}[Y_{t+1}|X_{0}, \cdots, X_{t}] = Y_{t}\]</div>
+<p>A fair gambling game:</p>
+<p><span class="arithmatex">\(X_{i}\)</span>: outcome (win/loss) of the <span class="arithmatex">\(i\)</span>-th betting</p>
+<p><span class="arithmatex">\(Y_{i}\)</span>: capital after the <span class="arithmatex">\(i\)</span>-th betting</p>
+<h4 id="azumas-inequality">Azuma's Inequality</h4>
+<p>For martingale <span class="arithmatex">\(Y_{0}, Y_{1}, \cdots\)</span> (w.r.t. <span class="arithmatex">\(X_{0}, X_{1}, ...\)</span>) satisfying:</p>
+<div class="arithmatex">\[\forall i \geq 0, |Y_{i} - Y_{i-1}| \leq c_{i}\]</div>
+<p>for any <span class="arithmatex">\(n\geq 1\)</span> and <span class="arithmatex">\(t &gt; 0\)</span>:</p>
+<div class="arithmatex">\[\mathbb{Pr}[|Y_{n} - Y_{0}| \geq t] \leq \exp (-\frac{t^{2}}{2\sum_{i=1}^{n}c_{i}^{2}})\]</div>
+<p>Martingale rules: 如何必胜!</p>
+<p>赌输了就加倍, 赢了立马跑路! </p>
+<p>所以下注是有上限的...</p>
+<p>(别想了别想了)</p>
+<h4 id="doob-martingale">Doob Martingale</h4>
+<p>A Doob sequence <span class="arithmatex">\(Y_{0}, Y_{1}, \cdots, Y_{n}\)</span> of an <span class="arithmatex">\(n\)</span>-variate function <span class="arithmatex">\(f\)</span> w.r.t. a random vector <span class="arithmatex">\((X_{1}, ..., X_{n})\)</span> is:</p>
+<div class="arithmatex">\[\forall 0 \leq i \leq n, Y_{i} = \mathbb{E}[f(X_{1}, \cdots, X_{n})|X_{1}, \cdots, X_{i}]\]</div>
+<!-- 
+$Y_{0} = \mathbb{E}[]$ -->
+
+<p>Theorem:</p>
+<p>The Doob sequence <span class="arithmatex">\(Y_{0}, Y_{1}, \cdots, Y_{n}\)</span> is a martingale w.r.t. <span class="arithmatex">\(X_{1}, X_{2}, \cdots, X_{n}\)</span>. </p></div>
             </div>
         </div>
 

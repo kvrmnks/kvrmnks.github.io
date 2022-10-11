@@ -34,7 +34,7 @@
                         <!-- Main navigation -->
                         <ul class="nav navbar-nav">
                             <li class="navitem">
-                                <a href="../../.." class="nav-link">Welcome to MkDocs</a>
+                                <a href="../../.." class="nav-link">Welcome to kvrmnks's blog</a>
                             </li>
                             <li class="dropdown active">
                                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Blog <b class="caret"></b></a>
@@ -236,16 +236,16 @@
 <div class="arithmatex">\[||\mu - \nu||_{TV} = \max_{X \subset \Omega}|\mu(X) - \nu(X)|\]</div>
 <p>Proof:</p>
 <p>For the second formula, we can see that if we pick <span class="arithmatex">\(X = \{x| \mu(x) &gt; \nu(x) \}\)</span>, RHS is maximized.</p>
-<p>$$
-\begin{align}
+<div class="arithmatex">\[
+\begin{aligned}
 |\mu(\Omega - X) - \nu(\Omega - X)| 
-&amp;= |\nu(\Omega - X) - \mu(\Omega - X)| \
-&amp;= | (1 - \mu(X)) - (1 - \nu(X)) | \
-&amp;= |\nu(X) - \mu(X)| \
-&amp;= |\mu(X) - \nu(X)|  \
-\end{align}
-$$
-So </p>
+&amp;= |\nu(\Omega - X) - \mu(\Omega - X)| \\
+&amp;= | (1 - \mu(X)) - (1 - \nu(X)) | \\
+&amp;= |\nu(X) - \mu(X)| \\
+&amp;= |\mu(X) - \nu(X)|  \\
+\end{aligned}
+\]</div>
+<p>So </p>
 <div class="arithmatex">\[\max_{X \subset \Omega}|\mu(X) - \nu(X)| = \frac{1}{2} \sum_{x \in \Omega}|\mu(x) - \nu(x)| \]</div>
 <p>Definition of FPAUS: </p>
 <p>fully polynomial almost uniform sampler</p>
@@ -482,14 +482,14 @@ All add a self-loop with <span class="arithmatex">\(\frac{1}{2}\)</span></p>
 <div class="arithmatex">\[\tau_{mix} \leq \frac{1}{|\Omega|\min_{x,y} K(x,y)^{2}}\]</div>
 <p>proof:</p>
 <p>Pick the same coupling</p>
-<p>$$
-\begin{aligned}</p>
-<p>\Delta_{x}(t+1) &amp;\leq \mathbb{Pr}[X_{t+1} \neq Y_{t+1}] \
-&amp;= \mathbb{Pr}[X_{t+1}\neq Y_{t+1}|X_{t} \neq Y_{t}]\Delta_{x}(t)\
-&amp;= (1 - \sum_{x} K(X_{t}, x) K(Y_{t}, x))\Delta_{x}(t)\
-&amp;\leq (1 - |\Omega|\min_{x, y} K(x, y)^2)\Delta_{x}(t)</p>
-<p>\end{aligned}
-$$</p>
+<div class="arithmatex">\[
+\begin{aligned}
+\Delta_{x}(t+1) &amp;\leq \mathbb{Pr}[X_{t+1} \neq Y_{t+1}] \\
+&amp;= \mathbb{Pr}[X_{t+1}\neq Y_{t+1}|X_{t} \neq Y_{t}]\Delta_{x}(t)\\
+&amp;= (1 - \sum_{x} K(X_{t}, x) K(Y_{t}, x))\Delta_{x}(t)\\
+&amp;\leq (1 - |\Omega|\min_{x, y} K(x, y)^2)\Delta_{x}(t)
+\end{aligned}
+\]</div>
 <p>So</p>
 <div class="arithmatex">\[\Delta_{x}(t) \leq (1 - |\Omega|\min_{x, y} K(x, y)^2)^{t}\]</div>
 <p>Let 
@@ -502,20 +502,20 @@ $$</p>
 <p>We want to sample proper color assignments.</p>
 <p>Define the coupling as follows <span class="arithmatex">\((X, Y)\)</span>.</p>
 <p>Randomly choose a vertex and a color, try to change the color in both <span class="arithmatex">\(X\)</span> and <span class="arithmatex">\(Y\)</span> of corresponding vertex.</p>
-<p>$$
+<div class="arithmatex">\[
 \begin{aligned}
-\mathbb{E}[d(X_{t+1}, Y_{t+1})] &amp;= \mathbb{Pr}<a href="d(X_{t}, Y_{t})">A</a> + \mathbb{Pr}<a href="d(X_{t}, Y_{t}) + 1">B</a> + \mathbb{Pr}<a href="d(X_{t}, Y_{t}) - 1">C</a>\
-&amp;\leq d(X_{t}, Y_{t}) + \mathbb{Pr}[B] - \mathbb{Pr}[C] \
-&amp;\leq d(X_{t}, Y_{t}) + \frac{2\Delta d(X_{t}, Y_{t})}{nq} - \frac{d(X_{t}, Y_{t})(q - 2\Delta)}{nq}\
+\mathbb{E}[d(X_{t+1}, Y_{t+1})] &amp;= \mathbb{Pr}[A](d(X_{t}, Y_{t})) + \mathbb{Pr}[B](d(X_{t}, Y_{t}) + 1) + \mathbb{Pr}[C](d(X_{t}, Y_{t}) - 1)\\
+&amp;\leq d(X_{t}, Y_{t}) + \mathbb{Pr}[B] - \mathbb{Pr}[C] \\
+&amp;\leq d(X_{t}, Y_{t}) + \frac{2\Delta d(X_{t}, Y_{t})}{nq} - \frac{d(X_{t}, Y_{t})(q - 2\Delta)}{nq}\\
 &amp;= (1 - \frac{q - 4\Delta}{nq})d(X_{t}, Y_{t})
 \end{aligned}
-$$
-Also <span class="arithmatex">\(d(X_{0}, Y_{0}) \leq n\)</span></p>
+\]</div>
+<p>Also <span class="arithmatex">\(d(X_{0}, Y_{0}) \leq n\)</span></p>
 <p>So</p>
 <div class="arithmatex">\[\mathbb{E}[d(X_{t}, Y_{t})] \leq n(1 - \frac{q-4\Delta}{nq})^{t}\]</div>
 <div class="arithmatex">\[\mathbb{Pr}[d(X_{t}, Y_{t}) \geq 1] \leq \mathbb{E}[d(X_{t}, Y_{t})] \leq n(1 - \frac{q-4\Delta}{nq})^{t} \leq \delta\]</div>
 <p>So to achieve <span class="arithmatex">\(\frac{1}{n}\)</span> error, we need <span class="arithmatex">\(O(nq\log n)\)</span> steps. </p>
-<p><strong>Also we need <span class="arithmatex">\(q &gt; 4\Delta + 1\)</span></strong></p>
+<p><strong>Also we need <span class="arithmatex">\(q \geq 4\Delta + 1\)</span></strong></p>
 <h3 id="path-coupling">Path coupling</h3>
 <p>Path coupling is defined on the pre-metric. And it is the property that holds for adjacent vertices and can be extend to the whole <span class="arithmatex">\(\Omega\)</span>.</p>
 <p>Definition (pre-metric): A pre-metric defined on <span class="arithmatex">\(\Omega\)</span> holds that for any adjacent edge <span class="arithmatex">\(uv\)</span>, <span class="arithmatex">\(d(uv) = d(u, v)\)</span>.</p>
@@ -535,7 +535,25 @@ Also <span class="arithmatex">\(d(X_{0}, Y_{0}) \leq n\)</span></p>
 &amp;= (1-\alpha)d(s, t)
 \end{aligned}
 \]</div>
-<p><span class="arithmatex">\(\blacksquare\)</span></p></div>
+<p><span class="arithmatex">\(\blacksquare\)</span></p>
+<h4 id="coloring-with-path-coupling-theorem">Coloring with Path coupling theorem</h4>
+<p>Theorem: If <span class="arithmatex">\(q \geq 2\Delta + 1\)</span>, then the metropolis rule mixes in time <span class="arithmatex">\(O(n\log n)\)</span>.</p>
+<p>First we need to modify the graph to let it be a pre-metric graph in order to use path coupling theorem. </p>
+<p>Consider the metric <span class="arithmatex">\(d(X, Y)\)</span> calculating how many different colors of color configuration <span class="arithmatex">\(X\)</span> and <span class="arithmatex">\(Y\)</span>. Sometime we cannot find a path of proper exchange, so we need to allow improper color configuration. Such that there are total <span class="arithmatex">\(q^{n}\)</span> vertices in the graph.</p>
+<p>We can use metropolis rules to let their probability is <span class="arithmatex">\(0\)</span> in <span class="arithmatex">\(\pi\)</span>. Also if we bound the total variance, we can still bound the "real" total variance. </p>
+<p>Then we need to design the path coupling procedure. We can only consider <span class="arithmatex">\(d(X', Y'|x, y)\)</span>, <span class="arithmatex">\(x\)</span> and <span class="arithmatex">\(y\)</span> are adjacent with path coupling.</p>
+<p>Assume the exact different color of <span class="arithmatex">\(x\)</span> and <span class="arithmatex">\(y\)</span> are on the vertex <span class="arithmatex">\(u\)</span>.</p>
+<p>In general, we choose a vertex <span class="arithmatex">\(v\)</span> and a color <span class="arithmatex">\(c\)</span> randomly, then try to change <span class="arithmatex">\(v\)</span>'s color into <span class="arithmatex">\(c\)</span>.</p>
+<p>This is not the complete procedure, but we can try to analyze this. We denote <span class="arithmatex">\(N(u) \bigcup \{u\} = N^{*}(u)\)</span>. </p>
+<p>If <span class="arithmatex">\(v\)</span> is not in <span class="arithmatex">\(N^{*}(u)\)</span>, then <span class="arithmatex">\(d(X', Y') = d(x, y)\)</span>. </p>
+<p>If <span class="arithmatex">\(v = u\)</span>, then <span class="arithmatex">\(\mathbb{E}[d(X', Y')] \leq \frac{\Delta}{q}d(x, y) + (1 - \frac{\Delta}{q})(d(x, y) - 1)\)</span>.</p>
+<p>If <span class="arithmatex">\(v \in N^{*}(u)\)</span>, but <span class="arithmatex">\(u \neq v\)</span>, if <span class="arithmatex">\(c = c_{x}\)</span> or <span class="arithmatex">\(c = c_{y}\)</span> then <span class="arithmatex">\(d(X, Y) \leq d(x, y) + 1\)</span> otherwise <span class="arithmatex">\(d(X, Y) = d(x, y)\)</span>.</p>
+<p>Sum all the inequalities above, we get</p>
+<div class="arithmatex">\[\mathbb{E}[(X', Y')|(x, y)] \leq d(x, y) - \frac{q - 3\Delta}{nq} = 1 - \frac{q - 3\Delta}{nq} \leq (1 - \frac{1}{nq})d(x, y)\]</div>
+<p>When <span class="arithmatex">\(q \geq 3\Delta + 1\)</span>.</p>
+<p>To improve this bound, we need to specify when <span class="arithmatex">\(c = c_{x}\)</span> or <span class="arithmatex">\(c = c_{y}\)</span>, we can reorder the configuration. To achieve</p>
+<div class="arithmatex">\[\mathbb{E}[(X', Y')|(x, y)] \leq d(x, y) - \frac{q - 3\Delta}{nq} = 1 - \frac{q - 3\Delta}{nq} \leq (1 - \frac{1}{nq})d(x, y)\]</div>
+<p>Which we only need <span class="arithmatex">\(q \geq 2\Delta + 1\)</span>.</p></div>
             </div>
         </div>
 
