@@ -1,6 +1,9 @@
-# Welcome to MkDocs
+# Welcome to kvrmnks's blog
 
-For full documentation visit [mkdocs.org](https://www.mkdocs.org).
+Just a notes set...
+
+
+<!-- For full documentation visit [mkdocs.org](https://www.mkdocs.org).
 
 ## Commands
 
@@ -14,4 +17,4 @@ For full documentation visit [mkdocs.org](https://www.mkdocs.org).
     mkdocs.yml    # The configuration file.
     docs/
         index.md  # The documentation homepage.
-        ...       # Other markdown pages, images and other files.
+        ...       # Other markdown pages, images and other files. -->
