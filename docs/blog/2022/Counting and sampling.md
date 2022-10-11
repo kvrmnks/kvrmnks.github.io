@@ -62,14 +62,15 @@ Proof:
 For the second formula, we can see that if we pick $X = \{x| \mu(x) > \nu(x) \}$, RHS is maximized.
 
 $$
-\begin{align}
+\begin{aligned}
 |\mu(\Omega - X) - \nu(\Omega - X)| 
 &= |\nu(\Omega - X) - \mu(\Omega - X)| \\
 &= | (1 - \mu(X)) - (1 - \nu(X)) | \\
 &= |\nu(X) - \mu(X)| \\
 &= |\mu(X) - \nu(X)|  \\
-\end{align}
+\end{aligned}
 $$
+
 So 
 
 $$\max_{X \subset \Omega}|\mu(X) - \nu(X)| = \frac{1}{2} \sum_{x \in \Omega}|\mu(x) - \nu(x)| $$
@@ -498,12 +499,10 @@ Pick the same coupling
 
 $$
 \begin{aligned}
-
 \Delta_{x}(t+1) &\leq \mathbb{Pr}[X_{t+1} \neq Y_{t+1}] \\
 &= \mathbb{Pr}[X_{t+1}\neq Y_{t+1}|X_{t} \neq Y_{t}]\Delta_{x}(t)\\
 &= (1 - \sum_{x} K(X_{t}, x) K(Y_{t}, x))\Delta_{x}(t)\\
 &\leq (1 - |\Omega|\min_{x, y} K(x, y)^2)\Delta_{x}(t)
-
 \end{aligned}
 $$
 
@@ -541,6 +540,7 @@ $$
 &= (1 - \frac{q - 4\Delta}{nq})d(X_{t}, Y_{t})
 \end{aligned}
 $$
+
 Also $d(X_{0}, Y_{0}) \leq n$
 
 So
@@ -552,7 +552,7 @@ $$\mathbb{Pr}[d(X_{t}, Y_{t}) \geq 1] \leq \mathbb{E}[d(X_{t}, Y_{t})] \leq n(1 
 
 So to achieve $\frac{1}{n}$ error, we need $O(nq\log n)$ steps. 
 
-**Also we need $q > 4\Delta + 1$**
+**Also we need $q \geq 4\Delta + 1$**
 
 ### Path coupling
 
@@ -591,4 +591,41 @@ $$
 $$
 
 $\blacksquare$
+
+#### Coloring with Path coupling theorem
+
+Theorem: If $q \geq 2\Delta + 1$, then the metropolis rule mixes in time $O(n\log n)$.
+
+First we need to modify the graph to let it be a pre-metric graph in order to use path coupling theorem. 
+
+Consider the metric $d(X, Y)$ calculating how many different colors of color configuration $X$ and $Y$. Sometime we cannot find a path of proper exchange, so we need to allow improper color configuration. Such that there are total $q^{n}$ vertices in the graph.
+
+We can use metropolis rules to let their probability is $0$ in $\pi$. Also if we bound the total variance, we can still bound the "real" total variance. 
+
+Then we need to design the path coupling procedure. We can only consider $d(X', Y'|x, y)$, $x$ and $y$ are adjacent with path coupling.
+
+Assume the exact different color of $x$ and $y$ are on the vertex $u$.
+
+In general, we choose a vertex $v$ and a color $c$ randomly, then try to change $v$'s color into $c$.
+
+This is not the complete procedure, but we can try to analyze this. We denote $N(u) \bigcup \{u\} = N^{*}(u)$. 
+
+If $v$ is not in $N^{*}(u)$, then $d(X', Y') = d(x, y)$. 
+
+If $v = u$, then $\mathbb{E}[d(X', Y')] \leq \frac{\Delta}{q}d(x, y) + (1 - \frac{\Delta}{q})(d(x, y) - 1)$.
+
+If $v \in N^{*}(u)$, but $u \neq v$, if $c = c_{x}$ or $c = c_{y}$ then $d(X, Y) \leq d(x, y) + 1$ otherwise $d(X, Y) = d(x, y)$.
+
+Sum all the inequalities above, we get
+
+$$\mathbb{E}[(X', Y')|(x, y)] \leq d(x, y) - \frac{q - 3\Delta}{nq} = 1 - \frac{q - 3\Delta}{nq} \leq (1 - \frac{1}{nq})d(x, y)$$
+
+When $q \geq 3\Delta + 1$.
+
+To improve this bound, we need to specify when $c = c_{x}$ or $c = c_{y}$, we can reorder the configuration. To achieve
+
+$$\mathbb{E}[(X', Y')|(x, y)] \leq d(x, y) - \frac{q - 3\Delta}{nq} = 1 - \frac{q - 3\Delta}{nq} \leq (1 - \frac{1}{nq})d(x, y)$$
+
+Which we only need $q \geq 2\Delta + 1$.
+
 
