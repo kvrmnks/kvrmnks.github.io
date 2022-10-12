@@ -629,3 +629,78 @@ $$\mathbb{E}[(X', Y')|(x, y)] \leq d(x, y) - \frac{q - 3\Delta}{nq} = 1 - \frac{
 Which we only need $q \geq 2\Delta + 1$.
 
 
+### Coloring with Heat bath chain
+
+The main motivation of the path of metropolis rule is that try to construct a coupling such that the probability of $d(x, y) + 1$ is low.
+
+One trivial way is to increase $q$. Beyond that path coupling consider just consider vertices pairs that are adjacent in order to decrease the "controversy".
+
+Now let's focus on heat bath chain.
+
+Instead of metropolis rule that randomly pick a vertex and a color then change the configuration. Heat bath chain randomly chooses a vertex then samples from the proper color.
+
+(Obviously it may break the pre-metric requirement)
+
+Here is a simple way: randomly chooses a vertex $u$. Denote the proper colors for $u$ under configuration $X$ as $A(X, u)$. 
+
+Then for configuration $X, Y$, we sample from $\max(|A(X, u)|, |A(Y, u)|)$. With probability $\frac{|A(X, u) \bigcap A(Y, u)|}{\max(|A(X, u)|, |A(Y, u)|)}$ we choose the same color. Obviously we can properly assign other events.
+
+Then we analyze this coupling
+
+$$\mathbb{E}[d(X', Y')|(x, y)] = \sum_{v}\mathbb{E}[c_{X'}(v) \neq c_{Y'}(v)]$$
+
+$$\mathbb{E}[c_{X'}(v) \neq c_{Y'}(v)] = \mathbb{Pr}[u=v]\mathbb{Pr}[c_{X'}(v) \neq c_{Y'}(v)|u=v] + \mathbb{Pr}[u\neq v]\mathbb{Pr}[c_{X'}(v) \neq c_{Y'}(v)|u\neq v]$$
+
+$$
+\begin{aligned}
+\mathbb{Pr}[c_{X'}(v)\neq c_{Y'}(v)|u=v] &= 1 - \frac{|A(X, u) \bigcap A(Y, u)|}{\max(|A(X, u)|, |A(Y, u)|)} \\
+&\leq \frac{1}{q - \Delta}|u\sim v: c_{x}(v) \neq c_{y}(u)|
+\end{aligned}
+$$
+
+$$
+\mathbb{Pr}[c_{X'}(v) \neq c_{Y'}(v)|u\neq v] = \frac{d(x, y)}{n}
+$$
+
+Sum all these equalities and inequalities
+
+$$
+\mathbb{E}[d(X', Y')|(x, y)] \leq \frac{\Delta d(x, y)}{n(q - \Delta)} + (1 - \frac{1}{n})d(x, y)
+$$
+
+If $q \geq 2\Delta + 1$,
+
+$$
+\mathbb{E}[d(X', Y')|(x, y)] \leq (1 - \frac{1}{n(\Delta + 1)})d(x, y)
+$$
+
+So for heat-bath, $q \geq 2\Delta + 1$ and trivial coupling method lead to $\Theta(n \log n)$ mixing time.
+
+#### Triangle-free graph
+
+Now image that the given graph is triangle-free. Then $A(X, u)$ can be very large. Maybe better than $q - \Delta$ which can leads to a better result.
+
+Now analyze the $A(X, u)$
+
+$$A(X, u) = \sum_{c} \prod_{v \sim u} (1 - X_{v, c})$$
+
+<!-- $$
+\begin{aligned}
+\mathbb{E}[A(X, u)] &= \mathbb{E}[\sum_{c} \prod_{v \sim u} (1 - X_{v, c})] \\
+&= \mathbb{E}[\sum_{c} \prod_{v \sim u} (1 - X_{v, c})]
+\end{aligned}
+$$ -->
+
+<!-- Let  $W = \frac{|A(X, u) \bigcap A(Y, u)|}{\max(|A(X, u)|, |A(Y, u)|)}$
+
+$$
+\begin{aligned}
+\mathbb{E}[d((X', Y')|(x, y))] &= \mathbb{Pr}[c_{X}(u) \neq c_{Y}(u)](W(d(x, y) - 1) + (1 - W)d(x, y)) + \mathbb{Pr}[c_{X}(u) = c_{Y}(u)](W(d(x, y)) + (1 - W)(1 + d(x, y)))\\
+&\leq \mathbb{Pr}[c_{X}(u) \neq c_{Y}(u)][d(x, y) - 1] + 1 - W\\
+&\leq \frac{d(x, y)}{n} [d(x, y) - 1] + \frac{d(x, y)}{n(q - \Delta)}
+
+\end{aligned}
+$$ -->
+
+
+<!-- d(x, y) + (1 - \frac{|A(X, u) \bigcap A(Y, u)|}{\max(|A(X, u)|, |A(Y, u)|)})  -->
