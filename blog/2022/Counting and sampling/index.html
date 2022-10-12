@@ -553,7 +553,59 @@ All add a self-loop with <span class="arithmatex">\(\frac{1}{2}\)</span></p>
 <p>When <span class="arithmatex">\(q \geq 3\Delta + 1\)</span>.</p>
 <p>To improve this bound, we need to specify when <span class="arithmatex">\(c = c_{x}\)</span> or <span class="arithmatex">\(c = c_{y}\)</span>, we can reorder the configuration. To achieve</p>
 <div class="arithmatex">\[\mathbb{E}[(X', Y')|(x, y)] \leq d(x, y) - \frac{q - 3\Delta}{nq} = 1 - \frac{q - 3\Delta}{nq} \leq (1 - \frac{1}{nq})d(x, y)\]</div>
-<p>Which we only need <span class="arithmatex">\(q \geq 2\Delta + 1\)</span>.</p></div>
+<p>Which we only need <span class="arithmatex">\(q \geq 2\Delta + 1\)</span>.</p>
+<h3 id="coloring-with-heat-bath-chain">Coloring with Heat bath chain</h3>
+<p>The main motivation of the path of metropolis rule is that try to construct a coupling such that the probability of <span class="arithmatex">\(d(x, y) + 1\)</span> is low.</p>
+<p>One trivial way is to increase <span class="arithmatex">\(q\)</span>. Beyond that path coupling consider just consider vertices pairs that are adjacent in order to decrease the "controversy".</p>
+<p>Now let's focus on heat bath chain.</p>
+<p>Instead of metropolis rule that randomly pick a vertex and a color then change the configuration. Heat bath chain randomly chooses a vertex then samples from the proper color.</p>
+<p>(Obviously it may break the pre-metric requirement)</p>
+<p>Here is a simple way: randomly chooses a vertex <span class="arithmatex">\(u\)</span>. Denote the proper colors for <span class="arithmatex">\(u\)</span> under configuration <span class="arithmatex">\(X\)</span> as <span class="arithmatex">\(A(X, u)\)</span>. </p>
+<p>Then for configuration <span class="arithmatex">\(X, Y\)</span>, we sample from <span class="arithmatex">\(\max(|A(X, u)|, |A(Y, u)|)\)</span>. With probability <span class="arithmatex">\(\frac{|A(X, u) \bigcap A(Y, u)|}{\max(|A(X, u)|, |A(Y, u)|)}\)</span> we choose the same color. Obviously we can properly assign other events.</p>
+<p>Then we analyze this coupling</p>
+<div class="arithmatex">\[\mathbb{E}[d(X', Y')|(x, y)] = \sum_{v}\mathbb{E}[c_{X'}(v) \neq c_{Y'}(v)]\]</div>
+<div class="arithmatex">\[\mathbb{E}[c_{X'}(v) \neq c_{Y'}(v)] = \mathbb{Pr}[u=v]\mathbb{Pr}[c_{X'}(v) \neq c_{Y'}(v)|u=v] + \mathbb{Pr}[u\neq v]\mathbb{Pr}[c_{X'}(v) \neq c_{Y'}(v)|u\neq v]\]</div>
+<div class="arithmatex">\[
+\begin{aligned}
+\mathbb{Pr}[c_{X'}(v)\neq c_{Y'}(v)|u=v] &amp;= 1 - \frac{|A(X, u) \bigcap A(Y, u)|}{\max(|A(X, u)|, |A(Y, u)|)} \\
+&amp;\leq \frac{1}{q - \Delta}|u\sim v: c_{x}(v) \neq c_{y}(u)|
+\end{aligned}
+\]</div>
+<div class="arithmatex">\[
+\mathbb{Pr}[c_{X'}(v) \neq c_{Y'}(v)|u\neq v] = \frac{d(x, y)}{n}
+\]</div>
+<p>Sum all these equalities and inequalities</p>
+<div class="arithmatex">\[
+\mathbb{E}[d(X', Y')|(x, y)] \leq \frac{\Delta d(x, y)}{n(q - \Delta)} + (1 - \frac{1}{n})d(x, y)
+\]</div>
+<p>If <span class="arithmatex">\(q \geq 2\Delta + 1\)</span>,</p>
+<div class="arithmatex">\[
+\mathbb{E}[d(X', Y')|(x, y)] \leq (1 - \frac{1}{n(\Delta + 1)})d(x, y)
+\]</div>
+<p>So for heat-bath, <span class="arithmatex">\(q \geq 2\Delta + 1\)</span> and trivial coupling method lead to <span class="arithmatex">\(\Theta(n \log n)\)</span> mixing time.</p>
+<h4 id="triangle-free-graph">Triangle-free graph</h4>
+<p>Now image that the given graph is triangle-free. Then <span class="arithmatex">\(A(X, u)\)</span> can be very large. Maybe better than <span class="arithmatex">\(q - \Delta\)</span> which can leads to a better result.</p>
+<p>Now analyze the <span class="arithmatex">\(A(X, u)\)</span></p>
+<div class="arithmatex">\[A(X, u) = \sum_{c} \prod_{v \sim u} (1 - X_{v, c})\]</div>
+<!-- $$
+\begin{aligned}
+\mathbb{E}[A(X, u)] &= \mathbb{E}[\sum_{c} \prod_{v \sim u} (1 - X_{v, c})] \\
+&= \mathbb{E}[\sum_{c} \prod_{v \sim u} (1 - X_{v, c})]
+\end{aligned}
+$$ -->
+
+<!-- Let  $W = \frac{|A(X, u) \bigcap A(Y, u)|}{\max(|A(X, u)|, |A(Y, u)|)}$
+
+$$
+\begin{aligned}
+\mathbb{E}[d((X', Y')|(x, y))] &= \mathbb{Pr}[c_{X}(u) \neq c_{Y}(u)](W(d(x, y) - 1) + (1 - W)d(x, y)) + \mathbb{Pr}[c_{X}(u) = c_{Y}(u)](W(d(x, y)) + (1 - W)(1 + d(x, y)))\\
+&\leq \mathbb{Pr}[c_{X}(u) \neq c_{Y}(u)][d(x, y) - 1] + 1 - W\\
+&\leq \frac{d(x, y)}{n} [d(x, y) - 1] + \frac{d(x, y)}{n(q - \Delta)}
+
+\end{aligned}
+$$ -->
+
+<!-- d(x, y) + (1 - \frac{|A(X, u) \bigcap A(Y, u)|}{\max(|A(X, u)|, |A(Y, u)|)})  --></div>
             </div>
         </div>
 
