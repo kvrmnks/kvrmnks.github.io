@@ -473,6 +473,18 @@ Harper's inequality (iso pari metric in Hamming Space)
 
 telagrand inequality
 
+### McDiarmid's Inequality (worst-case)
+For independent random variable $X_{1}, X_{2}, \cdots, X_{n}$, if n-variate function $f$ satisfies the Lipschitz condition: for every $1 \leq i \leq n$,
+
+$$|f(x_{1}, \cdots, x_{n}) - f(x_{1}, \cdots, x_{i-1}, y_{i}, x_{i+1}, \cdots, x_{n})| \leq c_{i}$$
+
+for any possible $i$ and $y_{i}$.
+
+Then for any $t > 0$,
+$$\mathbb{Pr}[|f(x_{1}, \cdots, x_{n}) - \mathbb{E}f(x_{1}, \cdots, x_{n})| \geq t ] \leq 2e^{-\frac{t^{2}}{2\sum_{i=1}^{n}c_{i}^{2}}}$$
+
+This is a very powerful tool which can directly lead to Chernoff bound and Hoeffding bound.
+
 ### Martingale
 
 A sequence of random variables $X_{0}, X_{1}, \cdots$ is a martingale if for all $t>0$,

@@ -684,6 +684,44 @@ Now analyze the $A(X, u)$
 
 $$A(X, u) = \sum_{c} \prod_{v \sim u} (1 - X_{v, c})$$
 
+For triangle-free graph $\mathbb{E}[\prod_{v \sim u} (1 - X_{v, c})] = \prod_{v \sim u} (1 - \mathbb{E}[X_{v, c}])$
+
+We denote the information about $V - N^{*}(u)$ as $\mathcal{F}$.
+
+$$
+\begin{aligned}
+\mathbb{E}[A(X, u)|\mathcal{F}] &= \sum_{c}\prod_{v\sim u}(1 - \mathbb{E}[X_{v, c}]) \\
+&= \sum_{c}\prod_{v\sim u}(1 - \frac{1}{|A(X, v)|}) \\
+&\leq  q\prod_{c}\prod_{v\sim u}(1 - \frac{1}{|A(X, v)|})^{\frac{1}{q}} \\
+&= q \prod_{v\sim u}\prod_{c\in A(X, v)} (1 - \frac{1}{|A(X, v)|})^{\frac{1}{q}} \\
+&\leq q e^{-\frac{\Delta}{q}}
+\end{aligned}
+$$
+
+Recall the McDiarmid's inequality. 
+
+Let $X_{v,c}$ s be the variables (NB: here are actually $d(u)$ variables), $f(.) = |A(X, u)|$.  
+
+$f$ is 1-Lipschitz function.
+
+So 
+
+$$\mathbb{Pr}[|f(x_{1}, \cdots, x_{n}) - \mathbb{E}f(x_{1}, \cdots, x_{n})| \geq t ] \leq 2e^{-\frac{t^{2}}{2\Delta}}$$
+
+So 
+
+$$\mathbb{Pr}[|A(X, u)| \leq q e^{-\frac{\Delta}{q}}(1 - \epsilon)] \leq 2e^{-\epsilon^{2}q}$$
+
+By union bound,
+
+$$\mathbb{Pr}[\exists u:|A(X, u)| \leq q e^{-\frac{\Delta}{q}}(1 - \epsilon)] \leq 2ne^{-\epsilon^{2}q}$$
+
+$\blacksquare$
+
+### Mixing time using eigenvalues
+
+ 
+
 <!-- $$
 \begin{aligned}
 \mathbb{E}[A(X, u)] &= \mathbb{E}[\sum_{c} \prod_{v \sim u} (1 - X_{v, c})] \\
