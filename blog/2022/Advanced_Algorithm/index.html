@@ -444,6 +444,13 @@ fu jian yi bo, yi quan chao ren </p>
 <p>iso pari metric</p>
 <p>Harper's inequality (iso pari metric in Hamming Space)</p>
 <p>telagrand inequality</p>
+<h3 id="mcdiarmids-inequality-worst-case">McDiarmid's Inequality (worst-case)</h3>
+<p>For independent random variable <span class="arithmatex">\(X_{1}, X_{2}, \cdots, X_{n}\)</span>, if n-variate function <span class="arithmatex">\(f\)</span> satisfies the Lipschitz condition: for every <span class="arithmatex">\(1 \leq i \leq n\)</span>,</p>
+<div class="arithmatex">\[|f(x_{1}, \cdots, x_{n}) - f(x_{1}, \cdots, x_{i-1}, y_{i}, x_{i+1}, \cdots, x_{n})| \leq c_{i}\]</div>
+<p>for any possible <span class="arithmatex">\(i\)</span> and <span class="arithmatex">\(y_{i}\)</span>.</p>
+<p>Then for any <span class="arithmatex">\(t &gt; 0\)</span>,
+<span class="arithmatex">\(<span class="arithmatex">\(\mathbb{Pr}[|f(x_{1}, \cdots, x_{n}) - \mathbb{E}f(x_{1}, \cdots, x_{n})| \geq t ] \leq 2e^{-\frac{t^{2}}{2\sum_{i=1}^{n}c_{i}^{2}}}\)</span>\)</span></p>
+<p>This is a very powerful tool which can directly lead to Chernoff bound and Hoeffding bound.</p>
 <h3 id="martingale">Martingale</h3>
 <p>A sequence of random variables <span class="arithmatex">\(X_{0}, X_{1}, \cdots\)</span> is a martingale if for all <span class="arithmatex">\(t&gt;0\)</span>,</p>
 <div class="arithmatex">\[\mathbb{E}[X_{t}|X_{0}, X_{1}, \cdots, X_{t-1}] = X_{t-1}\]</div>

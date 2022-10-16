@@ -587,6 +587,28 @@ All add a self-loop with <span class="arithmatex">\(\frac{1}{2}\)</span></p>
 <p>Now image that the given graph is triangle-free. Then <span class="arithmatex">\(A(X, u)\)</span> can be very large. Maybe better than <span class="arithmatex">\(q - \Delta\)</span> which can leads to a better result.</p>
 <p>Now analyze the <span class="arithmatex">\(A(X, u)\)</span></p>
 <div class="arithmatex">\[A(X, u) = \sum_{c} \prod_{v \sim u} (1 - X_{v, c})\]</div>
+<p>For triangle-free graph <span class="arithmatex">\(\mathbb{E}[\prod_{v \sim u} (1 - X_{v, c})] = \prod_{v \sim u} (1 - \mathbb{E}[X_{v, c}])\)</span></p>
+<p>We denote the information about <span class="arithmatex">\(V - N^{*}(u)\)</span> as <span class="arithmatex">\(\mathcal{F}\)</span>.</p>
+<div class="arithmatex">\[
+\begin{aligned}
+\mathbb{E}[A(X, u)|\mathcal{F}] &amp;= \sum_{c}\prod_{v\sim u}(1 - \mathbb{E}[X_{v, c}]) \\
+&amp;= \sum_{c}\prod_{v\sim u}(1 - \frac{1}{|A(X, v)|}) \\
+&amp;\leq  q\prod_{c}\prod_{v\sim u}(1 - \frac{1}{|A(X, v)|})^{\frac{1}{q}} \\
+&amp;= q \prod_{v\sim u}\prod_{c\in A(X, v)} (1 - \frac{1}{|A(X, v)|})^{\frac{1}{q}} \\
+&amp;\leq q e^{-\frac{\Delta}{q}}
+\end{aligned}
+\]</div>
+<p>Recall the McDiarmid's inequality. </p>
+<p>Let <span class="arithmatex">\(X_{v,c}\)</span> s be the variables (NB: here are actually <span class="arithmatex">\(d(u)\)</span> variables), <span class="arithmatex">\(f(.) = |A(X, u)|\)</span>.  </p>
+<p><span class="arithmatex">\(f\)</span> is 1-Lipschitz function.</p>
+<p>So </p>
+<div class="arithmatex">\[\mathbb{Pr}[|f(x_{1}, \cdots, x_{n}) - \mathbb{E}f(x_{1}, \cdots, x_{n})| \geq t ] \leq 2e^{-\frac{t^{2}}{2\Delta}}\]</div>
+<p>So </p>
+<div class="arithmatex">\[\mathbb{Pr}[|A(X, u)| \leq q e^{-\frac{\Delta}{q}}(1 - \epsilon)] \leq 2e^{-\epsilon^{2}q}\]</div>
+<p>By union bound,</p>
+<div class="arithmatex">\[\mathbb{Pr}[\exists u:|A(X, u)| \leq q e^{-\frac{\Delta}{q}}(1 - \epsilon)] \leq 2ne^{-\epsilon^{2}q}\]</div>
+<p><span class="arithmatex">\(\blacksquare\)</span></p>
+<h3 id="mixing-time-using-eigenvalues">Mixing time using eigenvalues</h3>
 <!-- $$
 \begin{aligned}
 \mathbb{E}[A(X, u)] &= \mathbb{E}[\sum_{c} \prod_{v \sim u} (1 - X_{v, c})] \\
