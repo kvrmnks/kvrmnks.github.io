@@ -720,7 +720,10 @@ $\blacksquare$
 
 ### Mixing time using eigenvalues
 
- 
+Here we consider **reversible Markov Chains**.
+
+Although 
+
 
 <!-- $$
 \begin{aligned}

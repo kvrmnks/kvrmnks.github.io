@@ -206,6 +206,59 @@ Conwey Lattice theorem
 
 Principle of Deferred Decisions
 
+### Poisson approximation
+
+m balls into n bins $\sim Bin(m, \frac{1}{n})$
+
+i.i.d. Poisson random variables $Y_{1}, \cdots, Y_{n} \sim Pois(\frac{m}{n})$
+
+$$\mathbb{Pr}[Y=k] = \frac{e^{-\lambda}\lambda^{k}}{k!}$$ 
+
+for $k \in \mathbb{Z}^{+}$
+
+$$\mathbb{E}[Y] = \mathbb{Var}[Y] = \lambda$$
+
+Coupon collector:
+
+$$\mathbb{Pr}[\land_{i=1}^{n}Y_{i}>0] = (1 - e^{-\frac{m}{n}})^{n}$$
+
+(Poisson approximation brings independence here)
+
+So
+
+$$\lim_{n \rightarrow \infty} \mathbb{Pr}[X \geq n\ln n + cn] = 1 - e^{-e^{-c}}$$
+
+(sharp threshold like monotonous properties in random graph)
+
+像是水龙头调参！
+
+Occupancy problems:
+
+$$\mathbb{Pr}[\max_{1 \leq i \leq n} Y_{i} < L] = (\mathbb{Pr}[Y_{i} < L])^{n} \leq (1 - \mathbb{Pr}[Y_{i} = L])^{n}$$
+
+wtf...
+
+Theorem: $\forall m_{1}, \cdots, m_{n} \in \mathbb{N}$ s.t. $\sum_{i=1}^{n}m_{i} = m$
+
+$$\mathbb{Pr}[\land_{i=1}^{n} X_{i} = m_{i}] = \mathbb{Pr}[\land_{i=1}^{n}Y_{i}=m_{i} | \sum_{i=1}^{n}m_{i} = m]$$
+
+When $m = n \ln n + cn$
+
+i.i.d. $Y_{1}, \cdots, Y_{n} \sim Pois(\frac{m}{n})$ and $Y = \sum_{i=1}^{n} Y_{i}$
+
+
+$$\mathbb{Pr}[\land_{i=1}^{n}Y_{i} > 0] = \mathbb{Pr}[\land_{i=1}^{n} Y_{i} > 0 | Y = m] \pm o(1)$$
+
+Theorem: $Y_{1}, \cdots, Y_{n} \sim Pois(\frac{m}{n})$, $\forall$ nonnegative function $f$
+
+$$\mathbb{E}[f(X_{1}, \cdots, X_{n})] \leq e \sqrt{m} \mathbb{E}[f(Y_{1}, \cdots, Y_{n})]$$
+
+Occupancy problem:
+
+$$\mathbb{Pr}[\max_{i=1}^{n}X_{i} < L] \leq e\sqrt{m} \mathbb{Pr}[\max_{i=1}^{n} Y_{i} < L]$$
+
+$\mathbb{E}$ becomes $\mathbb{Pr}$ when $f$ is an indicator.
+
 ### Load Balancing
 
 application:
@@ -554,4 +607,79 @@ $Y_{0} = \mathbb{E}[]$ -->
 Theorem:
 
 The Doob sequence $Y_{0}, Y_{1}, \cdots, Y_{n}$ is a martingale w.r.t. $X_{1}, X_{2}, \cdots, X_{n}$. 
+
+### Dimension reduction
+
+#### Metric embedding
+
+$d(x, x) = 0$
+
+$d(x, y) = d(y, x)$
+
+$d(x, y) + d(y, z) >= d(x, y)$
+
+low-distortion: for small $\alpha \geq 1$
+
+$\forall x_{1}, x_{2} \in X$, $\frac{1}{\alpha}d_{X}(x_{1}, x_{2}) \leq d_{Y}(\phi(x_{1}), \phi(x_{2})) \leq \alpha d_{X}(x_{1}, x_{2})$
+
+somehow approximation
+
+spherical -> planar ? exists such $\alpha$?: **NO**
+
+convert the problem from a hard metric space into a easy metric space. (find a low distortion mapping)
+
+#### Euclidean embedding
+
+Input: n points $x_{1}, x_{2}, \cdots, x_{n} \in \mathbb{R}^{d}$
+
+Output: $y_{1}, \cdots, y_{n} \in \mathbb{R}^{k}$
+
+$$(1 - \epsilon)||x_{i} - x_{j}|| \leq ||y_{i} - y_{j}|| \leq (1 + \epsilon)||x_{i} - x_{j}||$$
+
+usually k << d (the curse of dimensionality)
+
+consider how small can k be
+
+For what distance || . ||
+
+The embedding should be efficiently constructible.
+
+#### Johnson-Lindenstrauss Theorem 1984 (also check CS168Toolbox)
+
+$$(1 - \epsilon)||x_{i} - x_{j}||^{2}_{2} \leq ||y_{i} - y_{j}||^{2}_{2} \leq (1 + \epsilon)||x_{i} - x_{j}||^{2}_{2}$$
+
+k = $O(\frac{\log n}{\epsilon^{2}})$ optimal! (k is irrelevant to $d$!)
+
+A linear transformation!
+
+The probabilistic method: for random $A \in \mathbb{R}^{k \times d}$
+
+$$\mathbb{P}[\forall x, y \in S: (1 - \epsilon)||x - y||^{2}_{2} \leq ||Ax - Ay||^{2}_{2} \leq (1 + \epsilon)||x - y||^{2}_{2}] = 1 - O(\frac{1}{n})$$
+
+We just need to prove this probability is greater than 0 in order to prove this theorem.
+
+What kind of "random"?
+
+Efficient construction of random $A \in \mathbb{R}^{k \times d}$
+
+1. projection onto uniform random k-dimensional subspace; (Johnson-Lindenstrauss, Dasgupta-Gupta)
+1. independent Gaussian entries; (Indyk-Motwani)
+1. i.i.d. -1/+1 entries (Achlioptas)
+
+
+independent Gaussian entries
+
+For some suitable k = $O(\frac{\log n}{\epsilon^2})$
+
+Entries of $A \in \mathbb{R}^{k \times d}$ are choosen i.i.d. from $\mathcal{N}(0, \frac{1}{k})$
+
+$$1 - \epsilon \leq \frac{||Ax - Ay||^{2}_{2}}{||x - y||^{2}_{2}} \leq 1 + \epsilon$$
+
+$$\frac{||Ax - Ay||^{2}_{2}}{||x - y||^{2}_{2}} = ||A \frac{x - y}{||x - y||_2}||_2^2$$
+
+$$\mathbb{P}[| ||Au||_2^2 - 1| > \epsilon] \leq \frac{1}{n^3}$$
+
+Here we use concentration of measurement
+
+Chernoff bound for $\chi^2$ distributions
 
