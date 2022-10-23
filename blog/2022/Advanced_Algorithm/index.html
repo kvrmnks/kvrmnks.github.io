@@ -312,6 +312,32 @@
 <p>Proposal Algorithm (Gale-Shapley algorithm)</p>
 <p>Conwey Lattice theorem</p>
 <p>Principle of Deferred Decisions</p>
+<h3 id="poisson-approximation">Poisson approximation</h3>
+<p>m balls into n bins <span class="arithmatex">\(\sim Bin(m, \frac{1}{n})\)</span></p>
+<p>i.i.d. Poisson random variables <span class="arithmatex">\(Y_{1}, \cdots, Y_{n} \sim Pois(\frac{m}{n})\)</span></p>
+<div class="arithmatex">\[\mathbb{Pr}[Y=k] = \frac{e^{-\lambda}\lambda^{k}}{k!}\]</div>
+<p>for <span class="arithmatex">\(k \in \mathbb{Z}^{+}\)</span></p>
+<div class="arithmatex">\[\mathbb{E}[Y] = \mathbb{Var}[Y] = \lambda\]</div>
+<p>Coupon collector:</p>
+<div class="arithmatex">\[\mathbb{Pr}[\land_{i=1}^{n}Y_{i}&gt;0] = (1 - e^{-\frac{m}{n}})^{n}\]</div>
+<p>(Poisson approximation brings independence here)</p>
+<p>So</p>
+<div class="arithmatex">\[\lim_{n \rightarrow \infty} \mathbb{Pr}[X \geq n\ln n + cn] = 1 - e^{-e^{-c}}\]</div>
+<p>(sharp threshold like monotonous properties in random graph)</p>
+<p>像是水龙头调参！</p>
+<p>Occupancy problems:</p>
+<div class="arithmatex">\[\mathbb{Pr}[\max_{1 \leq i \leq n} Y_{i} &lt; L] = (\mathbb{Pr}[Y_{i} &lt; L])^{n} \leq (1 - \mathbb{Pr}[Y_{i} = L])^{n}\]</div>
+<p>wtf...</p>
+<p>Theorem: <span class="arithmatex">\(\forall m_{1}, \cdots, m_{n} \in \mathbb{N}\)</span> s.t. <span class="arithmatex">\(\sum_{i=1}^{n}m_{i} = m\)</span></p>
+<div class="arithmatex">\[\mathbb{Pr}[\land_{i=1}^{n} X_{i} = m_{i}] = \mathbb{Pr}[\land_{i=1}^{n}Y_{i}=m_{i} | \sum_{i=1}^{n}m_{i} = m]\]</div>
+<p>When <span class="arithmatex">\(m = n \ln n + cn\)</span></p>
+<p>i.i.d. <span class="arithmatex">\(Y_{1}, \cdots, Y_{n} \sim Pois(\frac{m}{n})\)</span> and <span class="arithmatex">\(Y = \sum_{i=1}^{n} Y_{i}\)</span></p>
+<div class="arithmatex">\[\mathbb{Pr}[\land_{i=1}^{n}Y_{i} &gt; 0] = \mathbb{Pr}[\land_{i=1}^{n} Y_{i} &gt; 0 | Y = m] \pm o(1)\]</div>
+<p>Theorem: <span class="arithmatex">\(Y_{1}, \cdots, Y_{n} \sim Pois(\frac{m}{n})\)</span>, <span class="arithmatex">\(\forall\)</span> nonnegative function <span class="arithmatex">\(f\)</span></p>
+<div class="arithmatex">\[\mathbb{E}[f(X_{1}, \cdots, X_{n})] \leq e \sqrt{m} \mathbb{E}[f(Y_{1}, \cdots, Y_{n})]\]</div>
+<p>Occupancy problem:</p>
+<div class="arithmatex">\[\mathbb{Pr}[\max_{i=1}^{n}X_{i} &lt; L] \leq e\sqrt{m} \mathbb{Pr}[\max_{i=1}^{n} Y_{i} &lt; L]\]</div>
+<p><span class="arithmatex">\(\mathbb{E}\)</span> becomes <span class="arithmatex">\(\mathbb{Pr}\)</span> when <span class="arithmatex">\(f\)</span> is an indicator.</p>
 <h3 id="load-balancing">Load Balancing</h3>
 <p>application:</p>
 <p>HashTable's query time complexity</p>
@@ -487,7 +513,47 @@ fu jian yi bo, yi quan chao ren </p>
 $Y_{0} = \mathbb{E}[]$ -->
 
 <p>Theorem:</p>
-<p>The Doob sequence <span class="arithmatex">\(Y_{0}, Y_{1}, \cdots, Y_{n}\)</span> is a martingale w.r.t. <span class="arithmatex">\(X_{1}, X_{2}, \cdots, X_{n}\)</span>. </p></div>
+<p>The Doob sequence <span class="arithmatex">\(Y_{0}, Y_{1}, \cdots, Y_{n}\)</span> is a martingale w.r.t. <span class="arithmatex">\(X_{1}, X_{2}, \cdots, X_{n}\)</span>. </p>
+<h3 id="dimension-reduction">Dimension reduction</h3>
+<h4 id="metric-embedding">Metric embedding</h4>
+<p><span class="arithmatex">\(d(x, x) = 0\)</span></p>
+<p><span class="arithmatex">\(d(x, y) = d(y, x)\)</span></p>
+<p><span class="arithmatex">\(d(x, y) + d(y, z) &gt;= d(x, y)\)</span></p>
+<p>low-distortion: for small <span class="arithmatex">\(\alpha \geq 1\)</span></p>
+<p><span class="arithmatex">\(\forall x_{1}, x_{2} \in X\)</span>, <span class="arithmatex">\(\frac{1}{\alpha}d_{X}(x_{1}, x_{2}) \leq d_{Y}(\phi(x_{1}), \phi(x_{2})) \leq \alpha d_{X}(x_{1}, x_{2})\)</span></p>
+<p>somehow approximation</p>
+<p>spherical -&gt; planar ? exists such <span class="arithmatex">\(\alpha\)</span>?: <strong>NO</strong></p>
+<p>convert the problem from a hard metric space into a easy metric space. (find a low distortion mapping)</p>
+<h4 id="euclidean-embedding">Euclidean embedding</h4>
+<p>Input: n points <span class="arithmatex">\(x_{1}, x_{2}, \cdots, x_{n} \in \mathbb{R}^{d}\)</span></p>
+<p>Output: <span class="arithmatex">\(y_{1}, \cdots, y_{n} \in \mathbb{R}^{k}\)</span></p>
+<div class="arithmatex">\[(1 - \epsilon)||x_{i} - x_{j}|| \leq ||y_{i} - y_{j}|| \leq (1 + \epsilon)||x_{i} - x_{j}||\]</div>
+<p>usually k &lt;&lt; d (the curse of dimensionality)</p>
+<p>consider how small can k be</p>
+<p>For what distance || . ||</p>
+<p>The embedding should be efficiently constructible.</p>
+<h4 id="johnson-lindenstrauss-theorem-1984-also-check-cs168toolbox">Johnson-Lindenstrauss Theorem 1984 (also check CS168Toolbox)</h4>
+<div class="arithmatex">\[(1 - \epsilon)||x_{i} - x_{j}||^{2}_{2} \leq ||y_{i} - y_{j}||^{2}_{2} \leq (1 + \epsilon)||x_{i} - x_{j}||^{2}_{2}\]</div>
+<p>k = <span class="arithmatex">\(O(\frac{\log n}{\epsilon^{2}})\)</span> optimal! (k is irrelevant to <span class="arithmatex">\(d\)</span>!)</p>
+<p>A linear transformation!</p>
+<p>The probabilistic method: for random <span class="arithmatex">\(A \in \mathbb{R}^{k \times d}\)</span></p>
+<div class="arithmatex">\[\mathbb{P}[\forall x, y \in S: (1 - \epsilon)||x - y||^{2}_{2} \leq ||Ax - Ay||^{2}_{2} \leq (1 + \epsilon)||x - y||^{2}_{2}] = 1 - O(\frac{1}{n})\]</div>
+<p>We just need to prove this probability is greater than 0 in order to prove this theorem.</p>
+<p>What kind of "random"?</p>
+<p>Efficient construction of random <span class="arithmatex">\(A \in \mathbb{R}^{k \times d}\)</span></p>
+<ol>
+<li>projection onto uniform random k-dimensional subspace; (Johnson-Lindenstrauss, Dasgupta-Gupta)</li>
+<li>independent Gaussian entries; (Indyk-Motwani)</li>
+<li>i.i.d. -1/+1 entries (Achlioptas)</li>
+</ol>
+<p>independent Gaussian entries</p>
+<p>For some suitable k = <span class="arithmatex">\(O(\frac{\log n}{\epsilon^2})\)</span></p>
+<p>Entries of <span class="arithmatex">\(A \in \mathbb{R}^{k \times d}\)</span> are choosen i.i.d. from <span class="arithmatex">\(\mathcal{N}(0, \frac{1}{k})\)</span></p>
+<div class="arithmatex">\[1 - \epsilon \leq \frac{||Ax - Ay||^{2}_{2}}{||x - y||^{2}_{2}} \leq 1 + \epsilon\]</div>
+<div class="arithmatex">\[\frac{||Ax - Ay||^{2}_{2}}{||x - y||^{2}_{2}} = ||A \frac{x - y}{||x - y||_2}||_2^2\]</div>
+<div class="arithmatex">\[\mathbb{P}[| ||Au||_2^2 - 1| &gt; \epsilon] \leq \frac{1}{n^3}\]</div>
+<p>Here we use concentration of measurement</p>
+<p>Chernoff bound for <span class="arithmatex">\(\chi^2\)</span> distributions</p></div>
             </div>
         </div>
 
