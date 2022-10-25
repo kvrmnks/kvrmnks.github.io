@@ -553,7 +553,81 @@ $Y_{0} = \mathbb{E}[]$ -->
 <div class="arithmatex">\[\frac{||Ax - Ay||^{2}_{2}}{||x - y||^{2}_{2}} = ||A \frac{x - y}{||x - y||_2}||_2^2\]</div>
 <div class="arithmatex">\[\mathbb{P}[| ||Au||_2^2 - 1| &gt; \epsilon] \leq \frac{1}{n^3}\]</div>
 <p>Here we use concentration of measurement</p>
-<p>Chernoff bound for <span class="arithmatex">\(\chi^2\)</span> distributions</p></div>
+<p>Chernoff bound for <span class="arithmatex">\(\chi^2\)</span> distributions</p>
+<hr />
+<p>How to generate <span class="arithmatex">\(k\)</span> orthonormal unit vectors.</p>
+<p>Uniformly and randomly generate unit vectors</p>
+<p>Refusal sampling. Then Gram-Schmidt.</p>
+<p>But how to generate unit vectors.</p>
+<p><span class="arithmatex">\(X = (X_{1}, X_2, \cdots, X_d)\)</span> where <span class="arithmatex">\(X_i \sim \mathcal{N}(0, 1)\)</span>, then normalize.</p>
+<p>unit =&gt; conditioned on </p>
+<div class="arithmatex">\[y_i = \sqrt{\frac{d}{k}}Ax_i\]</div>
+<div class="arithmatex">\[\mathbb{P}[| ||\sqrt{\frac{d}{k}}Au||_2^2 - 1| &gt; \epsilon] \leq \frac{1}{n^3}\]</div>
+<p>observation</p>
+<p>=&gt; random unit vector -&gt; deterministic k-dimensional sub-space (like directly choose pre-k components)</p>
+<hr />
+<h4 id="nearest-neighbor-search-nns">Nearest Neighbor Search (NNS)</h4>
+<p>Metric space (X, dist):</p>
+<p>Find the closest datapoint to input <span class="arithmatex">\(x\)</span></p>
+<p>applications: pattern matching, database, bioinformatics</p>
+<p>core: NNS</p>
+<p>when dimension d is small: k-d tree, Voronoi diagram</p>
+<p>One of stall and query must be the curse.</p>
+<p>Hamming space <span class="arithmatex">\(\{0, 1\}^d\)</span></p>
+<p>consider Hamming distance </p>
+<p>when <span class="arithmatex">\(d \gg \log n\)</span></p>
+<p>conjectured requires either super-poly(n) space or super-poly(d) time</p>
+<p>cell-probe model Yao'81 (information theory)</p>
+<p>decision tree interacts with a code</p>
+<p>Currently SOTA(Yitong'08!)
+<span class="arithmatex">\(<span class="arithmatex">\(t = \Omega(\frac{d}{\log \frac{S}{nd}})\)</span>\)</span> </p>
+<p>Blessing: randomization + approximation</p>
+<p>Approximation Nearest Neighbor (ANN)</p>
+<p>c-ANN (Approximation Nearest Neighbor)
+<span class="arithmatex">\(<span class="arithmatex">\(dist(x, y_i) \leq c \cdot \min_{1 \leq j \leq n} dist(x, y_j)\)</span>\)</span></p>
+<p>gap decision</p>
+<p>(c, r)-ANN (Approximation <strong>Near</strong> Neighbor)
+return <span class="arithmatex">\(y_i\)</span> that dist(<span class="arithmatex">\(x, y_i\)</span>)<span class="arithmatex">\(\leq c\cdot r\)</span> if <span class="arithmatex">\(\exists y_j\)</span> s.t. <span class="arithmatex">\(dist(x, y_j) \leq r\)</span></p>
+<p>return "no" if <span class="arithmatex">\(\forall i, dist(x, y_i) &gt; cr\)</span></p>
+<p><strong>either</strong> if otherwise (or further computation with arbitrary)</p>
+<p>actually define r-ball and cr-ball</p>
+<p>gap decision -&gt; c-ANN</p>
+<p><span class="arithmatex">\(r_0 = D_{min}\)</span></p>
+<p><span class="arithmatex">\(r_k = \sqrt{c} \cdot r_{k-1}\)</span></p>
+<p><span class="arithmatex">\(r_{log_{c}(D_{max}/D_{min})} = D_{max}\)</span></p>
+<p><span class="arithmatex">\(\forall r, (\sqrt{c}, r)\)</span>-ANN, return the first data <span class="arithmatex">\(y_k\)</span></p>
+<p>PLEB (point location in eco box)</p>
+<p>Why <span class="arithmatex">\(D_{min}\)</span> and <span class="arithmatex">\(D_{max}\)</span> are enough?</p>
+<p>Hamming space (c, r)-ANN</p>
+<p>Dimension reduction</p>
+<p>(JLT ? open)</p>
+<p>consider <span class="arithmatex">\(f: \{0, 1\}^{d} \rightarrow \{0,1\}^{k}\)</span>, <span class="arithmatex">\(k = O(\log n)\)</span></p>
+<p>conserving the r-ball</p>
+<p>then make an offline table ... (<span class="arithmatex">\(O(n)\)</span>)</p>
+<p><span class="arithmatex">\(A\in GF(2)^{k\times d}\)</span> i.i.d. Bernoulli(p)</p>
+<p>store all s-balls <span class="arithmatex">\(B_s(u) = \{y_i | dist(u, z_i) \leq s\}\)</span> for all <span class="arithmatex">\(u \in \{0, 1\}^{k}\)</span></p>
+<p><span class="arithmatex">\(\forall x, y \in \{0, 1\}^d:\)</span></p>
+<div class="arithmatex">\[dist(x, y) \leq r \Rightarrow \mathbb{P}[dist(Ax, Ay) &gt; s] \leq \frac{1}{n^2}\]</div>
+<div class="arithmatex">\[dist(x, y) \geq cr \Rightarrow \mathbb{P}[dist(Ax, Ay) &lt; s] \leq \frac{1}{n^2}\]</div>
+<p>Then union bound <span class="arithmatex">\(\Rightarrow\)</span> w.h.p.</p>
+<p>two steps samplings</p>
+<p>LSH (locality sensitive hashing) [Indyk-Motwani 1998]</p>
+<p>A random <span class="arithmatex">\(h: X \rightarrow U\)</span> is an <span class="arithmatex">\((r, cr, p, q)\)</span>-LSH if <span class="arithmatex">\(\forall x, y \in X\)</span>:</p>
+<div class="arithmatex">\[dist(x, y) \leq r \Rightarrow \mathbb{P}[h(x) = h(y)] \geq p\]</div>
+<div class="arithmatex">\[dist(x, y) \geq c\cdot r \Rightarrow \mathbb{P}[h(x) = h(y)] \leq q\]</div>
+<p>Proposision</p>
+<p><span class="arithmatex">\(\exists\)</span> an <span class="arithmatex">\((r, cr, p, q)\)</span>-LSH <span class="arithmatex">\(h: X \rightarrow U\)</span> $\Rightarrow $ <span class="arithmatex">\(\exists\)</span> an <span class="arithmatex">\((r, cr, p^k, q^k)\)</span>-LSH <span class="arithmatex">\(h: X \rightarrow U^k\)</span></p>
+<p>Suppose there is <span class="arithmatex">\((c, cr, p^*, \frac{1}{n})\)</span>-LSH.</p>
+<p>Let <span class="arithmatex">\(q^k &lt; \frac{1}{n}\)</span></p>
+<p>independent trials <span class="arithmatex">\(\frac{1}{p^*}\)</span></p>
+<p>use FKS hash</p>
+<p><span class="arithmatex">\(\rho = \frac{\log p}{\log q}\)</span></p>
+<p>for Hamming space, randomly pick a bit <span class="arithmatex">\(i \in [d]\)</span></p>
+<div class="arithmatex">\[dist(x,y) \leq r \Rightarrow \mathbb{P}[=] \geq 1 - \frac{r}{d}\]</div>
+<div class="arithmatex">\[dist(x,y) \geq cr \Rightarrow \mathbb{P}[=] \geq 1 - \frac{cr}{d}\]</div>
+<p><span class="arithmatex">\(\rho = \frac{1}{c}\)</span></p>
+<p>But optimal for Hamming space ...</p>
+<p>Flour transform log convex (left for homework)</p></div>
             </div>
         </div>
 
