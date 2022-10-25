@@ -683,3 +683,151 @@ Here we use concentration of measurement
 
 Chernoff bound for $\chi^2$ distributions
 
+---
+
+How to generate $k$ orthonormal unit vectors.
+
+Uniformly and randomly generate unit vectors
+
+Refusal sampling. Then Gram-Schmidt.
+
+But how to generate unit vectors.
+
+$X = (X_{1}, X_2, \cdots, X_d)$ where $X_i \sim \mathcal{N}(0, 1)$, then normalize.
+
+unit => conditioned on 
+
+$$y_i = \sqrt{\frac{d}{k}}Ax_i$$
+
+$$\mathbb{P}[| ||\sqrt{\frac{d}{k}}Au||_2^2 - 1| > \epsilon] \leq \frac{1}{n^3}$$
+
+observation
+
+=> random unit vector -> deterministic k-dimensional sub-space (like directly choose pre-k components)
+
+---
+
+#### Nearest Neighbor Search (NNS)
+
+Metric space (X, dist):
+
+Find the closest datapoint to input $x$
+
+applications: pattern matching, database, bioinformatics
+
+core: NNS
+
+when dimension d is small: k-d tree, Voronoi diagram
+
+One of stall and query must be the curse.
+
+Hamming space $\{0, 1\}^d$
+
+consider Hamming distance 
+
+when $d \gg \log n$
+
+conjectured requires either super-poly(n) space or super-poly(d) time
+
+cell-probe model Yao'81 (information theory)
+
+decision tree interacts with a code
+
+Currently SOTA(Yitong'08!)
+$$t = \Omega(\frac{d}{\log \frac{S}{nd}})$$ 
+
+Blessing: randomization + approximation
+
+Approximation Nearest Neighbor (ANN)
+
+c-ANN (Approximation Nearest Neighbor)
+$$dist(x, y_i) \leq c \cdot \min_{1 \leq j \leq n} dist(x, y_j)$$
+
+gap decision
+
+(c, r)-ANN (Approximation **Near** Neighbor)
+return $y_i$ that dist($x, y_i$)$\leq c\cdot r$ if $\exists y_j$ s.t. $dist(x, y_j) \leq r$
+
+return "no" if $\forall i, dist(x, y_i) > cr$
+
+**either** if otherwise (or further computation with arbitrary)
+
+actually define r-ball and cr-ball
+
+gap decision -> c-ANN
+
+$r_0 = D_{min}$
+
+$r_k = \sqrt{c} \cdot r_{k-1}$
+
+$r_{log_{c}(D_{max}/D_{min})} = D_{max}$
+
+$\forall r, (\sqrt{c}, r)$-ANN, return the first data $y_k$
+
+PLEB (point location in eco box)
+
+Why $D_{min}$ and $D_{max}$ are enough?
+
+Hamming space (c, r)-ANN
+
+Dimension reduction
+
+(JLT ? open)
+
+consider $f: \{0, 1\}^{d} \rightarrow \{0,1\}^{k}$, $k = O(\log n)$
+
+conserving the r-ball
+
+then make an offline table ... ($O(n)$)
+
+$A\in GF(2)^{k\times d}$ i.i.d. Bernoulli(p)
+
+store all s-balls $B_s(u) = \{y_i | dist(u, z_i) \leq s\}$ for all $u \in \{0, 1\}^{k}$
+
+
+$\forall x, y \in \{0, 1\}^d:$
+
+$$dist(x, y) \leq r \Rightarrow \mathbb{P}[dist(Ax, Ay) > s] \leq \frac{1}{n^2}$$
+
+$$dist(x, y) \geq cr \Rightarrow \mathbb{P}[dist(Ax, Ay) < s] \leq \frac{1}{n^2}$$
+
+Then union bound $\Rightarrow$ w.h.p.
+
+two steps samplings
+
+
+
+LSH (locality sensitive hashing) [Indyk-Motwani 1998]
+
+A random $h: X \rightarrow U$ is an $(r, cr, p, q)$-LSH if $\forall x, y \in X$:
+
+$$dist(x, y) \leq r \Rightarrow \mathbb{P}[h(x) = h(y)] \geq p$$
+
+$$dist(x, y) \geq c\cdot r \Rightarrow \mathbb{P}[h(x) = h(y)] \leq q$$
+
+Proposision
+
+$\exists$ an $(r, cr, p, q)$-LSH $h: X \rightarrow U$ $\Rightarrow $ $\exists$ an $(r, cr, p^k, q^k)$-LSH $h: X \rightarrow U^k$
+
+Suppose there is $(c, cr, p^*, \frac{1}{n})$-LSH.
+
+Let $q^k < \frac{1}{n}$
+
+independent trials $\frac{1}{p^*}$
+
+use FKS hash
+
+$\rho = \frac{\log p}{\log q}$
+
+for Hamming space, randomly pick a bit $i \in [d]$
+
+
+$$dist(x,y) \leq r \Rightarrow \mathbb{P}[=] \geq 1 - \frac{r}{d}$$
+
+$$dist(x,y) \geq cr \Rightarrow \mathbb{P}[=] \geq 1 - \frac{cr}{d}$$
+
+$\rho = \frac{1}{c}$
+
+But optimal for Hamming space ...
+
+Flour transform log convex (left for homework)
