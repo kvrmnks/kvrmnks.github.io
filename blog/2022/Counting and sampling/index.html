@@ -202,6 +202,11 @@
               <ul class="nav flex-column">
               </ul>
             </li>
+            
+            <li class="nav-item" data-level="2"><a href="#path-technology" class="nav-link">Path technology</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
         </ul>
     </div>
 </div></div>
@@ -610,7 +615,56 @@ All add a self-loop with <span class="arithmatex">\(\frac{1}{2}\)</span></p>
 <p><span class="arithmatex">\(\blacksquare\)</span></p>
 <h3 id="mixing-time-using-eigenvalues">Mixing time using eigenvalues</h3>
 <p>Here we consider <strong>reversible Markov Chains</strong>.</p>
-<p>Although </p>
+<p>For any function <span class="arithmatex">\(f, g\)</span>, we consider inner-product space as</p>
+<div class="arithmatex">\[\lang f, g \rang = \sum_{x} f(x)g(x)\pi(x)\]</div>
+<div class="arithmatex">\[||f|| = \lang f, f \rang = \sum_{x}f^{2}(x)\pi(x)\]</div>
+<p>It follows that <span class="arithmatex">\(K\)</span> is self-adjoint.</p>
+<p>With spectral theorem, <span class="arithmatex">\(K\)</span> has <span class="arithmatex">\(n\)</span> eigenvalues.</p>
+<p>By stochasticity, <span class="arithmatex">\(\forall i \leq n, |\lambda_{i}| \leq 1\)</span></p>
+<p>Some results about the characteristics of reversible Markov Chain.</p>
+<p>irreducible &lt;-&gt; <span class="arithmatex">\(\lambda_{2} &lt; 1\)</span></p>
+<p>aperiodic &lt;-&gt; <span class="arithmatex">\(\lambda_{|\Omega|} &gt; -1\)</span></p>
+<p>Why eigenvalues are "<span class="arithmatex">\(l_{2}\)</span> properties" about the chain?</p>
+<p>Definition: (<span class="arithmatex">\(l_p\)</span>- distance) </p>
+<div class="arithmatex">\[ \Vert  \frac{K^t(x, \cdot)}{\pi(\cdot)} - 1 \Vert_p = \left (\sum_{y} \pi(y) |\frac{K^{t}(x, y)}{\pi(y)} - 1|^p \right )^{\frac{1}{p}}\]</div>
+<p>Compare with <span class="arithmatex">\(|| \cdot ||_{TV}\)</span></p>
+<p><span class="arithmatex">\(\cdot||_{TV} = \frac{1}{2} ||\cdot||_1 \leq \frac{1}{2}||\cdot||_2\)</span></p>
+<p>Is this a general rule?</p>
+<p>Theorem: Let <span class="arithmatex">\(\lambda^{*} = \max\{\lambda_{2}, |\lambda_n|\}\)</span>, </p>
+<div class="arithmatex">\[\Vert \frac{K^{t}(x, \cdot)}{\pi(\cdot)}  - 1\Vert_{2} \leq \frac{\lambda^{*^{2t}}}{\pi(x)}\]</div>
+<p>Consider</p>
+<div class="arithmatex">\[\Vert \frac{K^{t}(x, \cdot)}{\pi(\cdot)}  - 1\Vert_{2} = \lang \frac{K^{t}(x, \cdot)}{\pi(\cdot)}  - 1, \frac{K^{t}(x, \cdot)}{\pi(\cdot)}  - 1\rang\]</div>
+<p>Then project <span class="arithmatex">\(\frac{K^{t}(x, \cdot)}{\pi(\cdot)}  - 1\)</span> into <span class="arithmatex">\(K\)</span> space. </p>
+<p>Notice: <span class="arithmatex">\(\boldsymbol{1} = \psi_1\)</span></p>
+<div class="arithmatex">\[ \frac{K^t(x, \cdot)}{\pi(\cdot)} - 1 = \sum_{i &gt; 1} \lang \frac{K^t(x, \cdot)}{\pi(\cdot)}, \psi_i  \rang  \psi_i  = \sum_{i &gt; 1}\lambda_i^t \psi_i(x)\psi_i\]</div>
+<div class="arithmatex">\[\Vert \frac{K^t(x, \cdot)}{\pi(\cdot)} - 1  \Vert_2 = \sum_{i &gt; 1}\lambda_i^{2t} \psi_i^2(x) \leq \lambda^{*} \sum_{i&gt;1} \psi_i^2(x) \leq \frac{\lambda^{*^{2t}}}{\pi(x)}\]</div>
+<p>Such a magic</p>
+<div class="arithmatex">\[
+\begin{aligned}
+\sum_{i} \psi_i^2(x) &amp;= \sum_{i} \lang \psi_i, \frac{1_x}{\pi} \rang ^2 \\
+&amp;= 
+\Vert \sum_i \lang \psi_i, \frac{1_x}{\pi} \rang \psi_i \Vert ^2 \\
+&amp;= 
+\Vert \frac{1_x}{\pi} \Vert ^2 \\
+&amp;= \frac{1}{\pi(x)}
+\end{aligned} 
+\]</div>
+<p>select a vertex with high probability as warm start.</p>
+<h2 id="path-technology">Path technology</h2>
+<h3 id="dirichlet-form">Dirichlet Form</h3>
+<p>For two functions <span class="arithmatex">\(f, g\)</span>, define </p>
+<div class="arithmatex">\[\mathcal{E}(f,g) = \left \lang (I - K)f, g\right \rang\]</div>
+<p>(easy to see that <span class="arithmatex">\(I - K\)</span> is self-adjoint)</p>
+<p><span class="arithmatex">\(\mathcal{E}(f, g) = \frac{1}{2}\sum_{x, y} (f(x) - f(y))(g(x) - g(y))\pi(x)K(x, y)\)</span></p>
+<p>Dirichlet form of <span class="arithmatex">\(f\)</span></p>
+<p><span class="arithmatex">\(\mathcal{E}(f, f) = \frac{1}{2}\sum_{x, y} (f(x) - f(y))^2 \pi(x) K(x, y)\)</span></p>
+<p>Variance of <span class="arithmatex">\(f\)</span></p>
+<div class="arithmatex">\[Var(f) = \Vert f - \mathbb{E}_{\pi}f  \Vert^2 = \frac{1}{2}\sum_{x, y}(f(x) - f(y))^2\pi(x)\pi(y)\]</div>
+<p>Definition: Poincare constant </p>
+<div class="arithmatex">\[\alpha = \min_{f} \frac{\mathcal{E}(f, f)}{Var(f)}\]</div>
+<p>If <span class="arithmatex">\(K\)</span> is reversible, then poincare constant is <span class="arithmatex">\(1 - \lambda_2\)</span></p>
+<p>For a lazy chain with Poincare constant <span class="arithmatex">\(\alpha\)</span>,</p>
+<div class="arithmatex">\[\tau_x(\epsilon) \leq O(\frac{\log \frac{1}{\epsilon \pi(x)}}{\alpha})\]</div>
 <!-- $$
 \begin{aligned}
 \mathbb{E}[A(X, u)] &= \mathbb{E}[\sum_{c} \prod_{v \sim u} (1 - X_{v, c})] \\
