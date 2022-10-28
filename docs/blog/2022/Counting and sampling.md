@@ -722,7 +722,101 @@ $\blacksquare$
 
 Here we consider **reversible Markov Chains**.
 
-Although 
+For any function $f, g$, we consider inner-product space as
+
+$$\lang f, g \rang = \sum_{x} f(x)g(x)\pi(x)$$
+
+$$||f|| = \lang f, f \rang = \sum_{x}f^{2}(x)\pi(x)$$
+
+It follows that $K$ is self-adjoint.
+
+With spectral theorem, $K$ has $n$ eigenvalues.
+
+By stochasticity, $\forall i \leq n, |\lambda_{i}| \leq 1$
+
+Some results about the characteristics of reversible Markov Chain.
+
+irreducible <-> $\lambda_{2} < 1$
+
+aperiodic <-> $\lambda_{|\Omega|} > -1$
+
+Why eigenvalues are "$l_{2}$ properties" about the chain?
+
+Definition: ($l_p$- distance) 
+
+$$ \Vert  \frac{K^t(x, \cdot)}{\pi(\cdot)} - 1 \Vert_p = \left (\sum_{y} \pi(y) |\frac{K^{t}(x, y)}{\pi(y)} - 1|^p \right )^{\frac{1}{p}}$$
+
+Compare with $|| \cdot ||_{TV}$
+
+$\cdot||_{TV} = \frac{1}{2} ||\cdot||_1 \leq \frac{1}{2}||\cdot||_2$
+
+Is this a general rule?
+
+Theorem: Let $\lambda^{*} = \max\{\lambda_{2}, |\lambda_n|\}$, 
+
+$$\Vert \frac{K^{t}(x, \cdot)}{\pi(\cdot)}  - 1\Vert_{2} \leq \frac{\lambda^{*^{2t}}}{\pi(x)}$$
+
+Consider
+
+$$\Vert \frac{K^{t}(x, \cdot)}{\pi(\cdot)}  - 1\Vert_{2} = \lang \frac{K^{t}(x, \cdot)}{\pi(\cdot)}  - 1, \frac{K^{t}(x, \cdot)}{\pi(\cdot)}  - 1\rang$$
+
+Then project $\frac{K^{t}(x, \cdot)}{\pi(\cdot)}  - 1$ into $K$ space. 
+
+Notice: $\boldsymbol{1} = \psi_1$
+
+$$ \frac{K^t(x, \cdot)}{\pi(\cdot)} - 1 = \sum_{i > 1} \lang \frac{K^t(x, \cdot)}{\pi(\cdot)}, \psi_i  \rang  \psi_i  = \sum_{i > 1}\lambda_i^t \psi_i(x)\psi_i$$
+
+$$\Vert \frac{K^t(x, \cdot)}{\pi(\cdot)} - 1  \Vert_2 = \sum_{i > 1}\lambda_i^{2t} \psi_i^2(x) \leq \lambda^{*} \sum_{i>1} \psi_i^2(x) \leq \frac{\lambda^{*^{2t}}}{\pi(x)}$$
+
+Such a magic
+
+$$
+\begin{aligned}
+\sum_{i} \psi_i^2(x) &= \sum_{i} \lang \psi_i, \frac{1_x}{\pi} \rang ^2 \\
+&= 
+\Vert \sum_i \lang \psi_i, \frac{1_x}{\pi} \rang \psi_i \Vert ^2 \\
+&= 
+\Vert \frac{1_x}{\pi} \Vert ^2 \\
+&= \frac{1}{\pi(x)}
+\end{aligned} 
+$$
+
+select a vertex with high probability as warm start.
+
+## Path technology
+
+### Dirichlet Form
+
+For two functions $f, g$, define 
+
+$$\mathcal{E}(f,g) = \left \lang (I - K)f, g\right \rang$$
+
+(easy to see that $I - K$ is self-adjoint)
+
+$\mathcal{E}(f, g) = \frac{1}{2}\sum_{x, y} (f(x) - f(y))(g(x) - g(y))\pi(x)K(x, y)$
+
+Dirichlet form of $f$
+
+$\mathcal{E}(f, f) = \frac{1}{2}\sum_{x, y} (f(x) - f(y))^2 \pi(x) K(x, y)$
+
+
+Variance of $f$
+
+$$Var(f) = \Vert f - \mathbb{E}_{\pi}f  \Vert^2 = \frac{1}{2}\sum_{x, y}(f(x) - f(y))^2\pi(x)\pi(y)$$
+
+
+Definition: Poincare constant 
+
+$$\alpha = \min_{f} \frac{\mathcal{E}(f, f)}{Var(f)}$$
+
+If $K$ is reversible, then poincare constant is $1 - \lambda_2$
+
+For a lazy chain with Poincare constant $\alpha$,
+
+$$\tau_x(\epsilon) \leq O(\frac{\log \frac{1}{\epsilon \pi(x)}}{\alpha})$$
+
+
+
 
 
 <!-- $$

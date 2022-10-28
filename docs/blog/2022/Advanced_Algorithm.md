@@ -830,4 +830,4 @@ $\rho = \frac{1}{c}$
 
 But optimal for Hamming space ...
 
-Flour transform log convex (left for homework)
+Fourier transform log convex (left for homework)
