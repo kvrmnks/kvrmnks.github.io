@@ -724,9 +724,9 @@ Here we consider **reversible Markov Chains**.
 
 For any function $f, g$, we consider inner-product space as
 
-$$\lang f, g \rang = \sum_{x} f(x)g(x)\pi(x)$$
+$$\langle f, g \rangle = \sum_{x} f(x)g(x)\pi(x)$$
 
-$$||f|| = \lang f, f \rang = \sum_{x}f^{2}(x)\pi(x)$$
+$$||f|| = \langle f, f \rangle = \sum_{x}f^{2}(x)\pi(x)$$
 
 It follows that $K$ is self-adjoint.
 
@@ -758,13 +758,13 @@ $$\Vert \frac{K^{t}(x, \cdot)}{\pi(\cdot)}  - 1\Vert_{2} \leq \frac{\lambda^{*^{
 
 Consider
 
-$$\Vert \frac{K^{t}(x, \cdot)}{\pi(\cdot)}  - 1\Vert_{2} = \lang \frac{K^{t}(x, \cdot)}{\pi(\cdot)}  - 1, \frac{K^{t}(x, \cdot)}{\pi(\cdot)}  - 1\rang$$
+$$\Vert \frac{K^{t}(x, \cdot)}{\pi(\cdot)}  - 1\Vert_{2} = \langle \frac{K^{t}(x, \cdot)}{\pi(\cdot)}  - 1, \frac{K^{t}(x, \cdot)}{\pi(\cdot)}  - 1\rangle$$
 
 Then project $\frac{K^{t}(x, \cdot)}{\pi(\cdot)}  - 1$ into $K$ space. 
 
 Notice: $\boldsymbol{1} = \psi_1$
 
-$$ \frac{K^t(x, \cdot)}{\pi(\cdot)} - 1 = \sum_{i > 1} \lang \frac{K^t(x, \cdot)}{\pi(\cdot)}, \psi_i  \rang  \psi_i  = \sum_{i > 1}\lambda_i^t \psi_i(x)\psi_i$$
+$$ \frac{K^t(x, \cdot)}{\pi(\cdot)} - 1 = \sum_{i > 1} \langle \frac{K^t(x, \cdot)}{\pi(\cdot)}, \psi_i  \rangle  \psi_i  = \sum_{i > 1}\lambda_i^t \psi_i(x)\psi_i$$
 
 $$\Vert \frac{K^t(x, \cdot)}{\pi(\cdot)} - 1  \Vert_2 = \sum_{i > 1}\lambda_i^{2t} \psi_i^2(x) \leq \lambda^{*} \sum_{i>1} \psi_i^2(x) \leq \frac{\lambda^{*^{2t}}}{\pi(x)}$$
 
@@ -772,9 +772,9 @@ Such a magic
 
 $$
 \begin{aligned}
-\sum_{i} \psi_i^2(x) &= \sum_{i} \lang \psi_i, \frac{1_x}{\pi} \rang ^2 \\
+\sum_{i} \psi_i^2(x) &= \sum_{i} \langle \psi_i, \frac{1_x}{\pi} \rangle ^2 \\
 &= 
-\Vert \sum_i \lang \psi_i, \frac{1_x}{\pi} \rang \psi_i \Vert ^2 \\
+\Vert \sum_i \langle \psi_i, \frac{1_x}{\pi} \rangle \psi_i \Vert ^2 \\
 &= 
 \Vert \frac{1_x}{\pi} \Vert ^2 \\
 &= \frac{1}{\pi(x)}
@@ -789,11 +789,13 @@ select a vertex with high probability as warm start.
 
 For two functions $f, g$, define 
 
-$$\mathcal{E}(f,g) = \left \lang (I - K)f, g\right \rang$$
+$$\mathcal{E}(f,g) = \left \langle (I - K)f, g \right \rangle$$
 
 (easy to see that $I - K$ is self-adjoint)
 
 $\mathcal{E}(f, g) = \frac{1}{2}\sum_{x, y} (f(x) - f(y))(g(x) - g(y))\pi(x)K(x, y)$
+
+NB: actually we just need to enumerate all the edge. The reason is that if $(x, y) \notin E$, then $K(x, y) = 0$
 
 Dirichlet form of $f$
 
@@ -815,6 +817,45 @@ For a lazy chain with Poincare constant $\alpha$,
 
 $$\tau_x(\epsilon) \leq O(\frac{\log \frac{1}{\epsilon \pi(x)}}{\alpha})$$
 
+So if we can bound the poincare constant, we can bound the mixing time.
+
+Consider the multicommodity flow problem(reversible Markov chain),
+
+Define 
+
+$$f(e) = \sum_{e \in P_{x, y}}\pi(x)\pi(y)$$
+
+$$Q(e=uv) = \pi(u)K(u, v) = \pi(v)K(v, u)$$
+
+Define the congestion of an edge $e$ as $\frac{f(e)}{Q(e)}$
+
+For any reversible Markov chain, for any two states $x, y \in \Omega$, 
+
+$$\frac{1}{\alpha} \leq \max_{e} \frac{f(e)}{Q(e)} \cdot \max_{x, y}|P_{x, y}|$$
+
+Actually, $P_{x, y}$ can be bounded by the diameter of the graph then the $n$.
+
+proof:
+For any function $f$
+$$
+\begin{aligned}
+Var(f) 
+&= 
+\frac{1}{2}\sum_{x, y} (f(x) - f(y))^2\pi(x)\pi(y) \\
+&= 
+\frac{1}{2}\sum_{x, y} (\sum_{e \in P_{x,y}}(f(e^+) - f(e^-)) )^2\pi(x)\pi(y) \\
+&\leq \frac{1}{2}\sum_{x, y} |P_{x,y}|\sum_{e \in P_{x,y}}(f(e^+) - f(e^-))^2\pi(x)\pi(y) \\
+&\leq  \max_{x,y}|P_{x,y}| \cdot \frac{1}{2}\sum_{x, y} \sum_{e \in P_{x,y}}(f(e^+) - f(e^-))^2\pi(x)\pi(y) \\
+& \leq \max_{x,y}|P_{x,y}| \cdot \frac{1}{2} \sum_{e}(f(e^+) - f(e^-))^2 \sum_{e \in P_{x, y}} \pi(x)\pi(y) \\
+&= \max_{x,y}|P_{x,y}| \cdot \frac{1}{2} \sum_{e}(f(e^+) - f(e^-))^2 Q(e) \frac{f(e)}{Q(e)} \\
+&= \max_{x,y}|P_{x,y}| \cdot \frac{1}{2} \sum_{e=(x,y)}(f(e^+) - f(e^-))^2 \pi(x)K(x, y) \frac{f(e)}{Q(e)} \\
+&= \max_{x,y}|P_{x,y}| \cdot \mathcal{E}(f, f) \frac{f(e)}{Q(e)} (\text{If x, y are not connected then} K(x,y)=0) \\
+\end{aligned}
+$$
+
+$\blacksquare$
+
+There is some intrinsic gaps between this bound and the tight bound by $\log n$.
 
 
 
