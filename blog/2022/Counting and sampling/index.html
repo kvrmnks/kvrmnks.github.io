@@ -616,8 +616,8 @@ All add a self-loop with <span class="arithmatex">\(\frac{1}{2}\)</span></p>
 <h3 id="mixing-time-using-eigenvalues">Mixing time using eigenvalues</h3>
 <p>Here we consider <strong>reversible Markov Chains</strong>.</p>
 <p>For any function <span class="arithmatex">\(f, g\)</span>, we consider inner-product space as</p>
-<div class="arithmatex">\[\lang f, g \rang = \sum_{x} f(x)g(x)\pi(x)\]</div>
-<div class="arithmatex">\[||f|| = \lang f, f \rang = \sum_{x}f^{2}(x)\pi(x)\]</div>
+<div class="arithmatex">\[\langle f, g \rangle = \sum_{x} f(x)g(x)\pi(x)\]</div>
+<div class="arithmatex">\[||f|| = \langle f, f \rangle = \sum_{x}f^{2}(x)\pi(x)\]</div>
 <p>It follows that <span class="arithmatex">\(K\)</span> is self-adjoint.</p>
 <p>With spectral theorem, <span class="arithmatex">\(K\)</span> has <span class="arithmatex">\(n\)</span> eigenvalues.</p>
 <p>By stochasticity, <span class="arithmatex">\(\forall i \leq n, |\lambda_{i}| \leq 1\)</span></p>
@@ -633,17 +633,17 @@ All add a self-loop with <span class="arithmatex">\(\frac{1}{2}\)</span></p>
 <p>Theorem: Let <span class="arithmatex">\(\lambda^{*} = \max\{\lambda_{2}, |\lambda_n|\}\)</span>, </p>
 <div class="arithmatex">\[\Vert \frac{K^{t}(x, \cdot)}{\pi(\cdot)}  - 1\Vert_{2} \leq \frac{\lambda^{*^{2t}}}{\pi(x)}\]</div>
 <p>Consider</p>
-<div class="arithmatex">\[\Vert \frac{K^{t}(x, \cdot)}{\pi(\cdot)}  - 1\Vert_{2} = \lang \frac{K^{t}(x, \cdot)}{\pi(\cdot)}  - 1, \frac{K^{t}(x, \cdot)}{\pi(\cdot)}  - 1\rang\]</div>
+<div class="arithmatex">\[\Vert \frac{K^{t}(x, \cdot)}{\pi(\cdot)}  - 1\Vert_{2} = \langle \frac{K^{t}(x, \cdot)}{\pi(\cdot)}  - 1, \frac{K^{t}(x, \cdot)}{\pi(\cdot)}  - 1\rangle\]</div>
 <p>Then project <span class="arithmatex">\(\frac{K^{t}(x, \cdot)}{\pi(\cdot)}  - 1\)</span> into <span class="arithmatex">\(K\)</span> space. </p>
 <p>Notice: <span class="arithmatex">\(\boldsymbol{1} = \psi_1\)</span></p>
-<div class="arithmatex">\[ \frac{K^t(x, \cdot)}{\pi(\cdot)} - 1 = \sum_{i &gt; 1} \lang \frac{K^t(x, \cdot)}{\pi(\cdot)}, \psi_i  \rang  \psi_i  = \sum_{i &gt; 1}\lambda_i^t \psi_i(x)\psi_i\]</div>
+<div class="arithmatex">\[ \frac{K^t(x, \cdot)}{\pi(\cdot)} - 1 = \sum_{i &gt; 1} \langle \frac{K^t(x, \cdot)}{\pi(\cdot)}, \psi_i  \rangle  \psi_i  = \sum_{i &gt; 1}\lambda_i^t \psi_i(x)\psi_i\]</div>
 <div class="arithmatex">\[\Vert \frac{K^t(x, \cdot)}{\pi(\cdot)} - 1  \Vert_2 = \sum_{i &gt; 1}\lambda_i^{2t} \psi_i^2(x) \leq \lambda^{*} \sum_{i&gt;1} \psi_i^2(x) \leq \frac{\lambda^{*^{2t}}}{\pi(x)}\]</div>
 <p>Such a magic</p>
 <div class="arithmatex">\[
 \begin{aligned}
-\sum_{i} \psi_i^2(x) &amp;= \sum_{i} \lang \psi_i, \frac{1_x}{\pi} \rang ^2 \\
+\sum_{i} \psi_i^2(x) &amp;= \sum_{i} \langle \psi_i, \frac{1_x}{\pi} \rangle ^2 \\
 &amp;= 
-\Vert \sum_i \lang \psi_i, \frac{1_x}{\pi} \rang \psi_i \Vert ^2 \\
+\Vert \sum_i \langle \psi_i, \frac{1_x}{\pi} \rangle \psi_i \Vert ^2 \\
 &amp;= 
 \Vert \frac{1_x}{\pi} \Vert ^2 \\
 &amp;= \frac{1}{\pi(x)}
@@ -653,9 +653,10 @@ All add a self-loop with <span class="arithmatex">\(\frac{1}{2}\)</span></p>
 <h2 id="path-technology">Path technology</h2>
 <h3 id="dirichlet-form">Dirichlet Form</h3>
 <p>For two functions <span class="arithmatex">\(f, g\)</span>, define </p>
-<div class="arithmatex">\[\mathcal{E}(f,g) = \left \lang (I - K)f, g\right \rang\]</div>
+<div class="arithmatex">\[\mathcal{E}(f,g) = \left \langle (I - K)f, g \right \rangle\]</div>
 <p>(easy to see that <span class="arithmatex">\(I - K\)</span> is self-adjoint)</p>
 <p><span class="arithmatex">\(\mathcal{E}(f, g) = \frac{1}{2}\sum_{x, y} (f(x) - f(y))(g(x) - g(y))\pi(x)K(x, y)\)</span></p>
+<p>NB: actually we just need to enumerate all the edge. The reason is that if <span class="arithmatex">\((x, y) \notin E\)</span>, then <span class="arithmatex">\(K(x, y) = 0\)</span></p>
 <p>Dirichlet form of <span class="arithmatex">\(f\)</span></p>
 <p><span class="arithmatex">\(\mathcal{E}(f, f) = \frac{1}{2}\sum_{x, y} (f(x) - f(y))^2 \pi(x) K(x, y)\)</span></p>
 <p>Variance of <span class="arithmatex">\(f\)</span></p>
@@ -665,6 +666,34 @@ All add a self-loop with <span class="arithmatex">\(\frac{1}{2}\)</span></p>
 <p>If <span class="arithmatex">\(K\)</span> is reversible, then poincare constant is <span class="arithmatex">\(1 - \lambda_2\)</span></p>
 <p>For a lazy chain with Poincare constant <span class="arithmatex">\(\alpha\)</span>,</p>
 <div class="arithmatex">\[\tau_x(\epsilon) \leq O(\frac{\log \frac{1}{\epsilon \pi(x)}}{\alpha})\]</div>
+<p>So if we can bound the poincare constant, we can bound the mixing time.</p>
+<p>Consider the multicommodity flow problem(reversible Markov chain),</p>
+<p>Define </p>
+<div class="arithmatex">\[f(e) = \sum_{e \in P_{x, y}}\pi(x)\pi(y)\]</div>
+<div class="arithmatex">\[Q(e=uv) = \pi(u)K(u, v) = \pi(v)K(v, u)\]</div>
+<p>Define the congestion of an edge <span class="arithmatex">\(e\)</span> as <span class="arithmatex">\(\frac{f(e)}{Q(e)}\)</span></p>
+<p>For any reversible Markov chain, for any two states <span class="arithmatex">\(x, y \in \Omega\)</span>, </p>
+<div class="arithmatex">\[\frac{1}{\alpha} \leq \max_{e} \frac{f(e)}{Q(e)} \cdot \max_{x, y}|P_{x, y}|\]</div>
+<p>Actually, <span class="arithmatex">\(P_{x, y}\)</span> can be bounded by the diameter of the graph then the <span class="arithmatex">\(n\)</span>.</p>
+<p>proof:
+For any function <span class="arithmatex">\(f\)</span>
+$$
+\begin{aligned}
+Var(f) 
+&amp;= 
+\frac{1}{2}\sum_{x, y} (f(x) - f(y))^2\pi(x)\pi(y) \
+&amp;= 
+\frac{1}{2}\sum_{x, y} (\sum_{e \in P_{x,y}}(f(e^+) - f(e^-)) )^2\pi(x)\pi(y) \
+&amp;\leq \frac{1}{2}\sum_{x, y} |P_{x,y}|\sum_{e \in P_{x,y}}(f(e^+) - f(e^-))^2\pi(x)\pi(y) \
+&amp;\leq  \max_{x,y}|P_{x,y}| \cdot \frac{1}{2}\sum_{x, y} \sum_{e \in P_{x,y}}(f(e^+) - f(e^-))^2\pi(x)\pi(y) \
+&amp; \leq \max_{x,y}|P_{x,y}| \cdot \frac{1}{2} \sum_{e}(f(e^+) - f(e^-))^2 \sum_{e \in P_{x, y}} \pi(x)\pi(y) \
+&amp;= \max_{x,y}|P_{x,y}| \cdot \frac{1}{2} \sum_{e}(f(e^+) - f(e^-))^2 Q(e) \frac{f(e)}{Q(e)} \
+&amp;= \max_{x,y}|P_{x,y}| \cdot \frac{1}{2} \sum_{e=(x,y)}(f(e^+) - f(e^-))^2 \pi(x)K(x, y) \frac{f(e)}{Q(e)} \
+&amp;= \max_{x,y}|P_{x,y}| \cdot \mathcal{E}(f, f) \frac{f(e)}{Q(e)} (\text{If x, y are not connected then} K(x,y)=0) \
+\end{aligned}
+$$</p>
+<p><span class="arithmatex">\(\blacksquare\)</span></p>
+<p>There is some intrinsic gaps between this bound and the tight bound by <span class="arithmatex">\(\log n\)</span>.</p>
 <!-- $$
 \begin{aligned}
 \mathbb{E}[A(X, u)] &= \mathbb{E}[\sum_{c} \prod_{v \sim u} (1 - X_{v, c})] \\
