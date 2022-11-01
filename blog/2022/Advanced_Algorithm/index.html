@@ -207,6 +207,11 @@
               <ul class="nav flex-column">
               </ul>
             </li>
+            
+            <li class="nav-item" data-level="2"><a href="#lovasz-local-lemma" class="nav-link">Lovasz Local Lemma</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
         </ul>
     </div>
 </div></div>
@@ -627,7 +632,112 @@ return <span class="arithmatex">\(y_i\)</span> that dist(<span class="arithmatex
 <div class="arithmatex">\[dist(x,y) \geq cr \Rightarrow \mathbb{P}[=] \geq 1 - \frac{cr}{d}\]</div>
 <p><span class="arithmatex">\(\rho = \frac{1}{c}\)</span></p>
 <p>But optimal for Hamming space ...</p>
-<p>Fourier transform log convex (left for homework)</p></div>
+<p>Fourier transform log convex (left for homework)</p>
+<h2 id="lovasz-local-lemma">Lovasz Local Lemma</h2>
+<p>k-SAT</p>
+<p>SAT-solver</p>
+<p>k-CNF(conjunctive normal form) exactly k variables</p>
+<p>Determine a k-CNF whether is satisfiable</p>
+<p>FAITH!</p>
+<p>Clauses are disjoint: always satisfiable</p>
+<p><span class="arithmatex">\(m &lt; 2^k\)</span>  is always satisfiable.</p>
+<p>The probabilistic method</p>
+<p>Draw uniform random </p>
+<p>Bad event <span class="arithmatex">\(A^i\)</span> Clause <span class="arithmatex">\(C_i\)</span> is violated</p>
+<p><span class="arithmatex">\(\mathbb{P}[A_i] = 2^{-k}\)</span></p>
+<p>then union bound ...</p>
+<p><span class="arithmatex">\(\mathbb{P}[\lor] \leq m2^{-k}\)</span></p>
+<p>The probabilistic method fourth edition (Noga Alon, Joel H. Spencer, Erdos)</p>
+<p>why not more powerful bound</p>
+<h3 id="limited-dependency">Limited Dependency</h3>
+<p>Dependency degree <span class="arithmatex">\(d\)</span></p>
+<p>each clause intersects $\leq $ <span class="arithmatex">\(d\)</span> other clauses</p>
+<p>"local" union bound ? <span class="arithmatex">\(d2^{-k} &lt; 1\)</span> ?  NO</p>
+<p>(LLL) <span class="arithmatex">\(e(d+1)2^{-k} \leq 1\)</span></p>
+<p>or</p>
+<p><span class="arithmatex">\(4d2^{-k} \leq 1\)</span></p>
+<p>LLL:</p>
+<p>"Bad" events <span class="arithmatex">\(A_1, \cdot, A_m\)</span>, where all <span class="arithmatex">\(\mathbb{P}[A_j] \leq p\)</span></p>
+<p>Dependency degree d:</p>
+<p>each <span class="arithmatex">\(A_{i}\)</span> is "depenedent" of <span class="arithmatex">\(\leq d\)</span> other events</p>
+<p>(each <span class="arithmatex">\(A_i\)</span> is mutually independent of all except <span class="arithmatex">\(\leq d\)</span> other events)</p>
+<div class="arithmatex">\[ep(d+1)\leq 1\Rightarrow \mathbb{P}[\large \land_{i=1}^{m}\bar{A_{i}}] &gt; 0\]</div>
+<h3 id="dependency-graph">Dependency graph</h3>
+<p>Vertices are bad events <span class="arithmatex">\(A_1, \cdots, A_m\)</span>.</p>
+<p>Each <span class="arithmatex">\(A_i\)</span> is mutually independent of non-adjacent events.</p>
+<p><strong>这东西是唯一定义的吗?</strong></p>
+<p>Now consider CSP</p>
+<p>independent random variables: <span class="arithmatex">\(X_1, X_2, X_3, X_4\)</span></p>
+<p>bad events (defined on subsets of variables)</p>
+<p>Variable framework</p>
+<p>also there is the abstract framework.</p>
+<p><span class="arithmatex">\(\Gamma(c)\)</span> neighborhood</p>
+<p><span class="arithmatex">\(A_1, \cdot, A_m\)</span> has a dependency graph given by <span class="arithmatex">\(\Gamma(\cdot)\)</span></p>
+<p><span class="arithmatex">\(A_i\)</span> is mutually independent of all <span class="arithmatex">\(A_i \notin \Gamma(A_i)\)</span></p>
+<p>LLL</p>
+<p><span class="arithmatex">\(p = \max_{i} \mathbb{P}[A_i]\)</span> and <span class="arithmatex">\(d = \max_{i}|\Gamma(A_i)|\)</span></p>
+<p><strong>留作业了</strong></p>
+<p>then </p>
+<div class="arithmatex">\[ep(d+1)\leq 1\Rightarrow \mathbb{P}[\large \land_{i=1}^{m}\bar{A_{i}}] &gt; 0\]</div>
+<h3 id="csp">CSP</h3>
+<p>Variables: <span class="arithmatex">\(x_1, \cdots, x_n \in [q]\)</span></p>
+<p>Constrains: <span class="arithmatex">\(C_1, \cdots, C_m\)</span></p>
+<p>each <span class="arithmatex">\(C_i\)</span> is defined on a subset <span class="arithmatex">\(vbl(C_i)\)</span> of variables</p>
+<p><span class="arithmatex">\(C_i: [q]^{vbl(C_i)} \rightarrow \text{True, False}\)</span></p>
+<p>Any <span class="arithmatex">\(x \in [q]^n\)</span> is a CSP solution if it satisfied all <span class="arithmatex">\(C_1, \cdots, C_m\)</span></p>
+<p>Examples: abab</p>
+<p>Hypergraph coloring: </p>
+<p>proper <span class="arithmatex">\(q\)</span>-coloring of H:</p>
+<p><span class="arithmatex">\(f: V \rightarrow [q]\)</span> such that no hyperedge is monochromatic</p>
+<div class="arithmatex">\[\forall e \in E, |f(e)| &gt; 1\]</div>
+<p>Theorem: for any k-uniform hypergraph H of max-degree <span class="arithmatex">\(\Delta\)</span>, </p>
+<div class="arithmatex">\[\Delta \leq \frac{q^{k-1}}{ek} \Rightarrow \text{H is q-proper coloring}\]</div>
+<p><span class="arithmatex">\(k \geq \log_{q}\Delta + \log_q\log_q\Delta + O(1)\)</span></p>
+<p>Uniformly and independently color each <span class="arithmatex">\(v \in V\)</span> a random color <span class="arithmatex">\(\in [p]\)</span></p>
+<p>Bad event <span class="arithmatex">\(A_e\)</span> for each hyperedge <span class="arithmatex">\(e\in E \subset C_v^k\)</span>: e is monochromatic</p>
+<p><span class="arithmatex">\(\mathbb{P}[A_e] \leq p = q^{1-k}\)</span></p>
+<p>Dependency degree for bad events <span class="arithmatex">\(d \leq k(\Delta - 1)\)</span></p>
+<p>Apply LLL</p>
+<div class="arithmatex">\[\Delta \leq \frac{q^{k-1}}{ek} \Rightarrow ep(d+1)\leq 1\]</div>
+<p>LLL(asymmetric case):</p>
+<p><span class="arithmatex">\(\exists a_1, \cdots, a_m \in [0, 1)\)</span>:</p>
+<div class="arithmatex">\[\forall i, \mathbb{P}[A_i] \leq a_i\prod_{A_{j} \in \Gamma(A_i)}(1 - a_j) \Rightarrow \mathbb{P}[\land_{i=1}^m \bar{A_i}] \geq \prod_{i=1}^{m} (1 - a_i)\]</div>
+<p>LLL(symmetric case) proof!</p>
+<p>For asymmetric case:</p>
+<p>conditioned probability. Induction</p>
+<p>I.H.: <span class="arithmatex">\(\mathbb{P}[A_i | \bar{A_{j_{1}}} \cdots \bar{A_{j_{k}}}] \leq a_i\)</span> holds for all smaller <span class="arithmatex">\(k\)</span></p>
+<p>It never makes sense! Move the formulas around.</p>
+<p>We want to find the exact solution.</p>
+<h3 id="algorithmic-lllthe-moser-tardos-algorithm">Algorithmic LLL(The Moser-Tardos Algorithm)</h3>
+<p>"Bad" events <span class="arithmatex">\(A_1, \cdots, A_m\)</span> in a probability space</p>
+<p>Give an efficient alg:</p>
+<p>find such a good sample <span class="arithmatex">\(\sigma \in \Omega\)</span> avoiding <span class="arithmatex">\(\lor A_i\)</span></p>
+<p>Pick the Variable framework for LLL (CSP with independent variables)</p>
+<p><strong>Moser-Tardos Algorithm</strong>:</p>
+<p>draw independent samples of <span class="arithmatex">\(X_1, \cdots, X_n\)</span>;</p>
+<p>while <span class="arithmatex">\(\exists\)</span> a bad event <span class="arithmatex">\(A_i\)</span> that occurs:</p>
+<p>resample all <span class="arithmatex">\(X_j \in vbl(A_i)\)</span>;</p>
+<p>Assume the oracles for draw random variables and check if <span class="arithmatex">\(A_i\)</span> occurs.</p>
+<p>Thm [Morse-Tardo'10]</p>
+<p>terminates within <span class="arithmatex">\(\sum_{i=1}^{m}(1 - \frac{1}{1-\alpha_i}) = \frac{m}{d}\)</span> a.k.a. linear time.</p>
+<h3 id="execution-log-bold-proof">Execution Log (bold proof)</h3>
+<p><span class="arithmatex">\(B\)</span> of the M-T algorithm</p>
+<p><span class="arithmatex">\(B_1, B_2, \cdots, \in = \{A_1, \cdots, A_m\}\)</span> </p>
+<p>random sequence of resampled bad events.</p>
+<p>to prove </p>
+<div class="arithmatex">\[\forall i, \mathbb{E}_{B}[\text{\# of }A_i \in B] \leq \frac{a_i}{1 - a_i}\]</div>
+<p>use the random bits technique "resampling table"</p>
+<p>Witness tree <span class="arithmatex">\(T(B, t)\)</span>: each node <span class="arithmatex">\(u\)</span> with label <span class="arithmatex">\(A_{[u]}\)</span>, siblings have distinct labels </p>
+<p>Initially, <span class="arithmatex">\(T\)</span> constains a single root <span class="arithmatex">\(r\)</span> with <span class="arithmatex">\(B_t\)</span></p>
+<p>for <span class="arithmatex">\(i = t - 1\)</span> to 1 :
+if <span class="arithmatex">\(B_i \in \Gamma^+(A_{[u]})\)</span> for some node <span class="arithmatex">\(u \in T\)</span></p>
+<p>add child <span class="arithmatex">\(v \rightarrow\)</span> deepest such <span class="arithmatex">\(u\)</span>, labeled with <span class="arithmatex">\(B_i\)</span></p>
+<p><span class="arithmatex">\(T(B, t)\)</span> is the resulting <span class="arithmatex">\(T\)</span></p>
+<p>Proposition: <span class="arithmatex">\(\forall s \neq t\)</span>, <span class="arithmatex">\(T(B, s) \neq T(B, t)\)</span></p>
+<div class="arithmatex">\[\text{\# of }A_i  = \sum_{\tau \in \mathcal{T}_{A_i}} I[\exists t, T(B, t) = \tau]\]</div>
+<p>enumerate all the rooted trees ...</p>
+<p>Lemma (coupling): For any particular witness tree <span class="arithmatex">\(\tau\)</span>:</p>
+<div class="arithmatex">\[\mathbb{P}_{B} [\exists t, T(B, t) = \tau] \leq \prod_{u \tau} \mathbb{P}(A_{[u]})\]</div></div>
             </div>
         </div>
 

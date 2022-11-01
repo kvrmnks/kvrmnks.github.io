@@ -676,24 +676,24 @@ All add a self-loop with <span class="arithmatex">\(\frac{1}{2}\)</span></p>
 <div class="arithmatex">\[\frac{1}{\alpha} \leq \max_{e} \frac{f(e)}{Q(e)} \cdot \max_{x, y}|P_{x, y}|\]</div>
 <p>Actually, <span class="arithmatex">\(P_{x, y}\)</span> can be bounded by the diameter of the graph then the <span class="arithmatex">\(n\)</span>.</p>
 <p>proof:
-For any function <span class="arithmatex">\(f\)</span>
-$$
+For any function <span class="arithmatex">\(f\)</span></p>
+<div class="arithmatex">\[
 \begin{aligned}
 Var(f) 
 &amp;= 
-\frac{1}{2}\sum_{x, y} (f(x) - f(y))^2\pi(x)\pi(y) \
+\frac{1}{2}\sum_{x, y} (f(x) - f(y))^2\pi(x)\pi(y) \\
 &amp;= 
-\frac{1}{2}\sum_{x, y} (\sum_{e \in P_{x,y}}(f(e^+) - f(e^-)) )^2\pi(x)\pi(y) \
-&amp;\leq \frac{1}{2}\sum_{x, y} |P_{x,y}|\sum_{e \in P_{x,y}}(f(e^+) - f(e^-))^2\pi(x)\pi(y) \
-&amp;\leq  \max_{x,y}|P_{x,y}| \cdot \frac{1}{2}\sum_{x, y} \sum_{e \in P_{x,y}}(f(e^+) - f(e^-))^2\pi(x)\pi(y) \
-&amp; \leq \max_{x,y}|P_{x,y}| \cdot \frac{1}{2} \sum_{e}(f(e^+) - f(e^-))^2 \sum_{e \in P_{x, y}} \pi(x)\pi(y) \
-&amp;= \max_{x,y}|P_{x,y}| \cdot \frac{1}{2} \sum_{e}(f(e^+) - f(e^-))^2 Q(e) \frac{f(e)}{Q(e)} \
-&amp;= \max_{x,y}|P_{x,y}| \cdot \frac{1}{2} \sum_{e=(x,y)}(f(e^+) - f(e^-))^2 \pi(x)K(x, y) \frac{f(e)}{Q(e)} \
-&amp;= \max_{x,y}|P_{x,y}| \cdot \mathcal{E}(f, f) \frac{f(e)}{Q(e)} (\text{If x, y are not connected then} K(x,y)=0) \
+\frac{1}{2}\sum_{x, y} (\sum_{e \in P_{x,y}}(f(e^+) - f(e^-)) )^2\pi(x)\pi(y) \\
+&amp;\leq \frac{1}{2}\sum_{x, y} |P_{x,y}|\sum_{e \in P_{x,y}}(f(e^+) - f(e^-))^2\pi(x)\pi(y) \\
+&amp;\leq  \max_{x,y}|P_{x,y}| \cdot \frac{1}{2}\sum_{x, y} \sum_{e \in P_{x,y}}(f(e^+) - f(e^-))^2\pi(x)\pi(y) \\
+&amp; \leq \max_{x,y}|P_{x,y}| \cdot \frac{1}{2} \sum_{e}(f(e^+) - f(e^-))^2 \sum_{e \in P_{x, y}} \pi(x)\pi(y) \\
+&amp;= \max_{x,y}|P_{x,y}| \cdot \frac{1}{2} \sum_{e}(f(e^+) - f(e^-))^2 Q(e) \frac{f(e)}{Q(e)} \\
+&amp;= \max_{x,y}|P_{x,y}| \cdot \frac{1}{2} \sum_{e=(x,y)}(f(e^+) - f(e^-))^2 \pi(x)K(x, y) \frac{f(e)}{Q(e)} \\
+&amp;= \max_{x,y}|P_{x,y}| \cdot \mathcal{E}(f, f) \frac{f(e)}{Q(e)} (\text{If x, y are not connected then} K(x,y)=0) \\
 \end{aligned}
-$$</p>
+\]</div>
 <p><span class="arithmatex">\(\blacksquare\)</span></p>
-<p>There is some intrinsic gaps between this bound and the tight bound by <span class="arithmatex">\(\log n\)</span>.</p>
+<p>There are some intrinsic gaps between this bound and the tight bound by <span class="arithmatex">\(\log n\)</span>.</p>
 <!-- $$
 \begin{aligned}
 \mathbb{E}[A(X, u)] &= \mathbb{E}[\sum_{c} \prod_{v \sim u} (1 - X_{v, c})] \\
