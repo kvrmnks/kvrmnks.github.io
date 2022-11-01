@@ -831,3 +831,214 @@ $\rho = \frac{1}{c}$
 But optimal for Hamming space ...
 
 Fourier transform log convex (left for homework)
+
+## Lovasz Local Lemma
+
+k-SAT
+
+SAT-solver
+
+k-CNF(conjunctive normal form) exactly k variables
+
+Determine a k-CNF whether is satisfiable
+
+FAITH!
+
+Clauses are disjoint: always satisfiable
+
+$m < 2^k$  is always satisfiable.
+
+The probabilistic method
+
+Draw uniform random 
+
+Bad event $A^i$ Clause $C_i$ is violated
+
+$\mathbb{P}[A_i] = 2^{-k}$
+
+then union bound ...
+
+$\mathbb{P}[\lor] \leq m2^{-k}$
+
+The probabilistic method fourth edition (Noga Alon, Joel H. Spencer, Erdos)
+
+why not more powerful bound
+### Limited Dependency
+
+Dependency degree $d$
+
+each clause intersects $\leq $ $d$ other clauses
+
+"local" union bound ? $d2^{-k} < 1$ ?  NO
+
+(LLL) $e(d+1)2^{-k} \leq 1$
+
+or
+
+$4d2^{-k} \leq 1$
+
+
+LLL:
+
+"Bad" events $A_1, \cdot, A_m$, where all $\mathbb{P}[A_j] \leq p$
+
+Dependency degree d:
+
+each $A_{i}$ is "depenedent" of $\leq d$ other events
+
+(each $A_i$ is mutually independent of all except $\leq d$ other events)
+
+$$ep(d+1)\leq 1\Rightarrow \mathbb{P}[\large \land_{i=1}^{m}\bar{A_{i}}] > 0$$
+  
+### Dependency graph
+
+Vertices are bad events $A_1, \cdots, A_m$.
+
+Each $A_i$ is mutually independent of non-adjacent events.
+
+**这东西是唯一定义的吗?**
+
+Now consider CSP
+
+independent random variables: $X_1, X_2, X_3, X_4$
+
+bad events (defined on subsets of variables)
+
+Variable framework
+
+also there is the abstract framework.
+
+$\Gamma(c)$ neighborhood
+
+$A_1, \cdot, A_m$ has a dependency graph given by $\Gamma(\cdot)$
+
+$A_i$ is mutually independent of all $A_i \notin \Gamma(A_i)$
+
+LLL
+
+$p = \max_{i} \mathbb{P}[A_i]$ and $d = \max_{i}|\Gamma(A_i)|$
+
+**留作业了**
+
+then 
+
+$$ep(d+1)\leq 1\Rightarrow \mathbb{P}[\large \land_{i=1}^{m}\bar{A_{i}}] > 0$$
+
+### CSP
+
+Variables: $x_1, \cdots, x_n \in [q]$
+
+Constrains: $C_1, \cdots, C_m$
+
+each $C_i$ is defined on a subset $vbl(C_i)$ of variables
+
+$C_i: [q]^{vbl(C_i)} \rightarrow \text{True, False}$
+
+Any $x \in [q]^n$ is a CSP solution if it satisfied all $C_1, \cdots, C_m$
+
+Examples: abab
+
+Hypergraph coloring: 
+
+proper $q$-coloring of H:
+
+$f: V \rightarrow [q]$ such that no hyperedge is monochromatic
+
+$$\forall e \in E, |f(e)| > 1$$
+
+Theorem: for any k-uniform hypergraph H of max-degree $\Delta$, 
+
+$$\Delta \leq \frac{q^{k-1}}{ek} \Rightarrow \text{H is q-proper coloring}$$
+
+$k \geq \log_{q}\Delta + \log_q\log_q\Delta + O(1)$
+
+Uniformly and independently color each $v \in V$ a random color $\in [p]$
+
+Bad event $A_e$ for each hyperedge $e\in E \subset C_v^k$: e is monochromatic
+
+$\mathbb{P}[A_e] \leq p = q^{1-k}$
+
+Dependency degree for bad events $d \leq k(\Delta - 1)$
+
+Apply LLL
+
+$$\Delta \leq \frac{q^{k-1}}{ek} \Rightarrow ep(d+1)\leq 1$$
+
+LLL(asymmetric case):
+
+$\exists a_1, \cdots, a_m \in [0, 1)$:
+
+$$\forall i, \mathbb{P}[A_i] \leq a_i\prod_{A_{j} \in \Gamma(A_i)}(1 - a_j) \Rightarrow \mathbb{P}[\land_{i=1}^m \bar{A_i}] \geq \prod_{i=1}^{m} (1 - a_i)$$
+
+LLL(symmetric case) proof!
+
+For asymmetric case:
+
+conditioned probability. Induction
+
+I.H.: $\mathbb{P}[A_i | \bar{A_{j_{1}}} \cdots \bar{A_{j_{k}}}] \leq a_i$ holds for all smaller $k$
+
+It never makes sense! Move the formulas around.
+
+We want to find the exact solution.
+
+### Algorithmic LLL(The Moser-Tardos Algorithm)
+
+"Bad" events $A_1, \cdots, A_m$ in a probability space
+
+Give an efficient alg:
+
+find such a good sample $\sigma \in \Omega$ avoiding $\lor A_i$
+
+Pick the Variable framework for LLL (CSP with independent variables)
+
+
+**Moser-Tardos Algorithm**:
+
+draw independent samples of $X_1, \cdots, X_n$;
+
+while $\exists$ a bad event $A_i$ that occurs:
+
+resample all $X_j \in vbl(A_i)$;
+
+Assume the oracles for draw random variables and check if $A_i$ occurs.
+
+Thm \[Morse-Tardo'10\]
+
+terminates within $\sum_{i=1}^{m}(1 - \frac{1}{1-\alpha_i}) = \frac{m}{d}$ a.k.a. linear time.
+
+### Execution Log (bold proof)
+
+$B$ of the M-T algorithm
+
+$B_1, B_2, \cdots, \in = \{A_1, \cdots, A_m\}$ 
+
+random sequence of resampled bad events.
+
+to prove 
+
+$$\forall i, \mathbb{E}_{B}[\text{\# of }A_i \in B] \leq \frac{a_i}{1 - a_i}$$
+
+use the random bits technique "resampling table"
+
+Witness tree $T(B, t)$: each node $u$ with label $A_{[u]}$, siblings have distinct labels 
+
+Initially, $T$ constains a single root $r$ with $B_t$
+
+for $i = t - 1$ to 1 :
+if $B_i \in \Gamma^+(A_{[u]})$ for some node $u \in T$
+
+add child $v \rightarrow$ deepest such $u$, labeled with $B_i$
+
+$T(B, t)$ is the resulting $T$
+
+Proposition: $\forall s \neq t$, $T(B, s) \neq T(B, t)$
+
+$$\text{\# of }A_i  = \sum_{\tau \in \mathcal{T}_{A_i}} I[\exists t, T(B, t) = \tau]$$
+
+enumerate all the rooted trees ...
+
+Lemma (coupling): For any particular witness tree $\tau$:
+
+$$\mathbb{P}_{B} [\exists t, T(B, t) = \tau] \leq \prod_{u \tau} \mathbb{P}(A_{[u]})$$
+

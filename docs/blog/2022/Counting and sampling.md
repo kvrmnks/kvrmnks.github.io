@@ -837,6 +837,7 @@ Actually, $P_{x, y}$ can be bounded by the diameter of the graph then the $n$.
 
 proof:
 For any function $f$
+
 $$
 \begin{aligned}
 Var(f) 
@@ -855,7 +856,7 @@ $$
 
 $\blacksquare$
 
-There is some intrinsic gaps between this bound and the tight bound by $\log n$.
+There are some intrinsic gaps between this bound and the tight bound by $\log n$.
 
 
 
