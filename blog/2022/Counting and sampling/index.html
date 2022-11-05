@@ -692,8 +692,59 @@ Var(f)
 &amp;= \max_{x,y}|P_{x,y}| \cdot \mathcal{E}(f, f) \frac{f(e)}{Q(e)} (\text{If x, y are not connected then} K(x,y)=0) \\
 \end{aligned}
 \]</div>
+<p>Fractional version</p>
+<p>Define <span class="arithmatex">\(\mu_{x, y}(P)\)</span> as the probability of choosing <span class="arithmatex">\(P\)</span> as the path from <span class="arithmatex">\(x \rightarrow y\)</span>.</p>
+<p>Then update the definition for <span class="arithmatex">\(f(e)\)</span></p>
+<div class="arithmatex">\[f(e) = \sum_{x, y} \pi(x) \pi(y)\sum_{e\in P \sim \mu_{x,y}} \mu_{x, y}(P)\]</div>
+<p>Now calculate the Poincare constant</p>
+<div class="arithmatex">\[
+\begin{aligned}
+Var(f) 
+&amp;= 
+\frac{1}{2}\sum_{x, y} (f(x) - f(y))^2\pi(x)\pi(y) \\
+&amp;= 
+\frac{1}{2} \pi(x)\pi(y) \sum_{x, y} (\sum_{P}\mu_{x, y}(P)\sum_{e\in P}(f(e^+) - f(e^-)) )^2 \\
+&amp;\leq \frac{1}{2}\sum_{x, y} |P_{x,y}|\sum_{e \in P_{x,y}}(f(e^+) - f(e^-))^2(\sum_{P}\mu_{x, y}^{2}(P))\pi(x)\pi(y) \\
+&amp;\leq \frac{1}{2}\sum_{x, y} |P_{x,y}|\sum_{e \in P_{x,y}}(f(e^+) - f(e^-))^2\pi(x)\pi(y) \\
+&amp;\leq  \max_{x,y}|P_{x,y}| \cdot \frac{1}{2}\sum_{x, y} \sum_{e \in P_{x,y}}(f(e^+) - f(e^-))^2\pi(x)\pi(y) \\
+&amp; \leq \max_{x,y}|P_{x,y}| \cdot \frac{1}{2} \sum_{e}(f(e^+) - f(e^-))^2 \sum_{e \in P_{x, y}} \pi(x)\pi(y) \\
+&amp;= \max_{x,y}|P_{x,y}| \cdot \frac{1}{2} \sum_{e}(f(e^+) - f(e^-))^2 Q(e) \frac{f(e)}{Q(e)} \\
+&amp;= \max_{x,y}|P_{x,y}| \cdot \frac{1}{2} \sum_{e=(x,y)}(f(e^+) - f(e^-))^2 \pi(x)K(x, y) \frac{f(e)}{Q(e)} \\
+&amp;= \max_{x,y}|P_{x,y}| \cdot \mathcal{E}(f, f) \frac{f(e)}{Q(e)} (\text{If x, y are not connected then} K(x,y)=0) \\
+\end{aligned}
+\]</div>
+<p>So the same theorem holds.</p>
 <p><span class="arithmatex">\(\blacksquare\)</span></p>
 <p>There are some intrinsic gaps between this bound and the tight bound by <span class="arithmatex">\(\log n\)</span>.</p>
+<h3 id="all-or-nothing-theorem">All or nothing theorem</h3>
+<p>Def of self-reducible problem:</p>
+<p>Is this def the same as Sipser?</p>
+<p>Thm: For any self-reducible problem, if there exists a polynomial time counting algorithm that gives <span class="arithmatex">\(1 + poly(n)\)</span> multiplicative error, then there is an FPAUS.</p>
+<p>Here We will use the DNF(different from the counting problem in the notes) as a demonstration. </p>
+<p>Consider a tree from the root to the leaves, one step downward means that a variable is assigned. </p>
+<p>Define a order of variables <span class="arithmatex">\(l_1, l_2, \cdots, l_n\)</span>, At level <span class="arithmatex">\(i\)</span>, assign the <span class="arithmatex">\(v_i\)</span> true of false.</p>
+<p>Basically this is a decision tree, every node in the tree is a configuration.</p>
+<p>Denote the actual count of configuration <span class="arithmatex">\(x\)</span> as <span class="arithmatex">\(N(x)\)</span>, the FPRAS with parameter <span class="arithmatex">\(\alpha\)</span> returns a answer <span class="arithmatex">\(\hat{N}(x)\)</span>, <span class="arithmatex">\(\frac{N(x)}{\alpha} \leq \hat{N}(x) \leq \alpha N(x)\)</span>.</p>
+<p>For simplicity, we can assume <span class="arithmatex">\(\hat{N}(x)\)</span> is deterministic. (Otherwise we can run <span class="arithmatex">\(\log \frac{1}{\epsilon}\)</span> to boost).</p>
+<p>For an edge <span class="arithmatex">\((e, v)\)</span>, w.l.o.g. <span class="arithmatex">\(e\)</span> is the father of <span class="arithmatex">\(v\)</span>. </p>
+<p>Define <span class="arithmatex">\(w(e, v) = \hat{N}(v)\)</span>. To make it a Markov chain, for a specific vertex <span class="arithmatex">\(x\)</span>, whose father is <span class="arithmatex">\(a\)</span>, sons are <span class="arithmatex">\(b\)</span> and <span class="arithmatex">\(c\)</span>. Define <span class="arithmatex">\(Z_{x} = \hat{N}(x) + \hat{N}(b) + \hat{N}(c)\)</span>, <span class="arithmatex">\(K(x, a) = \frac{\hat{N}(x)}{Z_{x}}\)</span>, <span class="arithmatex">\(K(x, b) = \frac{\hat{N}(b)}{Z_{x}}\)</span> and <span class="arithmatex">\(K(x, c) = \frac{\hat{N}(c)}{Z_{x}}\)</span>.</p>
+<p>Now consider random walk on this graph. Define <span class="arithmatex">\(Z = \sum_{x}Z_{x}\)</span>. It follows that <span class="arithmatex">\(\pi(x) = \frac{Z_{x}}{Z}\)</span>. </p>
+<p>Assume <span class="arithmatex">\(x\)</span> is the father of <span class="arithmatex">\(y\)</span> in the following equation.</p>
+<div class="arithmatex">\[\sum_{(x, y) \in E} \pi(x)K(x, y) = \sum_{(x, y) \in E} \frac{Z_{x}}{Z} \frac{\hat{N}(y)}{Z_{x}} = \frac{Z_{y}}{Z} = \pi(y)\]</div>
+<p>Each assignment is actually a leaf. Because leaves have the same level, so they has the same probability(has only one edge connecting to its father).</p>
+<p>Then we need to bound the sum of leaves' probability.</p>
+<h3 id="implementation">Implementation</h3>
+<p>Random walk on hypercube.</p>
+<p>First consider using the path coupling.</p>
+<p>Obviously the metric satisfies the pre-metric constrains.</p>
+<p>consider an edge <span class="arithmatex">\(e = (x, y)\)</span>.</p>
+<p>coupling with randomly picking a bit then turn to the same neighbor.</p>
+<div class="arithmatex">\[
+\begin{aligned}
+\mathbb{E}[d(X, Y|x, y)] &amp;= (1 - \frac{1}{n})d(x, y)
+\end{aligned}
+\]</div>
+<p>So <span class="arithmatex">\(d(X, Y) \leq n(1 - \frac{1}{n})^{T}\)</span>, <span class="arithmatex">\(T = O(n\log n)\)</span></p>
 <!-- $$
 \begin{aligned}
 \mathbb{E}[A(X, u)] &= \mathbb{E}[\sum_{c} \prod_{v \sim u} (1 - X_{v, c})] \\
