@@ -854,10 +854,93 @@ Var(f)
 \end{aligned}
 $$
 
+Fractional version
+
+Define $\mu_{x, y}(P)$ as the probability of choosing $P$ as the path from $x \rightarrow y$.
+
+Then update the definition for $f(e)$
+
+$$f(e) = \sum_{x, y} \pi(x) \pi(y)\sum_{e\in P \sim \mu_{x,y}} \mu_{x, y}(P)$$
+
+Now calculate the Poincare constant
+
+$$
+\begin{aligned}
+Var(f) 
+&= 
+\frac{1}{2}\sum_{x, y} (f(x) - f(y))^2\pi(x)\pi(y) \\
+&= 
+\frac{1}{2} \pi(x)\pi(y) \sum_{x, y} (\sum_{P}\mu_{x, y}(P)\sum_{e\in P}(f(e^+) - f(e^-)) )^2 \\
+&\leq \frac{1}{2}\sum_{x, y} |P_{x,y}|\sum_{e \in P_{x,y}}(f(e^+) - f(e^-))^2(\sum_{P}\mu_{x, y}^{2}(P))\pi(x)\pi(y) \\
+&\leq \frac{1}{2}\sum_{x, y} |P_{x,y}|\sum_{e \in P_{x,y}}(f(e^+) - f(e^-))^2\pi(x)\pi(y) \\
+&\leq  \max_{x,y}|P_{x,y}| \cdot \frac{1}{2}\sum_{x, y} \sum_{e \in P_{x,y}}(f(e^+) - f(e^-))^2\pi(x)\pi(y) \\
+& \leq \max_{x,y}|P_{x,y}| \cdot \frac{1}{2} \sum_{e}(f(e^+) - f(e^-))^2 \sum_{e \in P_{x, y}} \pi(x)\pi(y) \\
+&= \max_{x,y}|P_{x,y}| \cdot \frac{1}{2} \sum_{e}(f(e^+) - f(e^-))^2 Q(e) \frac{f(e)}{Q(e)} \\
+&= \max_{x,y}|P_{x,y}| \cdot \frac{1}{2} \sum_{e=(x,y)}(f(e^+) - f(e^-))^2 \pi(x)K(x, y) \frac{f(e)}{Q(e)} \\
+&= \max_{x,y}|P_{x,y}| \cdot \mathcal{E}(f, f) \frac{f(e)}{Q(e)} (\text{If x, y are not connected then} K(x,y)=0) \\
+\end{aligned}
+$$
+
+So the same theorem holds.
+
 $\blacksquare$
 
 There are some intrinsic gaps between this bound and the tight bound by $\log n$.
 
+### All or nothing theorem
+
+Def of self-reducible problem:
+
+Is this def the same as Sipser?
+
+Thm: For any self-reducible problem, if there exists a polynomial time counting algorithm that gives $1 + poly(n)$ multiplicative error, then there is an FPAUS.
+
+Here We will use the DNF(different from the counting problem in the notes) as a demonstration. 
+
+Consider a tree from the root to the leaves, one step downward means that a variable is assigned. 
+
+Define a order of variables $l_1, l_2, \cdots, l_n$, At level $i$, assign the $v_i$ true of false.
+
+Basically this is a decision tree, every node in the tree is a configuration.
+
+Denote the actual count of configuration $x$ as $N(x)$, the FPRAS with parameter $\alpha$ returns a answer $\hat{N}(x)$, $\frac{N(x)}{\alpha} \leq \hat{N}(x) \leq \alpha N(x)$.
+
+For simplicity, we can assume $\hat{N}(x)$ is deterministic. (Otherwise we can run $\log \frac{1}{\epsilon}$ to boost).
+
+For an edge $(e, v)$, w.l.o.g. $e$ is the father of $v$. 
+
+Define $w(e, v) = \hat{N}(v)$. To make it a Markov chain, for a specific vertex $x$, whose father is $a$, sons are $b$ and $c$. Define $Z_{x} = \hat{N}(x) + \hat{N}(b) + \hat{N}(c)$, $K(x, a) = \frac{\hat{N}(x)}{Z_{x}}$, $K(x, b) = \frac{\hat{N}(b)}{Z_{x}}$ and $K(x, c) = \frac{\hat{N}(c)}{Z_{x}}$.
+
+
+Now consider random walk on this graph. Define $Z = \sum_{x}Z_{x}$. It follows that $\pi(x) = \frac{Z_{x}}{Z}$. 
+
+Assume $x$ is the father of $y$ in the following equation.
+
+$$\sum_{(x, y) \in E} \pi(x)K(x, y) = \sum_{(x, y) \in E} \frac{Z_{x}}{Z} \frac{\hat{N}(y)}{Z_{x}} = \frac{Z_{y}}{Z} = \pi(y)$$
+
+Each assignment is actually a leaf. Because leaves have the same level, so they has the same probability(has only one edge connecting to its father).
+
+Then we need to bound the sum of leaves' probability.
+
+### Implementation
+
+Random walk on hypercube.
+
+First consider using the path coupling.
+
+Obviously the metric satisfies the pre-metric constrains.
+
+consider an edge $e = (x, y)$.
+
+coupling with randomly picking a bit then turn to the same neighbor.
+
+$$
+\begin{aligned}
+\mathbb{E}[d(X, Y|x, y)] &= (1 - \frac{1}{n})d(x, y)
+\end{aligned}
+$$
+
+So $d(X, Y) \leq n(1 - \frac{1}{n})^{T}$, $T = O(n\log n)$
 
 
 
