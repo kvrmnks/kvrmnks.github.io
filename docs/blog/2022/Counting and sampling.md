@@ -891,9 +891,23 @@ There are some intrinsic gaps between this bound and the tight bound by $\log n$
 
 Def of self-reducible problem:
 
+For every instance of one specific NP search problem, if the set of its solutions can be divided into polynomial size subsets corresponding to the same NP search problem with smaller instances(these instances can be generated in polynomial time). Then this NP search problem is self-reducible problem.
+
 Is this def the same as Sipser?
 
-Thm: For any self-reducible problem, if there exists a polynomial time counting algorithm that gives $1 + poly(n)$ multiplicative error, then there is an FPAUS.
+Thm: For any self-reducible problem, if there exists a polynomial time counting algorithm that gives $1 + poly(n)$ multiplicative error, then there is an FPRAS.
+
+(Recall that for self-reducible problem, $\text{FPRAS}  \leftrightarrow \text{FPAUS}$)
+
+The basic intuition is that we prove that there is a FPAUS.
+
+If we can use the polynomial approximation factor to build a Markov chain with fast mixing time.
+
+The good situation is that every vertex(state) in Markov chain represents a proper answer(element needed to be counted).
+
+Of the proportion of proper vertices is large enough, like $\frac{1}{poly(n)}$.
+
+So we can derive the FPRAS.
 
 Here We will use the DNF(different from the counting problem in the notes) as a demonstration. 
 
@@ -921,6 +935,51 @@ $$\sum_{(x, y) \in E} \pi(x)K(x, y) = \sum_{(x, y) \in E} \frac{Z_{x}}{Z} \frac{
 Each assignment is actually a leaf. Because leaves have the same level, so they has the same probability(has only one edge connecting to its father).
 
 Then we need to bound the sum of leaves' probability.
+
+Lemma: random walk ends at leaves with probability $\frac{O(1)}{\alpha n}$
+
+proof:
+
+Use $L$ to denote the actual amount of leaves. 
+
+Observe that the sum of the weight of edges from level $i$ to level $i+1$ is at most $\alpha L$.
+
+Because there are at $n$ levels, so sum of all the weight is at most $2\alpha Ln$
+
+The probability that ends at leaves is at least $\frac{1}{2\alpha n}$
+
+$\blacksquare$
+
+That's $\frac{1}{poly(n)}$
+
+Now we need to bound the mixing time.
+
+Although the structure of tree means that there is only simple path, it seems not easy to use the path coupling lemma.
+
+We choose path technology here.
+
+For a specific edge $e = (u, v)$, $u$ is the father of $v$.
+
+$f(e) = (\sum_{x \in son(v)} \pi(x)) (1 - \sum_{x \in son(v)} \pi(x)) \leq \frac{1}{Z}2\alpha n N(v)$
+
+$Q(e) = \pi(u)K(u,v) = \frac{Z_u}{Z} \frac{\hat{N}(v)}{Z_{u}} = \frac{\hat{N}(v)}{Z}$
+
+$\max_{e} \frac{f(e)}{Q(e)} \leq 2\alpha^2 n$
+
+$\max_{x, y} |P_{x, y}| \leq 2n$
+
+By the path technology
+
+$$\tau_x(\epsilon) \leq O(2\alpha^2n^2\log \frac{1}{\epsilon \pi(x)})$$
+
+Choose x as root. Then $\pi(root) = \frac{Z_{root}}{Z} \geq \frac{1}{2\alpha n}$
+
+So,
+
+$$\tau_x(\epsilon) \leq O(2\alpha^2n^2\log \frac{2\alpha n}{\epsilon})$$
+
+So we can get a FPAUS.
+
 
 ### Implementation
 
