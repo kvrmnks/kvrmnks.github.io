@@ -718,8 +718,15 @@ Var(f)
 <p>There are some intrinsic gaps between this bound and the tight bound by <span class="arithmatex">\(\log n\)</span>.</p>
 <h3 id="all-or-nothing-theorem">All or nothing theorem</h3>
 <p>Def of self-reducible problem:</p>
+<p>For every instance of one specific NP search problem, if the set of its solutions can be divided into polynomial size subsets corresponding to the same NP search problem with smaller instances(these instances can be generated in polynomial time). Then this NP search problem is self-reducible problem.</p>
 <p>Is this def the same as Sipser?</p>
-<p>Thm: For any self-reducible problem, if there exists a polynomial time counting algorithm that gives <span class="arithmatex">\(1 + poly(n)\)</span> multiplicative error, then there is an FPAUS.</p>
+<p>Thm: For any self-reducible problem, if there exists a polynomial time counting algorithm that gives <span class="arithmatex">\(1 + poly(n)\)</span> multiplicative error, then there is an FPRAS.</p>
+<p>(Recall that for self-reducible problem, <span class="arithmatex">\(\text{FPRAS}  \leftrightarrow \text{FPAUS}\)</span>)</p>
+<p>The basic intuition is that we prove that there is a FPAUS.</p>
+<p>If we can use the polynomial approximation factor to build a Markov chain with fast mixing time.</p>
+<p>The good situation is that every vertex(state) in Markov chain represents a proper answer(element needed to be counted).</p>
+<p>Of the proportion of proper vertices is large enough, like <span class="arithmatex">\(\frac{1}{poly(n)}\)</span>.</p>
+<p>So we can derive the FPRAS.</p>
 <p>Here We will use the DNF(different from the counting problem in the notes) as a demonstration. </p>
 <p>Consider a tree from the root to the leaves, one step downward means that a variable is assigned. </p>
 <p>Define a order of variables <span class="arithmatex">\(l_1, l_2, \cdots, l_n\)</span>, At level <span class="arithmatex">\(i\)</span>, assign the <span class="arithmatex">\(v_i\)</span> true of false.</p>
@@ -733,6 +740,28 @@ Var(f)
 <div class="arithmatex">\[\sum_{(x, y) \in E} \pi(x)K(x, y) = \sum_{(x, y) \in E} \frac{Z_{x}}{Z} \frac{\hat{N}(y)}{Z_{x}} = \frac{Z_{y}}{Z} = \pi(y)\]</div>
 <p>Each assignment is actually a leaf. Because leaves have the same level, so they has the same probability(has only one edge connecting to its father).</p>
 <p>Then we need to bound the sum of leaves' probability.</p>
+<p>Lemma: random walk ends at leaves with probability <span class="arithmatex">\(\frac{O(1)}{\alpha n}\)</span></p>
+<p>proof:</p>
+<p>Use <span class="arithmatex">\(L\)</span> to denote the actual amount of leaves. </p>
+<p>Observe that the sum of the weight of edges from level <span class="arithmatex">\(i\)</span> to level <span class="arithmatex">\(i+1\)</span> is at most <span class="arithmatex">\(\alpha L\)</span>.</p>
+<p>Because there are at <span class="arithmatex">\(n\)</span> levels, so sum of all the weight is at most <span class="arithmatex">\(2\alpha Ln\)</span></p>
+<p>The probability that ends at leaves is at least <span class="arithmatex">\(\frac{1}{2\alpha n}\)</span></p>
+<p><span class="arithmatex">\(\blacksquare\)</span></p>
+<p>That's <span class="arithmatex">\(\frac{1}{poly(n)}\)</span></p>
+<p>Now we need to bound the mixing time.</p>
+<p>Although the structure of tree means that there is only simple path, it seems not easy to use the path coupling lemma.</p>
+<p>We choose path technology here.</p>
+<p>For a specific edge <span class="arithmatex">\(e = (u, v)\)</span>, <span class="arithmatex">\(u\)</span> is the father of <span class="arithmatex">\(v\)</span>.</p>
+<p><span class="arithmatex">\(f(e) = (\sum_{x \in son(v)} \pi(x)) (1 - \sum_{x \in son(v)} \pi(x)) \leq \frac{1}{Z}2\alpha n N(v)\)</span></p>
+<p><span class="arithmatex">\(Q(e) = \pi(u)K(u,v) = \frac{Z_u}{Z} \frac{\hat{N}(v)}{Z_{u}} = \frac{\hat{N}(v)}{Z}\)</span></p>
+<p><span class="arithmatex">\(\max_{e} \frac{f(e)}{Q(e)} \leq 2\alpha^2 n\)</span></p>
+<p><span class="arithmatex">\(\max_{x, y} |P_{x, y}| \leq 2n\)</span></p>
+<p>By the path technology</p>
+<div class="arithmatex">\[\tau_x(\epsilon) \leq O(2\alpha^2n^2\log \frac{1}{\epsilon \pi(x)})\]</div>
+<p>Choose x as root. Then <span class="arithmatex">\(\pi(root) = \frac{Z_{root}}{Z} \geq \frac{1}{2\alpha n}\)</span></p>
+<p>So,</p>
+<div class="arithmatex">\[\tau_x(\epsilon) \leq O(2\alpha^2n^2\log \frac{2\alpha n}{\epsilon})\]</div>
+<p>So we can get a FPAUS.</p>
 <h3 id="implementation">Implementation</h3>
 <p>Random walk on hypercube.</p>
 <p>First consider using the path coupling.</p>
