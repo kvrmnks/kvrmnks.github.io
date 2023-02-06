@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../../../img/favicon.ico">
+        <title>人工智能复习 - My Docs</title>
+        <link href="../../../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../../../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../../../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css">
+
+        <script src="../../../js/jquery-1.10.2.min.js" defer></script>
+        <script src="../../../js/bootstrap.min.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="../../..">My Docs</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="navitem">
+                                <a href="../../.." class="nav-link">Welcome to kvrmnks's blog</a>
+                            </li>
+                            <li class="dropdown active">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Blog <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">2020</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../../2020/23%E6%A0%91%E7%9A%84%E4%B8%80%E7%A7%8D%E5%88%A0%E9%99%A4%E6%96%B9%E6%B3%95/" class="dropdown-item">23树的一种删除方法</a>
+</li>
+            
+<li>
+    <a href="../../2020/3-3SAT%E9%97%AE%E9%A2%98NP%E5%AE%8C%E5%85%A8%E6%80%A7%E8%AF%81%E6%98%8E/" class="dropdown-item">3-3SAT问题NP完全性证明</a>
+</li>
+            
+<li>
+    <a href="../../2020/Burnside%E5%BC%95%E7%90%86%E4%B8%8EPolya%E8%AE%A1%E6%95%B0%E5%8E%9F%E7%90%86/" class="dropdown-item">Burnside引理与Polya计数原理</a>
+</li>
+            
+<li>
+    <a href="../../2020/k-median%E9%97%AE%E9%A2%98%E5%9C%A8Metric%E7%A9%BA%E9%97%B4%E4%B8%8A%E7%9A%84%E8%BF%91%E4%BC%BC%E8%A7%A3%E6%B3%95/" class="dropdown-item">k-median问题在Metric空间上的近似解法</a>
+</li>
+            
+<li>
+    <a href="../../2020/%E4%B8%80%E4%BA%9B%E5%AD%A6%E4%B9%A0%E8%BF%87%E7%A8%8B%E4%B8%AD%E7%94%A8%E5%88%B0%E7%9A%84%E7%94%B5%E5%AD%90%E4%B9%A6/" class="dropdown-item">一些学习过程中用到的电子书</a>
+</li>
+            
+<li>
+    <a href="../../2020/%E9%A1%B6%E7%82%B9%E8%A6%86%E7%9B%96%E9%97%AE%E9%A2%98%E5%BA%A6%E6%95%B0%E8%B4%AA%E5%BF%83%E7%AE%97%E6%B3%95%E7%9A%84%E4%B8%80%E4%B8%AA%E4%B8%8B%E7%95%8C/" class="dropdown-item">顶点覆盖问题度数贪心算法的一个下界</a>
+</li>
+    </ul>
+  </li>
+                                    
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">2021</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../../2021/HelloWorld%E4%B8%AD%E7%9A%84%E9%98%BF%E5%B0%94%E5%A1%94%E6%8B%89%E6%98%AF%E5%90%A6%E6%98%AF%E5%9B%BE%E7%81%B5%E6%9C%BA/" class="dropdown-item">HelloWorld中的阿尔塔拉是否是图灵机</a>
+</li>
+            
+<li>
+    <a href="../../2021/NP-Complete%E9%97%AE%E9%A2%98%E4%B9%B1%E8%AF%81/" class="dropdown-item">NP-Complete问题乱证</a>
+</li>
+            
+<li>
+    <a href="../../2021/Quartus2%E4%B8%8Emodelsim%E8%81%94%E7%94%A8%E6%97%B6%E7%9A%84%E4%B8%80%E4%BA%9B%E5%9D%91/" class="dropdown-item">Quartus2与modelsim联用时的一些坑</a>
+</li>
+            
+<li>
+    <a href="../../2021/StrassenAlgorithm/" class="dropdown-item">StrassenAlgorithm</a>
+</li>
+            
+<li>
+    <a href="../../2021/X3C-1%E4%B8%8E%E5%B9%BF%E4%B9%89%E5%88%92%E5%88%86%E9%97%AE%E9%A2%98%E7%9A%84NP%E5%AE%8C%E5%85%A8%E6%80%A7%E8%AF%81%E6%98%8E/" class="dropdown-item">X3C-1与广义划分问题的NP完全性证明</a>
+</li>
+            
+<li>
+    <a href="../../2021/cmake%E7%9A%84%E5%9D%91/" class="dropdown-item">cmake的坑</a>
+</li>
+            
+<li>
+    <a href="../../2021/edge-decomposition/" class="dropdown-item">edge-decomposition</a>
+</li>
+            
+<li>
+    <a href="../../2021/push-relabel-algorithm/" class="dropdown-item">push-relabel_algorithm</a>
+</li>
+            
+<li>
+    <a href="../../2021/%E4%BA%8C%E7%BB%B4%E6%9C%80%E7%9F%AD%E8%B7%AFNP-complete/" class="dropdown-item">二维最短路NP-complete</a>
+</li>
+            
+<li>
+    <a href="../../2021/%E6%8E%B7%E8%89%B2%E5%AD%90%E5%8F%AF%E4%BB%A5%E8%AE%A9%E6%88%91%E5%8F%98%E8%81%AA%E6%98%8E%E5%90%97/" class="dropdown-item">掷色子可以让我变聪明吗</a>
+</li>
+            
+<li>
+    <a href="../../2021/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%B7%B7%E4%B9%B1%E6%9D%82%E8%AE%B0/" class="dropdown-item">操作系统混乱杂记</a>
+</li>
+            
+<li>
+    <a href="../../2021/%E6%AD%A3%E5%88%99%E8%AF%AD%E8%A8%80%E5%9C%A8%E5%8F%AF%E5%88%97%E4%B8%AA%E5%B9%B6%E5%92%8C%E4%BA%A4%E8%BF%90%E7%AE%97%E4%B8%8B%E7%9A%84%E4%B8%8D%E5%B0%81%E9%97%AD%E6%80%A7/" class="dropdown-item">正则语言在可列个并和交运算下的不封闭性</a>
+</li>
+    </ul>
+  </li>
+                                    
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">2022</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../../2022/Advanced_Algorithm/" class="dropdown-item">Advanced Algorithm</a>
+</li>
+            
+<li>
+    <a href="../../2022/CS168Toolbox/" class="dropdown-item">CS168 The Modern Algorithmic Toolbox</a>
+</li>
+            
+<li>
+    <a href="../../2022/Counting%20and%20sampling/" class="dropdown-item">Counting and sampling notes</a>
+</li>
+            
+<li>
+    <a href="../../2022/LinearAlgebraDownRight%E9%98%85%E8%AF%BB/" class="dropdown-item">LinearAlgebraDownRight阅读</a>
+</li>
+    </ul>
+  </li>
+                                    
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">2023</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="./" class="dropdown-item active">人工智能复习</a>
+</li>
+    </ul>
+  </li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-toggle="modal" data-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li class="nav-item">
+                                <a rel="prev" href="../../2022/LinearAlgebraDownRight%E9%98%85%E8%AF%BB/" class="nav-link">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" class="nav-link disabled">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-light navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-level="2"><a href="#_1" class="nav-link">机器学习</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="2"><a href="#_3" class="nav-link">人工智能</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="2"><a href="#_9" class="nav-link">产生式系统</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="2"><a href="#_15" class="nav-link">与或图搜索</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="2"><a href="#_18" class="nav-link">谓词演算</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="2"><a href="#_22" class="nav-link">知识的表示方法</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="2"><a href="#_27" class="nav-link">不确定性推理</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="2"><a href="#_32" class="nav-link">遗传算法</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="2"><a href="#_34" class="nav-link">群智能</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="2"><a href="#nlp" class="nav-link">NLP</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<p>人工智能复习...</p>
+<hr />
+<h2 id="_1">机器学习</h2>
+<h3 id="_2">常见方法</h3>
+<ol>
+<li>当前人工智能研究的热点之一就是机器学习。常见的机器学习方法课分为<strong>决策树学习、神经网络、蚁群算法、粒子群算法和遗传算法</strong>等。一个机器学习系统应该有<strong>环境、知识库、学习环节和执行环节</strong>四个基本部分组成。</li>
+<li>决策树是一种知识概念表示方法，能表示与或规则；是一种<strong>图形表示的监督学习方法</strong>。而人工神经网络（ANNs）是<strong>非图形符号表示法，又是一种函数表示法</strong>；即从大量的数据中学习值为<strong>实数、离散值或向量的函数</strong>。人工神经网络对于训练数据中『错误』数据的错误健壮性很好。人工神经网络的训练学习过程中有一个称为『学习速率 n』的常数，n取值过大会引起<strong>漂移</strong>，n 取值过小会<strong>收敛速度太慢，学习效率不高</strong>。大量的数据中抽取规则函数，错误健壮性很好。</li>
+</ol>
+<h2 id="_3">人工智能</h2>
+<p>多层神经网络的学习过程中有一种是<strong>反向传播算法</strong>（Back Propagation-BP）， 其基本思想是利用输出单元的误差再计算上一层单元的误差，以次向上传播以次向上传播，俗称反向传播。又称逆推学习算法。</p>
+<h3 id="_4">人工智能的本质</h3>
+<p>研究人类智能活动的规律，构造具有一定智能行为的系统。</p>
+<h3 id="_5">研究人工智能的途径</h3>
+<h4 id="_6">符号主义</h4>
+<p>人类智慧基本单元是符号</p>
+<h4 id="_7">联结主义</h4>
+<p>人类智慧基本单元是神经元</p>
+<h3 id="_8">人工智能大师</h3>
+<p>Alan Turing</p>
+<p>Marniv Lee Minsky</p>
+<p>John McCarthy</p>
+<p>Herbert A. Simon</p>
+<p>Allen Newell</p>
+<p>Richard M. Karp</p>
+<p>Feigenbaum</p>
+<p>Raj Reddy</p>
+<h2 id="_9">产生式系统</h2>
+<p>一种存储知识的方法</p>
+<p>构成产生式系统的基本元素有<strong>综合数据库、规则库、控制系统</strong>，控制策略按执行规则的方式分类，分为<strong>正向、逆向、双向</strong>三类。</p>
+<h3 id="_10">归结</h3>
+<p>归结过程中控制策略的作用是给出控制策略，以使仅对选择合适的子句间方可做归结，<strong>避免多余的、不必要的归结式</strong>出现。常见的控制策略有<strong>线性归结策略、支持集策略、单元归结策略、输入归结策略</strong>。</p>
+<h3 id="_11">图搜索策略</h3>
+<p>为了探索产生式系统，如何搜索假设空间</p>
+<h4 id="_12">宽度有限搜索</h4>
+<p>完备的（指存在解就一定能找到）</p>
+<h4 id="_13">深度优先搜索</h4>
+<p>不完备的，如果存在无限分支</p>
+<h4 id="_14">启发搜索</h4>
+<p>估价函数是这种样子的时候成为 A 算法，<span class="arithmatex">\(f(n) = g(n) + h(n)\)</span></p>
+<p><span class="arithmatex">\(g(n)\)</span> 表示<span class="arithmatex">\(s\)</span>到<span class="arithmatex">\(n\)</span>的实际距离, <span class="arithmatex">\(h(n)\)</span>表示<span class="arithmatex">\(n\)</span>到<span class="arithmatex">\(t\)</span>的估价</p>
+<p><span class="arithmatex">\(h=0\)</span> 宽度优先搜索</p>
+<p><span class="arithmatex">\(g=0\)</span>最佳有限搜索</p>
+<p><span class="arithmatex">\(h=g=0\)</span>随机搜索</p>
+<p><span class="arithmatex">\(h \leq h^*\)</span>时称为<span class="arithmatex">\(A^*\)</span>算法</p>
+<h2 id="_15">与或图搜索</h2>
+<p>decision tree 是一种与或图, 每条路径是一个与关系, 路径之间是或关系</p>
+<h3 id="_16">能解结点</h3>
+<ol>
+<li>终结点可解</li>
+<li>或关系中有一个可解</li>
+<li>与关系都可解</li>
+</ol>
+<h3 id="_17">极大极小搜索</h3>
+<p>对于游戏定义一个统一的估价函数.</p>
+<p>一方进行Max,另一方进行MIn</p>
+<h4 id="alpha-beta"><span class="arithmatex">\(\alpha-\beta\)</span> 剪枝</h4>
+<p>如今终于看懂了这个东西...</p>
+<p>维护一个interval</p>
+<p>Max结点把小于 <span class="arithmatex">\(\alpha\)</span> 的减掉</p>
+<p>Min 结点把大于<span class="arithmatex">\(\beta\)</span> 的减掉</p>
+<p>有一个优化就是用第一个枝的价值去 min/max 一下参数.</p>
+<p>(哪端破坏的区间就叫对应名字的剪枝)</p>
+<p><img alt="image-20230206121751949" src="../AI%E5%AD%A6%E4%B9%A0.assets/image-20230206121751949.png" /></p>
+<h2 id="_18">谓词演算</h2>
+<p>(这似乎是最友善的东西了吧)</p>
+<p>这里直接考虑证明问题</p>
+<ol>
+<li>把证明目的取反, 然后证明存在矛盾</li>
+<li>大家都转 Skolem normal form</li>
+<li>转换成子句集</li>
+<li>开始通过置换进行归结</li>
+<li>画归结树</li>
+</ol>
+<h3 id="skolem-normal-form">Skolem normal form</h3>
+<ol>
+<li>去掉 <span class="arithmatex">\(\rightarrow\)</span> 和 <span class="arithmatex">\(\leftrightarrow\)</span></li>
+<li>把~放到里面</li>
+<li>把约束变量换名字(似乎容易忘记哎)</li>
+<li>谓词前提</li>
+<li>用函数代替<span class="arithmatex">\(\exists\)</span></li>
+</ol>
+<h3 id="_19">子句集</h3>
+<p>转合取范式</p>
+<p>break 成一个集合</p>
+<p>在<strong>不可满足</strong>下close(汉语咋说不太知道呀, 保持性质?)</p>
+<h3 id="_20">置换</h3>
+<p>下面的替换成上面的</p>
+<p>定义每太看明白呀, 似乎是下面的不能放到上面(???)</p>
+<h3 id="_21">归结树</h3>
+<p>画去画去</p>
+<p><img alt="image-20230206153505107" src="../AI%E5%AD%A6%E4%B9%A0.assets/image-20230206153505107.png" /></p>
+<h2 id="_22">知识的表示方法</h2>
+<p>感觉跟看野史一样, 不对, 是黑历史</p>
+<h3 id="_23">逻辑表示法</h3>
+<p>就离散数学的题目</p>
+<h3 id="_24">产生式规则</h3>
+<p>高级一些, (吗?)</p>
+<p>感觉也不高级</p>
+<h3 id="_25">语义网络</h3>
+<p>用有向边来表示关系</p>
+<p>边可以表示<strong>类属</strong>关系(别的能不能呢0.0) 例如 is a, belongs to</p>
+<p>有两种推理方式 <strong>匹配</strong>, <strong>继承</strong>.</p>
+<h4 id="_26">与知识图谱的区别</h4>
+<p>可以理解成知识图谱是完整之后cherrypick给人看的语义网络(?)</p>
+<p>毕竟他们的目的不同</p>
+<h2 id="_27">不确定性推理</h2>
+<p>前一章应该讲故事而不是严谨</p>
+<p>这一章应该严谨而不是讲故事</p>
+<p>可惜都不沾</p>
+<h3 id="bayes">Bayes 网络</h3>
+<p>用于 <strong>因果推理(求后验), 诊断推理(求likelihood), 辩解推理(杂烩)</strong></p>
+<p>DAG+CPT(conditional probability table)</p>
+<h4 id="d-separate">D-separate</h4>
+<p>推荐看看 https://zhuanlan.zhihu.com/p/274314301</p>
+<p>如果A到B的无向路径中存在至少一个下面的独立情况, 那么就是separate的!</p>
+<p>注意 converging 需要考虑后续结点</p>
+<h5 id="linear">Linear</h5>
+<p>X-&gt;Y-&gt;Z</p>
+<p>确定Y之后X就与Z独立了!</p>
+<h5 id="diverging">Diverging</h5>
+<p>Z -&gt; X</p>
+<p>Z -&gt; Y</p>
+<p>如果固定Z, 那么X, Y 就独立了!</p>
+<h5 id="converging">Converging</h5>
+<p>X -&gt; Z</p>
+<p>Y -&gt; Z</p>
+<p>如果固定Z, X与Y就<strong>不</strong>独立了!</p>
+<p><img alt="image-20230130152046748" src="../AI%E5%AD%A6%E4%B9%A0.assets/image-20230130152046748.png" /></p>
+<p>注意因果推理和诊断推理的区别</p>
+<p><img alt="image-20230130152307571" src="../AI%E5%AD%A6%E4%B9%A0.assets/image-20230130152307571.png" /></p>
+<p><img alt="image-20230130152317611" src="../AI%E5%AD%A6%E4%B9%A0.assets/image-20230130152317611.png" /></p>
+<p><img alt="image-20230130152717393" src="../AI%E5%AD%A6%E4%B9%A0.assets/image-20230130152717393.png" /></p>
+<p><img alt="image-20230130152726020" src="../AI%E5%AD%A6%E4%B9%A0.assets/image-20230130152726020.png" /></p>
+<h3 id="_28">主观贝叶斯方法</h3>
+<p>这位更是重量级</p>
+<p>普通Bayes考虑的是A影响B</p>
+<p>这里考虑的是如果A不发生捏</p>
+<p>定义几率函数 </p>
+<div class="arithmatex">\[O(A) = \frac{P(A)}{P(\bar{A})}\]</div>
+<p><span class="arithmatex">\(LS = \frac{P(A|B)}{P(\bar{A}|B)} = \frac{O(B|A)}{O(B)}\)</span></p>
+<p>"A为真时, 对B的影响"</p>
+<div class="arithmatex">\[LN = \frac{P(A|\bar{B})}{P(\bar{A}|\bar{B})} = \frac{O(B|\bar{A})}{O(B)}\]</div>
+<p>"A为假时, 对B的影响"</p>
+<p>然后就有了如下奇妙关系 <span class="arithmatex">\(O(B|A) = LS\times O(B)\)</span>, <span class="arithmatex">\(O(B|\bar{A}) = LN \times O(B)\)</span></p>
+<p>注意<span class="arithmatex">\(O\)</span>其实也代表概率值, 可以类似理解, 单调的</p>
+<p>考虑 A' -&gt; A</p>
+<p>如果 <span class="arithmatex">\(P(A|A') = 1\)</span>, </p>
+<div class="arithmatex">\[P(B|A') = P(B|A) = \frac{LS \times P(B)}{(LS - 1) \times P(B) + 1} \]</div>
+<p>如果 <span class="arithmatex">\(P(A|A') = 0\)</span></p>
+<div class="arithmatex">\[P(B|A') = P(B|\bar{A}) = \frac{LN\times P(B)}{(LN - 1)\times P(B) + 1}\]</div>
+<p>如果 A 与 A' 独立</p>
+<p><span class="arithmatex">\(P(B|A') = P(B)\)</span></p>
+<p>于是可以线性插值了!</p>
+<p>还有另外的事情, <span class="arithmatex">\(O(B|A_1A_2) = \frac{O(B|A_1)}{O(B)}\frac{O(B|A_2)}{O(B)}O(B) == LS_1 LS_2 O(B)\)</span></p>
+<p>确实也挺nb的</p>
+<p>改观了!</p>
+<h4 id="_29">练习题</h4>
+<p><img alt="image-20230206171234352" src="../AI%E5%AD%A6%E4%B9%A0.assets/image-20230206171234352.png" /></p>
+<p><img alt="image-20230206171240506" src="../AI%E5%AD%A6%E4%B9%A0.assets/image-20230206171240506.png" /></p>
+<h3 id="_30">确定性方法</h3>
+<div class="arithmatex">\[CF(B, A) = MB(B, A) - MD(B,A)\]</div>
+<p><span class="arithmatex">\(CF(B, A) \in [-1, 1]\)</span>, 如果<span class="arithmatex">\(CF(B,A) = 1\)</span>, A发生B一定发生</p>
+<p>如果<span class="arithmatex">\(CF(B, A) = -1\)</span>, A发生B一定不发生</p>
+<ol>
+<li>
+<p>计算的时候先算 and or </p>
+</li>
+<li>
+<p>再进行合成</p>
+</li>
+</ol>
+<p>合成公式</p>
+<p><img alt="image-20230206171810657" src="../AI%E5%AD%A6%E4%B9%A0.assets/image-20230206171810657.png" /></p>
+<p><img alt="image-20230206171822622" src="../AI%E5%AD%A6%E4%B9%A0.assets/image-20230206171822622.png" /></p>
+<h4 id="_31">练习题</h4>
+<p><img alt="image-20230206171836464" src="../AI%E5%AD%A6%E4%B9%A0.assets/image-20230206171836464.png" /></p>
+<h3 id="evidence-theory">Evidence theory</h3>
+<p>概率分配函数</p>
+<div class="arithmatex">\[m: 2^U \rightarrow [0, 1]\]</div>
+<p>s.t.</p>
+<p><span class="arithmatex">\(m(\phi) = 0\)</span></p>
+<p><span class="arithmatex">\(\sum_{A \in 2^U} mu(A) = 1\)</span></p>
+<p>信任函数</p>
+<p><span class="arithmatex">\(Bel(A) = \sum_{B \subseteq A} m(A)\)</span></p>
+<p>似然函数 PI</p>
+<p><span class="arithmatex">\(PI(A) = 1 - Bel(\bar{A})\)</span></p>
+<h2 id="_32">遗传算法</h2>
+<ol>
+<li>不受函数形式的限制, 例如不需要它可导</li>
+<li>全局优化</li>
+<li>概率方法自动搜索状态空间</li>
+<li>并行</li>
+<li>黑盒</li>
+</ol>
+<h3 id="_33">形式</h3>
+<ol>
+<li>复制</li>
+<li>交叉</li>
+<li>变异</li>
+</ol>
+<p>轮盘选择</p>
+<p><img alt="image-20230206173341489" src="../AI%E5%AD%A6%E4%B9%A0.assets/image-20230206173341489.png" /></p>
+<p>复制率, 突变率</p>
+<h2 id="_34">群智能</h2>
+<p>无智能或简单智能的主体通过任何形式的聚集协同而表现出智能行为的特性。</p>
+<h3 id="_35">蚁群算法</h3>
+<h4 id="_36">要素</h4>
+<ol>
+<li>觅食规则</li>
+<li>移动规则</li>
+<li>避障规则</li>
+<li>信息素规则</li>
+<li>范围</li>
+<li>环境</li>
+</ol>
+<h4 id="_37">应用</h4>
+<ol>
+<li>聚类问题</li>
+<li>路由算法设计</li>
+<li>图着色</li>
+</ol>
+<h3 id="_38">粒子群算法</h3>
+<h4 id="_39">概念</h4>
+<p><img alt="image-20230206173758497" src="../AI%E5%AD%A6%E4%B9%A0.assets/image-20230206173758497.png" /></p>
+<h3 id="_40">人工鱼群算法</h3>
+<h4 id="_41">要素</h4>
+<ol>
+<li>聚集行为</li>
+<li>觅食行为</li>
+<li>跟随行为</li>
+<li>移动行为</li>
+</ol>
+<h2 id="nlp">NLP</h2>
+<h3 id="_42">其他名字</h3>
+<p>自然语言理解</p>
+<h3 id="_43">困难</h3>
+<ol>
+<li>歧义</li>
+</ol>
+<p>各种歧义，例如读音，分词等等</p>
+<p>注音歧义，分词歧义，词义歧义，语用歧义</p>
+<ol>
+<li>病构
+现实环境中可能不遵守语法</li>
+</ol>
+<h3 id="_44">方法论</h3>
+<h4 id="_45">理性主义</h4>
+<p>基于对语法的描述</p>
+<p>基于规则</p>
+<p>属于结构主义</p>
+<h4 id="_46">经验主义</h4>
+<p>需要引入随机性，复杂的概率模型</p>
+<p>属于功能</p>
+<h3 id="nlp_1">NLP的过程，任务和瓶颈</h3>
+<h4 id="nlp_2">NLP 的过程</h4>
+<ol>
+<li>语言输入技术</li>
+</ol>
+<p>语音识别，字符识别，手写识别</p>
+<ol>
+<li>语言处理技术</li>
+</ol>
+<p>abab</p>
+<ol>
+<li>语言输出技术</li>
+</ol>
+<p>文本到语音</p>
+<p>定制文档</p>
+<h4 id="nlp_3">NLP 的瓶颈</h4>
+<p>理解语言的过程是动态的</p>
+<p>NLP的知识大多是归纳的</p>
+<p>NLP非确定性过程</p>
+<h3 id="_47">统计语言模型</h3>
+<p>成为主流</p>
+<p>规范的语言与非规范的语言直接没有明确的界限</p>
+<p>利用概率模型</p></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script>
+            var base_url = "../../..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../../../js/base.js" defer></script>
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6" defer></script>
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" defer></script>
+        <script src="../../../search/main.js" defer></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <p>From here you can search these documents. Enter your search terms below.</p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>
