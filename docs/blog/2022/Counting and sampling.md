@@ -337,14 +337,14 @@ Corollery
 $$\mathbb{Pr}[X_{t} = y| X_{0} \sim p] = p^{T}K^{t}$$
 
 ### Stationary Distribution
-Every Markov chain has a stationery distribution(may not unique).
+Every Markov chain has a stationary distribution(may not unique).
 
 
 First of all the Markov kernel must have eigenvalue $1$ and corresponding eigenvector $v$. 
 
 It is easy to show that $\mathrm{det}(K - I) = 0$, as the sum of every column of $K$ is exactly $1$.
 
-Now let $\pi = (|v_{1}|, |v_{2}|, \cdots, |v_{k}|)^{T}$.  We show that $\pi$ is a stationery distribution.
+Now let $\pi = (|v_{1}|, |v_{2}|, \cdots, |v_{k}|)^{T}$.  We show that $\pi$ is a stationary distribution.
 
 If $\pi^{T}\pi \neq 1$, then we can normalize it into normal vector.
 
@@ -368,7 +368,7 @@ Definition (Reversible Markov Chains): A Markov chain is reversible iff **there 
 
 $$\pi(x)K(x, y) = \pi(y)K(y, x)$$
 
-It follows that $\frac{\pi}{Z}$ is the stationery distribution. 
+It follows that $\frac{\pi}{Z}$ is the stationary distribution. 
 
 ### Mixing of Markov Chain
 Definition(Irreducible Markov Chain): A Markov chain is irreducible iff for any states $x$, $y$, it exits $t$ such that $K^{t}(x,y) > 0$.
@@ -381,7 +381,7 @@ $$K^{t}(x,y) > 0$$
 
 **Actually I do not know how to formally prove this...**
 
-Theorem (Fundamental Theorem of Markov Chains): Any irreducible and aperiodic Markov chain has a **unique** stationery distribution. Futhermore, for all $x, y$,
+Theorem (Fundamental Theorem of Markov Chains): Any irreducible and aperiodic Markov chain has a **unique** stationary distribution. Futhermore, for all $x, y$,
 
 $$K^{t}(x, y) \rightarrow \pi(y)$$
 
@@ -415,9 +415,9 @@ At any vertex $x$ we require a proposal distribution, $p(x, .)$ satisfying the f
 
 **NB: this is like the simulated annealing ideas in optimization**
 
-Lemma: Metropolis chain is reversible with stationery distribution $\pi$
+Lemma: Metropolis chain is reversible with stationary distribution $\pi$
 
-(But how to prove that $\pi$ is the stationery distribution?)
+(But how to prove that $\pi$ is the stationary distribution?)
 
 ### Coupling
 

@@ -982,6 +982,14 @@ It never makes sense! Move the formulas around.
 
 We want to find the exact solution.
 
+What's next:
+
+tight(er) LLL condition: Shearer's bound
+
+tighter bounds when more (than just local dependency structure) are known: the probabilistic method beyond LLL.
+
+
+
 ### Algorithmic LLL(The Moser-Tardos Algorithm)
 
 "Bad" events $A_1, \cdots, A_m$ in a probability space
@@ -1003,9 +1011,23 @@ resample all $X_j \in vbl(A_i)$;
 
 Assume the oracles for draw random variables and check if $A_i$ occurs.
 
+Needs two oracles: 1. draw ind. samples of $X_j$, check if $A_i$ occurs
+
+很容易构造出 $A_i$ 是啥 NP-hard 什么的。
+
+$X_j$ 也不容易 sample 出来
+
 Thm \[Morse-Tardo'10\]
 
-terminates within $\sum_{i=1}^{m}(1 - \frac{1}{1-\alpha_i}) = \frac{m}{d}$ a.k.a. linear time.
+terminates within $\sum_{i=1}^{m}(1 - \frac{1}{1-\alpha_i}) = \frac{m}{d}$ samples a.k.a. linear time.
+
+Random 随便的感觉 不一定有机会性 莫名其妙的 (???)
+
+来自于一种无规律性(?)
+
+not artificial!
+
+Stochastic 才是真的有随机性
 
 ### Execution Log (bold proof)
 
@@ -1021,7 +1043,9 @@ $$\forall i, \mathbb{E}_{B}[\text{\# of }A_i \in B] \leq \frac{a_i}{1 - a_i}$$
 
 use the random bits technique "resampling table"
 
-Witness tree $T(B, t)$: each node $u$ with label $A_{[u]}$, siblings have distinct labels 
+**Witness tree** $T(B, t)$: each node $u$ with label $A_{[u]}$, siblings have distinct labels 
+
+Witness tree is actually a DAG with partial order $\leq$ maintaing levels.
 
 Initially, $T$ constains a single root $r$ with $B_t$
 
@@ -1032,13 +1056,96 @@ add child $v \rightarrow$ deepest such $u$, labeled with $B_i$
 
 $T(B, t)$ is the resulting $T$
 
+Witness tree is the finite truncation of Universal covering. 
+
+
+
 Proposition: $\forall s \neq t$, $T(B, s) \neq T(B, t)$
 
 $$\text{\# of }A_i  = \sum_{\tau \in \mathcal{T}_{A_i}} I[\exists t, T(B, t) = \tau]$$
 
 enumerate all the rooted trees ...
 
-Lemma (coupling): For any particular witness tree $\tau$:
+就想办法把$\mathbb{E}$放进来。比较常见的做法。
 
-$$\mathbb{P}_{B} [\exists t, T(B, t) = \tau] \leq \prod_{u \tau} \mathbb{P}(A_{[u]})$$
+Lemma 1(coupling 耦合法): For any particular witness tree $\tau$:
+
+$$\mathbb{P}_{B} [\exists t, T(B, t) = \tau] \leq \prod_{u \in \tau} \mathbb{P}(A_{[u]})$$
+
+(其实是等于的)
+
+proof:
+
+consider the simulating on resampling table.
+
+
+Example
+
+Random graph 
+
+$G(n, p_1)$, $G(n, p_2)$ $p_1 \leq p_2$
+
+To prove,
+
+
+$\mathbb{P}[p_1 \text{ connected}] \leq \mathbb{P}[p_2 \text{ connected}]$
+
+Following the coupling rule, fliping two coins.
+
+Algorithm analysis ends after the coupling lemma...
+
+$$\sum_{\tau \in \mathcal{T}_{A_i}}\prod_{u \in \tau}\left[ a_{[u]}\prod_{A_j \in \Gamma(A_{[u]})}(1 - a_j) \right ]\leq \frac{a_i}{1 - a_i}$$
+
+### Random tree (Galton-Watson process)
+
+Grow a random witness tree $T_A$ with root-label $A$.
+
+```
+initially, $T_A$ is a single root with label $A$
+
+for i=1,2,...:
+    for every vertex u at depth i (root has depth 1) in T_A
+    for every A_j \in \Gamma^{+}(A_[u]):
+        add a new child v to u ind. with prob. a_j and label it with A_j;
+
+stop if no new child added for an entire level    
+``` 
+
+Lemma 2. For any particular witness tree $\tau \in \mathcal{T}_{A_{i}}$:
+
+$$\prod_{u \in \tau}\left[ a_{[u]}\prod_{A_j \in \Gamma(A_{[u]})}(1 - a_j) \right ]= \frac{a_i}{1 - a_i}\mathbb{P}_{T_{A_i}}[T_{A_i} = \tau]$$
+
+
+
+$$\sum_{T_{A_{i}}}\mathbb{P}_{T_{A_i}}[T_{A_i} = \tau] = 1$$
+
+proof:
+
+double counting ...
+
+## Moser's algorithm and Entropic proof
+
+Moser's fix-it algorithm
+
+Fix($C_i$)：
+
+resample all variables in $vbl(C_i)$;
+
+while $\exists$ violated $C_j \in \Gamma^{+}(C_i)$:
+
+Fix($C_j$);
+
+Theorem:
+
+$d<2^{k-3}$ $\Rightarrow$ total \# of calls to Fix() is $O(m\log m + \log n)$
+
+Incompressibility Principle
+
+"Lossless compression of random data is impossible"
+
+For any injective function Enc: $\{0, 1\}^{N} \rightarrow^{1 to 1} \{0, 1\}^{*}$, for uniform random $s \in \{0, 1\}^{N}$, for any integer $l>0$,
+
+$$\mathbb{P}[\text{length of Enc(s)} \leq N - l] < 2^{1 - l}$$
+
+听懵逼了
 
