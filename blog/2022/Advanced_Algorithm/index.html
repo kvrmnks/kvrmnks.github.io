@@ -151,7 +151,7 @@
     <ul class="dropdown-menu">
             
 <li>
-    <a href="../../2023/AI%E5%AD%A6%E4%B9%A0/" class="dropdown-item">人工智能复习</a>
+    <a href="../../2023/AI%E5%AD%A6%E4%B9%A0/" class="dropdown-item">AI学习</a>
 </li>
     </ul>
   </li>
@@ -219,6 +219,11 @@
             </li>
             
             <li class="nav-item" data-level="2"><a href="#lovasz-local-lemma" class="nav-link">Lovasz Local Lemma</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="2"><a href="#mosers-algorithm-and-entropic-proof" class="nav-link">Moser's algorithm and Entropic proof</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -718,6 +723,9 @@ return <span class="arithmatex">\(y_i\)</span> that dist(<span class="arithmatex
 <p>I.H.: <span class="arithmatex">\(\mathbb{P}[A_i | \bar{A_{j_{1}}} \cdots \bar{A_{j_{k}}}] \leq a_i\)</span> holds for all smaller <span class="arithmatex">\(k\)</span></p>
 <p>It never makes sense! Move the formulas around.</p>
 <p>We want to find the exact solution.</p>
+<p>What's next:</p>
+<p>tight(er) LLL condition: Shearer's bound</p>
+<p>tighter bounds when more (than just local dependency structure) are known: the probabilistic method beyond LLL.</p>
 <h3 id="algorithmic-lllthe-moser-tardos-algorithm">Algorithmic LLL(The Moser-Tardos Algorithm)</h3>
 <p>"Bad" events <span class="arithmatex">\(A_1, \cdots, A_m\)</span> in a probability space</p>
 <p>Give an efficient alg:</p>
@@ -728,8 +736,15 @@ return <span class="arithmatex">\(y_i\)</span> that dist(<span class="arithmatex
 <p>while <span class="arithmatex">\(\exists\)</span> a bad event <span class="arithmatex">\(A_i\)</span> that occurs:</p>
 <p>resample all <span class="arithmatex">\(X_j \in vbl(A_i)\)</span>;</p>
 <p>Assume the oracles for draw random variables and check if <span class="arithmatex">\(A_i\)</span> occurs.</p>
+<p>Needs two oracles: 1. draw ind. samples of <span class="arithmatex">\(X_j\)</span>, check if <span class="arithmatex">\(A_i\)</span> occurs</p>
+<p>很容易构造出 <span class="arithmatex">\(A_i\)</span> 是啥 NP-hard 什么的。</p>
+<p><span class="arithmatex">\(X_j\)</span> 也不容易 sample 出来</p>
 <p>Thm [Morse-Tardo'10]</p>
-<p>terminates within <span class="arithmatex">\(\sum_{i=1}^{m}(1 - \frac{1}{1-\alpha_i}) = \frac{m}{d}\)</span> a.k.a. linear time.</p>
+<p>terminates within <span class="arithmatex">\(\sum_{i=1}^{m}(1 - \frac{1}{1-\alpha_i}) = \frac{m}{d}\)</span> samples a.k.a. linear time.</p>
+<p>Random 随便的感觉 不一定有机会性 莫名其妙的 (???)</p>
+<p>来自于一种无规律性(?)</p>
+<p>not artificial!</p>
+<p>Stochastic 才是真的有随机性</p>
 <h3 id="execution-log-bold-proof">Execution Log (bold proof)</h3>
 <p><span class="arithmatex">\(B\)</span> of the M-T algorithm</p>
 <p><span class="arithmatex">\(B_1, B_2, \cdots, \in = \{A_1, \cdots, A_m\}\)</span> </p>
@@ -737,17 +752,60 @@ return <span class="arithmatex">\(y_i\)</span> that dist(<span class="arithmatex
 <p>to prove </p>
 <div class="arithmatex">\[\forall i, \mathbb{E}_{B}[\text{\# of }A_i \in B] \leq \frac{a_i}{1 - a_i}\]</div>
 <p>use the random bits technique "resampling table"</p>
-<p>Witness tree <span class="arithmatex">\(T(B, t)\)</span>: each node <span class="arithmatex">\(u\)</span> with label <span class="arithmatex">\(A_{[u]}\)</span>, siblings have distinct labels </p>
+<p><strong>Witness tree</strong> <span class="arithmatex">\(T(B, t)\)</span>: each node <span class="arithmatex">\(u\)</span> with label <span class="arithmatex">\(A_{[u]}\)</span>, siblings have distinct labels </p>
+<p>Witness tree is actually a DAG with partial order <span class="arithmatex">\(\leq\)</span> maintaing levels.</p>
 <p>Initially, <span class="arithmatex">\(T\)</span> constains a single root <span class="arithmatex">\(r\)</span> with <span class="arithmatex">\(B_t\)</span></p>
 <p>for <span class="arithmatex">\(i = t - 1\)</span> to 1 :
 if <span class="arithmatex">\(B_i \in \Gamma^+(A_{[u]})\)</span> for some node <span class="arithmatex">\(u \in T\)</span></p>
 <p>add child <span class="arithmatex">\(v \rightarrow\)</span> deepest such <span class="arithmatex">\(u\)</span>, labeled with <span class="arithmatex">\(B_i\)</span></p>
 <p><span class="arithmatex">\(T(B, t)\)</span> is the resulting <span class="arithmatex">\(T\)</span></p>
+<p>Witness tree is the finite truncation of Universal covering. </p>
 <p>Proposition: <span class="arithmatex">\(\forall s \neq t\)</span>, <span class="arithmatex">\(T(B, s) \neq T(B, t)\)</span></p>
 <div class="arithmatex">\[\text{\# of }A_i  = \sum_{\tau \in \mathcal{T}_{A_i}} I[\exists t, T(B, t) = \tau]\]</div>
 <p>enumerate all the rooted trees ...</p>
-<p>Lemma (coupling): For any particular witness tree <span class="arithmatex">\(\tau\)</span>:</p>
-<div class="arithmatex">\[\mathbb{P}_{B} [\exists t, T(B, t) = \tau] \leq \prod_{u \tau} \mathbb{P}(A_{[u]})\]</div></div>
+<p>就想办法把<span class="arithmatex">\(\mathbb{E}\)</span>放进来。比较常见的做法。</p>
+<p>Lemma 1(coupling 耦合法): For any particular witness tree <span class="arithmatex">\(\tau\)</span>:</p>
+<div class="arithmatex">\[\mathbb{P}_{B} [\exists t, T(B, t) = \tau] \leq \prod_{u \in \tau} \mathbb{P}(A_{[u]})\]</div>
+<p>(其实是等于的)</p>
+<p>proof:</p>
+<p>consider the simulating on resampling table.</p>
+<p>Example</p>
+<p>Random graph </p>
+<p><span class="arithmatex">\(G(n, p_1)\)</span>, <span class="arithmatex">\(G(n, p_2)\)</span> <span class="arithmatex">\(p_1 \leq p_2\)</span></p>
+<p>To prove,</p>
+<p><span class="arithmatex">\(\mathbb{P}[p_1 \text{ connected}] \leq \mathbb{P}[p_2 \text{ connected}]\)</span></p>
+<p>Following the coupling rule, fliping two coins.</p>
+<p>Algorithm analysis ends after the coupling lemma...</p>
+<div class="arithmatex">\[\sum_{\tau \in \mathcal{T}_{A_i}}\prod_{u \in \tau}\left[ a_{[u]}\prod_{A_j \in \Gamma(A_{[u]})}(1 - a_j) \right ]\leq \frac{a_i}{1 - a_i}\]</div>
+<h3 id="random-tree-galton-watson-process">Random tree (Galton-Watson process)</h3>
+<p>Grow a random witness tree <span class="arithmatex">\(T_A\)</span> with root-label <span class="arithmatex">\(A\)</span>.</p>
+<pre><code>initially, $T_A$ is a single root with label $A$
+
+for i=1,2,...:
+    for every vertex u at depth i (root has depth 1) in T_A
+    for every A_j \in \Gamma^{+}(A_[u]):
+        add a new child v to u ind. with prob. a_j and label it with A_j;
+
+stop if no new child added for an entire level    
+</code></pre>
+<p>Lemma 2. For any particular witness tree <span class="arithmatex">\(\tau \in \mathcal{T}_{A_{i}}\)</span>:</p>
+<div class="arithmatex">\[\prod_{u \in \tau}\left[ a_{[u]}\prod_{A_j \in \Gamma(A_{[u]})}(1 - a_j) \right ]= \frac{a_i}{1 - a_i}\mathbb{P}_{T_{A_i}}[T_{A_i} = \tau]\]</div>
+<div class="arithmatex">\[\sum_{T_{A_{i}}}\mathbb{P}_{T_{A_i}}[T_{A_i} = \tau] = 1\]</div>
+<p>proof:</p>
+<p>double counting ...</p>
+<h2 id="mosers-algorithm-and-entropic-proof">Moser's algorithm and Entropic proof</h2>
+<p>Moser's fix-it algorithm</p>
+<p>Fix(<span class="arithmatex">\(C_i\)</span>)：</p>
+<p>resample all variables in <span class="arithmatex">\(vbl(C_i)\)</span>;</p>
+<p>while <span class="arithmatex">\(\exists\)</span> violated <span class="arithmatex">\(C_j \in \Gamma^{+}(C_i)\)</span>:</p>
+<p>Fix(<span class="arithmatex">\(C_j\)</span>);</p>
+<p>Theorem:</p>
+<p><span class="arithmatex">\(d&lt;2^{k-3}\)</span> <span class="arithmatex">\(\Rightarrow\)</span> total # of calls to Fix() is <span class="arithmatex">\(O(m\log m + \log n)\)</span></p>
+<p>Incompressibility Principle</p>
+<p>"Lossless compression of random data is impossible"</p>
+<p>For any injective function Enc: <span class="arithmatex">\(\{0, 1\}^{N} \rightarrow^{1 to 1} \{0, 1\}^{*}\)</span>, for uniform random <span class="arithmatex">\(s \in \{0, 1\}^{N}\)</span>, for any integer <span class="arithmatex">\(l&gt;0\)</span>,</p>
+<div class="arithmatex">\[\mathbb{P}[\text{length of Enc(s)} \leq N - l] &lt; 2^{1 - l}\]</div>
+<p>听懵逼了</p></div>
             </div>
         </div>
 

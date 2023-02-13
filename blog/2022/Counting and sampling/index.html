@@ -151,7 +151,7 @@
     <ul class="dropdown-menu">
             
 <li>
-    <a href="../../2023/AI%E5%AD%A6%E4%B9%A0/" class="dropdown-item">人工智能复习</a>
+    <a href="../../2023/AI%E5%AD%A6%E4%B9%A0/" class="dropdown-item">AI学习</a>
 </li>
     </ul>
   </li>
@@ -396,10 +396,10 @@
 <p>Corollery </p>
 <div class="arithmatex">\[\mathbb{Pr}[X_{t} = y| X_{0} \sim p] = p^{T}K^{t}\]</div>
 <h3 id="stationary-distribution">Stationary Distribution</h3>
-<p>Every Markov chain has a stationery distribution(may not unique).</p>
+<p>Every Markov chain has a stationary distribution(may not unique).</p>
 <p>First of all the Markov kernel must have eigenvalue <span class="arithmatex">\(1\)</span> and corresponding eigenvector <span class="arithmatex">\(v\)</span>. </p>
 <p>It is easy to show that <span class="arithmatex">\(\mathrm{det}(K - I) = 0\)</span>, as the sum of every column of <span class="arithmatex">\(K\)</span> is exactly <span class="arithmatex">\(1\)</span>.</p>
-<p>Now let <span class="arithmatex">\(\pi = (|v_{1}|, |v_{2}|, \cdots, |v_{k}|)^{T}\)</span>.  We show that <span class="arithmatex">\(\pi\)</span> is a stationery distribution.</p>
+<p>Now let <span class="arithmatex">\(\pi = (|v_{1}|, |v_{2}|, \cdots, |v_{k}|)^{T}\)</span>.  We show that <span class="arithmatex">\(\pi\)</span> is a stationary distribution.</p>
 <p>If <span class="arithmatex">\(\pi^{T}\pi \neq 1\)</span>, then we can normalize it into normal vector.</p>
 <div class="arithmatex">\[\pi_{i} = |v_{i}| = |\sum_{j}v_{j}K(j,i)| \leq \sum_{j}|v_{j}|K(j,i) \leq \sum_{j}\pi_{j}K(j,i)\]</div>
 <p>This is a trivial inequality. But the next one is somehow magic ...</p>
@@ -414,14 +414,14 @@
 <p><strong>NB: in lecture notes it chose relu(v), but here I modified a little bit.</strong></p>
 <p>Definition (Reversible Markov Chains): A Markov chain is reversible iff <strong>there exists a nonnegative weight function</strong> <span class="arithmatex">\(w: \Omega \rightarrow \mathbb{R}_{+}\)</span>. Such that for every <span class="arithmatex">\(x, y\)</span>.</p>
 <div class="arithmatex">\[\pi(x)K(x, y) = \pi(y)K(y, x)\]</div>
-<p>It follows that <span class="arithmatex">\(\frac{\pi}{Z}\)</span> is the stationery distribution. </p>
+<p>It follows that <span class="arithmatex">\(\frac{\pi}{Z}\)</span> is the stationary distribution. </p>
 <h3 id="mixing-of-markov-chain">Mixing of Markov Chain</h3>
 <p>Definition(Irreducible Markov Chain): A Markov chain is irreducible iff for any states <span class="arithmatex">\(x\)</span>, <span class="arithmatex">\(y\)</span>, it exits <span class="arithmatex">\(t\)</span> such that <span class="arithmatex">\(K^{t}(x,y) &gt; 0\)</span>.</p>
 <p>Definition(aperiodic): A Markov Chain is aperiodic if for all <span class="arithmatex">\(x, y\)</span> we have <span class="arithmatex">\(\gcd\{t|K^{t}(x,y)&gt;0\} = 1\)</span></p>
 <p>Lemma: Let <span class="arithmatex">\(K\)</span> be an irreducible, aperiodic Markov Chain. Then there exists <span class="arithmatex">\(t&gt;0\)</span> such that for all <span class="arithmatex">\(x, y\)</span></p>
 <div class="arithmatex">\[K^{t}(x,y) &gt; 0\]</div>
 <p><strong>Actually I do not know how to formally prove this...</strong></p>
-<p>Theorem (Fundamental Theorem of Markov Chains): Any irreducible and aperiodic Markov chain has a <strong>unique</strong> stationery distribution. Futhermore, for all <span class="arithmatex">\(x, y\)</span>,</p>
+<p>Theorem (Fundamental Theorem of Markov Chains): Any irreducible and aperiodic Markov chain has a <strong>unique</strong> stationary distribution. Futhermore, for all <span class="arithmatex">\(x, y\)</span>,</p>
 <div class="arithmatex">\[K^{t}(x, y) \rightarrow \pi(y)\]</div>
 <p>as t goes infinity. In particular, for any <span class="arithmatex">\(\epsilon &gt; 0\)</span> there exits <span class="arithmatex">\(t &gt; 0\)</span> such that <span class="arithmatex">\(||K^{t}(x, .) - \pi||_{TV} &lt; \epsilon\)</span>.</p>
 <p>How to make an arbitrary Markov chain ergodic: 
@@ -444,8 +444,8 @@ All add a self-loop with <span class="arithmatex">\(\frac{1}{2}\)</span></p>
 <li>accept the propose move with probability <span class="arithmatex">\(\min\{1, \frac{\pi(y)}{\pi(x)}\}\)</span>. else reject and stay at <span class="arithmatex">\(x\)</span></li>
 </ol>
 <p><strong>NB: this is like the simulated annealing ideas in optimization</strong></p>
-<p>Lemma: Metropolis chain is reversible with stationery distribution <span class="arithmatex">\(\pi\)</span></p>
-<p>(But how to prove that <span class="arithmatex">\(\pi\)</span> is the stationery distribution?)</p>
+<p>Lemma: Metropolis chain is reversible with stationary distribution <span class="arithmatex">\(\pi\)</span></p>
+<p>(But how to prove that <span class="arithmatex">\(\pi\)</span> is the stationary distribution?)</p>
 <h3 id="coupling">Coupling</h3>
 <p>Definition(Coupling): Let <span class="arithmatex">\(\mu, \nu\)</span> be probability distributions over <span class="arithmatex">\(\Omega\)</span>, A coupling between <span class="arithmatex">\(\mu, \nu\)</span> is a probability distribution <span class="arithmatex">\(\pi\)</span> on <span class="arithmatex">\(\Omega \times \Omega\)</span> that preserves the marginals of <span class="arithmatex">\(\mu, \nu\)</span>. </p>
 <div class="arithmatex">\[\sum_{y} \pi(x, y) = \mu(x)\]</div>
