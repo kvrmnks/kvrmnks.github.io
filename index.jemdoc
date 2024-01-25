@@ -1,0 +1,23 @@
+# jemdoc: menu{MENU}{index.html}, nofooter
+== Yixiao Yu
+
+~~~
+{}{img_left}{photos/bio.jpg}{alt text}{450pt}
+[https://www.kvrmnks.top Yixiao Yu], PhD Student \n 
+NJU theory group
+\n
+Email: yixiaoyu At smail.nju.edu.cn \n
+~~~
+
+== About me
+
+I am a first year PhD student in the [https://tcs.nju.edu.cn/ theory group] of NJU. I am adviced by Prof. [https://liuexp.github.io/ Jingcheng Liu] and Prof. [https://tcs.nju.edu.cn/yinyt/ Yitong Yin]. I got bachelor's degree from SDU in 2023 where I am adviced by Prof. [https://www.cs.sdu.edu.cn/info/1070/2808.htm Haitao Jiang]. I'm interested in TCS. I focus on approximate sampling and counting now. 
+
+== Publication
+
+
+Men Can't Always be Transformed into Mice: Decision Algorithms and Complexity for Sorting by Symmetric Reversals
+
+with Xin Tong, Ziyi Fang, Haitao Jiang, Lusheng Wang, Binhai Zhu and Daming Zhu
+
+*COCOON 2023* [https://link.springer.com/chapter/10.1007/978-3-031-49193-1_21 conference version], [https://arxiv.org/abs/2302.03797 arxiv version]
