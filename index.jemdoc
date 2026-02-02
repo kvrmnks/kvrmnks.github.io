@@ -1,23 +1,63 @@
 # jemdoc: menu{MENU}{index.html}, nofooter
 == Yixiao Yu
 
-~~~
-{}{img_left}{photos/bio.jpg}{alt text}{450pt}
-[https://www.kvrmnks.top Yixiao Yu], PhD Student \n 
-NJU theory group
-\n
-Email: yixiaoyu At smail.nju.edu.cn \n
-~~~
+#~~~
+#{}{img_left}{photos/bio.jpg}{Yixiao Yu}{10%}{10%}
+#[https://www.yixiaoyu.fun Yixiao Yu], PhD Student \n 
+#NJU theory group
+#\n
+#Email: yixiaoyu At smail.nju.edu.cn \n
+#~~~
+
+
+{{<div style="
+  display: grid;
+  grid-template-columns: min-content 1fr;
+  column-gap: 1rem;
+  align-items: start;
+">
+  <img src="photos/bio.jpg"
+       style="width: min(120px, 25vw); height: auto;" />
+  <div>
+    <a href="https://www.yixiaoyu.fun">Yixiao Yu</a>, PhD Student<br>
+    NJU Theory Group<br>
+    Email: yixiaoyu At smail Dot nju Dot edu Dot cn
+  </div>
+</div>}}
 
 == About me
 
-I am a first year PhD student in the [https://tcs.nju.edu.cn/ theory group] of NJU. I am adviced by Prof. [https://liuexp.github.io/ Jingcheng Liu] and Prof. [https://tcs.nju.edu.cn/yinyt/ Yitong Yin]. I got bachelor's degree from SDU in 2023 where I am adviced by Prof. [https://www.cs.sdu.edu.cn/info/1070/2808.htm Haitao Jiang]. I'm interested in TCS. I focus on approximate sampling and counting now. 
+I am a third year PhD student in the [https://tcs.nju.edu.cn/ theory group] of NJU advised by Prof. [https://liuexp.github.io/ Jingcheng Liu] and Prof. [https://tcs.nju.edu.cn/yinyt/ Yitong Yin]. Prior to this, I got my bachelor's degree from SDU in 2023 where I was advised by Prof. [https://www.cs.sdu.edu.cn/info/1070/2808.htm Haitao Jiang]. 
+\n
+I'm interested in TCS and focus on approximate sampling and counting now. Here is my [https://www.yixiaoyu.fun/cv.pdf CV]. 
 
-== Publication
-
-
-Men Can't Always be Transformed into Mice: Decision Algorithms and Complexity for Sorting by Symmetric Reversals
-
-with Xin Tong, Ziyi Fang, Haitao Jiang, Lusheng Wang, Binhai Zhu and Daming Zhu
-
-*COCOON 2023* [https://link.springer.com/chapter/10.1007/978-3-031-49193-1_21 conference version], [https://arxiv.org/abs/2302.03797 arxiv version]
+== Publications and preprints
+(authors are sorted by lexicographic order by default, while papers marked with (\*) are sorted by contribution)
+\n
+\n
+4. Zero-free regions and concentration inequalities for hypergraph colorings in the local lemma regime
+\n
+Jingcheng Liu and Yixiao Yu
+\n
+*STOC 2026* [https://arxiv.org/abs/2601.13796 \[arxiv\]]
+\n
+\n
+3. Learning CNF formulas from uniform random solutions in the local lemma regime
+\n
+Weiming Feng, Xiongxin Yang, Yixiao Yu and Yiyao Zhang
+\n
+*STOC 2026* [https://arxiv.org/abs/2511.02487 \[arxiv\]]
+\n
+\n
+2. Phase Transitions via Complex Extensions of Markov Chains
+\n
+Jingcheng Liu, Chunyang Wang, Yitong Yin and Yixiao Yu
+\n
+*STOC 2025* [https://arxiv.org/abs/2411.06857 \[arxiv\]] [./slides/stoc2025.pdf \[slides\]]
+\n
+\n
+1. Men Can't Always be Transformed into Mice: Decision Algorithms and Complexity for Sorting by Symmetric Reversals (\*)
+\n
+Xin Tong, Yixiao Yu, Ziyi Fang, Haitao Jiang, Lusheng Wang, Binhai Zhu and Daming Zhu
+\n
+*COCOON 2023* [https://arxiv.org/abs/2302.03797 \[arxiv\]]
