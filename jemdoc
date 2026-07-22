@@ -665,6 +665,16 @@ def replaceimages(b):
 
   return b
 
+def isbareemail(link):
+  """Return whether a link target uses jemdoc's bare-email shorthand."""
+
+  # An @ can also occur in a URL or a local path. Only infer mailto: when the
+  # whole target looks like an address; explicit URI schemes and paths should
+  # be left untouched.
+  if re.match(r'^[A-Za-z][A-Za-z0-9+.-]*:', link):
+    return False
+  return re.match(r'^[^@\s/\\]+@[^@\s/\\]+$', link) is not None
+
 def replacelinks(b):
   # works with [link.html new link style].
   r = re.compile(r'(?<!\\)\[(.*?)(?:\s(.*?))?(?<!\\)\]', re.M + re.S)
@@ -678,8 +688,7 @@ def replacelinks(b):
     else:
         option = ' target="blank"'
 
-    if '@' in m1 and not m1.startswith('mailto:') and not \
-       m1.startswith('http://'):
+    if isbareemail(m1):
       link = 'mailto:' + m1
     else:
       link = m1
