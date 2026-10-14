@@ -43,16 +43,51 @@ I'm interested in TCS and focus on approximate sampling and counting now. Here i
 </p>
 <h2>Publications and preprints</h2>
 <p>(authors are sorted by lexicographic order by default, while papers marked with (*) are sorted by contribution)
-<br />
-<br />
-5. Learning AC<sup>0</sup> under Locally Sampleable Graphical Models
-<br />
-Weiming Feng, Xiongxin Yang, Yixiao Yu and Yiyao Zhang
-<br />
-preprint <a href="https://arxiv.org/abs/2607.08303" target=&ldquo;blank&rdquo;>[arxiv]</a>
-<br />
-<br />
-4. Zero-Free Regions and Concentration Inequalities for Hypergraph Colorings in the Local Lemma Regime
+</p>
+<div class="publication">
+  <div>7. Simulated Annealing and Weak Poincaré Inequalities with Inverse-Polynomial Accuracy for the Sherrington-Kirkpatrick Model</div>
+  <div>Zhe Hou, Jingcheng Liu and Yixiao Yu</div>
+  <div class="publication-links">
+    preprint <a href="https://arxiv.org/abs/2610.09882">[arxiv]</a>
+    <details class="ai-disclosure" id="ai-disclosure-sk">
+      <summary>AI Disclosure</summary>
+      <div class="ai-disclosure-content">
+        <p>We used AI throughout various stages of the project, both in explorations of different proof strategies and in carrying out a few heavy calculations. We started with GPT 5.5 Pro in trying to explore and understand what it takes to combine [<a href="https://arxiv.org/html/2610.09882v1#bib.bib10">21</a>, <a href="https://arxiv.org/html/2610.09882v1#bib.bib4">13</a>] with [<a href="https://arxiv.org/html/2610.09882v1#bib.bib7">17</a>] to get sampling algorithms in TV distance. GPT assisted with strengthening the bounds in [<a href="https://arxiv.org/html/2610.09882v1#bib.bib10">21</a>, <a href="https://arxiv.org/html/2610.09882v1#bib.bib4">13</a>] in a number of ways (such as deriving <span class="disclosure-math">𝔼[‖m − m<sup>∗</sup>‖<sub>2</sub><sup>2</sup>] = O(1)</span>), and it is the starting point of the current framework of analyzing the TAP residual. These bounds were enough to support the application of Girsanov comparison and the path-space correction post processing in [<a href="https://arxiv.org/html/2610.09882v1#bib.bib7">17</a>] up to <span class="disclosure-math">β &lt; 1</span>. Then we found out the two new advances in the SK model in [<a href="https://arxiv.org/html/2610.09882v1#bib.bib3">6</a>, <a href="https://arxiv.org/html/2610.09882v1#bib.bib14">18</a>], and when GPT 5.6 Pro was released, we used it to extend our analysis to a weak Poincaré inequality throughout <span class="disclosure-math">β &lt; 1</span>, as well as to the current inverse polynomial scale to support simulated annealing. We supplied high-level guidance throughout the proof developments. GPT 5.6 Pro and Ultra were also used extensively in exploring alternative proof strategies. In particular, the square-root interpolation idea in Lemma 4.2, as well as the strategy that sidesteps sub-Gaussian concentration of the TAP residual, which underlies the better concentration control in Section 4.2 and Section 4.3, were selected among a few alternatives found by GPT 5.6 Pro. GPT 5.6 Pro also claimed a false proof of an FPRAS extension based on our simulated annealing approach, which GPT 6 Astra Pro managed to fix. GPT 6 Astra Pro also found a separate deterministic FPTAS for the SK model, which we had to defer to a separate manuscript in view of OpenAI’s recent announcements [<a href="https://arxiv.org/html/2610.09882v1#bib.bib32">32</a>, <a href="https://arxiv.org/html/2610.09882v1#bib.bib33">35</a>, <a href="https://arxiv.org/html/2610.09882v1#bib.bib34">34</a>, <a href="https://arxiv.org/html/2610.09882v1#bib.bib35">33</a>]. We also used Codex and GPT 5.5 xHigh, GPT 5.6 Sol Ultra, and GPT 6 Astra Ultra through various stages of preparing our manuscript, especially in checking for typos and writing. We verified all the proofs produced by AI, and we take full responsibility in their correctness.</p>
+        <p class="ai-disclosure-source">Source: <a href="https://arxiv.org/html/2610.09882v1#S1.SS4">arXiv, Section 1.4</a>.</p>
+      </div>
+    </details>
+  </div>
+</div>
+<div class="publication">
+  <div>6. Learning CNF Formulas from Uniform Random Solutions: Near-Tight Sample Complexity for Valiant's Algorithm</div>
+  <div>Weiming Feng, Yixiao Yu and Yiyao Zhang</div>
+  <div class="publication-links">
+    preprint <a href="https://arxiv.org/abs/2609.15268">[arxiv]</a>
+    <details class="ai-disclosure" id="ai-disclosure-valiant">
+      <summary>AI Disclosure</summary>
+      <div class="ai-disclosure-content">
+        <p>The authors used ChatGPT 5.6 and ChatGPT 5.6-Sol Ultra as AI assistants during the preparation of this manuscript. The general method for separating large overlaps and the tree-refinement procedure in the upper-bound proof were suggested by ChatGPT 5.6-Sol Ultra. All other proof ideas are due to the human authors. ChatGPT 5.6 was also used for language polishing.</p>
+        <p>All mathematical statements, proofs, algorithms, and references in this manuscript were prepared and verified by the authors. The authors take full responsibility for all content.</p>
+        <p class="ai-disclosure-source">Source: <a href="https://arxiv.org/html/2609.15268v1#Sx1">arXiv, AI Disclosure</a>.</p>
+      </div>
+    </details>
+  </div>
+</div>
+<div class="publication">
+  <div>5. Learning AC<sup>0</sup> under Locally Sampleable Graphical Models</div>
+  <div>Weiming Feng, Xiongxin Yang, Yixiao Yu and Yiyao Zhang</div>
+  <div class="publication-links">
+    <b>SODA 2027</b> <a href="https://arxiv.org/abs/2607.08303">[arxiv]</a>
+    <details class="ai-disclosure" id="ai-disclosure-ac0">
+      <summary>AI Disclosure</summary>
+      <div class="ai-disclosure-content">
+        <p>The proof idea in <a href="https://arxiv.org/html/2607.08303v1#S4">Section 4</a> was suggested by ChatGPT 5.5 Pro. All other proof ideas are due to the human authors. ChatGPT 5.5 Pro and Codex were used to assist with proof details, exposition, and verification. The authors take full responsibility for the correctness of all proofs.</p>
+        <p class="ai-disclosure-source">Source: <a href="https://arxiv.org/html/2607.08303v1#Sx1.p2">arXiv, Acknowledgments</a>.</p>
+      </div>
+    </details>
+  </div>
+</div>
+<p>4. Zero-Free Regions and Concentration Inequalities for Hypergraph Colorings in the Local Lemma Regime
 <br />
 Jingcheng Liu and Yixiao Yu
 <br />
